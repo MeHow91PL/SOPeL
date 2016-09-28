@@ -1,0 +1,36 @@
+﻿#kartaRezerwacjiPacjenta {
+    display:none;
+}
+
+#kartaRezerwacjiPacjentaDane {
+    float: left;
+    width:80%;
+}
+
+#kartaRezerwacjiPacjentaZdjeciePacjenta {
+    float:left;
+    width:20%;
+}
+
+#kartaRezerwacjiPacjentaButtonKontener input{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+@media all and (max-width:768px) {
+
+    #kartaRezerwacjiPacjenta {
+        height: 100%;
+    }
+
+    #kartaRezerwacjiPacjentaDane {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #kartaRezerwacjiPacjentaButtonKontener input {
+        height: 40px;
+        margin-top: 0;
+        font-size: small;
+    }
+}

@@ -1,0 +1,66 @@
+﻿
+@model SOPeL.Models.Rezerwacja
+
+
+<div id="kartaRezerwacjiPacjenta">
+    <div class="container">
+        <form id="formularzkartaRezerwacjiPacjenta" method="post" action="@Url.Action("zatwierdzenieRezerwacji")" onsubmit="return zatwierdzKarteRezerwacji()">
+            <div class="row">
+                <div id="kartaRezerwacjiPacjentaDane">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="imie">Imię</label>
+                        @Html.TextBoxFor(m => m.Pacjent.Imie, new { @class = "form-control", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Pacjent.Imie)
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="nazwisko">Nazwisko</label>
+                        @Html.TextBoxFor(m => m.Pacjent.Nazwisko, new { @class = "form-control", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Pacjent.Nazwisko)
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="pesel">PESEL</label>
+                        @Html.TextBoxFor(m => m.Pacjent.Pesel, new { @class = "form-control", @onkeyup = "walidujKarteRezerwacji()", @autocomplete = "off" })
+                        <span class="errorMessage" id="peselErrorMessageSpan"></span>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="dokumentTozsamosci">Dok tożsamości</label>
+                        @Html.TextBoxFor(m => m.Pacjent.DokumentTozsamosci, new { @class = "form-control", @autocomplete = "off", @placeholder = "np. ABC123456", @onkeyup = "walidujKarteRezerwacji()" })
+                        <span class="errorMessage" id="dokTozsamosciErrorMessageSpan"></span>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="telefon">Telefon</label>
+                        @Html.TextBoxFor(m => m.Pacjent.Telefon, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Pacjent.Telefon)
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="email">Adres e-mail</label>
+                        @Html.TextBoxFor(m => m.Pacjent.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Pacjent.Email)
+                    </div><div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="godzinaRezerwacji">Godzina</label>
+                        @Html.TextBoxFor(m => m.GodzinaRezerwacji, new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.GodzinaRezerwacji)
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="dataRezerwacji">Data</label>
+                        @Html.LabelFor(m=> m.DataRezerwacji)
+                        @Html.TextBoxFor(m => m.DataRezerwacji, new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.DataRezerwacji)
+                    </div>
+                </div>
+                <div id="kartaRezerwacjiPacjentaZdjeciePacjenta" class="hidden-xs">
+                    <img class="img-responsive" src="~/Content/Images/userIcon.png" />
+                </div>
+                @Html.TextBoxFor(m => m.Id, new { @type = "hidden" })
+                @Html.TextBoxFor(m => m.Pacjent.Plec, new { @type = "hidden" })
+
+            </div>
+            <div class="row" id="kartaRezerwacjiPacjentaButtonKontener">
+                <input type="submit" class="btn btn-primary col-lg-offset-4 col-lg-2 col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2 col-xs-12" value="Zapisz" />
+                <input type="submit" class="btn btn-primary col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2 col-xs-12" name="submitButton" value="Usuń" />
+                <input type="button" onclick="zamknijOknoKartyRezerwacjiPacjenta()" class="btn btn-primary col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2 col-xs-12" value="Anuluj" />
+            </div>
+        </form>
+    </div>
+
+</div>
