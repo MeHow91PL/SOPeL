@@ -39,7 +39,7 @@ namespace SOPeL.Controllers
             ViewBag.Specjalizacje = specjalizacje;
 
             Database.zamknijPolaczenie();
-            return View();
+            return View("~/Views/Portal pacjenta/Rejestracja on-line/index.cshtml");
         }
 
         public JsonResult ListaPracownikow(string spec)

@@ -21,7 +21,7 @@ namespace SOPeL.Controllers
                 + DateTime.Now.Year + "-" + string.Format("{0:00}", DateTime.Now.Month) + "-" + string.Format("{0:00}", DateTime.Now.Day) + "'");
                 
             Database.zamknijPolaczenie();
-            return View();
+            return View("~/Views/Przychodnia/Terminarz/Index.cshtml");
         }
 
         private List<Rezerwacja> GetListaRezerwacji(string zapytanie)
