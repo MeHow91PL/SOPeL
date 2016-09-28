@@ -313,22 +313,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Terminarz\Index.cshtml" />
+    <Content Include="Views\Przychodnia\Terminarz\Index.cshtml" />
     <Content Include="Views\Shared\_KartaPacjenta.cshtml" />
     <Content Include="Views\Shared\_KartaRezerwacjiPrzychodnia.cshtml" />
     <Content Include="Views\Shared\_KartaRezerwacjiPortalPacjentaNiezalogowany.cshtml" />
-    <Content Include="Views\Rejestracja\index.cshtml" />
+    <Content Include="Views\Portal pacjenta\Rejestracja on-line\index.cshtml" />
     <Content Include="Views\Shared\_PortalPacjentaLayout.cshtml" />
     <Content Include="Views\Shared\_Terminarz.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_PrzychodniaLayout.cshtml" />
-    <Content Include="Views\Terminarz\TerminarzPrzychodnia.cshtml" />
+    <Content Include="Views\Przychodnia\Terminarz\TerminarzPrzychodnia.cshtml" />
     <Content Include="Views\Shared\_OknoLogowania.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Database\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
