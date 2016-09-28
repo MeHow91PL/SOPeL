@@ -1,0 +1,25 @@
+﻿@model SOPeL.Models.Uzytkownik
+<div id="kartaLogowania">
+    <div class="container">
+        <form id="formularzKartyLogowania" method="post" action="@Url.Action("Logowanie")">
+            <row>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="login"> Login</label>
+                    @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Login)
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="haslo"> Hasło</label>
+                    @Html.PasswordFor(m => m.Haslo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Haslo)
+                </div>
+            </row>
+            <row>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 buttonFotterContainer">
+                    <input type="submit" class="btn btn-primary col-lg-offset-5 col-lg-3 col-md-offset-5 col-md-3 col-sm-offset-5 col-sm-3 col-xs-12" value="Zaloguj" />
+                    <input type="submit" class="btn btn-primary col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" value="Anuluj" />
+                </div>
+            </row>
+        </form>
+    </div>
+</div>
