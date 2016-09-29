@@ -1,7 +1,4 @@
-﻿@{
-    ViewBag.Title = "Terminarz";
-}
-
+﻿@*<script src="~/Scripts/terminarz.js"></script>*@
 <div class="container kontenerMaterial">
     <div class="container">
         <div id="terminarzDataKontener" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -11,9 +8,51 @@
 
     </div>
 </div>
-
 <div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
     @* Treść ładowana AJAXem *@
     @Html.Partial("~/Views/Przychodnia/Terminarz/TerminarzPrzychodnia.cshtml")
 
 </div>
+
+@Html.Partial("_KartaRezerwacjiPrzychodnia");
+
+<script>
+    function zmianaTerminu() {
+            var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+            var dataRezerwacji = $('#dataRezerwacji').val();
+
+            var wzor = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
+            var parts = dataRezerwacji.split('-');
+
+            if (!wzor.test(dataRezerwacji)) {
+                alert("Wybierz datę z kalendarza");
+                kontenerMaterialPortalPacjenta.slideUp(500);
+                return;
+            }
+            $.ajax({
+                url: '@Url.Action("pobierzTerminarz", "Terminarz")',
+                data: {
+                    wybranaData: dataRezerwacji
+                },
+                success: function (response) {
+                    kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
+                    kontenerMaterialPortalPacjenta.html(response);
+                    });
+                    kontenerMaterialPortalPacjenta.slideDown(300);
+                },
+                error: function () {
+                    kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
+                        kontenerMaterialPortalPacjenta.html("");
+                    });
+                }
+            });
+        }
+
+    $(document).ready(function () {
+        var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+        kontenerMaterialPortalPacjenta.css({
+            "height": "100%",
+            "visibility": "visible"
+        });
+    });
+</script>
