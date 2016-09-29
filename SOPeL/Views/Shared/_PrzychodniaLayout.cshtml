@@ -47,7 +47,7 @@
             </div>
             <div id="kontener" class="container col-lg-10 col-lg-offset-2 col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
                 @RenderBody()
-
+                Hello
             </div>
         </div>
     </div>
@@ -60,9 +60,6 @@
         function ladowaniePodstrony(id) {
             var kontener = $("#kontener");
             var modul = id;
-            console.log(modul);
-            alert("start");
-
             $.ajax({
                 url: '@Url.Action("pobierzModulAdmin", "Przychodnia")',
                 data: {
@@ -73,8 +70,6 @@
                         kontener.html(response);
                     });
                     kontener.slideDown(0);
-                    alert("stop success");
-
                 },
                 error: function () {
                     kontener.slideUp(0, function myfunction() {

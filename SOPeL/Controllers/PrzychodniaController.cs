@@ -18,8 +18,7 @@ namespace SOPeL.Controllers
 		public ActionResult pobierzModulAdmin(string wybranyModul)
 		{
 			string modul = wybranyModul;
-            string path = "~/Views/Przychodnia/" + modul + "/Index.cshtml";
-			return PartialView(path);
+            return RedirectToAction("Index", modul);
 		}
 	}
 }
