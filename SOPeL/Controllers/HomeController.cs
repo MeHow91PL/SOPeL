@@ -35,7 +35,7 @@ namespace SOPeL.Controllers
                 if (dr[0].ToString() == uzytkownik.Haslo)  // sprawdza czy podane przez uzytkownika haslo odpowiada temu z bazy 
                 {
                     dr.Close();
-                    return RedirectToAction("Index", "Terminarz");
+                    return RedirectToAction("Index", "Przychodnia");
                 }
                 else //gdy uzytkownik istniej w bazie ale hasło sie nie zgadza 
                 {

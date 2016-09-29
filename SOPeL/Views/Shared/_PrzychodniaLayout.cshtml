@@ -25,13 +25,19 @@
                     <div id="zwijaczMenu" onclick="zawijaczKlik()">&lt;&lt;</div>
                     <ul class="nav nav-sidebar" id="navPortalPacjenta">
                         <li class="active" id="rejestracjaButtonPortalPacjenta">
-                            <a href="#">
+                            <a onclick="ladowaniePodstrony('Terminarz')" id="Terminarz">
                                 <img class="img-responsive" src="~/Content/Images/unnamed.png" alt="Rejestracja online" />
                                 <span>Rejestracja</span>
                             </a>
                         </li>
+                        <li id="adminButtonSidebar">
+                            <a onclick="ladowaniePodstrony('Admin')" id="Admin">
+                                <img class="img-responsive" src="~/Content/Images/admin.svg" alt="Strona domowa" />
+                                <span>Admin</span>
+                            </a>
+                        </li>
                         <li id="homeButtonPortalPacjenta">
-                            <a href="@Url.Action("Index", "Home")">
+                            <a href="@Url.Action("Index", "Home")" id="Home">
                                 <img class="img-responsive" src="~/Content/Images/homeIcon.png" alt="Strona domowa" />
                                 <span>Strona główna</span>
                             </a>
@@ -39,7 +45,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="container col-lg-10 col-lg-offset-2 col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+            <div id="kontener" class="container col-lg-10 col-lg-offset-2 col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
                 @RenderBody()
 
             </div>
@@ -49,5 +55,34 @@
 
 
     @RenderSection("scripts", required: false)
+
+    <script>
+        function ladowaniePodstrony(id) {
+            var kontener = $("#kontener");
+            var modul = id;
+            console.log(modul);
+            alert("start");
+
+            $.ajax({
+                url: '@Url.Action("pobierzModulAdmin", "Przychodnia")',
+                data: {
+                    wybranyModul: modul
+                },
+                success: function (response) {
+                    kontener.slideUp(0, function myfunction() {
+                        kontener.html(response);
+                    });
+                    kontener.slideDown(0);
+                    alert("stop success");
+
+                },
+                error: function () {
+                    kontener.slideUp(0, function myfunction() {
+                        kontener.html("");
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 </html>

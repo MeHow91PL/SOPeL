@@ -24,6 +24,11 @@ namespace SOPeL.Controllers
             return View("~/Views/Przychodnia/Terminarz/Index.cshtml");
         }
 
+        public ActionResult Admin()
+        {
+            return View("~/Views/Przychodnia/Admin/Index.cshtml");
+        }
+
         private List<Rezerwacja> GetListaRezerwacji(string zapytanie)
         {
             List<Rezerwacja> rezerwacje = new List<Rezerwacja>();
@@ -39,6 +44,8 @@ namespace SOPeL.Controllers
 
             return rezerwacje;
         }
+
+
 
         private List<Pracownik> GetListaPracownikow(string zapytanie)
         {
@@ -65,7 +72,7 @@ namespace SOPeL.Controllers
 
             Database.zamknijPolaczenie();
 
-            return PartialView("TerminarzPrzychodnia");
+            return PartialView("~/Views/Przychodnia/Terminarz/TerminarzPrzychodnia.cshtml");
         }
 
         [HttpPost]

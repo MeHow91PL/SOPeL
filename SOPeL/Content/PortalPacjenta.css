@@ -26,9 +26,9 @@
         background-color: #f5f5f5;
         border-right: 1px solid #eee;
         z-index: 1;
-        -moz-box-shadow: 1px 0 1px #b7b7b7;
-        -webkit-box-shadow: 1px 0 1px #b7b7b7;
-        box-shadow: 1px 0 1px #b7b7b7;
+        -moz-box-shadow: 0px 0 40px #bfbfbf;
+        -webkit-box-shadow: 0px 0 40px #bfbfbf;
+        box-shadow:  0px 0 40px #bfbfbf;
     }
 }
 
