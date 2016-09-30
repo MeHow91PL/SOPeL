@@ -8,9 +8,6 @@ namespace SOPeL.Models
 {
     public class Rezerwacja
     {
-        [ScaffoldColumn(false)]
-        public int Id { get; set; }
-
         public Pracownik Pracownik{ get; set; }
         public Pacjent Pacjent { get; set; }
 
@@ -18,7 +15,10 @@ namespace SOPeL.Models
         [Display(Name = "Data")]
         public DateTime DataRezerwacji { get; set; }
 
-        [StringLength(5)]
-        public string GodzinaRezerwacji { get; set; }
+        [Display(Name = "Godzina od")]
+        public TimeSpan godzOd { get; set; }
+
+        [Display(Name = "Godzina do")]
+        public TimeSpan godzDo { get; set; }
     }
 }

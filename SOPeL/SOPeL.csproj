@@ -208,6 +208,7 @@
     <Content Include="Content\Images\clinicIcon.png" />
     <Content Include="Content\Images\doctorIcon.png" />
     <Content Include="Content\Images\homeIcon.png" />
+    <Content Include="Content\Images\loader.gif" />
     <Content Include="Content\Images\Pacjent3Icon.png" />
     <Content Include="Content\Images\pacjentIcon.png" />
     <Content Include="Content\Images\plannerIcon.png" />
@@ -222,6 +223,7 @@
     <Content Include="Content\KartaRezerwacjiPortalPacjentaNiezalogowany.css" />
     <Content Include="Content\KartaRezerwacjiPrzychodnia.css" />
     <Content Include="Content\PortalPacjenta.css" />
+    <Content Include="Content\Przychodnia.css" />
     <Content Include="Content\RobotoFont.css" />
     <Content Include="Content\Terminarz.css" />
     <Content Include="Content\themes\base\accordion.css" />

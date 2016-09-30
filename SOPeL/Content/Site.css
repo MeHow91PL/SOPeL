@@ -1,4 +1,8 @@
 ﻿@import url('RobotoFont.css');
+html {
+    height:100%;
+}
+
 body {
 	padding-top: 50px;
 	padding-bottom: 20px;
@@ -20,3 +24,26 @@ body {
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
+
+
+.ukryty {
+    visibility: collapse;
+}
+
+.widoczny {
+    visibility: visible;
+}
+
+.maxWysokosc {
+    height:100%;
+}
+
+.maxSzerokosc {
+    width: 100%;
+}
+
+.wysrodkujCentralnie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

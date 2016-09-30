@@ -16,10 +16,10 @@
     @Scripts.Render("~/bundles/rejestracja")
     <link href="~/Content/index.css" rel="stylesheet" />
 </head>
-<body style="padding: 0" id="bodyPrzychodnia">
+<body style="padding: 0" id="bodyPrzychodnia" class="maxSzerokosc maxWysokosc">
 
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid maxWysokosc">
+        <div class="row maxWysokosc">
             <div class="col-lg-2 col-sm-2 col-md-2 ">
                 <div class="sidebar">
                     <div id="zwijaczMenu" onclick="zawijaczKlik()">&lt;&lt;</div>
@@ -45,9 +45,13 @@
                     </ul>
                 </div>
             </div>
-            <div id="kontener" class="container col-lg-10 col-lg-offset-2 col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
-                @RenderBody()
-                Hello
+            <div id="kontener" class="maxWysokosc container col-lg-10 col-lg-offset-2 col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+                <div id="renderBody">
+                    @RenderBody()
+                </div>
+                <div class="wysrodkujCentralnie maxWysokosc maxSzerokosc ukryty" id="loader-kontener">
+                        <img id="loader" src="~/Content/Images/loader.gif" alt="Wczytuję..." />
+                </div>
             </div>
         </div>
     </div>
@@ -58,23 +62,23 @@
 
     <script>
         function ladowaniePodstrony(id) {
-            var kontener = $("#kontener");
+            var renderBody = $("#renderBody");
             var modul = id;
+            var loaderKontener = $("#loader-kontener");
+
+            loaderKontener.switchClass("ukryty", "widoczny",150,"swing");
             $.ajax({
                 url: '@Url.Action("pobierzModulAdmin", "Przychodnia")',
                 data: {
                     wybranyModul: modul
                 },
                 success: function (response) {
-                    kontener.slideUp(0, function myfunction() {
-                        kontener.html(response);
-                    });
-                    kontener.slideDown(0);
+                    loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
+                        renderBody.html(response);
                 },
                 error: function () {
-                    kontener.slideUp(0, function myfunction() {
-                        kontener.html("");
-                    });
+                    loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
+                        renderBody.html("");
                 }
             });
         }

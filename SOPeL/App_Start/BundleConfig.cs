@@ -41,7 +41,8 @@ namespace SOPeL
                       "~/Content/KartaRezerwacjiPrzychodnia.css",
                       "~/Content/KartaLogowania.css",
                       "~/Content/KartaRezerwacjiPortalPacjentaNiezalogowany.css",
-                     "~/Content/index.css",
+                     "~/Content/index.css", 
+                     "~/Content/Przychodnia.css",
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

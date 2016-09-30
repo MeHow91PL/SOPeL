@@ -62,35 +62,35 @@ namespace SOPeL.Controllers
         [HttpPost]
         public ActionResult Index(Rezerwacja rezerwacja, string idrez)//idrez ma następujący format idLekarza-godzina-data
         {
-            Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
+            //Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
 
-            string[] rez = idrez.Split('-');
+            //string[] rez = idrez.Split('-');
 
-            NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT count(pesel) from pacjenci where pesel = '" + rezerwacja.Pacjent.Pesel + "'");
-            dr.Read();
-            if (dr[0].ToString() == "0")
-            {
-                dr.Close();
+            //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT count(pesel) from pacjenci where pesel = '" + rezerwacja.Pacjent.Pesel + "'");
+            //dr.Read();
+            //if (dr[0].ToString() == "0")
+            //{
+            //    dr.Close();
 
-                Database.wykonajZapytanieDML("INSERT INTO pacjenci (imie,nazwisko,pesel,dok_toz,telefon,email,plec)" +
-                    "VALUES('" + rezerwacja.Pacjent.Imie.ToUpper() + "', '" + rezerwacja.Pacjent.Nazwisko.ToUpper() + "', '" 
-                    + rezerwacja.Pacjent.Pesel + "', '" + rezerwacja.Pacjent.DokumentTozsamosci.ToUpper() 
-                    + "', '" + rezerwacja.Pacjent.Telefon.ToUpper() + "', '" 
-                    + rezerwacja.Pacjent.Email.ToUpper() + "', '" + rezerwacja.Pacjent.Plec.ToUpper() + "')");
-            }
-            dr.Close();
-            dr = Database.wykonajZapytanieDQL("Select id from pacjenci where pesel = '" + rezerwacja.Pacjent.Pesel + "'");
+            //    Database.wykonajZapytanieDML("INSERT INTO pacjenci (imie,nazwisko,pesel,dok_toz,telefon,email,plec)" +
+            //        "VALUES('" + rezerwacja.Pacjent.Imie.ToUpper() + "', '" + rezerwacja.Pacjent.Nazwisko.ToUpper() + "', '" 
+            //        + rezerwacja.Pacjent.Pesel + "', '" + rezerwacja.Pacjent.DokumentTozsamosci.ToUpper() 
+            //        + "', '" + rezerwacja.Pacjent.Telefon.ToUpper() + "', '" 
+            //        + rezerwacja.Pacjent.Email.ToUpper() + "', '" + rezerwacja.Pacjent.Plec.ToUpper() + "')");
+            //}
+            //dr.Close();
+            //dr = Database.wykonajZapytanieDQL("Select id from pacjenci where pesel = '" + rezerwacja.Pacjent.Pesel + "'");
 
-            dr.Read();
+            //dr.Read();
 
-            string id = dr["Id"].ToString();
+            //string id = dr["Id"].ToString();
 
-            dr.Close();
+            //dr.Close();
 
-            Database.wykonajZapytanieDML("INSERT INTO REZERWACJE (ID_PRACOWNIKA,ID_PACJENTA,data)" +
-                "VALUES(" + rez[0] + ", " + id + ", '" + rezerwacja.DataRezerwacji.ToString("yyyy-MM-dd") + " " + rezerwacja.GodzinaRezerwacji + "')");
+            //Database.wykonajZapytanieDML("INSERT INTO REZERWACJE (ID_PRACOWNIKA,ID_PACJENTA,data)" +
+            //    "VALUES(" + rez[0] + ", " + id + ", '" + rezerwacja.DataRezerwacji.ToString("yyyy-MM-dd") + " " + rezerwacja.GodzinaRezerwacji + "')");
 
-            Database.zamknijPolaczenie();
+            //Database.zamknijPolaczenie();
             return RedirectToAction("Index");
         }
 
@@ -127,30 +127,30 @@ namespace SOPeL.Controllers
 
         public PartialViewResult pobierzTerminarzWybranegoLekarza(int idi ,string wybranaData)
         {
-            List<Pracownik> pracownicy = new List<Pracownik>();
-            Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
-            NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy where id =" + idi);
+            //List<Pracownik> pracownicy = new List<Pracownik>();
+            //Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
+            //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy where id =" + idi);
 
-            while (dr.Read())
-            {
-                pracownicy.Add(new Pracownik() { Id = (int)dr["id"], Imie = dr["imie"].ToString(), Nazwisko = dr["nazwisko"].ToString(), Specjalizacja = dr["specjalizacja"].ToString() });
-            }
-            dr.Close();
+            //while (dr.Read())
+            //{
+            //    pracownicy.Add(new Pracownik() { Id = (int)dr["id"], Imie = dr["imie"].ToString(), Nazwisko = dr["nazwisko"].ToString(), Specjalizacja = dr["specjalizacja"].ToString() });
+            //}
+            //dr.Close();
 
 
-            List<Rezerwacja> rezerwacje = new List<Rezerwacja>();
-            Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
-            dr = Database.wykonajZapytanieDQL("SELECT * FROM v_RezerwacjePacjentow where id_pracownika = " + idi + " and date(data) ='" + wybranaData + "'");
-            while (dr.Read())
-            {
-                rezerwacje.Add(new Rezerwacja() { GodzinaRezerwacji = dr["data"].ToString().Substring(11, 5), DataRezerwacji = (DateTime)dr["data"], Pacjent = new Pacjent() { Nazwisko = dr["nazwisko_pacjenta"].ToString(), Imie = dr["imie_pacjenta"].ToString() }, Pracownik = new Pracownik() { Id = (int)dr["id_pracownika"] } });
-            }
-            dr.Close();
+            //List<Rezerwacja> rezerwacje = new List<Rezerwacja>();
+            //Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
+            //dr = Database.wykonajZapytanieDQL("SELECT * FROM v_RezerwacjePacjentow where id_pracownika = " + idi + " and date(data) ='" + wybranaData + "'");
+            //while (dr.Read())
+            //{
+            //    rezerwacje.Add(new Rezerwacja() { GodzinaRezerwacji = dr["data"].ToString().Substring(11, 5), DataRezerwacji = (DateTime)dr["data"], Pacjent = new Pacjent() { Nazwisko = dr["nazwisko_pacjenta"].ToString(), Imie = dr["imie_pacjenta"].ToString() }, Pracownik = new Pracownik() { Id = (int)dr["id_pracownika"] } });
+            //}
+            //dr.Close();
 
-            Database.zamknijPolaczenie();
+            //Database.zamknijPolaczenie();
 
-            ViewBag.Pracownicy = pracownicy;
-            ViewBag.Rezerwacje = rezerwacje;
+            //ViewBag.Pracownicy = pracownicy;
+            //ViewBag.Rezerwacje = rezerwacje;
 
 
             return PartialView("_Terminarz");

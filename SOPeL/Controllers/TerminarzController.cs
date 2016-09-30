@@ -17,7 +17,7 @@ namespace SOPeL.Controllers
             Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
             
             ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
-            ViewBag.Rezerwacje = GetListaRezerwacji("Select * from v_rezerwacjepacjentow where date_trunc('day',data) ='"
+            ViewBag.Rezerwacje = GetListaRezerwacji("Select * from v_rezerwacjepacjentow where date_trunc('day',rez_data) ='"
                 + DateTime.Now.Year + "-" + string.Format("{0:00}", DateTime.Now.Month) + "-" + string.Format("{0:00}", DateTime.Now.Day) + "'");
                 
             Database.zamknijPolaczenie();
@@ -37,7 +37,11 @@ namespace SOPeL.Controllers
 
             while (dr.Read())
             {
-                rezerwacje.Add(new Rezerwacja() {Id = Convert.ToInt32(dr["id"]) , GodzinaRezerwacji = dr["data"].ToString().Substring(11, 5), DataRezerwacji = (DateTime)dr["data"], Pacjent = new Pacjent() { Nazwisko = dr["nazwisko_pacjenta"].ToString(), Imie = dr["imie_pacjenta"].ToString(), Pesel = dr["pesel_pacjenta"].ToString(), DokumentTozsamosci = dr["dok_toz"].ToString(), Email = dr["email_pacjenta"].ToString(), Telefon = dr["telefon_pacjenta"].ToString() }, Pracownik = new Pracownik() { Id = (int)dr["id_pracownika"] } });
+                rezerwacje.Add(new Rezerwacja() {
+                    Pacjent = new Pacjent() { Imie = dr["pac_imie"].ToString(), Nazwisko = dr["pac_nazwisko"].ToString(), Pesel = dr["pac_pesel"].ToString() },
+                    Pracownik = new Pracownik() { Imie = dr["prac_imie"].ToString(), Nazwisko = dr["prac_nazwisko"].ToString() },
+                    DataRezerwacji = Convert.ToDateTime(dr["rez_data"].ToString()), godzOd = TimeSpan.FromSeconds(Convert.ToDouble(dr["rez_godz_pocz"].ToString())), godzDo = TimeSpan.FromSeconds(Convert.ToDouble(dr["rez_godz_konc"].ToString()))
+                });
             }
 
             dr.Close();
@@ -78,13 +82,13 @@ namespace SOPeL.Controllers
         [HttpPost]
         public ActionResult zatwierdzenieRezerwacji(Rezerwacja rez,string submitButton)
         {
-            Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
+            //Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
 
-            if(submitButton == "Usuń")
-            Database.wykonajZapytanieDML("DELETE FROM rezerwacje WHERE id=" + rez.Id);
-            //else zapisz
+            //if(submitButton == "Usuń")
+            //Database.wykonajZapytanieDML("DELETE FROM rezerwacje WHERE id=" + rez.Id);
+            ////else zapisz
 
-            Database.zamknijPolaczenie();
+            //Database.zamknijPolaczenie();
 
             return RedirectToAction("Index");
         }
