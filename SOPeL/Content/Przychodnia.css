@@ -2,4 +2,10 @@
     position: fixed;
     top:0;
     left:0;
+    background:rgba(128, 128, 128,0.5);
+    z-index:9999;
+}
+
+#opcje-terminarza-okno {
+   display:none;
 }

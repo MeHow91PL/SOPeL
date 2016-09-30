@@ -10,6 +10,10 @@ body {
 	font-weight:400;
 }
 
+a{
+    cursor:pointer;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
 	padding-left: 15px;
@@ -27,7 +31,7 @@ body {
 
 
 .ukryty {
-    visibility: collapse;
+    visibility: hidden;
 }
 
 .widoczny {

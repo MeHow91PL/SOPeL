@@ -1,10 +1,16 @@
 ﻿@*<script src="~/Scripts/terminarz.js"></script>*@
 <div class="container kontenerMaterial">
     <div class="container">
-        <div id="terminarzDataKontener" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div id="terminarzDataKontener" class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
             <label for="dataRezerwacji">Data</label>
             <input type="text" onchange="zmianaTerminu()" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="dataRezerwacji" name="dataRezerwacji" class="form-control datepickerRejOnline" />
         </div>
+
+       <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
+           <a id="opcje-terminarza-button">
+               <img src="~/Content/Images/opcje.svg" alt="Opcje" class="img-responsive" />
+           </a>
+       </div>
 
     </div>
 </div>
@@ -16,8 +22,18 @@
 
 @*@Html.Partial("_KartaRezerwacjiPrzychodnia")*@
 
+<div id="opcje-terminarza-okno" class="kontenerMaterial">
+    <form>
+        Czas trwania wizyty: <input type="number" maxlength="2" max="60" min="1" name="czas-trwania-wyzyty" value="30" /> min
+        <button id="opcje-terminarza-zapisz-button" type="button">Zapisz</button>
+        <button id="opcje-terminarza-anuluj-button" type="button">Anuluj</button>
+    </form>
+</div>
+
 <script>
-    function zmianaTerminu() {
+    $(function () {
+
+        function zmianaTerminu() {
             var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
             var dataRezerwacji = $('#dataRezerwacji').val();
 
@@ -36,7 +52,7 @@
                 },
                 success: function (response) {
                     kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
-                    kontenerMaterialPortalPacjenta.html(response);
+                        kontenerMaterialPortalPacjenta.html(response);
                     });
                     kontenerMaterialPortalPacjenta.slideDown(300);
                 },
@@ -48,11 +64,54 @@
             });
         }
 
-    $(document).ready(function () {
-        var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
-        kontenerMaterialPortalPacjenta.css({
-            "height": "100%",
-            "visibility": "visible"
+        $(document).ready(function () {
+            var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+            kontenerMaterialPortalPacjenta.css({
+                "height": "100%",
+                "visibility": "visible"
+            });
+        });
+
+        $("#opcje-terminarza-button").click(function () {
+            $("#opcje-terminarza-okno").css("display", "block");
+
+            $('#opcje-terminarza-okno').dialog({
+                draggable: false,
+                hide: { effect: "fade", duration: 250 },
+                show: { effect: "fade", duration: 250 },
+                resizable: false,
+                width: "600px",
+                autoOpen: false,
+                title: "Opcje terminarza"
+            });
+
+            $('#opcje-terminarza-okno').dialog("open");
+        });
+
+        $("#opcje-terminarza-zapisz-button").click(function () {
+            var loaderKontener = $("#loader-kontener");
+
+            loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
+            $.ajax({
+                url: '@Url.Action("zapiszOpcjeTerminarza", "Przychodnia")',
+                success: function (response) {
+                    loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
+                    alert("Zapisano");
+
+                    $("#opcje-terminarza-okno").dialog("close");
+                },
+                error: function () {
+                    loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
+                    alert("Error");
+                }
+            });
+
+           
+        });
+
+        $("#opcje-terminarza-anuluj-button").click(function () {
+            alert("Anulowano");
+            $("#opcje-terminarza-okno").dialog("close");
         });
     });
 </script>
