@@ -14,52 +14,53 @@
         </tr>
         @{
             TimeSpan time = new TimeSpan(8, 0, 0);
-            for (int i = 0; i < 24; i++)
+            TimeSpan maxTime = new TimeSpan(16, 0, 0);
+            while (time <= maxTime)
             {
                 string timeString = string.Format("{0:00}", time.Hours) + ":" + string.Format("{0:00}", time.Minutes);
                 <tr>
                     <td class="terminarzPanelGodzin">@timeString</td>
 
                     @{
-                                    for (int y = 0; y < iloscPracowników; y++)//Tworzy kolumnę dla każdego pracownika z terminem co 30 min
-                                    {
-                                        bool rezerwacjaIstnieje = false;
-                                        string nazwiskoPacjenta = "", imiePacjenta = "", pesel = "", email = "", telefon = "", dokToz = "";
-                                        int idRez = 0;
+                        for (int y = 0; y < iloscPracowników; y++)//Tworzy kolumnę dla każdego pracownika z terminem co 30 min
+                        {
+                            bool rezerwacjaIstnieje = false;
+                            string nazwiskoPacjenta = "", imiePacjenta = "", pesel = "", email = "", telefon = "", dokToz = "";
+                            int idRez = 0;
 
-                                        foreach (var item in ViewBag.Rezerwacje)
-                                        {
-                                            string dataRez = item.DataRezerwacji.Year + "-" + string.Format("{0:00}", item.DataRezerwacji.Month) + "-" + string.Format("{0:00}", item.DataRezerwacji.Day);
-                                            if (ViewBag.Pracownicy[y].Id == item.Pracownik.Id && item.GodzinaRezerwacji == timeString)
-                                            {
-                                                rezerwacjaIstnieje = true;
-                                                nazwiskoPacjenta = item.Pacjent.Nazwisko;
-                                                imiePacjenta = item.Pacjent.Imie;
-                                                pesel = item.Pacjent.Pesel;
-                                                dokToz = item.Pacjent.DokumentTozsamosci;
-                                                telefon = item.Pacjent.Telefon;
-                                                email = item.Pacjent.Email;
-                                                idRez = item.Id;
-                                                break;
-                                            }
-                                        }
-                                        if (rezerwacjaIstnieje)
-                                        {
+                            foreach (var item in ViewBag.Rezerwacje)
+                            {
+                                string dataRez = item.DataRezerwacji.Year + "-" + string.Format("{0:00}", item.DataRezerwacji.Month) + "-" + string.Format("{0:00}", item.DataRezerwacji.Day);
+                                if (ViewBag.Pracownicy[y].Id == item.Pracownik.Id && item.GodzinaRezerwacji == timeString)
+                                {
+                                    rezerwacjaIstnieje = true;
+                                    nazwiskoPacjenta = item.Pacjent.Nazwisko;
+                                    imiePacjenta = item.Pacjent.Imie;
+                                    pesel = item.Pacjent.Pesel;
+                                    dokToz = item.Pacjent.DokumentTozsamosci;
+                                    telefon = item.Pacjent.Telefon;
+                                    email = item.Pacjent.Email;
+                                    idRez = item.Id;
+                                    break;
+                                }
+                            }
+                            if (rezerwacjaIstnieje)
+                            {
                                 <td id="@ViewBag.Pracownicy[y].Id-@timeString" imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez" class="terminarzZarezerwowanyTermin">
                                     <div class="kafelekRezerwacji">
-                                            <span>@imiePacjenta @nazwiskoPacjenta</span>
+                                        <span>@imiePacjenta @nazwiskoPacjenta</span>
                                     </div>
                                 </td>
                                 rezerwacjaIstnieje = false;
                             }
                             else
                             {
-                                <td id="@ViewBag.Pracownicy[y].Id-@timeString" class="teminarzaPanelRezerwacji">Wolny termin</td>
+                                <td id="@ViewBag.Pracownicy[y].Id-@timeString" class="panel-rezerwacji wolny-termin">Wolny termin</td>
                             }
                         }
                     }
                 </tr>
-                            time = time.Add(new TimeSpan(0, 30, 0));
+                            time = time.Add(new TimeSpan(0, @ViewBag.Opcje["term_czas_wiz"], 0));
                         }
         }
     </table>

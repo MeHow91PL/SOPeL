@@ -226,7 +226,6 @@
     <Content Include="Content\PortalPacjenta.css" />
     <Content Include="Content\Przychodnia.css" />
     <Content Include="Content\RobotoFont.css" />
-    <Content Include="Content\Terminarz.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />

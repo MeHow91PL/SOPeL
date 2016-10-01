@@ -19,9 +19,26 @@ namespace SOPeL.Controllers
             ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
             ViewBag.Rezerwacje = GetListaRezerwacji("Select * from v_rezerwacjepacjentow where date_trunc('day',rez_data) ='"
                 + DateTime.Now.Year + "-" + string.Format("{0:00}", DateTime.Now.Month) + "-" + string.Format("{0:00}", DateTime.Now.Day) + "'");
-                
+            ViewBag.Opcje = PobierzOpcje();    
+
             Database.zamknijPolaczenie();
             return View("~/Views/Przychodnia/Terminarz/Index.cshtml");
+        }
+
+        private dynamic PobierzOpcje()
+        {
+            Dictionary<string,int> opcje = new Dictionary<string,int>();
+
+            NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select nazwa, wartosc from opcje");
+
+            while (dr.Read())
+            {
+                opcje.Add(dr["nazwa"].ToString(), Convert.ToInt32(dr["wartosc"]));
+            }
+
+            dr.Close();
+
+            return opcje;
         }
 
         public ActionResult Admin()

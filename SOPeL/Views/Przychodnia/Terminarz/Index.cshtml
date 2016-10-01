@@ -24,7 +24,7 @@
 
 <div id="opcje-terminarza-okno" class="kontenerMaterial">
     <form>
-        Czas trwania wizyty: <input type="number" maxlength="2" max="60" min="1" name="czas-trwania-wyzyty" value="30" /> min
+        Czas trwania wizyty: <input type="number" maxlength="2" max="60" min="1" name="czas-trwania-wyzyty" id="czas-trwania-wyzyty" /> min
         <button id="opcje-terminarza-zapisz-button" type="button">Zapisz</button>
         <button id="opcje-terminarza-anuluj-button" type="button">Anuluj</button>
     </form>
@@ -75,17 +75,26 @@
         $("#opcje-terminarza-button").click(function () {
             $("#opcje-terminarza-okno").css("display", "block");
 
-            $('#opcje-terminarza-okno').dialog({
-                draggable: false,
-                hide: { effect: "fade", duration: 250 },
-                show: { effect: "fade", duration: 250 },
-                resizable: false,
-                width: "600px",
-                autoOpen: false,
-                title: "Opcje terminarza"
+            $.ajax({
+                url: '@Url.Action("pobierzOpcjeTerminarza", "Przychodnia")',
+                success: function (response) {
+                    $("#czas-trwania-wyzyty").val(response);
+                    $('#opcje-terminarza-okno').dialog({
+                        draggable: false,
+                        hide: { effect: "fade", duration: 250 },
+                        show: { effect: "fade", duration: 250 },
+                        resizable: false,
+
+                        autoOpen: false,
+                        title: "Opcje terminarza"
+                    });
+
+                    $('#opcje-terminarza-okno').dialog("open");
+                },
+                error: function () {
+                }
             });
 
-            $('#opcje-terminarza-okno').dialog("open");
         });
 
         $("#opcje-terminarza-zapisz-button").click(function () {
@@ -94,9 +103,12 @@
             loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
             $.ajax({
                 url: '@Url.Action("zapiszOpcjeTerminarza", "Przychodnia")',
+                data: {
+                    term_czas_wiz: $("#czas-trwania-wyzyty").val()
+                },
                 success: function (response) {
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
-                    alert("Zapisano");
+                    alert(response);
 
                     $("#opcje-terminarza-okno").dialog("close");
                 },
