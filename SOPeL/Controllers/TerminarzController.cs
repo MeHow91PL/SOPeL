@@ -68,7 +68,7 @@ namespace SOPeL.Controllers
 
 
 
-        private List<Pracownik> GetListaPracownikow(string zapytanie)
+        internal List<Pracownik> GetListaPracownikow(string zapytanie)
         {
             List<Pracownik> pracownicy = new List<Pracownik>();
 
@@ -89,8 +89,8 @@ namespace SOPeL.Controllers
             Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
 
             ViewBag.Pracownicy = GetListaPracownikow("SELECT * FROM pracownicy");
-            ViewBag.Rezerwacje = GetListaRezerwacji("SELECT * FROM v_RezerwacjePacjentow where date(data) ='" + wybranaData + "'");
-
+            ViewBag.Rezerwacje = GetListaRezerwacji("SELECT * FROM v_RezerwacjePacjentow where date(rez_data) ='" + wybranaData + "'");
+            ViewBag.Opcje = PobierzOpcje();
             Database.zamknijPolaczenie();
 
             return PartialView("~/Views/Przychodnia/Terminarz/TerminarzPrzychodnia.cshtml");

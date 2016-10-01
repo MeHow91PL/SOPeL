@@ -10,6 +10,15 @@
    display:none;
 }
 
+#przychodnia-sidebar-footer {
+    text-align:center;
+    font-size: small;
+    position: absolute;
+    left:0;
+    bottom: 0;
+    width: 100%;
+}
+
 /*###################################  TERMINARZ #################################################*/
 @import url('RobotoFont.css');
 #bodyPrzychodnia{
@@ -40,7 +49,7 @@
 }
 
 .terminarz .panel-rezerwacji {
-    background : #2196F3;
+    background : #5de9e0;
     color:white;
 }
 

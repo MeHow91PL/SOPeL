@@ -17,26 +17,28 @@
 <div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
     @* Treść ładowana AJAXem *@
     @Html.Partial("~/Views/Przychodnia/Terminarz/TerminarzPrzychodnia.cshtml")
-
 </div>
 
 @*@Html.Partial("_KartaRezerwacjiPrzychodnia")*@
 
 <div id="opcje-terminarza-okno" class="kontenerMaterial">
-    <form>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         Czas trwania wizyty: <input type="number" maxlength="2" max="60" min="1" name="czas-trwania-wyzyty" id="czas-trwania-wyzyty" /> min
+        
+    </div>
         <button id="opcje-terminarza-zapisz-button" type="button">Zapisz</button>
         <button id="opcje-terminarza-anuluj-button" type="button">Anuluj</button>
-    </form>
 </div>
 
 <script>
     $(function () {
 
-        function zmianaTerminu() {
-            var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
-            var dataRezerwacji = $('#dataRezerwacji').val();
+        var loaderKontener = $("#loader-kontener");
+        var dataRezerwacji = $('#dataRezerwacji').val();
+        var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
 
+        function zmianaTerminu() {
+            dataRezerwacji = $('#dataRezerwacji').val();
             var wzor = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
             var parts = dataRezerwacji.split('-');
 
@@ -45,6 +47,10 @@
                 kontenerMaterialPortalPacjenta.slideUp(500);
                 return;
             }
+            pobierzTerminarz(dataRezerwacji);
+        }
+
+        function pobierzTerminarz(dataRezerwacji) {
             $.ajax({
                 url: '@Url.Action("pobierzTerminarz", "Terminarz")',
                 data: {
@@ -73,33 +79,30 @@
         });
 
         $("#opcje-terminarza-button").click(function () {
+            loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
             $("#opcje-terminarza-okno").css("display", "block");
-
             $.ajax({
                 url: '@Url.Action("pobierzOpcjeTerminarza", "Przychodnia")',
                 success: function (response) {
+                    loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
                     $("#czas-trwania-wyzyty").val(response);
                     $('#opcje-terminarza-okno').dialog({
                         draggable: false,
                         hide: { effect: "fade", duration: 250 },
                         show: { effect: "fade", duration: 250 },
                         resizable: false,
-
                         autoOpen: false,
                         title: "Opcje terminarza"
                     });
-
                     $('#opcje-terminarza-okno').dialog("open");
                 },
                 error: function () {
+                    loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
                 }
             });
-
         });
 
         $("#opcje-terminarza-zapisz-button").click(function () {
-            var loaderKontener = $("#loader-kontener");
-
             loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
             $.ajax({
                 url: '@Url.Action("zapiszOpcjeTerminarza", "Przychodnia")',
@@ -111,14 +114,13 @@
                     alert(response);
 
                     $("#opcje-terminarza-okno").dialog("close");
+                    pobierzTerminarz(dataRezerwacji);
                 },
                 error: function () {
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
                     alert("Error");
                 }
             });
-
-           
         });
 
         $("#opcje-terminarza-anuluj-button").click(function () {

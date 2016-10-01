@@ -140,7 +140,7 @@ namespace SOPeL.Controllers
 
             //List<Rezerwacja> rezerwacje = new List<Rezerwacja>();
             //Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
-            //dr = Database.wykonajZapytanieDQL("SELECT * FROM v_RezerwacjePacjentow where id_pracownika = " + idi + " and date(data) ='" + wybranaData + "'");
+            //dr = Database.wykonajZapytanieDQL("SELECT * FROM v_RezerwacjePacjentow where id_pracownika = " + idi + " and date(rez_data) ='" + wybranaData + "'");
             //while (dr.Read())
             //{
             //    rezerwacje.Add(new Rezerwacja() { GodzinaRezerwacji = dr["data"].ToString().Substring(11, 5), DataRezerwacji = (DateTime)dr["data"], Pacjent = new Pacjent() { Nazwisko = dr["nazwisko_pacjenta"].ToString(), Imie = dr["imie_pacjenta"].ToString() }, Pracownik = new Pracownik() { Id = (int)dr["id_pracownika"] } });

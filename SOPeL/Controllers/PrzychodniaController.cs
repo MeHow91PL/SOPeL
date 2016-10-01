@@ -14,10 +14,24 @@ namespace SOPeL.Controllers
         // GET: /Przychodnia/
         public ActionResult Index()
         {
+            //try
+            //{
+            //    Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
+
+            //    NpgsqlDataReader dr = Database.wykonajZapytanieDQL();
+
+            //    Database.zamknijPolaczenie();
+                
+            //}
+            //catch (Exception ex)
+            //{
+                
+            //}
+
             return View();
         }
 
-        public ActionResult pobierzModulAdmin(string wybranyModul)
+        public ActionResult wczytajModul(string wybranyModul)
         {
             string modul = wybranyModul;
             return RedirectToAction("Index", modul);
@@ -32,7 +46,6 @@ namespace SOPeL.Controllers
                 Database.wykonajZapytanieDML("update opcje set wartosc = " + term_czas_wiz + " where nazwa = 'term_czas_wiz'");
 
                 Database.zamknijPolaczenie();
-
                 return "zapisano";
             }
             catch (Exception ex)
