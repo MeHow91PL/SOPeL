@@ -17,7 +17,6 @@ namespace SOPeL.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-            //Dziwki
             return View();
         }
         public ActionResult Contact()
