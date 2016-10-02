@@ -14,7 +14,7 @@ namespace SOPeL.Controllers
         // GET: Rejestracja
         public ActionResult Index()
         {
-            Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
             
             ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
             ViewBag.Rezerwacje = GetListaRezerwacji("Select * from v_rezerwacjepacjentow where date_trunc('day',rez_data) ='"
@@ -86,7 +86,7 @@ namespace SOPeL.Controllers
 
         public PartialViewResult pobierzTerminarz(string wybranaData, List<Pracownik> pracownicy)
         {
-            Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
             ViewBag.Pracownicy = GetListaPracownikow("SELECT * FROM pracownicy");
             ViewBag.Rezerwacje = GetListaRezerwacji("SELECT * FROM v_RezerwacjePacjentow where date(rez_data) ='" + wybranaData + "'");
@@ -99,7 +99,7 @@ namespace SOPeL.Controllers
         [HttpPost]
         public ActionResult zatwierdzenieRezerwacji(Rezerwacja rez,string submitButton)
         {
-            //Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
             //if(submitButton == "Usuń")
             //Database.wykonajZapytanieDML("DELETE FROM rezerwacje WHERE id=" + rez.Id);

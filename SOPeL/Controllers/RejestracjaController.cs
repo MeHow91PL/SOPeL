@@ -16,7 +16,7 @@ namespace SOPeL.Controllers
         {
             List<Pracownik> pracownicy = new List<Pracownik>();
             List<string> specjalizacje = new List<string>();
-            Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
             NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy");
 
             while (dr.Read())
@@ -46,7 +46,7 @@ namespace SOPeL.Controllers
         {
             List<Pracownik> pracownicy = new List<Pracownik>();
 
-            Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
             NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy where specjalizacja like '" + spec + "'");
 
             while (dr.Read())
@@ -62,7 +62,7 @@ namespace SOPeL.Controllers
         [HttpPost]
         public ActionResult Index(Rezerwacja rezerwacja, string idrez)//idrez ma następujący format idLekarza-godzina-data
         {
-            //Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
             //string[] rez = idrez.Split('-');
 
@@ -128,7 +128,7 @@ namespace SOPeL.Controllers
         public PartialViewResult pobierzTerminarzWybranegoLekarza(int idi ,string wybranaData)
         {
             //List<Pracownik> pracownicy = new List<Pracownik>();
-            //Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
             //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy where id =" + idi);
 
             //while (dr.Read())
@@ -139,7 +139,7 @@ namespace SOPeL.Controllers
 
 
             //List<Rezerwacja> rezerwacje = new List<Rezerwacja>();
-            //Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
             //dr = Database.wykonajZapytanieDQL("SELECT * FROM v_RezerwacjePacjentow where id_pracownika = " + idi + " and date(rez_data) ='" + wybranaData + "'");
             //while (dr.Read())
             //{
@@ -159,7 +159,7 @@ namespace SOPeL.Controllers
             //{
             //    List<Pracownik> wybranyLekarz = new List<Pracownik>();
 
-            //    Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            //    Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
             //    NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select * from prac"); /*from prac where nazw=" + rezerwacja.pracownik.nazwisko);*/
 
