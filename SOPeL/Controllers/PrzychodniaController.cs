@@ -16,7 +16,7 @@ namespace SOPeL.Controllers
         {
             //try
             //{
-            //    Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
+            //    Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
             //    NpgsqlDataReader dr = Database.wykonajZapytanieDQL();
 
@@ -41,7 +41,7 @@ namespace SOPeL.Controllers
         {
             try
             {
-                Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
+                Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
                 Database.wykonajZapytanieDML("update opcje set wartosc = " + term_czas_wiz + " where nazwa = 'term_czas_wiz'");
 
@@ -57,7 +57,7 @@ namespace SOPeL.Controllers
         public int pobierzOpcjeTerminarza()
         {
             int result = 0 ;
-            Database.otworzPolaczenie("localhost", "postgres", "postgres", "SOPeL");
+            Database.otworzPolaczenie("1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
             NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT wartosc FROM opcje WHERE nazwa = 'term_czas_wiz'");
 
