@@ -6,11 +6,11 @@
             <input type="text" onchange="zmianaTerminu()" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="dataRezerwacji" name="dataRezerwacji" class="form-control datepickerRejOnline" />
         </div>
 
-       <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
-           <a id="opcje-terminarza-button">
-               <img src="~/Content/Images/opcje.svg" alt="Opcje" class="img-responsive" />
-           </a>
-       </div>
+        <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
+            <a id="opcje-terminarza-button">
+                <img src="~/Content/Images/opcje.svg" alt="Opcje" class="img-responsive" />
+            </a>
+        </div>
 
     </div>
 </div>
@@ -23,13 +23,16 @@
 
 <div id="opcje-terminarza-okno" class="kontenerMaterial">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        Czas trwania wizyty: <input type="number" maxlength="2" max="60" min="1" name="czas-trwania-wyzyty" id="czas-trwania-wyzyty" /> min
-        
-    </div>
+        <div class="row">
+            Czas trwania wizyty: <input type="number" maxlength="2" max="60" min="1" name="czas-trwania-wyzyty" id="czas-trwania-wyzyty" /> min
+        </div>
+        <div class="row">
+            <input type="checkbox" name="term-indywidulany-grafik" id="term-indywidulany-grafik" value="" /> Osobny grafik dla każdego pacownika
+        </div>
         <button id="opcje-terminarza-zapisz-button" type="button">Zapisz</button>
         <button id="opcje-terminarza-anuluj-button" type="button">Anuluj</button>
+    </div>
 </div>
-
 <script>
     $(function () {
 
