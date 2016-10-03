@@ -16,7 +16,7 @@ namespace SOPeL.Controllers
         }
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your application description page should be here.";
             return View();
         }
         public ActionResult Contact()

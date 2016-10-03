@@ -60,7 +60,7 @@
     </Reference>
     <Reference Include="PostgresObsuga, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Users\Michał Kokosiński\Documents\Visual Studio 2015\Projects\PostgresObsuga\PostgresObsuga\bin\Release\PostgresObsuga.dll</HintPath>
+      <HintPath>..\PostgresObsuga.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
