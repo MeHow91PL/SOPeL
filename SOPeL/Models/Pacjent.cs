@@ -16,7 +16,6 @@ namespace SOPeL.Models
         [RegularExpression(@"([M,K]{1})$")]
         public string Plec { get; set; }
 
-
         [Required(ErrorMessage = "Dokument tożsamości jest wymagany.")]
         [Display(Name = "Dokument tożsamości", ShortName = "Dokument tożsamości")]
         public string DokumentTozsamosci { get; set; }

@@ -12,6 +12,7 @@ namespace SOPeL.Models
         public int Id { get; set; }
 
         [RegularExpression(@"([0-9]{2}-[0-9]{3})$")]
+        [Display(Name = "Kod pocztowy", ShortName = "Kod pocztowy")]
         public string KodPocztowy { get; set; }
 
         [MaxLength(60)]
@@ -21,9 +22,11 @@ namespace SOPeL.Models
         public string Ulica { get; set; }
 
         [MaxLength(10)]
+        [Display(Name = "Nr domu", ShortName = "Nr domu")]
         public string NrDomu { get; set; }
 
         [MaxLength(10)]
+        [Display(Name = "Nr lokalu", ShortName = "Nr lokalu")]
         public string NrLokalu { get; set; }
     }
 }
