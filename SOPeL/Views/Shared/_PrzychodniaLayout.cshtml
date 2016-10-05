@@ -69,6 +69,7 @@
             var modul = id;
             var loaderKontener = $("#loader-kontener");
 
+            $('.datepicker').datepicker();
             loaderKontener.switchClass("ukryty", "widoczny",150,"swing");
             $.ajax({
                 url: '@Url.Action("wczytajModul", "Przychodnia")',

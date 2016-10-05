@@ -2,8 +2,8 @@
 <div class="container kontenerMaterial">
     <div class="container">
         <div id="terminarzDataKontener" class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
-            <label for="dataRezerwacji">Data</label>
-            <input type="text" onchange="zmianaTerminu()" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="dataRezerwacji" name="dataRezerwacji" class="form-control datepickerRejOnline" />
+            <label for="wybor-daty-terminarz">Data</label>
+            <input type="text" onchange="zmianaTerminu()" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="form-control datepicker" />
         </div>
 
         <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
@@ -34,13 +34,44 @@
     </div>
 </div>
 <script>
-    $(function () {
+    $(document).ready(function () {
 
         var loaderKontener = $("#loader-kontener");
         var dataRezerwacji = $('#dataRezerwacji').val();
         var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+        var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+        kontenerMaterialPortalPacjenta.css({
+            "height": "100%",
+            "visibility": "visible"
+        });
+        var oknoOpcjiTerminarza = {
+            draggable: false,
+            hide: { effect: "fade", duration: 250 },
+            show: { effect: "fade", duration: 250 },
+            resizable: false,
+            autoOpen: false,
+            title: "Opcje terminarza"
+        };
 
-        function zmianaTerminu() {
+        //--------------------------------- WYBÓR DATY -------------------------------------------------------------------------------------------------
+
+        //wyświetla kalendarz przy wejściu w pole wyboru daty <- wymagane przy przeładowaniu strony przez AJAX
+        var wyborDatyTerminarz = $("#wybor-daty-terminarz"); //wczytanie inputa do zmiennej daje lepszą wydajność, gdyż tylko raz wyszukujemy po id
+
+        wyborDatyTerminarz.focus(function () {
+            $("#ui-datepicker-div").css({
+                "display":"block"
+            });
+        });
+
+        //zamyka kalendarz przy wyjścia z pola wyboru daty <- wymagane przy przeładowaniu strony przez AJAX
+        wyborDatyTerminarz.focusout(function () {
+            $("#ui-datepicker-div").css({
+                "display": "none"
+            });
+        });
+
+        wyborDatyTerminarz.change(function () {
             dataRezerwacji = $('#dataRezerwacji').val();
             var wzor = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
             var parts = dataRezerwacji.split('-');
@@ -51,7 +82,7 @@
                 return;
             }
             pobierzTerminarz(dataRezerwacji);
-        }
+        });
 
         function pobierzTerminarz(dataRezerwacji) {
             $.ajax({
@@ -73,13 +104,8 @@
             });
         }
 
-        $(document).ready(function () {
-            var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
-            kontenerMaterialPortalPacjenta.css({
-                "height": "100%",
-                "visibility": "visible"
-            });
-        });
+        //--------------------------------- END WYBÓR DATY -------------------------------------------------------------------------------------------------
+
 
         $("#opcje-terminarza-button").click(function () {
             loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
@@ -89,15 +115,7 @@
                 success: function (response) {
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
                     $("#czas-trwania-wyzyty").val(response);
-                    $('#opcje-terminarza-okno').dialog({
-                        draggable: false,
-                        hide: { effect: "fade", duration: 250 },
-                        show: { effect: "fade", duration: 250 },
-                        resizable: false,
-                        autoOpen: false,
-                        title: "Opcje terminarza"
-                    });
-                    $('#opcje-terminarza-okno').dialog("open");
+                    $('#opcje-terminarza-okno').dialog(oknoOpcjiTerminarza).dialog("open");
                 },
                 error: function () {
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
