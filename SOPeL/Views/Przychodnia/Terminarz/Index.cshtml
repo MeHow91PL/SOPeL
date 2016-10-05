@@ -3,7 +3,7 @@
     <div class="container">
         <div id="terminarzDataKontener" class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
             <label for="wybor-daty-terminarz">Data</label>
-            <input type="text" onchange="zmianaTerminu()" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="form-control datepicker" />
+            <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="form-control datepicker" />
         </div>
 
         <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
@@ -21,7 +21,8 @@
 
 @*@Html.Partial("_KartaRezerwacjiPrzychodnia")*@
 
-<div id="opcje-terminarza-okno" class="kontenerMaterial">
+@*-----------------------------------------------Okno z opcjami terminarza-----------------------------------------------------------*@
+<div id="opcje-terminarza-okno" class="kontenerMaterial display-none">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row">
             Czas trwania wizyty: <input type="number" maxlength="2" max="60" min="1" name="czas-trwania-wyzyty" id="czas-trwania-wyzyty" /> min
@@ -29,28 +30,64 @@
         <div class="row">
             <input type="checkbox" name="term-indywidulany-grafik" id="term-indywidulany-grafik" value="" /> Osobny grafik dla każdego pacownika
         </div>
-        <button id="opcje-terminarza-zapisz-button" type="button">Zapisz</button>
-        <button id="opcje-terminarza-anuluj-button" type="button">Anuluj</button>
+        <button id="opcje-terminarza-zapisz-button" class="btn-primary" type="button">Zapisz</button>
+        <button id="opcje-terminarza-anuluj-button" class="btn-danger" type="button">Anuluj</button>
     </div>
 </div>
+
+<div id="okno-ustawiania-indywidualnego-grafika" class="kontenerMaterial display-none">
+    <div class="row">
+        Pracownik:
+        <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
+            <option>Wybierz lekarza</option>
+            @{
+                foreach (var prac in ViewBag.Pracownicy)
+                {
+                    <option id="@prac.Id">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                }
+            }
+        </select>
+
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function () {
 
         var loaderKontener = $("#loader-kontener");
-        var dataRezerwacji = $('#dataRezerwacji').val();
+        var dataRezerwacji = $('#wybor-daty-terminarz').val();
         var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
-        var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+        var opcjeTerminarzaDiv = $('#opcje-terminarza-okno');
+        var ustawianiaIndywidualnegoGrafikaDiv = $('#okno-ustawiania-indywidualnego-grafika');
+        var czasTrwaniaWizyty = $("#czas-trwania-wyzyty");
+
         kontenerMaterialPortalPacjenta.css({
             "height": "100%",
             "visibility": "visible"
         });
         var oknoOpcjiTerminarza = {
-            draggable: false,
+            draggable: true,
             hide: { effect: "fade", duration: 250 },
             show: { effect: "fade", duration: 250 },
             resizable: false,
             autoOpen: false,
             title: "Opcje terminarza"
+        };
+
+        var oknoIndywidualnegoGrafika = {
+            draggable: true,
+            hide: { effect: "fade", duration: 250 },
+            show: { effect: "fade", duration: 250 },
+            resizable: false,
+            autoOpen: false,
+            title: "Zarządzanie godzinami pracy"
         };
 
         //--------------------------------- WYBÓR DATY -------------------------------------------------------------------------------------------------
@@ -60,7 +97,7 @@
 
         wyborDatyTerminarz.focus(function () {
             $("#ui-datepicker-div").css({
-                "display":"block"
+                "display": "block"
             });
         });
 
@@ -72,7 +109,7 @@
         });
 
         wyborDatyTerminarz.change(function () {
-            dataRezerwacji = $('#dataRezerwacji').val();
+            dataRezerwacji = $('#wybor-daty-terminarz').val();
             var wzor = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
             var parts = dataRezerwacji.split('-');
 
@@ -97,6 +134,8 @@
                     kontenerMaterialPortalPacjenta.slideDown(300);
                 },
                 error: function () {
+                    alert("Błąd połączenia z serwerem!");
+
                     kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
                         kontenerMaterialPortalPacjenta.html("");
                     });
@@ -107,20 +146,48 @@
         //--------------------------------- END WYBÓR DATY -------------------------------------------------------------------------------------------------
 
 
+
+        //--------------------------------- OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
+
         $("#opcje-terminarza-button").click(function () {
             loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
-            $("#opcje-terminarza-okno").css("display", "block");
+            opcjeTerminarzaDiv.css("display", "block");
             $.ajax({
                 url: '@Url.Action("pobierzOpcjeTerminarza", "Przychodnia")',
                 success: function (response) {
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
-                    $("#czas-trwania-wyzyty").val(response);
-                    $('#opcje-terminarza-okno').dialog(oknoOpcjiTerminarza).dialog("open");
+                    czasTrwaniaWizyty.val(response);
+                    opcjeTerminarzaDiv.dialog(oknoOpcjiTerminarza).dialog("open");
                 },
                 error: function () {
+                    alert("Błąd połączenia z serwerem!");
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
                 }
             });
+        });
+
+        //Kontrola wartości wpisywanych przez użytkownika
+        czasTrwaniaWizyty.keyup(function () {
+            if ($(this).val().length > 1 && $(this).val().substring(0,1) == '0') {//jeżeli poda zero na początku to wycina zero i zostawia pozostałe cyfry
+                $(this).val($(this).val().substring(1));
+            }
+            else if ($(this).val() > 60) {// jeżeli wpisze wartość większą niż 60 to ustawi 60
+                $(this).val('60');
+            }
+            else if ($(this).val() < 1) {// jeżeli wpisze wartość mniejszą niż 1 to ustawi 0
+                $(this).val('0');
+            }
+        });
+        czasTrwaniaWizyty.focusout(function () {
+            if ($(this).val().trim() === '' || $(this).val() < 1) {//jeżeli nic nie wpisze, wpisze 0 lub wpisze coś innego niż cyfra to wstawi 1
+                $(this).val('1');
+            }
+        });
+
+        $("#term-indywidulany-grafik").change(function () {
+            if ($(this).is(':checked')) {
+                ustawianiaIndywidualnegoGrafikaDiv.dialog(oknoIndywidualnegoGrafika).dialog("open");
+            }
         });
 
         $("#opcje-terminarza-zapisz-button").click(function () {
@@ -128,13 +195,12 @@
             $.ajax({
                 url: '@Url.Action("zapiszOpcjeTerminarza", "Przychodnia")',
                 data: {
-                    term_czas_wiz: $("#czas-trwania-wyzyty").val()
+                    term_czas_wiz: czasTrwaniaWizyty.val()
                 },
                 success: function (response) {
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
                     alert(response);
-
-                    $("#opcje-terminarza-okno").dialog("close");
+                    opcjeTerminarzaDiv.dialog("close");
                     pobierzTerminarz(dataRezerwacji);
                 },
                 error: function () {
@@ -145,8 +211,10 @@
         });
 
         $("#opcje-terminarza-anuluj-button").click(function () {
-            alert("Anulowano");
-            $("#opcje-terminarza-okno").dialog("close");
+            opcjeTerminarzaDiv.dialog("close");
         });
+
+        //--------------------------------- END OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
+
     });
 </script>

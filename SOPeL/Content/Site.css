@@ -29,6 +29,13 @@ a{
 
 /* Set width on the form input elements since they're 100% wide by default */
 
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
 
 .ukryty {
     visibility: hidden;

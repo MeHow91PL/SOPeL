@@ -81,6 +81,7 @@
                         renderBody.html(response);
                 },
                 error: function () {
+                    alert("Błąd połączenia z serwerem!");
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
                         renderBody.html("");
                 }

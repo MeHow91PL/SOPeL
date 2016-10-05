@@ -6,9 +6,6 @@
     z-index:9999;
 }
 
-#opcje-terminarza-okno {
-   display:none;
-}
 
 #przychodnia-sidebar-footer {
     text-align:center;
@@ -103,6 +100,15 @@
     font-size:9pt;
     margin:auto;
 }
+
+#opcje-terminarza-okno {
+   display:none;
+}
+
+#okno-ustawiania-indywidualnego-grafika {
+    padding:50px;
+}
+
 
 #kartaPacjenta {
         display: block;
