@@ -13,8 +13,8 @@
             }
         </tr>
         @{
-            TimeSpan time = new TimeSpan(8, 0, 0);
-            TimeSpan maxTime = new TimeSpan(16, 0, 0);
+            TimeSpan time = new TimeSpan(Convert.ToInt32(ViewBag.opcje["term_godz_od"].Substring(0,2)), Convert.ToInt32(ViewBag.opcje["term_godz_od"].Substring(3, 2)), 0);
+            TimeSpan maxTime = new TimeSpan(Convert.ToInt32(ViewBag.opcje["term_godz_do"].Substring(0, 2)), Convert.ToInt32(ViewBag.opcje["term_godz_do"].Substring(3, 2)), 0);
             while (time <= maxTime)
             {
                 string timeString = string.Format("{0:00}", time.Hours) + ":" + string.Format("{0:00}", time.Minutes);
@@ -60,7 +60,7 @@
                         }
                     }
                 </tr>
-                            time = time.Add(new TimeSpan(0, @ViewBag.Opcje["term_czas_wiz"], 0));
+                            time = time.Add(new TimeSpan(0, Convert.ToInt32(@ViewBag.Opcje["term_czas_wiz"]), 0));
                         }
         }
     </table>

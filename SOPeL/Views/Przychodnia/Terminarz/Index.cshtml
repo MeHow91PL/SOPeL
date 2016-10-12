@@ -21,23 +21,23 @@
 
 @*@Html.Partial("_KartaRezerwacjiPrzychodnia")*@
 
-@*-----------------------------------------------Okno z opcjami terminarza-----------------------------------------------------------*@
+@*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
 <div id="opcje-terminarza-okno" class="kontenerMaterial display-none">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
         <span>Godziny pracy przychodni:</span> <br />
-        <label for="term-godz-pracy-od"> od </label> <input size="4" type="time" name="term-godz-pracy-od" value="" />
-        <label for="term-godz-pracy-do"> do </label> <input size="4" type="time" name="term-godz-pracy-do" value="" />
+        <label for="term-godz-pracy-od"> od </label> <input size="4" type="time" name="term_godz_od" id="term_godz_od" />
+        <label for="term-godz-pracy-do"> do </label> <input size="4" type="time" name="term_godz_do" id="term_godz_do" />
 
         <div class="row">
-            <label for="czas-trwania-wyzyty">Czas trwania wizyty (min): </label><input type="number" maxlength="2" max="60" min="1" name="czas-trwania-wyzyty" id="czas-trwania-wyzyty" />
+            <label for="czas-trwania-wyzyty">Czas trwania wizyty (min): </label><input type="number" maxlength="2" max="60" min="1" name="term_czas_wiz" id="term_czas_wiz" />
         </div>
         <div class="row">
-            <input type="checkbox" name="term-indywidulany-grafik" id="term-indywidulany-grafik" value="" /> Osobny grafik dla każdego pacownika
+            <input type="checkbox" name="term_indw_graf" id="term_indw_graf" /> Osobny grafik dla każdego pacownika
         </div>
         <button id="opcje-terminarza-zapisz-button" class="btn btn-primary" type="button">Zapisz</button>
         <button id="opcje-terminarza-anuluj-button" class="btn btn-danger" type="button">Anuluj</button>
-        </form>
+        
     </div>
 </div>
 
@@ -73,9 +73,8 @@
         var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
         var opcjeTerminarzaDiv = $('#opcje-terminarza-okno');
         var ustawianiaIndywidualnegoGrafikaDiv = $('#okno-ustawiania-indywidualnego-grafika');
-        var czasTrwaniaWizyty = $("#czas-trwania-wyzyty");
-        var termGodzPracyOd = $("#term-godz-pracy-od");
-        var termGodzPracyDo = $("#term-godz-pracy-do");
+        var terminarzDataKontener = $("#terminarzDataKontener");
+        var czasTrwaniaWizyty = $("#term_czas_wiz");
     
 
 
@@ -163,14 +162,9 @@
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
 
                     //ładowanie wartości opcji odczytanych z bazy do formularza opcji terminarza
-                    //czasTrwaniaWizyty.val(response["term_czas_wiz"]);
-                    
-
-                    
-
-                    //alert(t);
-                    //termGodzPracyOd.val();
-                    //termGodzPracyDo.val(response["term_godz_do"]);
+                    for (opcja in response) {
+                        $("#" + opcja).val(response[opcja]);
+                    }
 
                     opcjeTerminarzaDiv.dialog(oknoOpcjiTerminarza).dialog("open");
                 },
@@ -199,22 +193,32 @@
             }
         });
 
-        $("#term-indywidulany-grafik").change(function () {
+        $("#term_indw_graf").change(function () {
             if ($(this).is(':checked')) {
+                $(this).val("1");
                 ustawianiaIndywidualnegoGrafikaDiv.dialog(oknoIndywidualnegoGrafika).dialog("open");
+            }
+            else {
+                $(this).val("0");
             }
         });
 
         $("#opcje-terminarza-zapisz-button").click(function () {
             loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
+            var dict = {};
+            $("#opcje-terminarza-okno input").each(function (i) {
+                dict[$(this).attr("id")] = $(this).val();
+            });
+
+
             $.ajax({
                 url: '@Url.Action("zapiszOpcjeTerminarza", "Terminarz")',
+                type: 'POST',
                 data: {
-                    term_czas_wiz: czasTrwaniaWizyty.val()
+                    opcj: dict
                 },
                 success: function (response) {
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
-                    alert(response);
                     opcjeTerminarzaDiv.dialog("close");
                     pobierzTerminarz(dataRezerwacji);
                 },

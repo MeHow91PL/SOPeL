@@ -15,11 +15,11 @@ namespace SOPeL.Controllers
         public ActionResult Index()
         {
             Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
-            
+
             ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
             ViewBag.Rezerwacje = GetListaRezerwacji("Select * from v_rezerwacjepacjentow where date_trunc('day',rez_data) ='"
                 + DateTime.Now.Year + "-" + string.Format("{0:00}", DateTime.Now.Month) + "-" + string.Format("{0:00}", DateTime.Now.Day) + "'");
-            ViewBag.Opcje = PobierzOpcje();    
+            ViewBag.Opcje = PobierzOpcje();
 
             Database.zamknijPolaczenie();
             return View("~/Views/Przychodnia/Terminarz/Index.cshtml");
@@ -27,13 +27,13 @@ namespace SOPeL.Controllers
 
         private dynamic PobierzOpcje()
         {
-            Dictionary<string,int> opcje = new Dictionary<string,int>();
+            Dictionary<string, string> opcje = new Dictionary<string, string>();
 
             NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select nazwa, wartosc from opcje");
 
             while (dr.Read())
             {
-                opcje.Add(dr["nazwa"].ToString(), Convert.ToInt32(dr["wartosc"]));
+                opcje.Add(dr["nazwa"].ToString(), dr["wartosc"].ToString());
             }
 
             dr.Close();
@@ -54,10 +54,13 @@ namespace SOPeL.Controllers
 
             while (dr.Read())
             {
-                rezerwacje.Add(new Rezerwacja() {
+                rezerwacje.Add(new Rezerwacja()
+                {
                     Pacjent = new Pacjent() { Imie = dr["pac_imie"].ToString(), Nazwisko = dr["pac_nazwisko"].ToString(), Pesel = dr["pac_pesel"].ToString() },
                     Pracownik = new Pracownik() { Imie = dr["prac_imie"].ToString(), Nazwisko = dr["prac_nazwisko"].ToString() },
-                    DataRezerwacji = Convert.ToDateTime(dr["rez_data"].ToString()), godzOd = TimeSpan.FromSeconds(Convert.ToDouble(dr["rez_godz_pocz"].ToString())), godzDo = TimeSpan.FromSeconds(Convert.ToDouble(dr["rez_godz_konc"].ToString()))
+                    DataRezerwacji = Convert.ToDateTime(dr["rez_data"].ToString()),
+                    godzOd = TimeSpan.FromSeconds(Convert.ToDouble(dr["rez_godz_pocz"].ToString())),
+                    godzDo = TimeSpan.FromSeconds(Convert.ToDouble(dr["rez_godz_konc"].ToString()))
                 });
             }
 
@@ -97,7 +100,7 @@ namespace SOPeL.Controllers
         }
 
         [HttpPost]
-        public ActionResult zatwierdzenieRezerwacji(Rezerwacja rez,string submitButton)
+        public ActionResult zatwierdzenieRezerwacji(Rezerwacja rez, string submitButton)
         {
             //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
@@ -110,13 +113,18 @@ namespace SOPeL.Controllers
             return RedirectToAction("Index");
         }
 
-        public string zapiszOpcjeTerminarza(string term_czas_wiz)
+     
+
+        public string zapiszOpcjeTerminarza(Dictionary<string,string> opcj)
         {
             try
             {
                 Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
-                Database.wykonajZapytanieDML("update opcje set wartosc = '" + term_czas_wiz + "' where nazwa = 'term_czas_wiz'");
+                foreach (var opcja in opcj)
+                {
+                    Database.wykonajZapytanieDML("update opcje set wartosc = '" + opcja.Value + "' where nazwa = '" + opcja.Key + "'");
+                }
 
                 Database.zamknijPolaczenie();
                 return "zapisano";
