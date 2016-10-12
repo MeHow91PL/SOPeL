@@ -110,5 +110,43 @@ namespace SOPeL.Controllers
             return RedirectToAction("Index");
         }
 
+        public string zapiszOpcjeTerminarza(string term_czas_wiz)
+        {
+            try
+            {
+                Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+
+                Database.wykonajZapytanieDML("update opcje set wartosc = '" + term_czas_wiz + "' where nazwa = 'term_czas_wiz'");
+
+                Database.zamknijPolaczenie();
+                return "zapisano";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public JsonResult pobierzOpcjeTerminarza()
+        {
+            Dictionary<string, object> opcje = new Dictionary<string, object>();
+            Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+
+            NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT nazwa, wartosc FROM opcje WHERE nazwa like 'term_%'");
+
+            while (dr.Read())
+            {
+                opcje.Add(dr["nazwa"].ToString(), dr["wartosc"]);
+            }
+
+            Database.zamknijPolaczenie();
+
+            var test1 = Json(opcje);
+
+
+
+            return test1;
+        }
+
     }
 }

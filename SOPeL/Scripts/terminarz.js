@@ -1,19 +1,4 @@
-﻿$('.datepicker').each(function () {
-    $(this).datepicker({
-        dateFormat: "yy-mm-dd",
-        changeYear: true
-    });
-});
-
-$('.datepickerRejOnline').each(function () {
-    $(this).datepicker({
-        dateFormat: "yy-mm-dd",
-        changeYear: true,
-        minDate: new Date()
-    });
-});
-
-//Otwieranie karty rezerwacji jednym clickiem na mobilkach
+﻿//Otwieranie karty rezerwacji jednym clickiem na mobilkach
 $(".terminarz .teminarzaPanelRezerwacji").click(function () {
     if ($(document).width() < 1024) {
         $('#kartaRezerwacjiPortalPacjentaNiezalogowany').css({

@@ -53,7 +53,7 @@
                     @RenderBody()
                 </div>
                 <div class="wysrodkujCentralnie maxWysokosc maxSzerokosc ukryty" id="loader-kontener">
-                        <img id="loader" src="~/Content/Images/loader.gif" alt="Wczytuję..." />
+                    <img id="loader" src="~/Content/Images/loader.gif" alt="Wczytuję..." />
                 </div>
             </div>
         </div>
@@ -69,8 +69,11 @@
             var modul = id;
             var loaderKontener = $("#loader-kontener");
 
-            $('.datepicker').datepicker();
-            loaderKontener.switchClass("ukryty", "widoczny",150,"swing");
+            //Przed przełaldowaniem należy usunąć istniejący kalendarz, inaczej po przeładowaniu ajaxem nie wyświetli się
+            $("#wybor-daty-terminarz").datepicker("destroy");
+            $('#ui-datepicker-div').remove();
+
+            loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
             $.ajax({
                 url: '@Url.Action("wczytajModul", "Przychodnia")',
                 data: {
@@ -78,15 +81,20 @@
                 },
                 success: function (response) {
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
-                        renderBody.html(response);
+                    renderBody.html(response);
+
                 },
                 error: function () {
                     alert("Błąd połączenia z serwerem!");
                     loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
-                        renderBody.html("");
+                    renderBody.html("");
                 }
             });
+
+
         }
+        
+
     </script>
 </body>
 </html>
