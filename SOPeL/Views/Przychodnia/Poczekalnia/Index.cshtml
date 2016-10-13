@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Poczekalnia";
+}
+
+<h2>Poczekalnia</h2>
+<div class="container kontenerMaterial">
+    <div class="container">
+        <div id="terminarzDataKontener" class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+            Pracownik:
+            <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
+                <option>Wybierz lekarza</option>
+                @{
+                    foreach (var prac in ViewBag.Pracownicy)
+                    {
+                        <option id="@prac.Id">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
+            <a id="opcje-terminarza-button">
+                <img src="~/Content/Images/doctorIcon.png" alt="Opcje" class="img-responsive" />
+            </a>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    
+
+</div>
+
