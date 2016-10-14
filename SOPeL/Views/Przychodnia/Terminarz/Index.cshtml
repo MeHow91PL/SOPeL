@@ -24,41 +24,79 @@
 @*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
 <div id="opcje-terminarza-okno" class="kontenerMaterial display-none">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div id="godziny_pracy">
+            <div id="term_ogolny_graf_panel">
+                <fieldset>
+                    <legend>Grafik przychodni</legend>
+                    <label for="term-godz-pracy-od"> od </label> <input size="4" type="time" name="term_godz_od" id="term_godz_od" />
+                    <label for="term-godz-pracy-do"> do </label> <input size="4" type="time" name="term_godz_do" id="term_godz_do" />
 
-        <span>Godziny pracy przychodni:</span> <br />
-        <label for="term-godz-pracy-od"> od </label> <input size="4" type="time" name="term_godz_od" id="term_godz_od" />
-        <label for="term-godz-pracy-do"> do </label> <input size="4" type="time" name="term_godz_do" id="term_godz_do" />
+                    <div class="row">
+                        <label for="czas-trwania-wyzyty">Czas trwania wizyty (min): </label><input type="number" maxlength="2" max="60" min="1" name="term_czas_wiz" id="term_czas_wiz" />
+                    </div>
+                </fieldset>
+            </div>
+            <div id="term_indw_graf_panel">
+                <fieldset>
+                    <legend>Grafik pracownika</legend>
+                    <div class="row">
+                        Pracownik:
+                        <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
+                            <option>Wybierz lekarza</option>
+                            @{
+                                foreach (var prac in ViewBag.Pracownicy)
+                                {
+                                    <option id="@prac.Id">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                                }
+                            }
+                        </select>
+                        <table>
+                            <tr>
+                                <td>Poniedziałek:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Wtorek:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Środa:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Czwartek</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Piątek</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Sobota:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Niedziela:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="row">
+                <input type="checkbox" name="term_indw_graf" id="term_indw_graf" /> Osobny grafik dla każdego pacownika
+            </div>
+        </div>
 
-        <div class="row">
-            <label for="czas-trwania-wyzyty">Czas trwania wizyty (min): </label><input type="number" maxlength="2" max="60" min="1" name="term_czas_wiz" id="term_czas_wiz" />
-        </div>
-        <div class="row">
-            <input type="checkbox" name="term_indw_graf" id="term_indw_graf" /> Osobny grafik dla każdego pacownika
-        </div>
         <button id="opcje-terminarza-zapisz-button" class="btn btn-primary" type="button">Zapisz</button>
         <button id="opcje-terminarza-anuluj-button" class="btn btn-danger" type="button">Anuluj</button>
-        
-    </div>
-</div>
-
-<div id="okno-ustawiania-indywidualnego-grafika" class="kontenerMaterial display-none">
-    <div class="row">
-        Pracownik:
-        <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
-            <option>Wybierz lekarza</option>
-            @{
-                foreach (var prac in ViewBag.Pracownicy)
-                {
-                    <option id="@prac.Id">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
-                }
-            }
-        </select>
-
-    </div>
-    <div class="row">
-
-    </div>
-    <div class="row">
 
     </div>
 </div>
@@ -66,17 +104,17 @@
 
 <script>
     $(document).ready(function () {
-       
+
         //wczytanie elementów do zmiennej daje lepszą wydajność, gdyż tylko raz wyszukujemy po id
         var loaderKontener = $("#loader-kontener");
         var dataRezerwacji = $('#wybor-daty-terminarz').val();
         var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
         var opcjeTerminarzaDiv = $('#opcje-terminarza-okno');
-        var ustawianiaIndywidualnegoGrafikaDiv = $('#okno-ustawiania-indywidualnego-grafika');
         var terminarzDataKontener = $("#terminarzDataKontener");
-        var czasTrwaniaWizyty = $("#term_czas_wiz");
-    
-
+        var czasTrwaniaWizyty = $("#term_czas_wiz"); 
+        var ogolnyGrafik = $("#term_ogolny_graf_panel");
+        var idywidualnyGrafik = $("#term_indw_graf_panel");
+        var indwGrafCheckbox = $("#term_indw_graf");
 
         kontenerMaterialPortalPacjenta.css({
             "height": "100%",
@@ -103,13 +141,13 @@
 
         //--------------------------------- WYBÓR DATY -------------------------------------------------------------------------------------------------
 
-        //wyświetla kalendarz przy wejściu w pole wyboru daty 
-        var wyborDatyTerminarz = $("#wybor-daty-terminarz"); 
+        //wyświetla kalendarz przy wejściu w pole wyboru daty
+        var wyborDatyTerminarz = $("#wybor-daty-terminarz");
         wyborDatyTerminarz.datepicker({
             dateFormat: "yy-mm-dd",
             changeYear: true
         });
-      
+
 
         wyborDatyTerminarz.change(function () {
             dataRezerwacji = $('#wybor-daty-terminarz').val();
@@ -165,6 +203,21 @@
                     for (opcja in response) {
                         $("#" + opcja).val(response[opcja]);
                     }
+                    console.log(response['term_indw_graf']);
+                    console.debug();
+
+                    //jeżeli włączona jest opcja indywidualnego grafika to ukryj ogolny grafik i pokaż ust indywidualnych grafików
+                    if (response['term_indw_graf'] == '1') {
+                        indwGrafCheckbox.attr("checked", true);
+                        idywidualnyGrafik.switchClass("ukryty", "widoczny", 150, "swing");
+                        ogolnyGrafik.switchClass("widoczny", "ukryty", 150, "swing");
+
+                    }
+                    else {
+                        indwGrafCheckbox.attr("checked", false);
+                        idywidualnyGrafik.switchClass("widoczny", "ukryty", 150, "swing");
+                        ogolnyGrafik.switchClass("ukryty", "widoczny", 150, "swing");
+                    }
 
                     opcjeTerminarzaDiv.dialog(oknoOpcjiTerminarza).dialog("open");
                 },
@@ -193,13 +246,17 @@
             }
         });
 
-        $("#term_indw_graf").change(function () {
+        //Zmiana opcji z grafiku przychodni na osobne grafiki dla każdego pracownika
+        indwGrafCheckbox.change(function () {
             if ($(this).is(':checked')) {
-                $(this).val("1");
-                ustawianiaIndywidualnegoGrafikaDiv.dialog(oknoIndywidualnegoGrafika).dialog("open");
+                $(this).val("1");//value ustawiany jest po to, aby zapisać stan opcji do bazy
+                idywidualnyGrafik.switchClass("ukryty", "widoczny", 150, "swing");
+                ogolnyGrafik.switchClass("widoczny", "ukryty", 150, "swing");
             }
             else {
-                $(this).val("0");
+                $(this).val("0");//value ustawiany jest po to, aby zapisać stan opcji do bazy
+                idywidualnyGrafik.switchClass("widoczny", "ukryty", 150, "swing");
+                ogolnyGrafik.switchClass("ukryty", "widoczny", 150, "swing");
             }
         });
 

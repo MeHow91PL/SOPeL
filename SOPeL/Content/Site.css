@@ -38,11 +38,15 @@ a{
 }
 
 .ukryty {
+    display: none;
     visibility: hidden;
+    opacity:0;
 }
 
 .widoczny {
+    display: block;
     visibility: visible;
+    opacity:1;
 }
 
 .maxWysokosc {
