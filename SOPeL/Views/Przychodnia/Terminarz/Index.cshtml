@@ -36,7 +36,8 @@
                     </div>
                 </fieldset>
             </div>
-            <div id="term_indw_graf_panel">
+
+            @*<div id="term_indw_graf_panel">
                 <fieldset>
                     <legend>Grafik pracownika</legend>
                     <div class="row">
@@ -89,7 +90,8 @@
                         </table>
                     </div>
                 </fieldset>
-            </div>
+            </div>*@
+
             <div class="row">
                 <input type="checkbox" name="term_indw_graf" id="term_indw_graf" /> Osobny grafik dla każdego pacownika
             </div>
@@ -101,9 +103,18 @@
     </div>
 </div>
 
+<div id="menu" style="display:none">
+    <a href="#">Umów pacjenta</a>
+    <hr />
+    <a href="#">Usuń termin</a>
+    <hr />
+    <a href="#">Inne wizyty w tym terminie</a>
+</div>
 
 <script>
     $(document).ready(function () {
+
+
 
         //wczytanie elementów do zmiennej daje lepszą wydajność, gdyż tylko raz wyszukujemy po id
         var loaderKontener = $("#loader-kontener");
@@ -111,10 +122,12 @@
         var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
         var opcjeTerminarzaDiv = $('#opcje-terminarza-okno');
         var terminarzDataKontener = $("#terminarzDataKontener");
-        var czasTrwaniaWizyty = $("#term_czas_wiz"); 
+        var czasTrwaniaWizyty = $("#term_czas_wiz");
         var ogolnyGrafik = $("#term_ogolny_graf_panel");
         var idywidualnyGrafik = $("#term_indw_graf_panel");
         var indwGrafCheckbox = $("#term_indw_graf");
+        var menu = $("#menu");
+
 
         kontenerMaterialPortalPacjenta.css({
             "height": "100%",
@@ -263,7 +276,8 @@
         $("#opcje-terminarza-zapisz-button").click(function () {
             loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
             var dict = {};
-            $("#opcje-terminarza-okno input").each(function (i) {
+            $("#opcje-terminarza-okno input").each(function (i, val) {
+                alert(val.id);
                 dict[$(this).attr("id")] = $(this).val();
             });
 
@@ -291,6 +305,47 @@
         });
 
         //--------------------------------- END OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
+
+
+        //--------------------------------- OBSŁUGA CONTEXT MENU -------------------------------------------------------------------------------------------------
+
+        //Wywołanie okienka z menu,
+        $(".panel-rezerwacji").contextmenu(function (event) {
+            event.preventDefault();// zablokowanie domyślej obsługi zdarzenia ppm
+
+            menu.css({
+                "width": "200px",
+                "position": "fixed",
+                "background": "white",
+                "top": event.pageY - $(window).scrollTop(), //od relatywnej pozycji kliknięcia względm dokumenty należy odjąć ilość px o które ktrona jest scrollowana żeby box wyświetlał się w miejscu kliknięcia
+                "border-radius": "5px",
+                "box-shadow": "1px 1px 5px black",
+                "padding": "20px",
+                "left": event.pageX
+            });
+
+            menu.slideDown(200);
+        });
+
+        //var nadMenu = true;
+
+        //menu.mouseenter(function (event) {
+        //    nadMenu = true;
+        //});
+
+        //menu.mouseleave(function (event) {
+        //    nadMenu = false;
+        //});
+
+        ////zamknięcie okienka po poruszeniu myszki poza context
+        //$(document).mousemove(function (event) {
+        //    $("#przychodnia-sidebar-footer").text(nadMenu);
+        //    if (!nadMenu) {
+        //        menu.hide();
+        //    }
+        //});
+
+        //--------------------------------- END OBSŁUGA CONTEXT MENU -------------------------------------------------------------------------------------------------
 
     });
 </script>
