@@ -44,7 +44,7 @@ namespace SOPeL.Controllers
 
             Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
-            NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select * from v_rezerwacjePacjentow where prac_id = " + pracID);
+            NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select * from v_rezerwacjePacjentow where rez_data=current_date and prac_id = " + pracID);
 
             while (dr.Read())
             {
