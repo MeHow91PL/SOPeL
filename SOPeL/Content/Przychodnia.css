@@ -142,4 +142,20 @@
     margin:auto;
 }
 }
+
+
+
+
+/*###################################  POCZEKALNIA #################################################*/
+
+.terminarz .pacjent_oczekujacy {
+    height:40px;
+    text-align:center;
+    vertical-align:middle;
+    cursor:pointer;
+    background : #80D8FF;
+   color: #ffffff
+}
+
+
 /*################################### END TERMINARZ #################################################*/
