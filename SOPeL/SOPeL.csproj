@@ -183,6 +183,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PacjenciController.cs" />
     <Compile Include="Controllers\PoczekalniaController.cs" />
     <Compile Include="Controllers\PrzychodniaController.cs" />
     <Compile Include="Controllers\RejestracjaController.cs" />
@@ -349,6 +350,7 @@
     <Content Include="Views\Przychodnia\Index.cshtml" />
     <Content Include="Views\Przychodnia\Poczekalnia\Index.cshtml" />
     <Content Include="Views\Przychodnia\Poczekalnia\PoczekalniaPrzychodnia.cshtml" />
+    <Content Include="Views\Przychodnia\Pacjenci\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

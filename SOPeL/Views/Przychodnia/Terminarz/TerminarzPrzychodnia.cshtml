@@ -31,7 +31,7 @@
                             foreach (var item in ViewBag.Rezerwacje)
                             {
                                 string dataRez = item.DataRezerwacji.Year + "-" + string.Format("{0:00}", item.DataRezerwacji.Month) + "-" + string.Format("{0:00}", item.DataRezerwacji.Day);
-                                if (ViewBag.Pracownicy[y].Id == item.Pracownik.Id && item.GodzinaRezerwacji == timeString)
+                                if (ViewBag.Pracownicy[y].Id == item.Pracownik.Id && item.godzOd == time.ToString().Substring(0,5))
                                 {
                                     rezerwacjaIstnieje = true;
                                     nazwiskoPacjenta = item.Pacjent.Nazwisko;

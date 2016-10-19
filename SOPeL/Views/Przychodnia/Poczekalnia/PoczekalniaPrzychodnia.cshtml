@@ -1,24 +1,19 @@
 ﻿<div class="przychodnia">
-    <table class="table table-bordered terminarz">
+    <table class="table table-bordered">
         <tr>
-            <td></td>
+            
             @{
-                        int iloscPracowników = ViewBag.Pracownicy.Count;
-                        string szer = (90 / iloscPracowników).ToString() + "%";
-                        int y = 0;
-                        foreach (var prac in ViewBag.Pracownicy)
-                        {
-                            if (ViewBag.Pracownicy[y].Id == 1)
-                            {
-                     <td class="panelNazwyPracownika" style="width:@szer">@prac.Imie @prac.Nazwisko</td>
-                         }
-            }
+                foreach (var item in ViewBag.Rezerwacje)
+                {
+                    <td>@item.Pacjent.Nazwisko</td>
+                    <td>@item.Pacjent.Imie</td>
+                    <td>@item.godzOd</td>
+                }
             }
         </tr>
-       
-        
+
+
     </table>
 </div>
-<script src="~/Scripts/terminarz.js"></script>
 
 

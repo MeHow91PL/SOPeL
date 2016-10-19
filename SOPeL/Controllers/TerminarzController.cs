@@ -17,7 +17,7 @@ namespace SOPeL.Controllers
             Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
             ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
-            ViewBag.Rezerwacje = GetListaRezerwacji("Select * from v_rezerwacjepacjentow where date_trunc('day',rez_data) ='"
+            ViewBag.Rezerwacje = GetListaRezerwacji("Select * from v_rezerwacjePacjentow where date_trunc('day',rez_data) ='"
                 + DateTime.Now.Year + "-" + string.Format("{0:00}", DateTime.Now.Month) + "-" + string.Format("{0:00}", DateTime.Now.Day) + "'");
             ViewBag.Opcje = PobierzOpcje();
 
@@ -59,8 +59,8 @@ namespace SOPeL.Controllers
                     Pacjent = new Pacjent() { Imie = dr["pac_imie"].ToString(), Nazwisko = dr["pac_nazwisko"].ToString(), Pesel = dr["pac_pesel"].ToString() },
                     Pracownik = new Pracownik() { Imie = dr["prac_imie"].ToString(), Nazwisko = dr["prac_nazwisko"].ToString() },
                     DataRezerwacji = Convert.ToDateTime(dr["rez_data"].ToString()),
-                    godzOd = TimeSpan.FromSeconds(Convert.ToDouble(dr["rez_godz_pocz"].ToString())),
-                    godzDo = TimeSpan.FromSeconds(Convert.ToDouble(dr["rez_godz_konc"].ToString()))
+                    godzOd = dr["rez_godz_pocz"].ToString(),
+                    godzDo = dr["rez_godz_konc"].ToString()
                 });
             }
 
@@ -92,7 +92,7 @@ namespace SOPeL.Controllers
             Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
             ViewBag.Pracownicy = GetListaPracownikow("SELECT * FROM pracownicy");
-            ViewBag.Rezerwacje = GetListaRezerwacji("SELECT * FROM v_RezerwacjePacjentow where date(rez_data) ='" + wybranaData + "'");
+            ViewBag.Rezerwacje = GetListaRezerwacji("SELECT * FROM v_rezerwacjePacjentow where date(rez_data) ='" + wybranaData + "'");
             ViewBag.Opcje = PobierzOpcje();
             Database.zamknijPolaczenie();
 

@@ -16,9 +16,9 @@ namespace SOPeL.Models
         public DateTime DataRezerwacji { get; set; }
 
         [Display(Name = "Godzina od")]
-        public TimeSpan godzOd { get; set; }
+        public string godzOd { get; set; }
 
         [Display(Name = "Godzina do")]
-        public TimeSpan godzDo { get; set; }
+        public string godzDo { get; set; }
     }
 }
