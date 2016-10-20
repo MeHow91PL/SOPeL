@@ -352,6 +352,7 @@
     <Content Include="Views\Przychodnia\Poczekalnia\Index.cshtml" />
     <Content Include="Views\Przychodnia\Poczekalnia\PoczekalniaPrzychodnia.cshtml" />
     <Content Include="Views\Przychodnia\Pacjenci\Index.cshtml" />
+    <Content Include="Views\Przychodnia\Pacjenci\PacjenciPrzychodnia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

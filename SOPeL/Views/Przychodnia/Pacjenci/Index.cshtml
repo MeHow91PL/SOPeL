@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Pacjenci";
 }
 
 
@@ -22,8 +22,8 @@
     </div>
 </div>
 
-<div class="container kontenerMaterial"  style="padding:0">
+<div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
     @* Treść ładowana AJAXem *@
-    bzdury
+    @Html.Partial("~/Views/Przychodnia/Pacjenci/PacjenciPrzychodnia.cshtml")
 
 </div>

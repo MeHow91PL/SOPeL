@@ -1,0 +1,14 @@
+﻿<div class="przychodnia">
+    <table class="table table-bordered terminarz">
+
+        @{
+            foreach (var item in ViewBag.Pacjenci)
+            {
+                <tr>
+                    <td class="pacjent_oczekujacy"> @item.Nazwisko  @item.Imie <br /> @item.Pesel</td>
+                </tr>
+            }
+        }
+    
+    </table>
+</div>
