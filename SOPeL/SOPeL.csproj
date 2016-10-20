@@ -220,6 +220,7 @@
     <Content Include="Content\Images\homeIcon.png" />
     <Content Include="Content\Images\loader.gif" />
     <Content Include="Content\Images\opcje.svg" />
+    <Content Include="Content\Images\pacjenci.png" />
     <Content Include="Content\Images\Pacjent3Icon.png" />
     <Content Include="Content\Images\pacjentIcon.png" />
     <Content Include="Content\Images\plannerIcon.png" />
