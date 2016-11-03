@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PostgresObsuga;
-using Npgsql;
 
 namespace SOPeL.Controllers
 {
@@ -16,29 +14,29 @@ namespace SOPeL.Controllers
         {
             List<Pracownik> pracownicy = new List<Pracownik>();
             List<string> specjalizacje = new List<string>();
-            Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
-            NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy");
+            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy");
 
-            while (dr.Read())
-            {
-                pracownicy.Add(new Pracownik() { Id = (int)dr["id"], Imie = dr["imie"].ToString(), Nazwisko = dr["nazwisko"].ToString(), Specjalizacja = dr["specjalizacja"].ToString() });
-            }
+            //while (dr.Read())
+            //{
+            //    pracownicy.Add(new Pracownik() { Id = (int)dr["id"], Imie = dr["imie"].ToString(), Nazwisko = dr["nazwisko"].ToString(), Specjalizacja = dr["specjalizacja"].ToString() });
+            //}
 
-            dr.Close();
+            //dr.Close();
 
-            dr = Database.wykonajZapytanieDQL("SELECT DISTINCT specjalizacja FROM pracownicy");
+            //dr = Database.wykonajZapytanieDQL("SELECT DISTINCT specjalizacja FROM pracownicy");
 
-            while (dr.Read())
-            {
-                specjalizacje.Add(dr[0].ToString());
-            }
+            //while (dr.Read())
+            //{
+            //    specjalizacje.Add(dr[0].ToString());
+            //}
 
-            dr.Close();
+            //dr.Close();
 
-            ViewBag.Pracownicy = pracownicy;
-            ViewBag.Specjalizacje = specjalizacje;
+            //ViewBag.Pracownicy = pracownicy;
+            //ViewBag.Specjalizacje = specjalizacje;
 
-            Database.zamknijPolaczenie();
+            //Database.zamknijPolaczenie();
             return View("~/Views/Portal pacjenta/Rejestracja on-line/index.cshtml");
         }
 
@@ -46,15 +44,15 @@ namespace SOPeL.Controllers
         {
             List<Pracownik> pracownicy = new List<Pracownik>();
 
-            Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
-            NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy where specjalizacja like '" + spec + "'");
+            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy where specjalizacja like '" + spec + "'");
 
-            while (dr.Read())
-            {
-                pracownicy.Add(new Pracownik() { Id = (int)dr["id"], Imie = dr["imie"].ToString(), Nazwisko = dr["nazwisko"].ToString(), Specjalizacja = dr["specjalizacja"].ToString() });
-            }
+            //while (dr.Read())
+            //{
+            //    pracownicy.Add(new Pracownik() { Id = (int)dr["id"], Imie = dr["imie"].ToString(), Nazwisko = dr["nazwisko"].ToString(), Specjalizacja = dr["specjalizacja"].ToString() });
+            //}
 
-            dr.Close();
+            //dr.Close();
 
             return Json(pracownicy);
         }
@@ -73,9 +71,9 @@ namespace SOPeL.Controllers
             //    dr.Close();
 
             //    Database.wykonajZapytanieDML("INSERT INTO pacjenci (imie,nazwisko,pesel,dok_toz,telefon,email,plec)" +
-            //        "VALUES('" + rezerwacja.Pacjent.Imie.ToUpper() + "', '" + rezerwacja.Pacjent.Nazwisko.ToUpper() + "', '" 
-            //        + rezerwacja.Pacjent.Pesel + "', '" + rezerwacja.Pacjent.DokumentTozsamosci.ToUpper() 
-            //        + "', '" + rezerwacja.Pacjent.Telefon.ToUpper() + "', '" 
+            //        "VALUES('" + rezerwacja.Pacjent.Imie.ToUpper() + "', '" + rezerwacja.Pacjent.Nazwisko.ToUpper() + "', '"
+            //        + rezerwacja.Pacjent.Pesel + "', '" + rezerwacja.Pacjent.DokumentTozsamosci.ToUpper()
+            //        + "', '" + rezerwacja.Pacjent.Telefon.ToUpper() + "', '"
             //        + rezerwacja.Pacjent.Email.ToUpper() + "', '" + rezerwacja.Pacjent.Plec.ToUpper() + "')");
             //}
             //dr.Close();
@@ -99,28 +97,28 @@ namespace SOPeL.Controllers
         public ActionResult wczytaj()
         {
             Pacjent pac = new Pacjent();
-            NpgsqlDataReader wynik = Database.wykonajZapytanieDQL("Select * from pacjenci");
-            while (wynik.Read())
-            {
-                pac.Imie = wynik[2] as string;
-                pac.Nazwisko = wynik[1] as string;
-            }
-            Database.zamknijPolaczenie();
+            //NpgsqlDataReader wynik = Database.wykonajZapytanieDQL("Select * from pacjenci");
+            //while (wynik.Read())
+            //{
+            //    pac.Imie = wynik[2] as string;
+            //    pac.Nazwisko = wynik[1] as string;
+            //}
+            //Database.zamknijPolaczenie();
 
             return View("Index", pac);
         }
 
         public JsonResult GetJsonPrac(string term)
         {
-            NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select imie || ' ' || nazwisko || ' (' || specjalizacja || ')' from pracownicy");
             List<string> listaPracowników = new List<string>();
-            while (dr.Read())
-            {
-                if((dr[0]as string).ToUpper().Contains(term.ToUpper()))
-                listaPracowników.Add(dr[0].ToString());
-            }
+            //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select imie || ' ' || nazwisko || ' (' || specjalizacja || ')' from pracownicy");
+            //while (dr.Read())
+            //{
+            //    if((dr[0]as string).ToUpper().Contains(term.ToUpper()))
+            //    listaPracowników.Add(dr[0].ToString());
+            //}
 
-            Database.zamknijPolaczenie();
+            //Database.zamknijPolaczenie();
 
             return Json(listaPracowników ,JsonRequestBehavior.AllowGet);
         }

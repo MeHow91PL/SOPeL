@@ -1,20 +1,20 @@
 ﻿@*<script src="~/Scripts/terminarz.js"></script>*@
-<div class="container kontenerMaterial">
-    <div class="container">
-        <div id="terminarzDataKontener" class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+<div class="kontenerMaterial">
+    <div class="">
+        <div id="terminarzDataKontener" class="">
             <label for="wybor-daty-terminarz">Data</label>
-            <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}", DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="form-control datepicker" />
+            <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}", DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="datepicker" />
         </div>
 
-        <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
+        <div class="">
             <a id="opcje-terminarza-button">
-                <img src="~/Content/Images/opcje.svg" alt="Opcje" class="img-responsive" />
+                <img src="~/Content/Images/opcje.svg" alt="Opcje" class="" />
             </a>
         </div>
 
     </div>
 </div>
-<div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
+<div class="kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
     @* Treść ładowana AJAXem *@
     @Html.Partial("~/Views/Przychodnia/Terminarz/TerminarzPrzychodnia.cshtml")
 </div>
@@ -23,7 +23,7 @@
 
 @*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
 <div id="opcje-terminarza-okno" class="kontenerMaterial display-none">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="">
         <div id="godziny_pracy">
             <div id="term_ogolny_graf_panel">
                 <fieldset>
@@ -31,7 +31,7 @@
                     <label for="term-godz-pracy-od"> od </label> <input size="4" type="time" name="term_godz_od" id="term_godz_od" />
                     <label for="term-godz-pracy-do"> do </label> <input size="4" type="time" name="term_godz_do" id="term_godz_do" />
 
-                    <div class="row">
+                    <div class="">
                         <label for="czas-trwania-wyzyty">Czas trwania wizyty (min): </label><input type="number" maxlength="2" max="60" min="1" name="term_czas_wiz" id="term_czas_wiz" />
                     </div>
                 </fieldset>
@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <button id="opcje-terminarza-zapisz-button" class="btn btn-primary" type="button">Zapisz</button>
+        <button id="opcje-terminarza-zapisz-button" class="" type="button">Zapisz</button>
         <button id="opcje-terminarza-anuluj-button" class="btn btn-danger" type="button">Anuluj</button>
 
     </div>

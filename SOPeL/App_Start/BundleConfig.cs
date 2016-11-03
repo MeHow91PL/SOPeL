@@ -1,11 +1,11 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 using System.Web.Optimization;
 
-namespace SOPeL
+namespace SOPeL.App_Start
 {
     public class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -17,33 +17,27 @@ namespace SOPeL
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/terminarz").Include("~/Scripts/terminarz.js"));
-
-
-
-            bundles.Add(new ScriptBundle("~/bundles/rejestracja").Include("~/Scripts/rejestracja.js"));
-
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                        "~/Scripts/bootstrap.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/terminarz.css",
-                      "~/Content/rejestracja.css",
+                      "~/Content/reset.css",
+                      "~/Content/index.css",
                       "~/Content/PortalPacjenta.css",
                       "~/Content/KartaRezerwacjiPrzychodnia.css",
                       "~/Content/KartaLogowania.css",
                       "~/Content/KartaRezerwacjiPortalPacjentaNiezalogowany.css",
-                     "~/Content/index.css", 
-                     "~/Content/Przychodnia.css",
-                      "~/Content/site.css"));
+                      "~/Content/Przychodnia.css",
+                      "~/Content/Site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
+                      "~/Content/bootstrap-theme.css",
+                      "~/Content/bootstrap.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
               "~/Content/themes/base/core.css",
@@ -59,6 +53,7 @@ namespace SOPeL
               "~/Content/themes/base/datepicker.css",
               "~/Content/themes/base/progressbar.css",
               "~/Content/themes/base/theme.css"));
+
         }
     }
 }

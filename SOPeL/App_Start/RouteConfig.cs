@@ -13,25 +13,11 @@ namespace SOPeL
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-
-            routes.MapRoute(
-                name: "Terminarz",
-                url: "Terminarz",
-                defaults: new { controller = "Terminarz", action = "Index" }
-            );
-            routes.MapRoute(
-             name: "Rejestracja",
-             url: "Rejestracja",
-             defaults: new { controller = "Rejestracja", action = "Index" }
-         );
-
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
-
-
     }
 }

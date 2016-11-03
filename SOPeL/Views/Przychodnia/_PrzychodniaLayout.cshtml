@@ -1,0 +1,111 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_PrzychodniaLayout</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/bootstrap")
+</head>
+<body style="padding: 0" id="bodyPrzychodnia" class="maxSzerokosc maxWysokosc">
+
+    <div class="container-fluid maxWysokosc">
+        <div class="maxWysokosc">
+            <div class="row">
+                <div class="col-lg-2 col-sm-2 col-md-2 ">
+                    <div class="sidebar">
+                        <div id="zwijaczMenu" onclick="zawijaczKlik()">&lt;&lt;</div>
+                        <ul class="nav nav-sidebar" id="navPortalPacjenta">
+                            <li class="active" id="rejestracjaButtonPortalPacjenta">
+                                <a onclick="ladowaniePodstrony('Terminarz')" id="Terminarz">
+                                    <img class="img-responsive" src="~/Content/Images/unnamed.png" alt="Rejestracja online" />
+                                    <span>Rejestracja</span>
+                                </a>
+                            </li>
+                            <li id="adminButtonSidebar">
+                                <a onclick="ladowaniePodstrony('Poczekalnia')" id="Poczekalnia">
+                                    <img class="img-responsive" src="~/Content/Images/heart-checkup.png" alt="Strona domowa" />
+                                    <span>Wizyta</span>
+                                </a>
+                            </li>
+                            <li id="adminButtonSidebar">
+                                <a onclick="ladowaniePodstrony('Admin')" id="Admin">
+                                    <img class="img-responsive" src="~/Content/Images/admin.svg" alt="Strona domowa" />
+                                    <span>Admin</span>
+                                </a>
+                            </li>
+                            <li id="adminButtonSidebar">
+                                <a onclick="ladowaniePodstrony('Pacjenci')" id="Pacjenci">
+                                    <img class="img-responsive" src="~/Content/Images/pacjenci.png" alt="Strona domowa" />
+                                    <span>Pacjenci</span>
+                                </a>
+                            </li>
+                            <li id="homeButtonPortalPacjenta">
+                                <a href="@Url.Action("Index", "Home")" id="Home">
+                                    <img class="img-responsive" src="~/Content/Images/homeIcon.png" alt="Strona domowa" />
+                                    <span>Strona główna</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="przychodnia-sidebar-footer">
+                            zalogowany
+                        </div>
+                    </div>
+                </div>
+                <div id="kontener" class="maxWysokosc container col-lg-10 col-lg-offset-2 col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+                    <div id="renderBody">
+                        @RenderBody()
+                    </div>
+                    <div class="wysrodkujCentralnie maxWysokosc maxSzerokosc ukryty" id="loader-kontener">
+                        <img id="loader" src="~/Content/Images/loader.gif" alt="Wczytuję..." />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        function ladowaniePodstrony(id) {
+            var renderBody = $("#renderBody");
+            var modul = id;
+            var loaderKontener = $("#loader-kontener");
+
+            //Przed przełaldowaniem należy usunąć istniejący kalendarz, inaczej po przeładowaniu ajaxem nie wyświetli się
+            $("#wybor-daty-terminarz").datepicker("destroy");
+            $('#ui-datepicker-div').remove();
+
+            loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
+            $.ajax({
+                url: '@Url.Action("wczytajModul", "Przychodnia")',
+                data: {
+                    wybranyModul: modul
+                },
+                success: function (response) {
+                    loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
+                    renderBody.html(response);
+
+                },
+                error: function () {
+                    alert("Błąd połączenia z serwerem!");
+                    loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
+                    renderBody.html("");
+                }
+            });
+
+
+        }
+
+
+    </script>
+</body>
+</html>

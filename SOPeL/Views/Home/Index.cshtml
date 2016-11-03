@@ -1,54 +1,32 @@
-﻿<!DOCTYPE html>
+﻿@model SOPeL.Models.Uzytkownik
 
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-   
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
 </head>
-<body>
+<body style="padding: 0">
     <div id="tlo">
-        <div class="row">
-            <div id="buttons" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <a href="@Url.Action("Index", "Rejestracja")">
-                    <div class="przycisk">
-                        <img src="~/Content/Images/pacjentIcon.png" alt="Ikona pacjenta"/>
+        <div class="buttons-center">
+            <div id="buttons" class="">
+                <div class="przycisk">
+                    <a href="@Url.Action("Logowanie", "PortalPacjenta")">
+                        <img src="~/Content/Images/pacjentIcon.png" alt="Ikona pacjenta" />
                         <span>Portal Pacjenta</span>
-                    </div>
-                </a>
-                    <div class="przycisk" id="zalogujDoPrzychodniButton">
-                        <img src="~/Content/Images/doctorIcon.png" alt="Ikona doktora"/>
+                    </a>
+                </div>
+                <div class="przycisk" id="zalogujDoPrzychodniButton">
+                    <a href="@Url.Action("Logowanie", "Przychodnia")">
+                        <img src="~/Content/Images/doctorIcon.png" alt="Ikona doktora" />
                         <span>Przychodnia</span>
-                    </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-        @Html.Partial("_OknoLogowania")
 </body>
 </html>
-
-<script>
-    //Skrypt do wyświtlenia okienka logowania
-    $(document).ready(function myfunction() {
-      var szerokoscOkna = $('body').width();
-
-      if (szerokoscOkna > 784)
-        szerokoscOkna = 600;
-
-      $('#zalogujDoPrzychodniButton').click(function () {
-          $('#kartaLogowania').css("display", "block");
-          $('#kartaLogowania').dialog({
-              draggable: false,
-              hide: { effect: "fade", duration: 250 },
-              show: { effect: "fade", duration: 250 },
-              resizable: false,
-              width: szerokoscOkna,
-              autoOpen: false,
-              minHeight: $('#kartaPacjenta').css("minHeight"),
-              title: "LOGOWANIE"
-          });
-          $('#kartaLogowania').dialog("open");
-      });
-    });
-   
-</script>

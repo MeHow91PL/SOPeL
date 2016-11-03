@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace SOPeL.Models
 {
+    [Table("Pacjenci")]
     public class Pacjent : Osoba
     {
         [DataType(DataType.Date)]
@@ -20,9 +22,8 @@ namespace SOPeL.Models
         [Display(Name = "Dokument tożsamości", ShortName = "Dokument tożsamości")]
         public string DokumentTozsamosci { get; set; }
 
-        public Adres Adres { get; set; }
     }
 
-   
-    
+
+
 }

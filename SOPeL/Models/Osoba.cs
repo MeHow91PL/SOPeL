@@ -9,8 +9,9 @@ namespace SOPeL.Models
     public abstract class Osoba
     {
         [ScaffoldColumn(false)]
-        public int Id { get; set; }
+        public int ID { get; set; }
 
+        [Display(Name = "Imię")]
         [MaxLength(50)]
         [Required(ErrorMessage = "Imię nie może być puste")]
         public string Imie { get; set; }
@@ -32,5 +33,10 @@ namespace SOPeL.Models
         [Required]
         [MaxLength(100)]
         public string Email { get; set; }
+
+        public virtual Adres Adres { get; set; }
+
+        public virtual Adres AdresTymczasowy { get; set; }
+
     }
 }

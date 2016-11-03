@@ -7,11 +7,11 @@
 }
 <div class="container kontenerMaterial">
     <div class="container">
-        <div id="terminarzDataKontener" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div id="terminarzDataKontener" class="  col-sm-4 ">
             <label for="dataRezerwacji">Data</label>
             <input type="text" onchange="wybranoLekarza()" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="dataRezerwacji" name="dataRezerwacji" class="form-control datepickerRejOnline" />
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="  col-sm-4 ">
             <label for="lekarz">Lekarz</label>
             <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
                 <option>Wybierz lekarza</option>
@@ -23,7 +23,7 @@
                 }
             </select>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="  col-sm-4 ">
             <label for="specjalizacja">Specjalizacja</label>
             <select class="form-control" id="wyborSpecjalizacjiPortalPacjenta" onchange="wybranoSpecjalizacje(this)">
                 <option></option>
@@ -39,17 +39,17 @@
 </div>
 
 <div class="container kontenerMaterial" id="podpowiedzi">
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 podpowiedz">
+    <div class="  col-sm-4  podpowiedz">
         <img class="img-responsive" src="~/Content/Images/plannerIcon.png" alt="Ikonka kalendarza" style="float:left" />
         <img class="hidden-xs img-responsive" src="~/Content/Images/Up 2.png" alt="Ikonka kalendarza" style="float:right" />
         <p style="float:left">Wybierz, aby określić datę rezerwacji</p>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 podpowiedz">
+    <div class="  col-sm-4  podpowiedz">
         <img class="img-responsive" src="/Content/Images/doctorIcon.png" alt="Ikonka lekarza" style="float:left" />
         <img class="hidden-xs img-responsive" src="~/Content/Images/Up 2.png" alt="Ikonka kalendarza" style="float:right" />
         <p style="float:left">Wybierz, aby wyświetlić listę lekarzy</p>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 podpowiedz">
+    <div class="  col-sm-4  podpowiedz">
         <img class="img-responsive" src="/Content/Images/clinicIcon.png" alt="Ikonka kliniki" style="float:left" />
         <img class="hidden-xs img-responsive" src="~/Content/Images/Up 2.png" alt="Ikonka kalendarza" style="float:right" />
         <p style="float:left">Wybierz, aby wyświetlić lekarzy danej specjalności</p>

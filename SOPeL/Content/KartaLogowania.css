@@ -1,23 +1,50 @@
 ﻿#kartaLogowania {
-    display:none;
     color: #3b3b3b;
     background: #ffffff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    padding: 50px;
+    position:relative;
 }
 
-#zalogujDoPrzychodniButton {
-    cursor: pointer;
+    #kartaLogowania input {
+        margin: 10px 0;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        border-style:solid;
+        border-color: #dddddd;
+        padding: 5px;
+
+    }
+
+        #kartaLogowania input:active {
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+#formularzKartyLogowania .buttonFotterContainer {
+    margin: 30px auto 0px;
 }
 
-#formularzKartyLogowania .buttonFotterContainer{
-    margin: 30px 0 50px;
-}
+#formularzKartyLogowania .buttonFotterContainer input {
+    background: #5cb7de;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    }
 
 
 @media all and (max-width:768px) {
 
     #formularzKartyLogowania .buttonFotterContainer input {
         height: 40px;
-        margin-top: 0;
+        margin-top: 20px;
         font-size: small;
     }
 }

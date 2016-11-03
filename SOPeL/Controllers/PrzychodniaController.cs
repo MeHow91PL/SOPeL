@@ -1,35 +1,30 @@
-﻿using System;
+﻿using SOPeL.DAL;
+using SOPeL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PostgresObsuga;
-using Npgsql;
-using Newtonsoft.Json;
 
 namespace SOPeL.Controllers
 {
     public class PrzychodniaController : Controller
     {
-        //
+        SopelContext db = new SopelContext();
         // GET: /Przychodnia/
         public ActionResult Index()
         {
-            //try
-            //{
-            //    Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
-
-            //    NpgsqlDataReader dr = Database.wykonajZapytanieDQL();
-
-            //    Database.zamknijPolaczenie();
-                
-            //}
-            //catch (Exception ex)
-            //{ 
-                
-            //}
-
             return View();
+        }
+
+        public ActionResult Logowanie(Uzytkownik userModel)
+        {
+            if (db.Uzytkownicy.Any(u => u.Login == userModel.Login) && (db.Uzytkownicy.Single(u => u.Login == userModel.Login) as Uzytkownik).Haslo == userModel.Haslo)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+                return View(userModel);
         }
 
         public ActionResult wczytajModul(string wybranyModul)
@@ -38,6 +33,6 @@ namespace SOPeL.Controllers
             return RedirectToAction("Index", modul);
         }
 
-       
+
     }
 }

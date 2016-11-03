@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace SOPeL.Models
 {
+    [Table("Rezerwacje")]
     public class Rezerwacja
     {
-        public Pracownik Pracownik{ get; set; }
-        public Pacjent Pacjent { get; set; }
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
@@ -20,5 +22,14 @@ namespace SOPeL.Models
 
         [Display(Name = "Godzina do")]
         public string godzDo { get; set; }
+
+        [Display(Name = "Data ost. mod.")]
+        public DateTime DataModyfikacji { get; set; }
+
+        public int PracownikID { get; set; }
+        public int PacjentID { get; set; }
+
+        public virtual Pracownik Pracownik { get; set; }
+        public virtual Pacjent Pacjent { get; set; }
     }
 }
