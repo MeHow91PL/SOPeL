@@ -13,6 +13,7 @@ namespace SOPeL.Controllers
 
         public ActionResult Index()
         {
+            
             return View();
         }
 

@@ -269,6 +269,10 @@
     <Compile Include="Migrations\201611031533087_DodanoCosTam.Designer.cs">
       <DependentUpon>201611031533087_DodanoCosTam.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611031710581_update_Filip_baza.cs" />
+    <Compile Include="Migrations\201611031710581_update_Filip_baza.Designer.cs">
+      <DependentUpon>201611031710581_update_Filip_baza.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\Osoba.cs" />
@@ -323,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611031533087_DodanoCosTam.resx">
       <DependentUpon>201611031533087_DodanoCosTam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611031710581_update_Filip_baza.resx">
+      <DependentUpon>201611031710581_update_Filip_baza.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
