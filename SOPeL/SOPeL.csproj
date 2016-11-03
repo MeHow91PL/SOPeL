@@ -179,6 +179,7 @@
     <Content Include="Content\Przychodnia.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\RobotoFont.css" />
+    <Content Include="Content\SidebarModuly.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -226,6 +227,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="sample.snippet" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -238,6 +240,7 @@
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\Przychodnia.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
