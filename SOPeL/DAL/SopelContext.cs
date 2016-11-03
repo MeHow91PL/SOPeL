@@ -15,9 +15,14 @@ namespace SOPeL.DAL
         public DbSet<Rezerwacja> Rezerwacje { get; set; }
         public DbSet<Uzytkownik> Uzytkownicy { get; set; }
 
-        public SopelContext() : base("MyDb")
+        public SopelContext() : base("SopelDb")
         {
 
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("public");
         }
     }
 }
