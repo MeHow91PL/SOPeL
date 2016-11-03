@@ -4,11 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SOPeL.Models;
+using SOPeL.DAL;
 
 namespace SOPeL.Controllers
 {
     public class PacjenciController : Controller
     {
+        SopelContext db = new SopelContext();
         // GET: Pacjenci
         public ActionResult Index()
         {
@@ -16,9 +18,10 @@ namespace SOPeL.Controllers
             //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
             //ViewBag.Pacjenci = GetListaPacjentow("Select * from pacjenci");
             //Database.zamknijPolaczenie();
-            return View("~/Views/Przychodnia/Pacjenci/Index.cshtml");
+            List<Pacjent> pacjenci = db.Pacjenci.ToList();
+            return View("~/Views/Przychodnia/Pacjenci/Index.cshtml",pacjenci);
         }
-
+        
         internal List<Pacjent> GetListaPacjentow(string zapytanie)
         {
             List<Pacjent> pacjenci = new List<Pacjent>();

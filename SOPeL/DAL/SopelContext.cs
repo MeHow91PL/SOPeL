@@ -15,7 +15,7 @@ namespace SOPeL.DAL
         public DbSet<Rezerwacja> Rezerwacje { get; set; }
         public DbSet<Uzytkownik> Uzytkownicy { get; set; }
 
-        public SopelContext() : base("SopelDb")
+        public SopelContext() : base("LocalDb")
         {
 
         }

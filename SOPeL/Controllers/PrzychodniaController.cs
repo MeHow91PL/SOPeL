@@ -27,11 +27,7 @@ namespace SOPeL.Controllers
                 return View(userModel);
         }
 
-        public ActionResult wczytajModul(string wybranyModul)
-        {
-            string modul = wybranyModul;
-            return RedirectToAction("Index", modul);
-        }
+       
 
 
     }
