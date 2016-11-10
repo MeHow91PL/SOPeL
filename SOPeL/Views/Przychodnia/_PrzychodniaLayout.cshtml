@@ -12,6 +12,7 @@
     @Styles.Render("~/Content/themes/base/css")
     @Styles.Render("~/Content/Przychodnia")
     @Styles.Render("~/Content/bootstrap")
+    @RenderSection("style",required:false)
 </head>
 <body style="padding: 0" id="bodyPrzychodnia" class="maxSzerokosc maxWysokosc">
 
@@ -28,7 +29,7 @@
                         </a>
                     </li>
                     <li id="wizyta-sidebar">
-                        <a href="@Url.Action("Index","Wizyta")" id="Poczekalnia">
+                        <a href="@Url.Action("Index","Poczekalnia")" id="Poczekalnia">
                             <img class="img-responsive" src="~/Content/Images/heart-checkup.png" alt="Wizyta" />
                             <span>Wizyta</span>
                         </a>
@@ -57,15 +58,16 @@
                     zalogowany
                 </div>
             </div>
-        </div>
-        <div id="kontener" class="maxWysokosc main">
-            <div id="renderBody">
-                @RenderBody()
+            <div id="kontener" class="maxWysokosc main">
+                <div id="renderBody">
+                    @RenderBody()
+                </div>
+                <div class="wysrodkujCentralnie maxWysokosc maxSzerokosc ukryty" id="loader-kontener">
+                    <img id="loader" src="~/Content/Images/loader.gif" alt="Wczytuję..." />
+                </div>
             </div>
-            <div class="wysrodkujCentralnie maxWysokosc maxSzerokosc ukryty" id="loader-kontener">
-                <img id="loader" src="~/Content/Images/loader.gif" alt="Wczytuję..." />
-            </div>
         </div>
+
     </div>
 
 

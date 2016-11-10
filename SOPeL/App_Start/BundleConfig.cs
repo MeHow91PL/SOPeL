@@ -48,6 +48,9 @@ namespace SOPeL.App_Start
                       "~/Content/KartaLogowania.css",
                       "~/Content/KartaRezerwacjiPortalPacjentaNiezalogowany.css"));
 
+            bundles.Add(new StyleBundle("~/Content/Terminarz").Include(
+                      "~/Content/Terminarz.css"));
+
             bundles.Add(new StyleBundle("~/Content/Main").Include(
                       "~/Content/reset.css",
                       "~/Content/index.css",

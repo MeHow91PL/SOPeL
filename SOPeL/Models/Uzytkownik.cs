@@ -22,6 +22,8 @@ namespace SOPeL.Models
         [Required(ErrorMessage = "Hasło nie może być puste")]
         public string Haslo { get; set; }
 
+        public string jakiesPole { get; set; }
+
         public DateTime DataUtworzenia { get; set; }
 
         public int? PracownikID { get; set; }

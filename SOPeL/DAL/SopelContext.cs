@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
@@ -14,7 +15,7 @@ namespace SOPeL.DAL
         public DbSet<Pracownik> Pracownicy { get; set; }
         public DbSet<Rezerwacja> Rezerwacje { get; set; }
         public DbSet<Uzytkownik> Uzytkownicy { get; set; }
-        public DbSet<Opcje> Opcje { get; set; }
+        public DbSet<Opcja> Opcje { get; set; }
 
         public SopelContext() : base("LocalDb")
         {
@@ -23,6 +24,7 @@ namespace SOPeL.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.HasDefaultSchema("public");
         }
     }

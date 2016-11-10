@@ -1,9 +1,10 @@
-﻿<div class="przychodnia">
+﻿@model SOPeL.ViewModels.PoczekalniaViewModel
+<div class="przychodnia">
     <table class="table table-bordered terminarz">
         
             
             @{
-                foreach (var item in ViewBag.Rezerwacje)
+                foreach (var item in Model.rezerwacje )
                 {
                     <tr>
                         <td class="pacjent_oczekujacy">@item.Pacjent.Nazwisko  @item.Pacjent.Imie <br/> @item.Pacjent.Pesel</td>

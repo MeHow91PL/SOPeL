@@ -1,19 +1,22 @@
-﻿<div class="przychodnia">
+﻿@model SOPeL.ViewModels.TerminarzViewModel
+
+
+<div class="przychodnia">
     <table class="table table-bordered terminarz">
         <tr>
             <td></td>
             @{
-                int iloscPracowników = ViewBag.Pracownicy.Count;
+                int iloscPracowników = Model.pracownicy.Count;
                 string szer = (90 / iloscPracowników).ToString() + "%";
 
-                foreach (var prac in ViewBag.Pracownicy)
+                foreach (var prac in Model.pracownicy)
                 {
                     <td class="panelNazwyPracownika" style="width:@szer">@prac.Imie @prac.Nazwisko</td>
                 }
             }
         </tr>
         @{
-            TimeSpan time = new TimeSpan(Convert.ToInt32(ViewBag.opcje["term_godz_od"].Substring(0,2)), Convert.ToInt32(ViewBag.opcje["term_godz_od"].Substring(3, 2)), 0);
+            TimeSpan time = new TimeSpan(Convert.ToInt32(ViewBag.GodzOd.Substring(0,2)), Convert.ToInt32(ViewBag.opcje["term_godz_od"].Substring(3, 2)), 0);
             TimeSpan maxTime = new TimeSpan(Convert.ToInt32(ViewBag.opcje["term_godz_do"].Substring(0, 2)), Convert.ToInt32(ViewBag.opcje["term_godz_do"].Substring(3, 2)), 0);
             while (time <= maxTime)
             {
@@ -65,4 +68,3 @@
         }
     </table>
 </div>
-<script src="~/Scripts/terminarz.js"></script>

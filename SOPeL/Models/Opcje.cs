@@ -7,7 +7,7 @@ using System.Web;
 namespace SOPeL.Models
 {
     [Table("Opcje")]
-    public class Opcje
+    public class Opcja
     {
         public int ID { get; set; }
         public string Nazwa { get; set; }

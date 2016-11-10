@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿/// <reference path="jquery-3.1.1.js" />
+
+$(document).ready(function () {
 
     //wczytanie elementów do zmiennej daje lepszą wydajność, gdyż tylko raz wyszukujemy po id
     var loaderKontener = $("#loader-kontener");
@@ -91,7 +93,7 @@
         loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
         opcjeTerminarzaDiv.css("display", "block");
         $.ajax({
-            url: '@Url.Action("pobierzOpcjeTerminarza", "Terminarz")',
+            url: pobierzTerminarzAjax,
             type: "POST",
             success: function (response) { //resposne to słownik sparsowany do jsona, klucz to nazwa opcji w bazie
                 loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");

@@ -1,4 +1,5 @@
-﻿using SOPeL.Models;
+﻿using SOPeL.DAL;
+using SOPeL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,12 @@ namespace SOPeL.Controllers
 {
     public class TerminarzController : Controller
     {
+        SopelContext db = new SopelContext();
+
         // GET: Rejestracja
         public ActionResult Index()
         {
+
             //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
             //ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
@@ -19,7 +23,7 @@ namespace SOPeL.Controllers
             //ViewBag.Opcje = PobierzOpcje();
 
             //Database.zamknijPolaczenie();
-            return View("~/Views/Przychodnia/Terminarz/Index.cshtml");
+            return View("~/Views/Przychodnia/Terminarz/Index.cshtml", new Opcje { Nazwa = "Test", Typ = TypOpcji.Pracownika });
         }
 
         private dynamic PobierzOpcje()
@@ -84,14 +88,14 @@ namespace SOPeL.Controllers
             return pracownicy;
         }
 
-        public PartialViewResult pobierzTerminarz(string wybranaData, List<Pracownik> pracownicy)
+        public PartialViewResult pobierzTerminarz(string wybranaData)
         {
-            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            List<Opcja> opcje = db.Opcje.ToList();
+            List<Pracownik> pracownicy = db.Pracownicy.ToList();
+            List<Pacjent> pacjenci = db.Pacjenci.ToList();
 
-            //ViewBag.Pracownicy = GetListaPracownikow("SELECT * FROM pracownicy");
-            //ViewBag.Rezerwacje = GetListaRezerwacji("SELECT * FROM v_rezerwacjePacjentow where date(rez_data) ='" + wybranaData + "'");
-            //ViewBag.Opcje = PobierzOpcje();
-            //Database.zamknijPolaczenie();
+            ViewBag.GodzOd = opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
+            ViewBag.GodzDo = opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
 
             return PartialView("~/Views/Przychodnia/Terminarz/TerminarzPrzychodnia.cshtml");
         }
@@ -110,7 +114,7 @@ namespace SOPeL.Controllers
             return RedirectToAction("Index");
         }
 
-     
+
 
         public string zapiszOpcjeTerminarza(Dictionary<string,string> opcj)
         {

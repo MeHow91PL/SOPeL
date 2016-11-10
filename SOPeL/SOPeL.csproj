@@ -181,6 +181,7 @@
     <Content Include="Content\RobotoFont.css" />
     <Content Include="Content\SidebarModuly.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Terminarz.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -242,9 +243,13 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\Przychodnia.js" />
     <Content Include="Scripts\Terminarz.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -258,12 +263,21 @@
     <Compile Include="Controllers\TerminarzController.cs" />
     <Compile Include="Controllers\WizytaController.cs" />
     <Compile Include="DAL\SopelContext.cs" />
+    <Compile Include="DAL\SopelInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201611092143249_Init.cs" />
     <Compile Include="Migrations\201611092143249_Init.Designer.cs">
       <DependentUpon>201611092143249_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611101031086_Init2.cs" />
+    <Compile Include="Migrations\201611101031086_Init2.Designer.cs">
+      <DependentUpon>201611101031086_Init2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611101624358_Ja.cs" />
+    <Compile Include="Migrations\201611101624358_Ja.Designer.cs">
+      <DependentUpon>201611101624358_Ja.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -302,12 +316,6 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Przychodnia\_PrzychodniaLayout.cshtml" />
     <Content Include="Views\Przychodnia\Index.cshtml" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,6 +323,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611092143249_Init.resx">
       <DependentUpon>201611092143249_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611101031086_Init2.resx">
+      <DependentUpon>201611101031086_Init2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611101624358_Ja.resx">
+      <DependentUpon>201611101624358_Ja.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

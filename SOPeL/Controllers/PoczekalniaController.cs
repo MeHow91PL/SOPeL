@@ -1,4 +1,6 @@
-﻿using SOPeL.Models;
+﻿using SOPeL.DAL;
+using SOPeL.Models;
+using SOPeL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +11,18 @@ namespace SOPeL.Controllers
 {
     public class PoczekalniaController : Controller
     {
+        SopelContext db = new SopelContext();
         // GET: Poczekalnia
         public ActionResult Index()
         {
+            var prac = db.Pracownicy.ToList();
+            var rez = db.Rezerwacje.ToList();
+            var model = new PoczekalniaViewModel { pracownicy = prac, rezerwacje = rez };
             //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
             //ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
             //ViewBag.Rezerwacje = new List<Rezerwacja>();
             //Database.zamknijPolaczenie();
-            return View("~/Views/Przychodnia/Poczekalnia/Index.cshtml");
+            return View("~/Views/Przychodnia/Poczekalnia/Index.cshtml",model);
         }
 
 
