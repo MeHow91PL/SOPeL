@@ -1,5 +1,6 @@
 ﻿using SOPeL.DAL;
 using SOPeL.Models;
+using SOPeL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,30 @@ namespace SOPeL.Controllers
         // GET: Rejestracja
         public ActionResult Index()
         {
+            var model = pobierzTerminarzViewModel();
 
-            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+            return View("~/Views/Przychodnia/Terminarz/Index.cshtml", model);
+        }
 
-            //ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
-            //ViewBag.Rezerwacje = GetListaRezerwacji("Select * from v_rezerwacjePacjentow where date_trunc('day',rez_data) ='"
-            //    + DateTime.Now.Year + "-" + string.Format("{0:00}", DateTime.Now.Month) + "-" + string.Format("{0:00}", DateTime.Now.Day) + "'");
-            //ViewBag.Opcje = PobierzOpcje();
+        public PartialViewResult pobierzTerminarz(string wybranaData)
+        {
+            var model = pobierzTerminarzViewModel();
 
-            //Database.zamknijPolaczenie();
-            return View("~/Views/Przychodnia/Terminarz/Index.cshtml", new Opcje { Nazwa = "Test", Typ = TypOpcji.Pracownika });
+            ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
+            ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
+
+            return PartialView("~/Views/Przychodnia/Terminarz/SiatkaTerminarza.cshtml");
+        }
+
+        private TerminarzViewModel pobierzTerminarzViewModel()
+        {
+            var opcje = db.Opcje.ToList();
+            var prac = db.Pracownicy.ToList();
+            var rez = db.Rezerwacje.ToList();
+
+            var model = new TerminarzViewModel { opcje = opcje, pracownicy = prac, rezerwacje = rez };
+
+            return model;
         }
 
         private dynamic PobierzOpcje()
@@ -88,17 +103,7 @@ namespace SOPeL.Controllers
             return pracownicy;
         }
 
-        public PartialViewResult pobierzTerminarz(string wybranaData)
-        {
-            List<Opcja> opcje = db.Opcje.ToList();
-            List<Pracownik> pracownicy = db.Pracownicy.ToList();
-            List<Pacjent> pacjenci = db.Pacjenci.ToList();
 
-            ViewBag.GodzOd = opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
-            ViewBag.GodzDo = opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
-
-            return PartialView("~/Views/Przychodnia/Terminarz/TerminarzPrzychodnia.cshtml");
-        }
 
         [HttpPost]
         public ActionResult zatwierdzenieRezerwacji(Rezerwacja rez, string submitButton)

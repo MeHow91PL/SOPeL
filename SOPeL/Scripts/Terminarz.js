@@ -63,7 +63,7 @@ $(document).ready(function () {
 
     function pobierzTerminarz(dataRezerwacji) {
         $.ajax({
-            url: '@Url.Action("pobierzTerminarz", "Terminarz")',
+            url: pobierzTerminarzAjax,
             data: {
                 wybranaData: dataRezerwacji
             },

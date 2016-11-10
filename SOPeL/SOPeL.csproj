@@ -288,6 +288,7 @@
     <Compile Include="Models\Rezerwacja.cs" />
     <Compile Include="Models\Uzytkownik.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\PoczekalniaViewModel.cs" />
     <Compile Include="ViewModels\TerminarzViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

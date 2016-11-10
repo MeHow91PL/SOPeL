@@ -16,8 +16,8 @@
             }
         </tr>
         @{
-            TimeSpan time = new TimeSpan(Convert.ToInt32(ViewBag.GodzOd.Substring(0,2)), Convert.ToInt32(ViewBag.opcje["term_godz_od"].Substring(3, 2)), 0);
-            TimeSpan maxTime = new TimeSpan(Convert.ToInt32(ViewBag.opcje["term_godz_do"].Substring(0, 2)), Convert.ToInt32(ViewBag.opcje["term_godz_do"].Substring(3, 2)), 0);
+            TimeSpan time = new TimeSpan(Convert.ToInt32(ViewBag.GodzOd.Substring(0, 2)), Convert.ToInt32(ViewBag.GodzOd.Substring(3, 2)), 0);
+            TimeSpan maxTime = new TimeSpan(Convert.ToInt32(ViewBag.GodzDo.Substring(0, 2)), Convert.ToInt32(ViewBag.GodzDo.Substring(3, 2)), 0);
             while (time <= maxTime)
             {
                 string timeString = string.Format("{0:00}", time.Hours) + ":" + string.Format("{0:00}", time.Minutes);
@@ -31,10 +31,10 @@
                             string nazwiskoPacjenta = "", imiePacjenta = "", pesel = "", email = "", telefon = "", dokToz = "";
                             int idRez = 0;
 
-                            foreach (var item in ViewBag.Rezerwacje)
+                            foreach (var item in Model.rezerwacje)
                             {
                                 string dataRez = item.DataRezerwacji.Year + "-" + string.Format("{0:00}", item.DataRezerwacji.Month) + "-" + string.Format("{0:00}", item.DataRezerwacji.Day);
-                                if (ViewBag.Pracownicy[y].Id == item.Pracownik.Id && item.godzOd == time.ToString().Substring(0,5))
+                                if (Model.pracownicy[y].ID == item.Pracownik.Id && item.godzOd == time.ToString().Substring(0, 5))
                                 {
                                     rezerwacjaIstnieje = true;
                                     nazwiskoPacjenta = item.Pacjent.Nazwisko;
@@ -49,7 +49,7 @@
                             }
                             if (rezerwacjaIstnieje)
                             {
-                                <td id="@ViewBag.Pracownicy[y].Id-@timeString" imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez" class="terminarzZarezerwowanyTermin">
+                                <td id="@Model.pracownicy[y].ID-@timeString" imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez" class="terminarzZarezerwowanyTermin">
                                     <div class="kafelekRezerwacji">
                                         <span>@imiePacjenta @nazwiskoPacjenta</span>
                                     </div>
@@ -64,7 +64,7 @@
                     }
                 </tr>
                             time = time.Add(new TimeSpan(0, Convert.ToInt32(@ViewBag.Opcje["term_czas_wiz"]), 0));
-                        }
+            }
         }
     </table>
 </div>

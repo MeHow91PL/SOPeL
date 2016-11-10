@@ -8,7 +8,7 @@ namespace SOPeL.ViewModels
 {
     public class TerminarzViewModel
     {
-        public ICollection<Pracownik> pracownicy { get; set; }
+        public List<Pracownik> pracownicy { get; set; }
         public ICollection<Rezerwacja> rezerwacje { get; set; }
         public ICollection<Opcja>opcje { get; set; }
     }
