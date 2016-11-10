@@ -1,45 +1,30 @@
-﻿body {
-    /*background: #cccccc;
-    background: -moz-linear-gradient(top, #cccccc, #eeeeee);
-    background: -o-linear-gradient(top, #cccccc, #eeeeee);
-    background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#eeeeee));
-    background: -webkit-linear-gradient(top, #cccccc, #eeeeee);
-    background: linear-gradient(to right, #cccccc, white);*/
-}
-
-#tlo {
-    background:url('Images/tloStart.png') no-repeat;
-    background-size:cover;
-    width:100%;
-    height:100%;
-    position:absolute;
-}
-
-.buttons-center
-{
+﻿#tlo {
+    background: url('Images/tloStart.png') no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    align-items:center;
-    height:100%;
-    display:flex;
+}
+
+.buttons-center {
+    position: absolute;
+    align-items: center;
+    height: 100%;
+    display: flex;
 }
 
 #buttons {
-    margin-left:100px
+    margin-left: 100px;
 }
 
-    #buttons a {
+    #buttons a:hover {
         text-decoration: none;
-        margin: 160px;
+        cursor: pointer;
     }
 
-        #buttons a:hover {
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        #buttons a:active {
-            text-decoration: none;
-        }
+    #buttons a:active {
+        text-decoration: none;
+    }
 
 
 .przycisk {
@@ -47,11 +32,13 @@
     font-weight: 500;
     cursor: pointer;
     background-color: #11616d;
-    margin: 20px;
+    margin: 0px;
     color: white;
     padding: 20px;
-    position:relative;
-    width:100%;
+    position: relative;
+    width: 100%;
+    display: block;
+    margin: 10px;
 }
 
     .przycisk:hover {
@@ -69,7 +56,6 @@
 
     .przycisk span {
         vertical-align: middle;
-        opacity: 0.87;
         color: white;
         margin: 0 10px;
     }

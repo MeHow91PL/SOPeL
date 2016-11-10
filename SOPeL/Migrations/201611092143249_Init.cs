@@ -8,7 +8,7 @@ namespace SOPeL.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Adresy",
+                "public.Adresy",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -21,7 +21,7 @@ namespace SOPeL.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Pacjenci",
+                "public.Pacjenci",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
@@ -37,13 +37,13 @@ namespace SOPeL.Migrations
                         AdresTymczasowy_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Adresy", t => t.Adres_Id)
-                .ForeignKey("dbo.Adresy", t => t.AdresTymczasowy_Id)
+                .ForeignKey("public.Adresy", t => t.Adres_Id)
+                .ForeignKey("public.Adresy", t => t.AdresTymczasowy_Id)
                 .Index(t => t.Adres_Id)
                 .Index(t => t.AdresTymczasowy_Id);
             
             CreateTable(
-                "dbo.Pracownicy",
+                "public.Pracownicy",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
@@ -59,13 +59,13 @@ namespace SOPeL.Migrations
                         AdresTymczasowy_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Adresy", t => t.Adres_Id)
-                .ForeignKey("dbo.Adresy", t => t.AdresTymczasowy_Id)
+                .ForeignKey("public.Adresy", t => t.Adres_Id)
+                .ForeignKey("public.Adresy", t => t.AdresTymczasowy_Id)
                 .Index(t => t.Adres_Id)
                 .Index(t => t.AdresTymczasowy_Id);
             
             CreateTable(
-                "dbo.Rezerwacje",
+                "public.Rezerwacje",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -77,47 +77,48 @@ namespace SOPeL.Migrations
                         PacjentID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Pacjenci", t => t.PacjentID, cascadeDelete: true)
-                .ForeignKey("dbo.Pracownicy", t => t.PracownikID, cascadeDelete: true)
+                .ForeignKey("public.Pacjenci", t => t.PacjentID, cascadeDelete: true)
+                .ForeignKey("public.Pracownicy", t => t.PracownikID, cascadeDelete: true)
                 .Index(t => t.PracownikID)
                 .Index(t => t.PacjentID);
             
             CreateTable(
-                "dbo.Uzytkowicy",
+                "public.Uzytkowicy",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Login = c.String(nullable: false, maxLength: 50),
                         Haslo = c.String(nullable: false, maxLength: 100),
-                        PracownikID = c.Int(nullable: false),
+                        DataUtworzenia = c.DateTime(nullable: false),
+                        PracownikID = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Pracownicy", t => t.PracownikID, cascadeDelete: true)
+                .ForeignKey("public.Pracownicy", t => t.PracownikID)
                 .Index(t => t.PracownikID);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Uzytkowicy", "PracownikID", "dbo.Pracownicy");
-            DropForeignKey("dbo.Rezerwacje", "PracownikID", "dbo.Pracownicy");
-            DropForeignKey("dbo.Rezerwacje", "PacjentID", "dbo.Pacjenci");
-            DropForeignKey("dbo.Pracownicy", "AdresTymczasowy_Id", "dbo.Adresy");
-            DropForeignKey("dbo.Pracownicy", "Adres_Id", "dbo.Adresy");
-            DropForeignKey("dbo.Pacjenci", "AdresTymczasowy_Id", "dbo.Adresy");
-            DropForeignKey("dbo.Pacjenci", "Adres_Id", "dbo.Adresy");
-            DropIndex("dbo.Uzytkowicy", new[] { "PracownikID" });
-            DropIndex("dbo.Rezerwacje", new[] { "PacjentID" });
-            DropIndex("dbo.Rezerwacje", new[] { "PracownikID" });
-            DropIndex("dbo.Pracownicy", new[] { "AdresTymczasowy_Id" });
-            DropIndex("dbo.Pracownicy", new[] { "Adres_Id" });
-            DropIndex("dbo.Pacjenci", new[] { "AdresTymczasowy_Id" });
-            DropIndex("dbo.Pacjenci", new[] { "Adres_Id" });
-            DropTable("dbo.Uzytkowicy");
-            DropTable("dbo.Rezerwacje");
-            DropTable("dbo.Pracownicy");
-            DropTable("dbo.Pacjenci");
-            DropTable("dbo.Adresy");
+            DropForeignKey("public.Uzytkowicy", "PracownikID", "public.Pracownicy");
+            DropForeignKey("public.Rezerwacje", "PracownikID", "public.Pracownicy");
+            DropForeignKey("public.Rezerwacje", "PacjentID", "public.Pacjenci");
+            DropForeignKey("public.Pracownicy", "AdresTymczasowy_Id", "public.Adresy");
+            DropForeignKey("public.Pracownicy", "Adres_Id", "public.Adresy");
+            DropForeignKey("public.Pacjenci", "AdresTymczasowy_Id", "public.Adresy");
+            DropForeignKey("public.Pacjenci", "Adres_Id", "public.Adresy");
+            DropIndex("public.Uzytkowicy", new[] { "PracownikID" });
+            DropIndex("public.Rezerwacje", new[] { "PacjentID" });
+            DropIndex("public.Rezerwacje", new[] { "PracownikID" });
+            DropIndex("public.Pracownicy", new[] { "AdresTymczasowy_Id" });
+            DropIndex("public.Pracownicy", new[] { "Adres_Id" });
+            DropIndex("public.Pacjenci", new[] { "AdresTymczasowy_Id" });
+            DropIndex("public.Pacjenci", new[] { "Adres_Id" });
+            DropTable("public.Uzytkowicy");
+            DropTable("public.Rezerwacje");
+            DropTable("public.Pracownicy");
+            DropTable("public.Pacjenci");
+            DropTable("public.Adresy");
         }
     }
 }

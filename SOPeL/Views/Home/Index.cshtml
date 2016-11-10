@@ -13,18 +13,14 @@
     <div id="tlo">
         <div class="buttons-center">
             <div id="buttons" class="">
-                <div class="przycisk">
-                    <a href="@Url.Action("Logowanie", "PortalPacjenta")">
-                        <img src="~/Content/Images/pacjentIcon.png" alt="Ikona pacjenta" />
-                        <span>Portal Pacjenta</span>
-                    </a>
-                </div>
-                <div class="przycisk" id="zalogujDoPrzychodniButton">
-                    <a href="@Url.Action("Logowanie", "Przychodnia")">
-                        <img src="~/Content/Images/doctorIcon.png" alt="Ikona doktora" />
-                        <span>Przychodnia</span>
-                    </a>
-                </div>
+                <a class="przycisk" href="@Url.Action("Logowanie", "PortalPacjenta")">
+                    <img src="~/Content/Images/pacjentIcon.png" alt="Ikona pacjenta" />
+                    <span>Portal Pacjenta</span>
+                </a>
+                <a class="przycisk" href="@Url.Action("Logowanie", "Przychodnia")">
+                    <img src="~/Content/Images/doctorIcon.png" alt="Ikona doktora" />
+                    <span>Przychodnia</span>
+                </a>
             </div>
         </div>
     </div>

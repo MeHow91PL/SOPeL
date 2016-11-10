@@ -14,6 +14,7 @@ namespace SOPeL.DAL
         public DbSet<Pracownik> Pracownicy { get; set; }
         public DbSet<Rezerwacja> Rezerwacje { get; set; }
         public DbSet<Uzytkownik> Uzytkownicy { get; set; }
+        public DbSet<Opcje> Opcje { get; set; }
 
         public SopelContext() : base("LocalDb")
         {

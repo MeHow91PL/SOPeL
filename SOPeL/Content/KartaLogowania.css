@@ -39,6 +39,10 @@
     border: none;
     }
 
+#formularzKartyLogowania field-validation-error {
+    display:block;
+    float:none;
+}
 
 @media all and (max-width:768px) {
 
