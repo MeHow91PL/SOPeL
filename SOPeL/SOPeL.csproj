@@ -179,7 +179,6 @@
     <Content Include="Content\Przychodnia.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\RobotoFont.css" />
-    <Content Include="Content\SidebarModuly.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Terminarz.css" />
     <Content Include="Content\themes\base\accordion.css" />

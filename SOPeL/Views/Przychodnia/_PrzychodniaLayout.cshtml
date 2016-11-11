@@ -18,11 +18,11 @@
 
     <div class="container-fluid maxWysokosc">
         <div class="maxWysokosc">
-            <div class="sidebar" id="sidebar">
-                <div id="zwijaczMenu" onclick="zawijaczKlik()">&lt;&lt;</div>
+            <div class="sidebar" id="sidebarPrzychodnia">
+                <div id="zwijaczMenu">&lt;&lt;</div>
 
-                <ul class="nav nav-sidebar" id="navPortalPacjenta">
-                    <li class="active" id="Terminarz-Sidebar">
+                <ul id="navPortalPacjenta">
+                    <li id="Terminarz-Sidebar">
                         <a href="@Url.Action("Index","Terminarz")" id="Terminarz">
                             <img class="img-responsive" src="~/Content/Images/unnamed.png" alt="Terminarz" />
                             <span>Terminarz</span>
@@ -57,9 +57,12 @@
                 <div id="przychodnia-sidebar-footer">
                     zalogowany
                 </div>
+
+
             </div>
-            <div id="kontener" class="maxWysokosc main">
+            <div id="PrzychodniaBodyKontener" class="maxWysokosc">
                 <div id="renderBody">
+
                     @RenderBody()
                 </div>
                 <div class="wysrodkujCentralnie maxWysokosc maxSzerokosc ukryty" id="loader-kontener">
@@ -72,9 +75,9 @@
 
 
 
-    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/Przychodnia")
     @RenderSection("scripts", required: false)
 

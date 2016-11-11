@@ -3,10 +3,12 @@
 $(document).ready(function () {
 
     //Obsługa menu nawigacyjnego
-    var sidebar = $("#sidebar");
+    var sidebar = $("#sidebarPrzychodnia");
+    var sidebar = $("#sidebarPrzychodnia");
 
     $("#zwijaczMenu").click(function () {
-        sidebar.toggleClass("nav-sidebarZwiniety",200);
+        sidebar.toggleClass("sidebarZwiniety", 200);
+        $("#PrzychodniaBodyKontener").toggleClass("przychodniaBodyKontenerRozwinięty");
         $(this).toggleClass("rotate");
     });
 

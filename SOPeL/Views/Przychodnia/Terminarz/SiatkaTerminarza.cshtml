@@ -6,11 +6,15 @@
         <tr>
             <td></td>
             @{
-                int iloscPracowników = Model.pracownicy.Count;
-                string szer = (90 / iloscPracowników).ToString() + "%";
+                    int iloscPracowników = Model.pracownicy.Count;
+                    string szer = "100%";
+                    if (iloscPracowników > 0)
+                    {
+                        szer = (90 / iloscPracowników).ToString() + "%";
+                    }
 
-                foreach (var prac in Model.pracownicy)
-                {
+                    foreach (var prac in Model.pracownicy)
+                    {
                     <td class="panelNazwyPracownika" style="width:@szer">@prac.Imie @prac.Nazwisko</td>
                 }
             }
@@ -34,7 +38,7 @@
                             foreach (var item in Model.rezerwacje)
                             {
                                 string dataRez = item.DataRezerwacji.Year + "-" + string.Format("{0:00}", item.DataRezerwacji.Month) + "-" + string.Format("{0:00}", item.DataRezerwacji.Day);
-                                if (Model.pracownicy[y].ID == item.Pracownik.Id && item.godzOd == time.ToString().Substring(0, 5))
+                                if (Model.pracownicy[y].ID == item.Pracownik.ID && item.godzOd == time.ToString().Substring(0, 5))
                                 {
                                     rezerwacjaIstnieje = true;
                                     nazwiskoPacjenta = item.Pacjent.Nazwisko;
@@ -63,8 +67,8 @@
                         }
                     }
                 </tr>
-                            time = time.Add(new TimeSpan(0, Convert.ToInt32(@ViewBag.Opcje["term_czas_wiz"]), 0));
-            }
+                            time = time.Add(new TimeSpan(0, Convert.ToInt32(@ViewBag.CzasWiz), 0));
+                        }
         }
     </table>
 </div>

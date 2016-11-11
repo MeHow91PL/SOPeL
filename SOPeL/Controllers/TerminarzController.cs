@@ -26,8 +26,9 @@ namespace SOPeL.Controllers
 
             ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
+            ViewBag.CzasWiz = model.opcje.Single(o => o.Nazwa == "term_czas_wiz").Wartosc;
 
-            return PartialView("~/Views/Przychodnia/Terminarz/SiatkaTerminarza.cshtml");
+            return PartialView("~/Views/Przychodnia/Terminarz/SiatkaTerminarza.cshtml",model);
         }
 
         private TerminarzViewModel pobierzTerminarzViewModel()
