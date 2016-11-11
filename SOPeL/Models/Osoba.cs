@@ -24,13 +24,11 @@ namespace SOPeL.Models
         public string Pesel { get; set; }
 
         [Phone(ErrorMessage = "Numer telefonu jest niepoprawny")]
-        [Required]
         [MaxLength(9)]
         [RegularExpression(@"([0-9]{9})$", ErrorMessage = "Podany numer jest błędny")]
         public string Telefon { get; set; }
 
         [EmailAddress]
-        [Required]
         [MaxLength(100)]
         public string Email { get; set; }
 

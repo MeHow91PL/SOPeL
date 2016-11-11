@@ -278,6 +278,10 @@
     <Compile Include="Migrations\201611101624358_Ja.Designer.cs">
       <DependentUpon>201611101624358_Ja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611112215135_ZmianaOsoba.cs" />
+    <Compile Include="Migrations\201611112215135_ZmianaOsoba.Designer.cs">
+      <DependentUpon>201611112215135_ZmianaOsoba.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\Opcje.cs" />
@@ -329,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611101624358_Ja.resx">
       <DependentUpon>201611101624358_Ja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611112215135_ZmianaOsoba.resx">
+      <DependentUpon>201611112215135_ZmianaOsoba.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
