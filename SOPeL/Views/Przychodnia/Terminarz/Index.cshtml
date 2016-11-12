@@ -12,7 +12,7 @@
 
 <div class="kontenerMaterial">
     <div class="row">
-        <div id="terminarzDataKontener" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <div id="terminarzDataKontener" class="abba col-lg-10 col-md-10 col-sm-10 col-xs-10">
             <label for="wybor-daty-terminarz">Data</label>
             <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}", DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="datepicker" />
         </div>
@@ -23,6 +23,7 @@
 </div>
 <div class="kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
     @* Treść ładowana AJAXem *@
+    @Html.Action("pobierzTerminarz", new { wybranaData = DateTime.Today.ToString("yyyy-MM-dd") })
 </div>
 @*@Html.Partial("_KartaRezerwacjiPrzychodnia")*@
 @*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
@@ -116,4 +117,11 @@
         var pobierzTerminarzAjax = '@Url.Action("pobierzTerminarz", "Terminarz")';
     </script>
     @Scripts.Render("~/Scripts/Terminarz")
+
+
+        $(document).ready(function () {
+            $(".panel-rezerwacji").click(function () {
+                alert("");
+            });
+        });
 }

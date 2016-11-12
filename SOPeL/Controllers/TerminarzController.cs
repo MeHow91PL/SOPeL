@@ -15,27 +15,35 @@ namespace SOPeL.Controllers
         // GET: Rejestracja
         public ActionResult Index()
         {
-            var model = pobierzTerminarzViewModel();
+            var model = pobierzTerminarzViewModel(DateTime.Today.ToString("yyyy-MM-dd"));
 
             return View("~/Views/Przychodnia/Terminarz/Index.cshtml", model);
         }
 
-        public PartialViewResult pobierzTerminarz(string wybranaData)
+        public ActionResult pobierzTerminarz(string wybranaData)
         {
-            var model = pobierzTerminarzViewModel();
+            var model = pobierzTerminarzViewModel(wybranaData);
 
             ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
             ViewBag.CzasWiz = model.opcje.Single(o => o.Nazwa == "term_czas_wiz").Wartosc;
 
-            return PartialView("~/Views/Przychodnia/Terminarz/SiatkaTerminarza.cshtml",model);
+            return View("~/Views/Przychodnia/Terminarz/SiatkaTerminarza.cshtml",model);
         }
 
-        private TerminarzViewModel pobierzTerminarzViewModel()
+        private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData)
         {
+            wybranaData = String.Format("{0:yyyy-MM-dd}", wybranaData);
+
+            DateTime data = new DateTime(
+                Convert.ToInt32(wybranaData.Substring(0, 4)),
+                Convert.ToInt32(wybranaData.Substring(5, 2)),
+                Convert.ToInt32(wybranaData.Substring(8, 2))
+                );
+
             var opcje = db.Opcje.ToList();
             var prac = db.Pracownicy.ToList();
-            var rez = db.Rezerwacje.ToList();
+            var rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToList();
 
             var model = new TerminarzViewModel { opcje = opcje, pracownicy = prac, rezerwacje = rez };
 

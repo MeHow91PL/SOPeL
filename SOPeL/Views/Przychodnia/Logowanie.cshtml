@@ -14,6 +14,7 @@
         <div class="wysrodkujCentralnie">
             <div id="kartaLogowania">
                 <form id="formularzKartyLogowania" method="post" action="@Url.Action("Logowanie")">
+                    @Html.AntiForgeryToken()
                     <div>
                         @Html.LabelFor(m => m.Login)
                         @Html.TextBoxFor(m => m.Login, new { @class = "" })

@@ -14,7 +14,7 @@ namespace SOPeL.Models
         [MaxLength(50)]
 
         [Display(Name = "Login")]
-        [Required(ErrorMessage = "Login nie może być pusty")]
+        [Required(ErrorMessage = "Login nie może być pusty!!")]
         public string Login { get; set; }
 
         [Display(Name = "Hasło")]

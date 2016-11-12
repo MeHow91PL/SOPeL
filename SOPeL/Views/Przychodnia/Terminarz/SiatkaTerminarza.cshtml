@@ -2,19 +2,20 @@
 
 
 <div class="przychodnia">
+
     <table class="table table-bordered terminarz">
         <tr>
             <td></td>
             @{
-                    int iloscPracowników = Model.pracownicy.Count;
-                    string szer = "100%";
-                    if (iloscPracowników > 0)
-                    {
-                        szer = (90 / iloscPracowników).ToString() + "%";
-                    }
+                int iloscPracowników = Model.pracownicy.Count;
+                string szer = "100%";
+                if (iloscPracowników > 0)
+                {
+                    szer = (90 / iloscPracowników).ToString() + "%";
+                }
 
-                    foreach (var prac in Model.pracownicy)
-                    {
+                foreach (var prac in Model.pracownicy)
+                {
                     <td class="panelNazwyPracownika" style="width:@szer">@prac.Imie @prac.Nazwisko</td>
                 }
             }
@@ -29,7 +30,7 @@
                     <td class="terminarzPanelGodzin">@timeString</td>
 
                     @{
-                        for (int y = 0; y < iloscPracowników; y++)//Tworzy kolumnę dla każdego pracownika z terminem co 30 min
+                        for (int y = 0; y < iloscPracowników; y++)//Tworzy kolumnę dla każdego pracownika
                         {
                             bool rezerwacjaIstnieje = false;
                             string nazwiskoPacjenta = "", imiePacjenta = "", pesel = "", email = "", telefon = "", dokToz = "";
@@ -62,13 +63,16 @@
                             }
                             else
                             {
-                                <td id="@Model.pracownicy[y]-@timeString" class="panel-rezerwacji wolny-termin">Wolny termin</td>
+                                <td id="@Model.pracownicy[y].ID-@timeString" class="panel-rezerwacji wolny-termin">Wolny termin</td>
                             }
                         }
                     }
                 </tr>
-                            time = time.Add(new TimeSpan(0, Convert.ToInt32(@ViewBag.CzasWiz), 0));
+                            //time = time.Add(new TimeSpan(0, Convert.ToInt32(@ViewBag.CzasWiz), 0));
+                            time = time.Add(new TimeSpan(0, 5, 0));
                         }
         }
     </table>
 </div>
+
+

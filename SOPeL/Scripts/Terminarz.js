@@ -1,5 +1,6 @@
 ﻿/// <reference path="jquery-3.1.1.js" />
 
+
 $(document).ready(function () {
 
     //wczytanie elementów do zmiennej daje lepszą wydajność, gdyż tylko raz wyszukujemy po id
@@ -186,13 +187,15 @@ $(document).ready(function () {
         });
     });
 
-    $("#opcje-terminarza-anuluj-button").click(function () {
+
+
+    $("#opcje-terminarza-anuluj-button").click(function() {
         opcjeTerminarzaDiv.dialog("close");
     });
 
     //--------------------------------- END OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
 
-
+   
     //--------------------------------- OBSŁUGA CONTEXT MENU -------------------------------------------------------------------------------------------------
 
     //Wywołanie okienka z menu,
