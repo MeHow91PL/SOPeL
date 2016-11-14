@@ -63,7 +63,7 @@
                             }
                             else
                             {
-                                <td id="@Model.pracownicy[y].ID-@timeString" class="panel-rezerwacji wolny-termin">Wolny termin</td>
+                                <td id="@Model.pracownicy[y].ID-@timeString" class="panel-rezerwacji wolny-termin" data-action-url="@Url.Action("pokazOknoRezerwacji", "Terminarz")">Wolny termin</td>
                             }
                         }
                     }
@@ -74,5 +74,3 @@
         }
     </table>
 </div>
-
-

@@ -1,13 +1,4 @@
 ﻿#kartaLogowania {
-    color: #3b3b3b;
-    background: #ffffff;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    padding: 50px;
     position:relative;
 }
 

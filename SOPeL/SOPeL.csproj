@@ -238,6 +238,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\Przychodnia.js" />
@@ -311,7 +313,7 @@
     <Content Include="Views\Przychodnia\Terminarz\SiatkaTerminarza.cshtml" />
     <Content Include="Views\Shared\_KartaPacjenta.cshtml" />
     <Content Include="Views\Shared\_KartaRezerwacjiPortalPacjentaNiezalogowany.cshtml" />
-    <Content Include="Views\Shared\_KartaRezerwacjiPrzychodnia.cshtml" />
+    <Content Include="Views\Shared\_KartaRezerwacjiWizyty.cshtml" />
     <Content Include="Views\Shared\_PortalPacjentaLayout.cshtml" />
     <Content Include="Views\Shared\_Terminarz.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />

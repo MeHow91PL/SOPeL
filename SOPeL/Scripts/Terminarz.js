@@ -16,6 +16,7 @@ $(document).ready(function () {
     var indwGrafCheckbox = $("#term_indw_graf");
     var menu = $("#menu");
 
+    
 
     kontenerMaterialPortalPacjenta.css({
         "height": "100%",
@@ -69,20 +70,23 @@ $(document).ready(function () {
                 wybranaData: dataRezerwacji
             },
             success: function (response) {
-                kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
-                    kontenerMaterialPortalPacjenta.html(response);
+                kontenerMaterialPortalPacjenta.fadeOut(300, function myfunction() {
+
+                    kontenerMaterialPortalPacjenta.append('<td class="panelNazwyPracownika">Ello</td>');
+
                 });
-                kontenerMaterialPortalPacjenta.slideDown(300);
+                kontenerMaterialPortalPacjenta.fadeIn(300);
             },
             error: function () {
                 alert("Błąd połączenia z serwerem!");
 
-                kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
+                kontenerMaterialPortalPacjenta.fadeOut(300, function myfunction() {
                     kontenerMaterialPortalPacjenta.html("");
                 });
             }
         });
     }
+
 
     //--------------------------------- END WYBÓR DATY -------------------------------------------------------------------------------------------------
 
@@ -195,7 +199,25 @@ $(document).ready(function () {
 
     //--------------------------------- END OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
 
-   
+    //--------------------------------- OBSŁUGA KLIKANIA OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
+    
+    $(".wolny-termin").dblclick(function () {
+        $("#kartaRezerwacjiWizytyKontener");
+
+        $.ajax({
+            url: $(this).data("action-url"),
+            type: 'POST',
+            success: function (response) {
+                $("#kartaRezerwacjiWizytyKontener").html(response); 
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+    });
+
+    //--------------------------------- END OBSŁUGA KLIKANIA TERMINARZA -------------------------------------------------------------------------------------------------
+
     //--------------------------------- OBSŁUGA CONTEXT MENU -------------------------------------------------------------------------------------------------
 
     //Wywołanie okienka z menu,

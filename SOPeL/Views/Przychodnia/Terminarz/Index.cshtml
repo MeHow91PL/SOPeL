@@ -23,9 +23,13 @@
 </div>
 <div class="kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
     @* Treść ładowana AJAXem *@
-    @Html.Action("pobierzTerminarz", new { wybranaData = DateTime.Today.ToString("yyyy-MM-dd") })
+    @Html.Partial("~/views/przychodnia/terminarz/siatkaterminarza.cshtml")
 </div>
-@*@Html.Partial("_KartaRezerwacjiPrzychodnia")*@
+<div class="wysrodkujCentralnie" id="kartaRezerwacjiWizytyKontener">
+
+</div>
+
+
 @*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
 @*<div id="opcje-terminarza-okno" class="kontenerMaterial display-none">
         <div class="">
@@ -113,15 +117,8 @@
     <a href="#">Inne wizyty w tym terminie</a>
 </div>
 @section scripts{
-    <script>
+    <script>        //przekazanie linku do akcji pobierzTerminarz - tutaj bo nie można używać razor w zewnętrznych plikach
         var pobierzTerminarzAjax = '@Url.Action("pobierzTerminarz", "Terminarz")';
     </script>
     @Scripts.Render("~/Scripts/Terminarz")
-
-
-        $(document).ready(function () {
-            $(".panel-rezerwacji").click(function () {
-                alert("");
-            });
-        });
 }

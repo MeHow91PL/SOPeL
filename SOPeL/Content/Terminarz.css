@@ -122,3 +122,50 @@
     margin:auto;
 }
 }
+
+
+
+/*#############  KARTA REZERWACJI  ####################################################################################################################*/
+
+#kartaRezerwacjiWizytyKontener {
+    position: fixed;
+    top:0;
+}
+
+#kartaRezerwacjiWizyty {
+    display:block;
+    padding:10px;
+}
+
+#kartaRezerwacjiWizytyDane {
+    float: left;
+    width:80%;
+}
+
+#kartaRezerwacjiWizytyZdjeciePacjenta {
+    float:left;
+    width:20%;
+}
+
+#kartaRezerwacjiWizytyButtonKontener input{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+@media all and (max-width:768px) {
+
+    #kartaRezerwacjiWizyty {
+        height: 100%;
+    }
+
+    #kartaRezerwacjiWizytyDane {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #kartaRezerwacjiWizytyButtonKontener input {
+        height: 40px;
+        margin-top: 0;
+        font-size: small;
+    }
+}

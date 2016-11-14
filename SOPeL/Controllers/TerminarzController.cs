@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 namespace SOPeL.Controllers
 {
+    [System.Runtime.InteropServices.Guid("932276C1-039A-41C2-81C8-C84BD5147EA9")]
     public class TerminarzController : Controller
     {
         SopelContext db = new SopelContext();
@@ -16,6 +17,10 @@ namespace SOPeL.Controllers
         public ActionResult Index()
         {
             var model = pobierzTerminarzViewModel(DateTime.Today.ToString("yyyy-MM-dd"));
+
+            ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
+            ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
+            ViewBag.CzasWiz = model.opcje.Single(o => o.Nazwa == "term_czas_wiz").Wartosc;
 
             return View("~/Views/Przychodnia/Terminarz/Index.cshtml", model);
         }
@@ -48,6 +53,11 @@ namespace SOPeL.Controllers
             var model = new TerminarzViewModel { opcje = opcje, pracownicy = prac, rezerwacje = rez };
 
             return model;
+        }
+
+        public PartialViewResult pokazOknoRezerwacji()
+        {
+            return PartialView("_KartaRezerwacjiWizyty");
         }
 
         private dynamic PobierzOpcje()
