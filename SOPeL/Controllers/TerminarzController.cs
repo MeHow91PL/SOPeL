@@ -55,9 +55,14 @@ namespace SOPeL.Controllers
             return model;
         }
 
-        public PartialViewResult pokazOknoRezerwacji()
+        [HttpPost]
+        public PartialViewResult pokazOknoRezerwacji(string dataRez, int idLek, string godzRez, bool edycjaWizyty = false)
         {
-            return PartialView("_KartaRezerwacjiWizyty");
+            ViewBag.edycjaWizyty = edycjaWizyty;
+
+            var model = new Rezerwacja { DataRezerwacji = DateTime.Parse(dataRez), godzOd = godzRez, PracownikID = idLek };
+
+            return PartialView("_KartaRezerwacjiWizyty", model);
         }
 
         private dynamic PobierzOpcje()

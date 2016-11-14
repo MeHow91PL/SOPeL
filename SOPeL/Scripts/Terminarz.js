@@ -14,9 +14,10 @@ $(document).ready(function () {
     var ogolnyGrafik = $("#term_ogolny_graf_panel");
     var idywidualnyGrafik = $("#term_indw_graf_panel");
     var indwGrafCheckbox = $("#term_indw_graf");
+    var kartaRezerwacjiWizytyKontener = $("#kartaRezerwacjiWizytyKontener");
     var menu = $("#menu");
 
-    
+
 
     kontenerMaterialPortalPacjenta.css({
         "height": "100%",
@@ -71,8 +72,8 @@ $(document).ready(function () {
             },
             success: function (response) {
                 kontenerMaterialPortalPacjenta.fadeOut(300, function myfunction() {
+                    kontenerMaterialPortalPacjenta.html(response);
 
-                    kontenerMaterialPortalPacjenta.append('<td class="panelNazwyPracownika">Ello</td>');
 
                 });
                 kontenerMaterialPortalPacjenta.fadeIn(300);
@@ -193,27 +194,47 @@ $(document).ready(function () {
 
 
 
-    $("#opcje-terminarza-anuluj-button").click(function() {
+    $("#opcje-terminarza-anuluj-button").click(function () {
         opcjeTerminarzaDiv.dialog("close");
     });
 
     //--------------------------------- END OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
 
     //--------------------------------- OBSŁUGA KLIKANIA OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
-    
-    $(".wolny-termin").dblclick(function () {
-        $("#kartaRezerwacjiWizytyKontener");
 
+    $(".wolny-termin").dblclick(function () {
+        var splitId = $(this).attr("id").split("-");
+        var idLekarza = splitId[0];
+        var godzinaRezerwacji = splitId[1];
+
+        kartaRezerwacjiWizytyKontener.css("display", "flex");
         $.ajax({
             url: $(this).data("action-url"),
             type: 'POST',
+            data: {
+                dataRez: dataRezerwacji,
+                idLek: idLekarza,
+                godzRez: godzinaRezerwacji
+            },
             success: function (response) {
-                $("#kartaRezerwacjiWizytyKontener").html(response); 
+                $("#kartaRezerwacjiWizytyKontener").html(response);
             },
             error: function () {
                 alert("Error");
             }
         });
+    });
+
+
+    $("#zamknijOknoRezerwacjiButton").click(function () {
+        alert("zamknij");
+
+        kartaRezerwacjiWizytyKontener.hide();
+        alert("zamknij");
+    });
+
+    $("#zapiszOknoRezerwacjiButton").click(function () {
+        alert("zapisz");
     });
 
     //--------------------------------- END OBSŁUGA KLIKANIA TERMINARZA -------------------------------------------------------------------------------------------------

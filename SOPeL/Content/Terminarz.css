@@ -129,12 +129,18 @@
 
 #kartaRezerwacjiWizytyKontener {
     position: fixed;
+    justify-content:center;
     top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    display:none;
 }
 
 #kartaRezerwacjiWizyty {
     display:block;
-    padding:10px;
+    padding:20px;
+    max-width: 700px;
 }
 
 #kartaRezerwacjiWizytyDane {

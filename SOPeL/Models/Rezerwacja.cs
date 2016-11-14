@@ -24,6 +24,7 @@ namespace SOPeL.Models
         public string godzDo { get; set; }
 
         [Display(Name = "Data ost. mod.")]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}",ApplyFormatInEditMode = true)]
         public DateTime DataModyfikacji { get; set; }
 
         public int PracownikID { get; set; }
