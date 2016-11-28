@@ -1,4 +1,5 @@
-﻿using SOPeL.Models;
+﻿using SOPeL.Infrastructure;
+using SOPeL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SOPeL.Controllers
 {
-    public class RejestracjaController : Controller
+    public class RejestracjaOnlineController : PortalPacjentaMasterController
     {
         // GET: Rejestracja
         public ActionResult Index()
@@ -37,7 +38,7 @@ namespace SOPeL.Controllers
             //ViewBag.Specjalizacje = specjalizacje;
 
             //Database.zamknijPolaczenie();
-            return View("~/Views/Portal pacjenta/Rejestracja on-line/index.cshtml");
+            return View("~/Views/PortalPacjenta/RejestracjaOnline/Index.cshtml");
         }
 
         public JsonResult ListaPracownikow(string spec)

@@ -1,4 +1,5 @@
 ﻿using SOPeL.DAL;
+using SOPeL.Infrastructure;
 using SOPeL.Models;
 using SOPeL.ViewModels;
 using System;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SOPeL.Controllers
 {
-    public class PoczekalniaController : Controller
+    public class PoczekalniaController : PrzychodniaMasterController
     {
         SopelContext db = new SopelContext();
         // GET: Poczekalnia

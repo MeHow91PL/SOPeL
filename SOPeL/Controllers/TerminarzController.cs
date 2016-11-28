@@ -1,4 +1,5 @@
 ﻿using SOPeL.DAL;
+using SOPeL.Infrastructure;
 using SOPeL.Models;
 using SOPeL.ViewModels;
 using System;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 namespace SOPeL.Controllers
 {
     [System.Runtime.InteropServices.Guid("932276C1-039A-41C2-81C8-C84BD5147EA9")]
-    public class TerminarzController : Controller
+    public class TerminarzController : PrzychodniaMasterController
     {
         SopelContext db = new SopelContext();
 

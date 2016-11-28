@@ -5,10 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using SOPeL.Models;
 using SOPeL.DAL;
+using SOPeL.Infrastructure;
 
 namespace SOPeL.Controllers
 {
-    public class PacjenciController : Controller
+    public class PacjenciController : PrzychodniaMasterController
     {
         SopelContext db = new SopelContext();
         // GET: Pacjenci

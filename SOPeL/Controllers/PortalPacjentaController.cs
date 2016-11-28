@@ -9,10 +9,11 @@ using System.Web.Mvc;
 
 namespace SOPeL.Controllers
 {
-    public class PrzychodniaController : PrzychodniaMasterController
+    public class PortalPacjentaController : PortalPacjentaMasterController
     {
         SopelContext db = new SopelContext();
-        // GET: /Przychodnia/
+         
+        // GET: PortalPacjenta
         public ActionResult Index()
         {
             return View();
@@ -38,9 +39,5 @@ namespace SOPeL.Controllers
             }
             return View(userModel);
         }
-
-        
-
-
     }
 }

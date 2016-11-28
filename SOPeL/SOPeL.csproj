@@ -245,6 +245,9 @@
     <Content Include="Scripts\Przychodnia.js" />
     <Content Include="Scripts\Terminarz.js" />
     <Content Include="Web.config" />
+    <Content Include="Views\PortalPacjenta\Index.cshtml" />
+    <Content Include="Views\Przychodnia\_SidebarPrzychodnia.cshtml" />
+    <Content Include="Views\PortalPacjenta\_SidebarPortal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -259,8 +262,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacjenciController.cs" />
     <Compile Include="Controllers\PoczekalniaController.cs" />
+    <Compile Include="Controllers\PortalPacjentaController.cs" />
     <Compile Include="Controllers\PrzychodniaController.cs" />
-    <Compile Include="Controllers\RejestracjaController.cs" />
+    <Compile Include="Controllers\RejestracjaOnlineController.cs" />
     <Compile Include="Controllers\TerminarzController.cs" />
     <Compile Include="Controllers\WizytaController.cs" />
     <Compile Include="DAL\SopelContext.cs" />
@@ -268,6 +272,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
+    <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
     <Compile Include="Migrations\201611092143249_Init.cs" />
     <Compile Include="Migrations\201611092143249_Init.Designer.cs">
       <DependentUpon>201611092143249_Init.cs</DependentUpon>
@@ -302,9 +308,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Portal pacjenta\Rejestracja on-line\index.cshtml" />
+    <Content Include="Views\PortalPacjenta\RejestracjaOnline\index.cshtml" />
     <Content Include="Views\Przychodnia\Admin\Index.cshtml" />
-    <Content Include="Views\Przychodnia\Logowanie.cshtml" />
+    <Content Include="Views\Shared\Logowanie.cshtml" />
     <Content Include="Views\Przychodnia\Pacjenci\Index.cshtml" />
     <Content Include="Views\Przychodnia\Pacjenci\PacjenciPrzychodnia.cshtml" />
     <Content Include="Views\Przychodnia\Poczekalnia\Index.cshtml" />
@@ -320,7 +326,7 @@
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Przychodnia\_PrzychodniaLayout.cshtml" />
+    <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\Przychodnia\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
