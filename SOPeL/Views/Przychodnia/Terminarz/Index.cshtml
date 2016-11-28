@@ -23,10 +23,12 @@
 </div>
 <div class="kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
     @* Treść ładowana AJAXem *@
-    @Html.Partial("~/views/przychodnia/terminarz/siatkaterminarza.cshtml")
+    @Html.Partial("SiatkaTerminarza.cshtml")
 </div>
 <div class="wysrodkujCentralnie" id="kartaRezerwacjiWizytyKontener">
-    @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
+    <div class="przychodnia">
+        @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
+    </div>
 </div>
 
 
@@ -117,7 +119,8 @@
     <a href="#">Inne wizyty w tym terminie</a>
 </div>
 @section scripts{
-    <script>        //przekazanie linku do akcji pobierzTerminarz - tutaj bo nie można używać razor w zewnętrznych plikach
+    <script>
+        //przekazanie linku do akcji pobierzTerminarz - tutaj bo nie można używać razor w zewnętrznych plikach
         var pobierzTerminarzAjax = '@Url.Action("pobierzTerminarz", "Terminarz")';
     </script>
     @Scripts.Render("~/Scripts/Terminarz")

@@ -1,0 +1,75 @@
+﻿@model SOPeL.ViewModels.TerminarzViewModel
+
+
+
+
+<table class="table table-bordered terminarz">
+    <tr>
+        <td></td>
+        @{
+            int iloscPracowników = Model.pracownicy.Count;
+            string szer = "100%";
+            if (iloscPracowników > 0)
+            {
+                szer = (90 / iloscPracowników).ToString() + "%";
+            }
+
+            foreach (var prac in Model.pracownicy)
+            {
+                <td class="panelNazwyPracownika" style="width:@szer">@prac.Imie @prac.Nazwisko</td>
+            }
+        }
+    </tr>
+    @{
+        TimeSpan time = new TimeSpan(Convert.ToInt32(ViewBag.GodzOd.Substring(0, 2)), Convert.ToInt32(ViewBag.GodzOd.Substring(3, 2)), 0);
+        TimeSpan maxTime = new TimeSpan(Convert.ToInt32(ViewBag.GodzDo.Substring(0, 2)), Convert.ToInt32(ViewBag.GodzDo.Substring(3, 2)), 0);
+        while (time <= maxTime)
+        {
+            string timeString = string.Format("{0:00}", time.Hours) + ":" + string.Format("{0:00}", time.Minutes);
+            <tr>
+                <td class="terminarzPanelGodzin">@timeString</td>
+
+                @{
+                    for (int y = 0; y < iloscPracowników; y++)//Tworzy kolumnę dla każdego pracownika
+                    {
+                        bool rezerwacjaIstnieje = false;
+                        string nazwiskoPacjenta = "", imiePacjenta = "", pesel = "", email = "", telefon = "", dokToz = "";
+                        int idRez = 0;
+
+                        foreach (var item in Model.rezerwacje)
+                        {
+                            string dataRez = item.DataRezerwacji.Year + "-" + string.Format("{0:00}", item.DataRezerwacji.Month) + "-" + string.Format("{0:00}", item.DataRezerwacji.Day);
+                            if (Model.pracownicy[y].ID == item.Pracownik.ID && item.godzOd == time.ToString().Substring(0, 5))
+                            {
+                                rezerwacjaIstnieje = true;
+                                nazwiskoPacjenta = item.Pacjent.Nazwisko;
+                                imiePacjenta = item.Pacjent.Imie;
+                                pesel = item.Pacjent.Pesel;
+                                dokToz = item.Pacjent.DokumentTozsamosci;
+                                telefon = item.Pacjent.Telefon;
+                                email = item.Pacjent.Email;
+                                idRez = item.Id;
+                                break;
+                            }
+                        }
+                        if (rezerwacjaIstnieje)
+                        {
+                            <td id="@Model.pracownicy[y].ID-@timeString" imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez" class="terminarzZarezerwowanyTermin">
+                                <div class="kafelekRezerwacji">
+                                    <span>@imiePacjenta @nazwiskoPacjenta</span>
+                                </div>
+                            </td>
+                            rezerwacjaIstnieje = false;
+                        }
+                        else
+                        {
+                            <td id="@Model.pracownicy[y].ID-@timeString" class="panel-rezerwacji wolny-termin" data-action-url="@Url.Action("pokazOknoRezerwacji", "Terminarz")">Wolny termin</td>
+                        }
+                    }
+                }
+            </tr>
+                        //time = time.Add(new TimeSpan(0, Convert.ToInt32(@ViewBag.CzasWiz), 0));
+                        time = time.Add(new TimeSpan(0, 5, 0));
+                    }
+    }
+</table>

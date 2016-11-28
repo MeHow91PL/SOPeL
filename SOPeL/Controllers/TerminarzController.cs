@@ -34,7 +34,7 @@ namespace SOPeL.Controllers
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
             ViewBag.CzasWiz = model.opcje.Single(o => o.Nazwa == "term_czas_wiz").Wartosc;
 
-            return View("~/Views/Przychodnia/Terminarz/SiatkaTerminarza.cshtml",model);
+            return View("SiatkaTerminarza.cshtml", model);
         }
 
         private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData)

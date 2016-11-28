@@ -1,12 +1,12 @@
-﻿@{
+﻿@model SOPeL.ViewModels.TerminarzViewModel
+
+@{
     ViewBag.Title = "Umów wizitę";
-    Layout = "~/Views/PortalPacjenta/Index.cshtml";
+
+    Layout = "~/Views/_Layout.cshtml";
 }
 
 <script src="~/Scripts/terminarz.js"></script>
-
-    @model SOPeL.Models.Rezerwacja
-
    
     <div class="container kontenerMaterial">
         <div class="container">
@@ -19,9 +19,9 @@
                 <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
                     <option>Wybierz lekarza</option>
                     @{
-                        foreach (var prac in ViewBag.Pracownicy)
+                        foreach (var prac in Model.pracownicy)
                         {
-                            <option id="@prac.Id" >@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                            <option id="@prac.ID" >@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
                         }
                     }
                 </select>
@@ -31,7 +31,7 @@
                 <select class="form-control" id="wyborSpecjalizacjiPortalPacjenta" onchange="wybranoSpecjalizacje(this)">
                     <option></option>
                     @{
-                        foreach (var spec in ViewBag.Specjalizacje)
+                        foreach (var spec in Model.pracownicy.Select(p => p.Specjalizacja).Distinct())
                         {
                             <option id="@spec">@spec</option>
                         }
@@ -82,7 +82,7 @@
                 }
 
                 $.ajax({
-                    url: '@Url.Action("pobierzTerminarzWybranegoLekarza", "Rejestracja")',
+                    url: '@Url.Action("pobierzTerminarzWybranegoLekarza", "RejestracjaOnline")',
                     data: {
                         idi: selected,
                         wybranaData: dataRezerwacji

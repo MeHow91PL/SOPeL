@@ -316,12 +316,11 @@
     <Content Include="Views\Przychodnia\Poczekalnia\Index.cshtml" />
     <Content Include="Views\Przychodnia\Poczekalnia\PoczekalniaPrzychodnia.cshtml" />
     <Content Include="Views\Przychodnia\Terminarz\Index.cshtml" />
-    <Content Include="Views\Przychodnia\Terminarz\SiatkaTerminarza.cshtml" />
+    <Content Include="Views\Shared\_SiatkaTerminarza.cshtml" />
     <Content Include="Views\Shared\_KartaPacjenta.cshtml" />
     <Content Include="Views\Shared\_KartaRezerwacjiPortalPacjentaNiezalogowany.cshtml" />
     <Content Include="Views\Shared\_KartaRezerwacjiWizyty.cshtml" />
     <Content Include="Views\Shared\_PortalPacjentaLayout.cshtml" />
-    <Content Include="Views\Shared\_Terminarz.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />

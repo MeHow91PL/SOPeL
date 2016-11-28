@@ -1,5 +1,7 @@
-﻿using SOPeL.Infrastructure;
+﻿using SOPeL.DAL;
+using SOPeL.Infrastructure;
 using SOPeL.Models;
+using SOPeL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,35 +12,34 @@ namespace SOPeL.Controllers
 {
     public class RejestracjaOnlineController : PortalPacjentaMasterController
     {
+        SopelContext db = new SopelContext();
+
+
         // GET: Rejestracja
         public ActionResult Index()
         {
-            List<Pracownik> pracownicy = new List<Pracownik>();
-            List<string> specjalizacje = new List<string>();
-            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
-            //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy");
+            var model = pobierzTerminarzViewModel(DateTime.Today.ToString("yyyy-MM-dd"));
+           
+            return View("~/Views/PortalPacjenta/RejestracjaOnline/Index.cshtml",model);
+        }
 
-            //while (dr.Read())
-            //{
-            //    pracownicy.Add(new Pracownik() { Id = (int)dr["id"], Imie = dr["imie"].ToString(), Nazwisko = dr["nazwisko"].ToString(), Specjalizacja = dr["specjalizacja"].ToString() });
-            //}
+        private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData)
+        {
+            wybranaData = String.Format("{0:yyyy-MM-dd}", wybranaData);
 
-            //dr.Close();
+            DateTime data = new DateTime(
+                Convert.ToInt32(wybranaData.Substring(0, 4)),
+                Convert.ToInt32(wybranaData.Substring(5, 2)),
+                Convert.ToInt32(wybranaData.Substring(8, 2))
+                );
 
-            //dr = Database.wykonajZapytanieDQL("SELECT DISTINCT specjalizacja FROM pracownicy");
+            var opcje = db.Opcje.ToList();
+            var prac = db.Pracownicy.ToList();
+            var rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToList();
 
-            //while (dr.Read())
-            //{
-            //    specjalizacje.Add(dr[0].ToString());
-            //}
+            var model = new TerminarzViewModel { opcje = opcje, pracownicy = prac, rezerwacje = rez };
 
-            //dr.Close();
-
-            //ViewBag.Pracownicy = pracownicy;
-            //ViewBag.Specjalizacje = specjalizacje;
-
-            //Database.zamknijPolaczenie();
-            return View("~/Views/PortalPacjenta/RejestracjaOnline/Index.cshtml");
+            return model;
         }
 
         public JsonResult ListaPracownikow(string spec)
@@ -126,33 +127,10 @@ namespace SOPeL.Controllers
 
         public PartialViewResult pobierzTerminarzWybranegoLekarza(int idi ,string wybranaData)
         {
-            //List<Pracownik> pracownicy = new List<Pracownik>();
-            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
-            //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT * FROM pracownicy where id =" + idi);
+            
+            
 
-            //while (dr.Read())
-            //{
-            //    pracownicy.Add(new Pracownik() { Id = (int)dr["id"], Imie = dr["imie"].ToString(), Nazwisko = dr["nazwisko"].ToString(), Specjalizacja = dr["specjalizacja"].ToString() });
-            //}
-            //dr.Close();
-
-
-            //List<Rezerwacja> rezerwacje = new List<Rezerwacja>();
-            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
-            //dr = Database.wykonajZapytanieDQL("SELECT * FROM v_rezerwacjePacjentow where id_pracownika = " + idi + " and date(rez_data) ='" + wybranaData + "'");
-            //while (dr.Read())
-            //{
-            //    rezerwacje.Add(new Rezerwacja() { GodzinaRezerwacji = dr["data"].ToString().Substring(11, 5), DataRezerwacji = (DateTime)dr["data"], Pacjent = new Pacjent() { Nazwisko = dr["nazwisko_pacjenta"].ToString(), Imie = dr["imie_pacjenta"].ToString() }, Pracownik = new Pracownik() { Id = (int)dr["id_pracownika"] } });
-            //}
-            //dr.Close();
-
-            //Database.zamknijPolaczenie();
-
-            //ViewBag.Pracownicy = pracownicy;
-            //ViewBag.Rezerwacje = rezerwacje;
-
-
-            return PartialView("_Terminarz");
+            return PartialView("SiatkaTerminarza");
         }
             //public ActionResult pokazLekarza(Rezerwacja rezerwacja)
             //{
