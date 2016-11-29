@@ -16,9 +16,10 @@ namespace SOPeL.DAL
 
         }
         // urucohmienie  Inicjalizatora
+        //
         static SopelContext()
         {
-            //Database.SetInitializer<SopelContext>(new SopelInitializer());
+            Database.SetInitializer<SopelContext>(new SopelInitializer());
         }
 
         public DbSet<Adres> Adresy { get; set; }
