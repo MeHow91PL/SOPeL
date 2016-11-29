@@ -224,6 +224,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="sample.snippet" />
+    <None Include="Properties\PublishProfiles\sopel20161129.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -270,25 +271,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201611291152549_init.cs" />
-    <Compile Include="Migrations\201611291152549_init.Designer.cs">
-      <DependentUpon>201611291152549_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611291451462_tab_pac_dok_tozsamosci.cs" />
-    <Compile Include="Migrations\201611291451462_tab_pac_dok_tozsamosci.Designer.cs">
-      <DependentUpon>201611291451462_tab_pac_dok_tozsamosci.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611291454010_tab_pac_dok_tozsamosci1.cs" />
-    <Compile Include="Migrations\201611291454010_tab_pac_dok_tozsamosci1.Designer.cs">
-      <DependentUpon>201611291454010_tab_pac_dok_tozsamosci1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611291457445_tab_pac_dok_tozsamosci2.cs" />
-    <Compile Include="Migrations\201611291457445_tab_pac_dok_tozsamosci2.Designer.cs">
-      <DependentUpon>201611291457445_tab_pac_dok_tozsamosci2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611291502128_tab_pac_dok_tozsamosci3.cs" />
-    <Compile Include="Migrations\201611291502128_tab_pac_dok_tozsamosci3.Designer.cs">
-      <DependentUpon>201611291502128_tab_pac_dok_tozsamosci3.cs</DependentUpon>
+    <Compile Include="Migrations\201611291657489_init.cs" />
+    <Compile Include="Migrations\201611291657489_init.Designer.cs">
+      <DependentUpon>201611291657489_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -332,20 +317,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611291152549_init.resx">
-      <DependentUpon>201611291152549_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611291451462_tab_pac_dok_tozsamosci.resx">
-      <DependentUpon>201611291451462_tab_pac_dok_tozsamosci.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611291454010_tab_pac_dok_tozsamosci1.resx">
-      <DependentUpon>201611291454010_tab_pac_dok_tozsamosci1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611291457445_tab_pac_dok_tozsamosci2.resx">
-      <DependentUpon>201611291457445_tab_pac_dok_tozsamosci2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611291502128_tab_pac_dok_tozsamosci3.resx">
-      <DependentUpon>201611291502128_tab_pac_dok_tozsamosci3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611291657489_init.resx">
+      <DependentUpon>201611291657489_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

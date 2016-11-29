@@ -32,12 +32,19 @@ namespace SOPeL.DAL
             context.SaveChanges();
 
 
-            
+            var opcje = new List<Opcja>
+            {
+               new Opcja() { Nazwa="term_godz_od", ID=1, Wartosc="08:00"},
+               new Opcja() { Nazwa="term_godz_do", ID=2, Wartosc="16:00"},
+               new Opcja() { Nazwa="term_czas_wiz", ID=3, Wartosc="10"}
+            };
+            opcje.ForEach(s => context.Opcje.AddOrUpdate(s));
+            context.SaveChanges();
 
             var pracownicy = new List<Pracownik>
             {
-                new Pracownik() { Imie="Stephen", Nazwisko="Strange", Pesel="86062905358", Telefon="666555444", Email="ss@marvel.pl", PWZ="1234565", Specjalizacja="Chirurgia", TytulNaukowy="dr"},
-                new Pracownik() { Imie="Michaela", Nazwisko="Quinn", Pesel="86062905358", Telefon="123456789", Email="dr@quinn.pl", PWZ="7654323", Specjalizacja="Internista", TytulNaukowy="dr"}
+                new Pracownik() { ID=1, Imie="Stephen", Nazwisko="Strange", Pesel="86062905358", Telefon="666555444", Email="ss@marvel.pl", PWZ="1234565", Specjalizacja="Chirurgia", TytulNaukowy="dr"},
+                new Pracownik() {ID=2, Imie="Michaela", Nazwisko="Quinn", Pesel="86062905358", Telefon="123456789", Email="dr@quinn.pl", PWZ="7654323", Specjalizacja="Internista", TytulNaukowy="dr"}
 
             };
             pracownicy.ForEach(z => context.Pracownicy.AddOrUpdate(z));
@@ -47,10 +54,10 @@ namespace SOPeL.DAL
             //nie wiem cmu nie dziala jakis blad walidacji jest
            var pacjenci = new List<Pacjent>
            {
-                new Pacjent() { Imie="Jan", Nazwisko="Kowalski", Pesel="86062905358", Telefon="666555444", Email="kowalski@wp.pl", Aktw="T"}
+                new Pacjent() { ID=1, Imie="Jan", Nazwisko="Kowalski", Pesel="86062905358", Telefon="666555444", Email="kowalski@wp.pl", Aktw="T"}
 
            };
-            pacjenci.ForEach(g => context.Pacjenci.Add(g));
+            pacjenci.ForEach(g => context.Pacjenci.AddOrUpdate(g));
             context.SaveChanges();
 
         }
