@@ -37,7 +37,9 @@ namespace SOPeL.Models
 
         public virtual Adres AdresTymczasowy { get; set; }
 
-        public bool Akt { get; set; }
+
+        [MaxLength(1)]
+        public string Aktw { get; set; }
 
     }
 }

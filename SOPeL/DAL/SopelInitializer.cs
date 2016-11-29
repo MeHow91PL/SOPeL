@@ -25,8 +25,8 @@ namespace SOPeL.DAL
         {
             var uzytkownicy = new List<Uzytkownik>
             {
-                new Uzytkownik() {Login="Ja", Haslo="Ja" },
-                new Uzytkownik() {Login="admin", Haslo="admin" }
+                new Uzytkownik() {Login="Ja", Haslo="Ja", Id=1 },
+                new Uzytkownik() {Login="admin", Haslo="admin", Id=2                }
             };
             uzytkownicy.ForEach(s => context.Uzytkownicy.AddOrUpdate(s));
             context.SaveChanges();
@@ -44,14 +44,14 @@ namespace SOPeL.DAL
             context.SaveChanges();
 
 
-            // nie wiem cmu nie dziala jakis blad walidacji jest
-            //var pacjenci = new List<Pacjent>
-            //{
-            //    new Pacjent() { Imie="Jan", Nazwisko="Kowalski", Pesel="86062905358", Telefon="666555444", Email="kowalski@wp.pl"}
+            //nie wiem cmu nie dziala jakis blad walidacji jest
+           var pacjenci = new List<Pacjent>
+           {
+                new Pacjent() { Imie="Jan", Nazwisko="Kowalski", Pesel="86062905358", Telefon="666555444", Email="kowalski@wp.pl", Aktw="T"}
 
-            //};
-            //pacjenci.ForEach(g => context.Pacjenci.Add(g));
-            //context.SaveChanges();
+           };
+            pacjenci.ForEach(g => context.Pacjenci.Add(g));
+            context.SaveChanges();
 
         }
     }

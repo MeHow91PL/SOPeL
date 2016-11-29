@@ -211,14 +211,14 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
@@ -274,6 +274,22 @@
     <Compile Include="Migrations\201611291152549_init.Designer.cs">
       <DependentUpon>201611291152549_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611291451462_tab_pac_dok_tozsamosci.cs" />
+    <Compile Include="Migrations\201611291451462_tab_pac_dok_tozsamosci.Designer.cs">
+      <DependentUpon>201611291451462_tab_pac_dok_tozsamosci.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611291454010_tab_pac_dok_tozsamosci1.cs" />
+    <Compile Include="Migrations\201611291454010_tab_pac_dok_tozsamosci1.Designer.cs">
+      <DependentUpon>201611291454010_tab_pac_dok_tozsamosci1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611291457445_tab_pac_dok_tozsamosci2.cs" />
+    <Compile Include="Migrations\201611291457445_tab_pac_dok_tozsamosci2.Designer.cs">
+      <DependentUpon>201611291457445_tab_pac_dok_tozsamosci2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611291502128_tab_pac_dok_tozsamosci3.cs" />
+    <Compile Include="Migrations\201611291502128_tab_pac_dok_tozsamosci3.Designer.cs">
+      <DependentUpon>201611291502128_tab_pac_dok_tozsamosci3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\Opcje.cs" />
@@ -318,6 +334,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611291152549_init.resx">
       <DependentUpon>201611291152549_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611291451462_tab_pac_dok_tozsamosci.resx">
+      <DependentUpon>201611291451462_tab_pac_dok_tozsamosci.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611291454010_tab_pac_dok_tozsamosci1.resx">
+      <DependentUpon>201611291454010_tab_pac_dok_tozsamosci1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611291457445_tab_pac_dok_tozsamosci2.resx">
+      <DependentUpon>201611291457445_tab_pac_dok_tozsamosci2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611291502128_tab_pac_dok_tozsamosci3.resx">
+      <DependentUpon>201611291502128_tab_pac_dok_tozsamosci3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
