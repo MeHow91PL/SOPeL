@@ -7,17 +7,49 @@ using SOPeL.Models;
 
 namespace SOPeL.DAL
 {
-    public class SopelInitializer: DropCreateDatabaseIfModelChanges<SopelContext>
+    public class SopelInitializer: DropCreateDatabaseAlways<SopelContext>
     {
         protected override void Seed(SopelContext context)
         {
+            
+                SeedsopelLocal(context);
+                base.Seed(context);
+
+                     
+        }
+
+        private void SeedsopelLocal(SopelContext context)
+        {
             var uzytkownicy = new List<Uzytkownik>
             {
-                new Uzytkownik {Login="Ja", Haslo="Ja" }
+                new Uzytkownik() {Login="Ja", Haslo="Ja" },
+                new Uzytkownik() {Login="admin", Haslo="admin" }
             };
-
             uzytkownicy.ForEach(s => context.Uzytkownicy.Add(s));
             context.SaveChanges();
+
+
+            
+
+            var pracownicy = new List<Pracownik>
+            {
+                new Pracownik() { Imie="Stephen", Nazwisko="Strange", Pesel="86062905358", Telefon="666555444", Email="ss@marvel.pl", PWZ="1234565", Specjalizacja="Chirurgia", TytulNaukowy="dr"},
+                new Pracownik() { Imie="Michaela", Nazwisko="Quinn", Pesel="86062905358", Telefon="123456789", Email="dr@quinn.pl", PWZ="7654323", Specjalizacja="Internista", TytulNaukowy="dr"}
+
+            };
+            pracownicy.ForEach(z => context.Pracownicy.Add(z));
+            context.SaveChanges();
+
+            //var pacjenci = new List<Pacjent>
+            //{
+            //    new Pacjent() { Imie="Jan", Nazwisko="Kowalski", Pesel="86062905358", Telefon="666555444", Email="kowalski@wp.pl"}
+
+            //};
+            //pacjenci.ForEach(g => context.Pacjenci.Add(g));
+            //context.SaveChanges();
+
         }
     }
 }
+
+

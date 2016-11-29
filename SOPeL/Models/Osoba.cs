@@ -32,9 +32,12 @@ namespace SOPeL.Models
         [MaxLength(100)]
         public string Email { get; set; }
 
+
         public virtual Adres Adres { get; set; }
 
         public virtual Adres AdresTymczasowy { get; set; }
+
+        public bool Akt { get; set; }
 
     }
 }
