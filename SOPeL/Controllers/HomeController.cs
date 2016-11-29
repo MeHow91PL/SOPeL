@@ -13,6 +13,9 @@ namespace SOPeL.Controllers
 
         public ActionResult Index()
         {
+
+            //funckja tylko po to by zalaozcy baze przy urucghomieniu za pomoca inicjalizera
+            //var uzytkownicyList = db.Uzytkownicy.ToList();
             return View();
         }
 
