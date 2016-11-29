@@ -23,6 +23,9 @@ namespace SOPeL.App_Start
             bundles.Add(new ScriptBundle("~/Scripts/Przychodnia").Include(
                         "~/Scripts/Przychodnia.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/Pacjenci").Include(
+                        "~/Scripts/Pacjenci.js"));
+
             bundles.Add(new ScriptBundle("~/Scripts/Terminarz").Include(
                         "~/Scripts/Terminarz.js"));
 
@@ -50,6 +53,9 @@ namespace SOPeL.App_Start
 
             bundles.Add(new StyleBundle("~/Content/Terminarz").Include(
                       "~/Content/Terminarz.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Pacjenci").Include(
+                     "~/Content/Pacjenci.css"));
 
             bundles.Add(new StyleBundle("~/Content/Main").Include(
                       "~/Content/reset.css",

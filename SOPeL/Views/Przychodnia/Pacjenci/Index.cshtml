@@ -5,6 +5,10 @@
     Layout = "~/Views/_Layout.cshtml";
 }
 
+@section style{
+    @Styles.Render("~/Content/Pacjenci")
+}
+
 
     <div> 
         <h2>Pacjenci</h2>
@@ -12,8 +16,9 @@
 <div class="">
     <div class="container">
         <div class="  col-sm-4 col-xs-10">
+            
       <input /><button>Szukaj</button><br />
-            <button>Pokaż wszystkich</button>
+            <button class="dodaj-pacjenta">Dodaj pacjenta</button>
         </div>
 
         <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
@@ -25,8 +30,24 @@
     </div>
 </div>
 
+
+<div class="wysrodkujCentralnie" id="ukryty">
+    <div class="przychodnia">
+     yo   @*@Html.Partial("_KartaPacjenta", new SOPeL.Models.Pacjent())*@
+    </div>
+</div>
+
 <div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
     @* Treść ładowana AJAXem *@
     @Html.Partial("~/Views/Przychodnia/Pacjenci/PacjenciPrzychodnia.cshtml")
 
 </div>
+
+
+@section scripts{
+    <script>
+        //przekazanie linku do akcji pobierzTerminarz - tutaj bo nie można używać razor w zewnętrznych plikach
+        var pobierzTerminarzAjax = '@Url.Action("pobierzTerminarz", "Terminarz")';
+    </script>
+    @Scripts.Render("~/Scripts/Pacjenci")
+}
