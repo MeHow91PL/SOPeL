@@ -37,19 +37,39 @@ namespace SOPeL.Controllers
             return View("SiatkaTerminarza.cshtml", model);
         }
 
-        private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData)
+        private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData = null, int pracownikId = 0)
         {
-            wybranaData = String.Format("{0:yyyy-MM-dd}", wybranaData);
+            List<Opcja> opcje = null;
+            List<Pracownik> prac = null;
+            List<Rezerwacja> rez = null;
 
-            DateTime data = new DateTime(
-                Convert.ToInt32(wybranaData.Substring(0, 4)),
-                Convert.ToInt32(wybranaData.Substring(5, 2)),
-                Convert.ToInt32(wybranaData.Substring(8, 2))
-                );
+            if (wybranaData != null)
+            {
+                wybranaData = String.Format("{0:yyyy-MM-dd}", wybranaData);
 
-            var opcje = db.Opcje.ToList();
-            var prac = db.Pracownicy.ToList();
-            var rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToList();
+                DateTime data = new DateTime(
+                    Convert.ToInt32(wybranaData.Substring(0, 4)),
+                    Convert.ToInt32(wybranaData.Substring(5, 2)),
+                    Convert.ToInt32(wybranaData.Substring(8, 2))
+                    );
+
+                 rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToList();
+            }
+            else
+            {
+                 rez = db.Rezerwacje.ToList();
+            }
+
+            if (pracownikId > 0)
+            {
+                 prac = db.Pracownicy.Where(p => p.ID == pracownikId).ToList();
+            }
+            else
+            {
+                 prac = db.Pracownicy.ToList();
+            }
+
+            opcje = db.Opcje.ToList();
 
             var model = new TerminarzViewModel { opcje = opcje, pracownicy = prac, rezerwacje = rez };
 

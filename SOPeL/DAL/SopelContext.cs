@@ -29,7 +29,7 @@ namespace SOPeL.DAL
         public DbSet<Uzytkownik> Uzytkownicy { get; set; }
         public DbSet<Opcja> Opcje { get; set; }
 
-       
+
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{

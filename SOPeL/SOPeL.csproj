@@ -56,6 +56,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework6.Npgsql, Version=3.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework6.Npgsql.3.1.1\lib\net45\EntityFramework6.Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -245,6 +249,7 @@
     <Content Include="Views\PortalPacjenta\Index.cshtml" />
     <Content Include="Views\Przychodnia\_SidebarPrzychodnia.cshtml" />
     <Content Include="Views\PortalPacjenta\_SidebarPortal.cshtml" />
+    <Content Include="Views\PortalPacjenta\RejestracjaOnline\SiatkaTerminarza.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -271,9 +276,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201611291657489_init.cs" />
-    <Compile Include="Migrations\201611291657489_init.Designer.cs">
-      <DependentUpon>201611291657489_init.cs</DependentUpon>
+    <Compile Include="Migrations\201611291715459_Ihaa.cs" />
+    <Compile Include="Migrations\201611291715459_Ihaa.Designer.cs">
+      <DependentUpon>201611291715459_Ihaa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -301,7 +306,7 @@
     <Content Include="Views\Przychodnia\Poczekalnia\Index.cshtml" />
     <Content Include="Views\Przychodnia\Poczekalnia\PoczekalniaPrzychodnia.cshtml" />
     <Content Include="Views\Przychodnia\Terminarz\Index.cshtml" />
-    <Content Include="Views\Shared\_SiatkaTerminarza.cshtml" />
+    <Content Include="Views\Przychodnia\Terminarz\SiatkaTerminarza.cshtml" />
     <Content Include="Views\Shared\_KartaPacjenta.cshtml" />
     <Content Include="Views\Shared\_KartaRezerwacjiPortalPacjentaNiezalogowany.cshtml" />
     <Content Include="Views\Shared\_KartaRezerwacjiWizyty.cshtml" />
@@ -317,8 +322,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611291657489_init.resx">
-      <DependentUpon>201611291657489_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611291715459_Ihaa.resx">
+      <DependentUpon>201611291715459_Ihaa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

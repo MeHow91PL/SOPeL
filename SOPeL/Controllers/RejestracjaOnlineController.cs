@@ -19,27 +19,57 @@ namespace SOPeL.Controllers
         public ActionResult Index()
         {
             var model = pobierzTerminarzViewModel(DateTime.Today.ToString("yyyy-MM-dd"));
-           
-            return View("~/Views/PortalPacjenta/RejestracjaOnline/Index.cshtml",model);
+
+            return View("~/Views/PortalPacjenta/RejestracjaOnline/Index.cshtml", model);
         }
 
-        private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData)
+        private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData = null, int pracownikId = 0)
         {
-            wybranaData = String.Format("{0:yyyy-MM-dd}", wybranaData);
+            List<Opcja> opcje = null;
+            List<Pracownik> prac = null;
+            List<Rezerwacja> rez = null;
 
-            DateTime data = new DateTime(
-                Convert.ToInt32(wybranaData.Substring(0, 4)),
-                Convert.ToInt32(wybranaData.Substring(5, 2)),
-                Convert.ToInt32(wybranaData.Substring(8, 2))
-                );
+            if (wybranaData != null)
+            {
+                wybranaData = String.Format("{0:yyyy-MM-dd}", wybranaData);
 
-            var opcje = db.Opcje.ToList();
-            var prac = db.Pracownicy.ToList();
-            var rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToList();
+                DateTime data = new DateTime(
+                    Convert.ToInt32(wybranaData.Substring(0, 4)),
+                    Convert.ToInt32(wybranaData.Substring(5, 2)),
+                    Convert.ToInt32(wybranaData.Substring(8, 2))
+                    );
 
+                rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToList();
+            }
+            else
+            {
+                rez = db.Rezerwacje.ToList();
+            }
+
+            if (pracownikId > 0)
+            {
+                prac = db.Pracownicy.Where(p => p.ID == pracownikId).ToList();
+            }
+            else
+            {
+                prac = db.Pracownicy.ToList();
+            }
+
+            opcje = db.Opcje.ToList();
             var model = new TerminarzViewModel { opcje = opcje, pracownicy = prac, rezerwacje = rez };
 
             return model;
+        }
+
+        public ViewResult pobierzTerminarzWybranegoLekarza(int idi, string wybranaData)
+        {
+            var model = pobierzTerminarzViewModel(wybranaData,idi);
+
+            ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
+            ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
+            ViewBag.CzasWiz = model.opcje.Single(o => o.Nazwa == "term_czas_wiz").Wartosc;
+
+            return View("~/Views/PortalPacjenta/RejestracjaOnline/SiatkaTerminarza.cshtml", model);
         }
 
         public JsonResult ListaPracownikow(string spec)
@@ -122,32 +152,26 @@ namespace SOPeL.Controllers
 
             //Database.zamknijPolaczenie();
 
-            return Json(listaPracowników ,JsonRequestBehavior.AllowGet);
+            return Json(listaPracowników, JsonRequestBehavior.AllowGet);
         }
 
-        public PartialViewResult pobierzTerminarzWybranegoLekarza(int idi ,string wybranaData)
-        {
-            
-            
 
-            return PartialView("SiatkaTerminarza");
-        }
-            //public ActionResult pokazLekarza(Rezerwacja rezerwacja)
-            //{
-            //    List<Pracownik> wybranyLekarz = new List<Pracownik>();
+        //public ActionResult pokazLekarza(Rezerwacja rezerwacja)
+        //{
+        //    List<Pracownik> wybranyLekarz = new List<Pracownik>();
 
-            //    Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+        //    Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
 
-            //    NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select * from prac"); /*from prac where nazw=" + rezerwacja.pracownik.nazwisko);*/
+        //    NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select * from prac"); /*from prac where nazw=" + rezerwacja.pracownik.nazwisko);*/
 
-            //    while (dr.Read())
-            //    {
-            //        wybranyLekarz.Add(new Pracownik() { id = (int)dr["id"], imie = dr["imie"].ToString(), nazwisko = dr["nazw"].ToString(), specjalizacja = dr["spec"].ToString() });
-            //    }
+        //    while (dr.Read())
+        //    {
+        //        wybranyLekarz.Add(new Pracownik() { id = (int)dr["id"], imie = dr["imie"].ToString(), nazwisko = dr["nazw"].ToString(), specjalizacja = dr["spec"].ToString() });
+        //    }
 
-            //    ViewBag.pokazLekarza = wybranyLekarz;
+        //    ViewBag.pokazLekarza = wybranyLekarz;
 
-            //    return View();
-            //}
-        }
+        //    return View();
+        //}
+    }
 }
