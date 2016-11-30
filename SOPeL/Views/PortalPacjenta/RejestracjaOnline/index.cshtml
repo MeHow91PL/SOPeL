@@ -2,18 +2,24 @@
 
 @{
     ViewBag.Title ="Umów wizitę";
-
     Layout ="~/Views/_Layout.cshtml";
 }
+
+@section style{
+    @Styles.Render("~/Content/RejestracjaOnline")
+}
+
+
+
     <div class="container kontenerMaterial">
         <div class="container">
             <div id="terminarzDataKontener" class="col-sm-4">
                 <label for="dataRezerwacji">Data</label>
-                <input type="text" onchange="wybranoLekarza()" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="dataRezerwacji" name="dataRezerwacji" class="form-control datepickerRejOnline" />
+                <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="dataRezerwacji" name="dataRezerwacji" class="form-control datepickerRejOnline" />
             </div>
             <div class="col-sm-4">
                 <label for="lekarz">Lekarz</label>
-                <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
+                <select class="form-control" id="wyborLekarzaRejOnline">
                     <option>Wybierz lekarza</option>
                     @{
                         foreach (var prac in Model.pracownicy)
@@ -64,40 +70,7 @@
     <script>
 
         /// <reference path="jquery-3.1.1.js" />
-        function wybranoLekarza() {
-                var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
-                var dataRezerwacji = $('#dataRezerwacji').val();
-                var selected = $('#wyborLekarzaPortalPacjenta').children(":selected").attr("id");
-                var podpowiedzi = $('#podpowiedzi');
-                var wzor = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
-
-                if (!wzor.test(dataRezerwacji)) {
-                    alert("Wybierz datę z kalendarza");
-                    kontenerMaterialPortalPacjenta.slideUp(500);
-                    return;
-                }
-
-                $.ajax({
-                    url: '@Url.Action("pobierzTerminarzWybranegoLekarza", "RejestracjaOnline")',
-                    data: {
-                        idi: selected,
-                        wybranaData: dataRezerwacji
-                    },
-                    success: function (response) {
-                        kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
-                        kontenerMaterialPortalPacjenta.html(response);
-                        });
-                        kontenerMaterialPortalPacjenta.slideDown(300);
-                        podpowiedzi.slideUp(300);
-                    },
-                    error: function () {
-                        kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
-                            kontenerMaterialPortalPacjenta.html("");
-                            podpowiedzi.slideDown(300);
-                        });
-                    }
-                });
-            }
+        
 
         //Pobranie z bazy listy pracowników po wybranej specjalizacji
         function wybranoSpecjalizacje(specList) {
@@ -134,6 +107,13 @@
             });
         }
     </script>
+@section scripts{
+    @Scripts.Render("~/Scripts/RejestracjaOnline")
+}
+
+
+
+
 
 
 
