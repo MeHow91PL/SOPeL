@@ -7,6 +7,39 @@
 
 @section style{
     @Styles.Render("~/Content/Pacjenci")
+<style>
+    #kartaRezerwacjiWizytyKontener {
+    position: fixed;
+    justify-content:center;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    display:none;
+}
+
+#kartaRezerwacjiWizyty {
+    display:block;
+    padding:20px;
+    max-width: 700px;
+}
+
+#kartaRezerwacjiWizytyDane {
+    float: left;
+    width:80%;
+}
+
+#kartaRezerwacjiWizytyZdjeciePacjenta {
+    float:left;
+    width:20%;
+}
+
+#kartaRezerwacjiWizytyButtonKontener input{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+    </style>
+
 }
 
 
@@ -18,7 +51,7 @@
         <div class="  col-sm-4 col-xs-10">
             
       <input /><button>Szukaj</button><br />
-            <button class="dodaj-pacjenta">Dodaj pacjenta</button>
+            <button id="dodajPacjenta">Dodaj pacjenta</button>
         </div>
 
         <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
@@ -31,9 +64,9 @@
 </div>
 
 
-<div class="wysrodkujCentralnie" id="ukryty">
+<div class="wysrodkujCentralnie" id="kartaRezerwacjiWizytyKontener">
     <div class="przychodnia">
-     yo   @*@Html.Partial("_KartaPacjenta", new SOPeL.Models.Pacjent())*@
+        @Html.Partial("_KartaPacjenta", new SOPeL.Models.Pacjent())
     </div>
 </div>
 
