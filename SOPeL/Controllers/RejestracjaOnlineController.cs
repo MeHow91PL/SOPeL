@@ -72,6 +72,20 @@ namespace SOPeL.Controllers
             return View("~/Views/PortalPacjenta/RejestracjaOnline/SiatkaTerminarza.cshtml", model);
         }
 
+        public JsonResult pobiarzWybranaSpecjalizacje(string spec = "")
+        {
+            if (string.IsNullOrEmpty(spec))
+            {
+                return Json(db.Pracownicy.ToList());
+            }
+            else
+            {
+                return Json(db.Pracownicy.Where(p => p.Specjalizacja == spec).ToList());
+            }
+        }
+
+            
+
         public JsonResult ListaPracownikow(string spec)
         {
             List<Pracownik> pracownicy = new List<Pracownik>();

@@ -10,7 +10,7 @@
 }
 
 
-
+<div class="portalPacjenta">
     <div class="container kontenerMaterial">
         <div class="container">
             <div id="terminarzDataKontener" class="col-sm-4">
@@ -24,7 +24,7 @@
                     @{
                         foreach (var prac in Model.pracownicy)
                         {
-                            <option id="@prac.ID" >@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                            <option id="@prac.ID">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
                         }
                     }
                 </select>
@@ -62,11 +62,12 @@
         </div>
     </div>
 
-    <div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
+    <div class="container kontenerMaterial " id="kontenerMaterialPortalPacjenta" style="padding:0">
         @*Treść ładowana AJAXem*@
     </div>
 
     @*@Html.Partial("_KartaRezerwacjiPortalPacjentaNiezalogowany")*@
+</div>
     <script>
 
         /// <reference path="jquery-3.1.1.js" />
@@ -74,37 +75,7 @@
 
         //Pobranie z bazy listy pracowników po wybranej specjalizacji
         function wybranoSpecjalizacje(specList) {
-            var specjalizacja = $(specList).children(":selected").attr("id");
-
-            if ($.trim(specjalizacja).length == 0) {
-                specjalizacja ="%"; //jeżeli nie jest wybrana żadna specjalizacja to zapytanie ma zwrócić wszystkich lekarzy. Zapytanie Select * from lekarze where specjalizacja like '%'
-            }
-
-            var lekarz = $('#wyborLekarzaPortalPacjenta');
-            var lekarzFontColor = lekarz.css("color");
-            var lekarzBgColor = lekarz.css("background-color");
-            var selectedLekarz = $(lekarz).children(":selected").attr("id");
-            $.ajax({
-                url: '@Url.Action("ListaPracownikow","RejestracjaOnline")',
-                type:"POST",
-                data: {
-                    spec: specjalizacja
-                },
-                success: function (response) {
-                    var s ="<option>Wybierz lekarza</option>";
-                    for (var i = 0; i < response.length; i++) {
-                        if(response[i].Id == selectedLekarz)
-                            s +="<option selected id =" + response[i].Id +">" + response[i].Imie +"" + response[i].Nazwisko +" (" + response[i].Specjalizacja +")</option>";
-                        else
-                            s +="<option id =" + response[i].Id +">" + response[i].Imie +"" + response[i].Nazwisko +" (" + response[i].Specjalizacja +")</option>";
-                    }
-                    lekarz.animate({ color: lekarzBgColor },200);
-                    lekarz.html(s);
-                    lekarz.animate({ color: lekarzFontColor }, 200);
-                    wybranoLekarza();
-                }
-
-            });
+            
         }
     </script>
 @section scripts{

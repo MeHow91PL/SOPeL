@@ -2,9 +2,14 @@
 
 $(document).ready(function () {
     var $kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
-    var $wyborLekarzaRejOnline = $('#wyborLekarzaRejOnline');
     var $dataRezerwacji = $('#dataRezerwacji');
+    var $wyborLekarza = $('#wyborLekarzaRejOnline');
+    var $wyborSpecjalizacji = $('#wyborSpecjalizacjiPortalPacjenta');
+
+
     var podpowiedzi = $('#podpowiedzi'); wyborLekarzaRejOnline
+    var dataRezerwacji = $dataRezerwacji.val();
+    var selectedLekarz = $wyborLekarza.children(":selected").attr("id");
 
     $dataRezerwacji.datepicker({
         dateFormat: "yy-mm-dd",
@@ -12,21 +17,22 @@ $(document).ready(function () {
     });
 
     $dataRezerwacji.change(function () {
-        var dataRezerwacji = $dataRezerwacji.val();
-        pobierzTerminarz(dataRezerwacji)
+        dataRezerwacji = $dataRezerwacji.val();
+        pobierzTerminarz();
     });
 
-    $wyborLekarzaRejOnline.change(function() {
-        var dataRezerwacji = $dataRezerwacji.val();
-        pobierzTerminarz(dataRezerwacji)
+    $wyborLekarza.change(function () {
+        dataRezerwacji = $dataRezerwacji.val();
+        selectedLekarz = $wyborLekarza.children(":selected").attr("id");
+        pobierzTerminarz();
     })
 
 
-    function pobierzTerminarz(wybranaData) {
-        var selected = $wyborLekarzaRejOnline.children(":selected").attr("id");
+    function pobierzTerminarz() {
+        var selected = $wyborLekarza.children(":selected").attr("id");
         var wzor = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
 
-        if (!wzor.test(wybranaData)) {
+        if (!wzor.test(dataRezerwacji)) {
             alert("Wybierz datę z kalendarza");
             $kontenerMaterialPortalPacjenta.slideUp(300);
             return;
@@ -36,7 +42,7 @@ $(document).ready(function () {
             url: '/RejestracjaOnline/pobierzTerminarzWybranegoLekarza',
             data: {
                 idi: selected,
-                data: wybranaData
+                data: dataRezerwacji
             },
             success: function (response) {
                 $kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
@@ -54,5 +60,34 @@ $(document).ready(function () {
         });
     }
 
+    $wyborSpecjalizacji.change(function () {
+        var specjalizacja = $wyborSpecjalizacji.children(":selected").attr("id");
+
+        $.ajax({
+            url: '/RejestracjaOnline/pobiarzWybranaSpecjalizacje',
+            type: "POST",
+            data: {
+                spec: specjalizacja
+            },
+            success: function (response) {
+                console.log(response);
+                var s = "<option>Wybierz lekarza</option>";
+                for (var i = 0; i < response.length; i++) {
+                    if (response[i].ID == selectedLekarz)
+                        s += "<option selected id =" + response[i].ID + ">" + response[i].Imie + "" + response[i].Nazwisko + " (" + response[i].Specjalizacja + ")</option>";
+                    else
+                        s += "<option id =" + response[i].ID + ">" + response[i].Imie + "" + response[i].Nazwisko + " (" + response[i].Specjalizacja + ")</option>";
+                }
+                $wyborLekarza.html(s);
+                pobierzTerminarz();
+            }
+        });
+
+        selectedLekarz = $wyborLekarza.children(":selected").attr("id");
+
+    });
+
+
+
+
 });
-    
