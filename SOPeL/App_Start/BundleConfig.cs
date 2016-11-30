@@ -29,23 +29,23 @@ namespace SOPeL.App_Start
             bundles.Add(new ScriptBundle("~/Scripts/Terminarz").Include(
                         "~/Scripts/Terminarz.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/RejestracjaOnline").Include(
+                        "~/Scripts/RejestracjaOnline.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/PortalPacjenta").Include(
-                      "~/Content/reset.css",
-                      "~/Content/Site.css",
-                      "~/Content/PortalPacjenta.css",
-                      "~/Content/KartaRezerwacjiPrzychodnia.css",
-                      "~/Content/KartaLogowania.css",
-                      "~/Content/KartaRezerwacjiPortalPacjentaNiezalogowany.css"));
 
-            bundles.Add(new StyleBundle("~/Content/Przychodnia").Include(
+            bundles.Add(new StyleBundle("~/Content/RejestracjaOnline").Include(
+                      "~/Content/RejestracjaOnline.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Layout").Include(
                       "~/Content/reset.css",
                       "~/Content/Site.css",
                       "~/Content/SidebarModuly.css",
+                      "~/Content/PortalPacjenta.css",
                       "~/Content/Przychodnia.css",
                       "~/Content/KartaRezerwacjiPrzychodnia.css",
                       "~/Content/KartaLogowania.css",

@@ -61,9 +61,9 @@ namespace SOPeL.Controllers
             return model;
         }
 
-        public ViewResult pobierzTerminarzWybranegoLekarza(int idi, string wybranaData)
+        public ViewResult pobierzTerminarzWybranegoLekarza(string data, int idi = 0)
         {
-            var model = pobierzTerminarzViewModel(wybranaData,idi);
+            var model = pobierzTerminarzViewModel(data, idi);
 
             ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
@@ -71,6 +71,20 @@ namespace SOPeL.Controllers
 
             return View("~/Views/PortalPacjenta/RejestracjaOnline/SiatkaTerminarza.cshtml", model);
         }
+
+        public JsonResult pobiarzWybranaSpecjalizacje(string spec = "")
+        {
+            if (string.IsNullOrEmpty(spec))
+            {
+                return Json(db.Pracownicy.ToList());
+            }
+            else
+            {
+                return Json(db.Pracownicy.Where(p => p.Specjalizacja == spec).ToList());
+            }
+        }
+
+            
 
         public JsonResult ListaPracownikow(string spec)
         {

@@ -7,7 +7,7 @@ $(document).ready(function () {
     var loaderKontener = $("#loader-kontener");
     var wyborDatyTerminarz = $("#wybor-daty-terminarz");
     var dataRezerwacji = $('#wybor-daty-terminarz').val();
-    var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+    var $kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
     var opcjeTerminarzaDiv = $('#opcje-terminarza-okno');
     var terminarzDataKontener = $("#terminarzDataKontener");
     var czasTrwaniaWizyty = $("#term_czas_wiz");
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 
 
-    kontenerMaterialPortalPacjenta.css({
+    $kontenerMaterialPortalPacjenta.css({
         "height": "100%",
         "visibility": "visible"
     });
@@ -58,7 +58,7 @@ $(document).ready(function () {
 
         if (!wzor.test(dataRezerwacji)) {
             alert("Wybierz datę z kalendarza");
-            kontenerMaterialPortalPacjenta.slideUp(500);
+            $kontenerMaterialPortalPacjenta.slideUp(500);
             return;
         }
         pobierzTerminarz(dataRezerwacji);
@@ -71,18 +71,18 @@ $(document).ready(function () {
                 wybranaData: dataRezerwacji
             },
             success: function (response) {
-                kontenerMaterialPortalPacjenta.fadeOut(300, function myfunction() {
-                    kontenerMaterialPortalPacjenta.html(response);
+                $kontenerMaterialPortalPacjenta.fadeOut(300, function myfunction() {
+                    $kontenerMaterialPortalPacjenta.html(response);
 
 
                 });
-                kontenerMaterialPortalPacjenta.fadeIn(300);
+                $kontenerMaterialPortalPacjenta.fadeIn(300);
             },
             error: function () {
                 alert("Błąd połączenia z serwerem!");
 
-                kontenerMaterialPortalPacjenta.fadeOut(300, function myfunction() {
-                    kontenerMaterialPortalPacjenta.html("");
+                $kontenerMaterialPortalPacjenta.fadeOut(300, function myfunction() {
+                    $kontenerMaterialPortalPacjenta.html("");
                 });
             }
         });
