@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using SOPeL.Models;
 using SOPeL.DAL;
 using SOPeL.Infrastructure;
+using System.Net;
 
 namespace SOPeL.Controllers
 {
@@ -35,15 +36,46 @@ namespace SOPeL.Controllers
 
 
 
-        public ActionResult ZapiszDodajPacjenta([Bind(Include = "Imie,Nazwisko,Pesel,KodPocztowy,Miasto,Ulica,Telefon,Email,Plec")] Pacjent pacjent)
+        public ActionResult ZapiszDodajPacjenta([Bind(Include = "Imie,Nazwisko,Pesel,KodPocztowy,Miasto,Ulica,Telefon,Email,Plec,Aktw,ID")] Pacjent pacjent)
+        {
+            if (db.Pacjenci.Any(p => p.ID == pacjent.ID))
+            {
+
+                db.Entry(pacjent);
+                db.Entry(pacjent).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+
+            }
+            else
+            {
+                db.Pacjenci.Add(pacjent);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+                          
+        }
+
+        public PartialViewResult EdytujPacjenta(int id)
         {
            
-                    db.Pacjenci.Add(pacjent);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-              
-
-            
+            Pacjent pacjent = db.Pacjenci.Find(id);
+            return PartialView("_KartaPacjenta", pacjent);
         }
+
+
+        public PartialViewResult UsunPacjenta(int id)
+        {
+
+            Pacjent pacjent = db.Pacjenci.Find(id);
+            pacjent.Aktw = "N";
+            db.SaveChanges();
+            return PartialView("PacjenciPrzychodnia");
+        }
+
+
+        
+
     }
 }

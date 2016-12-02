@@ -1,14 +1,19 @@
-﻿<div class="przychodnia">
+﻿<div class="przychodnia"   >
     <table class="table table-bordered terminarz">
 
         @{
             foreach (var item in Model)
             {
+                if (@item.Aktw == "T")
+                {
                 <tr>
                     <td class="pacjent_oczekujacy"> @item.Nazwisko  @item.Imie <br /> @item.Pesel</td>
+                    <td><div data-idpacjenta="@item.ID" class="EdytujPacjenta"> Edytuj</div></td>
+                    <td><div data-idpacjenta="@item.ID" class="UsunPacjenta"> Usuń Pacjenta</div> </td>
                 </tr>
+                    }
+                }
             }
-        }
-    
+
     </table>
 </div>

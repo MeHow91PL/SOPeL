@@ -1,0 +1,64 @@
+﻿@model SOPeL.Models.Rezerwacja
+
+
+<div id="kartaRezerwacjiPortalPacjentaNiezalogowany">
+    <div class="container">
+        <form id="formularzkartaRezerwacjiPortalPacjentaNiezalogowany" method="post" onsubmit="return zatwierdzKarteRezerwacji()">
+            <div class="">
+                <div id="kartaRezerwacjiPortalPacjentaNiezalogowanyDane">
+                    <div class=" col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m=>m.Pacjent.Imie)
+                        @Html.TextBoxFor(m => m.Pacjent.Imie, new { @class = "form-control", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Pacjent.Imie)
+                    </div>
+                    <div class=" col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m => m.Pacjent.Nazwisko)
+                        @Html.TextBoxFor(m => m.Pacjent.Nazwisko, new { @class = "form-control", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Pacjent.Nazwisko)
+                    </div>
+                    <div class=" col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m => m.Pacjent.Pesel)
+                        @Html.TextBoxFor(m => m.Pacjent.Pesel, new { @class = "form-control", @onkeyup = "walidujKarteRezerwacji()", @autocomplete = "off" })
+                        <span class="errorMessage" id="peselErrorMessageSpan"></span>
+                    </div>
+                    <div class=" col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m => m.Pacjent.DokumentTozsamosci)
+                        @Html.TextBoxFor(m => m.Pacjent.DokumentTozsamosci, new { @class = "form-control", @autocomplete = "off", @placeholder = "np. ABC123456", @onkeyup = "walidujKarteRezerwacji()" })
+                        <span class="errorMessage" id="dokTozsamosciErrorMessageSpan"></span>
+                    </div>
+                    <div class=" col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m => m.Pacjent.Telefon)
+                        @Html.TextBoxFor(m => m.Pacjent.Telefon, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Pacjent.Telefon)
+                    </div>
+                    <div class=" col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m => m.Pacjent.Email)
+                        @Html.TextBoxFor(m => m.Pacjent.Email, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Pacjent.Email)
+                    </div><div class=" col-lg-6 col-md-6 col-sm-6 ">
+                              @Html.LabelFor(m => m.GodzinaRezerwacji)
+                        @Html.TextBoxFor(m => m.GodzinaRezerwacji, new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.GodzinaRezerwacji)
+                    </div>
+                    <div class=" col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m => m.DataRezerwacji)
+                        @Html.TextBoxFor(m => m.DataRezerwacji, new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.DataRezerwacji)
+                    </div>
+                </div>
+                <div id="kartaRezerwacjiPortalPacjentaNiezalogowanyZdjeciePacjenta" class="hidden-xs">
+                    <img class="img-responsive" src="~/Content/Images/userIcon.png" alt="Pacjent" />
+                </div>
+                <input class="idRezerwacji" type="hidden" value="" name="idRez" id="idRez" />
+                @Html.TextBoxFor(m => m.Pacjent.Plec, new { @type = "hidden" })
+
+
+            </div>
+            <div class="" id="kartaRezerwacjiPortalPacjentaNiezalogowanyButtonKontener">
+                <input type="submit" class=" col-lg-offset-5 col-lg-3 col-md-offset-5 col-md-3 col-sm-offset-5 col-sm-3 " value="Zapisz" />
+                <input type="button" onclick="zamknijOknoKartyRezerwacjiPortalPacjetnaNiezalogowany()" class=" col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 " value="Anuluj" />
+            </div>
+        </form>
+    </div>
+
+</div>

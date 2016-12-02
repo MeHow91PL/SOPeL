@@ -1,0 +1,32 @@
+﻿
+@model List<SOPeL.Models.Pacjent>
+@{
+    ViewBag.Title = "Pacjenci";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+    <div> 
+        <h2>Pacjenci</h2>
+    </div>
+<div class="">
+    <div class="container">
+        <div class="  col-sm-4 col-xs-10">
+      <input /><button>Szukaj</button><br />
+            <button>Pokaż wszystkich</button>
+        </div>
+
+        <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
+            <a id="opcje-terminarza-button">
+                <img src="~/Content/Images/pacjenci.png" alt="Pacjenci" class="img-responsive" />
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
+    @* Treść ładowana AJAXem *@
+    @Html.Partial("~/Views/Przychodnia/Pacjenci/PacjenciPrzychodnia.cshtml")
+
+</div>

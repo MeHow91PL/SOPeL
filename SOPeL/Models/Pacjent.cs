@@ -11,6 +11,11 @@ namespace SOPeL.Models
     [Table("Pacjenci")]
     public class Pacjent : Osoba
     {
+
+        public Pacjent()
+        {
+            Aktw = "T";
+        }
         [DataType(DataType.Date)]
         [RegularExpression(@"([0-9]{4}-[0-9]{2}-[0-9]{2})$")]
         public DateTime? DataUrodzenia { get; set; }

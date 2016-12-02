@@ -8,6 +8,8 @@ namespace SOPeL.Models
 {
     public abstract class Osoba
     {
+
+        
         [ScaffoldColumn(false)]
         public int ID { get; set; }
 
@@ -39,6 +41,7 @@ namespace SOPeL.Models
 
 
         [MaxLength(1)]
+        
         public string Aktw { get; set; }
 
     }

@@ -254,6 +254,7 @@
     <Content Include="Views\Przychodnia\_SidebarPrzychodnia.cshtml" />
     <Content Include="Views\PortalPacjenta\_SidebarPortal.cshtml" />
     <Content Include="Views\PortalPacjenta\RejestracjaOnline\SiatkaTerminarza.cshtml" />
+    <Content Include="Views\Shared\_KartaUsuwaniaPacjenta.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -280,9 +281,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201611291951513_init.cs" />
-    <Compile Include="Migrations\201611291951513_init.Designer.cs">
-      <DependentUpon>201611291951513_init.cs</DependentUpon>
+    <Compile Include="Migrations\201611301940306_init.cs" />
+    <Compile Include="Migrations\201611301940306_init.Designer.cs">
+      <DependentUpon>201611301940306_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -326,8 +327,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611291951513_init.resx">
-      <DependentUpon>201611291951513_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611301940306_init.resx">
+      <DependentUpon>201611301940306_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
