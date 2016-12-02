@@ -254,6 +254,8 @@
     <Content Include="Views\Przychodnia\_SidebarPrzychodnia.cshtml" />
     <Content Include="Views\PortalPacjenta\_SidebarPortal.cshtml" />
     <Content Include="Views\PortalPacjenta\RejestracjaOnline\SiatkaTerminarza.cshtml" />
+    <Content Include="Views\Przychodnia\FormularzLogowania.cshtml" />
+    <Content Include="Views\PortalPacjenta\FormularzLogowania.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
