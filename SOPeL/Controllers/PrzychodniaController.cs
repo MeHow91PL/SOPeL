@@ -38,9 +38,5 @@ namespace SOPeL.Controllers
             }
             return View(userModel);
         }
-
-        
-
-
     }
 }
