@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="sopelLocal-Web.config Connection String" description="sopelLocal Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=&quot;|DataDirectory|\sopelLocal.mdf&quot;;Initial Catalog=&quot;sopelLocal&quot;;Integrated Security=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\SOPeL\\SOPeL\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='sopelLocal']/@connectionString" />
-  </parameter>
-  <parameter name="sopelLocal_DatabasePublish-Web.config Connection String" description="sopelLocal_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="sopelLocal_DatabasePublish.ConnetionString" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\SOPeL\\SOPeL\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='sopelLocal_DatabasePublish']/@connectionString" />
-  </parameter>
-</parameters>
