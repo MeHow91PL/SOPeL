@@ -1,0 +1,71 @@
+﻿
+@model SOPeL.ViewModels.PoczekalniaViewModel
+@{
+
+    ViewBag.Title = "Poczekalnia";
+    Layout = "~/Views/_Layout.cshtml";
+
+}
+<h2>Poczekalnia</h2>
+<div class="container kontenerMaterial">
+    <div class="container   col-sm-4 col-xs-10">
+        Pracownik:
+        <select class="form-control" id="wyborLekarza">
+            <option id="0">Wybierz lekarza</option>
+            @{
+                foreach (var prac in Model.pracownicy)
+                {
+                    <option id="@prac.ID">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
+        <a id="opcje-terminarza-button">
+            <img src="~/Content/Images/doctorIcon.png" alt="Opcje" class="img-responsive" />
+        </a>
+    </div>
+</div>
+<div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
+    @* Treść ładowana AJAXem *@
+    @Html.Partial("~/Views/Przychodnia/Poczekalnia/PoczekalniaPrzychodnia.cshtml")
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var wyborLekarza = $("#wyborLekarza");
+            var kontenerMaterialPortalPacjenta = $("#kontenerMaterialPortalPacjenta");
+
+            wyborLekarza.change(function () {
+                pobierzListeRezerwacji(wyborLekarza.children(":selected").attr("id"));
+            });
+
+            function pobierzListeRezerwacji(selectedID) {
+                $.ajax({
+                    url: '@Url.Action("pobierzRezerwacje", "Poczekalnia")',
+                    data: {
+                        pracID: selectedID
+                    },
+                    success: function (response) {
+                        kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
+                            kontenerMaterialPortalPacjenta.html(response);
+                        });
+                        kontenerMaterialPortalPacjenta.slideDown(300);
+                    },
+                    error: function () {
+                        alert("Błąd połączenia z serwerem!");
+
+                        kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
+                            kontenerMaterialPortalPacjenta.html("");
+                        });
+                    }
+                });
+            }
+        })
+
+
+
+    </script>
+}

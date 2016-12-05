@@ -1,0 +1,60 @@
+﻿#kartaLogowania {
+    position: relative;
+    padding: 50px 50px 40px;
+}
+
+
+#formularzKartyLogowania .buttonFotterContainer {
+    margin: 30px auto 0px;
+    text-align: right;
+}
+
+    #formularzKartyLogowania .buttonFotterContainer input {
+        background: #5cb7de;
+        color: white;
+        padding: 10px 30px;
+        border: none;
+        margin: 0;
+        right: 0;
+        -moz-transition: 100ms;
+        -o-transition: 100ms;
+        -webkit-transition: 100ms;
+        transition: 100ms;
+    }
+
+    #formularzKartyLogowania .buttonFotterContainer input:hover {
+        background: #71d0f8;
+    }
+
+    #formularzKartyLogowania .buttonFotterContainer input:active {
+        background: #5cadcf;
+    }
+
+        #formularzKartyLogowania .buttonFotterContainer input:first-child {
+            margin-right: 20px;
+        }
+
+#formularzKartyLogowania .portalExtraButtons {
+    margin: 20px 0 0;
+    text-align: right;
+    font-size: small;
+}
+
+    #formularzKartyLogowania .portalExtraButtons a:last-child {
+        line-height: 2em;
+        color: #164153;
+    }
+
+#formularzKartyLogowania field-validation-error {
+    display: block;
+    float: none;
+}
+
+@media all and (max-width:768px) {
+
+    #formularzKartyLogowania .buttonFotterContainer input {
+        height: 40px;
+        margin-top: 20px;
+        font-size: small;
+    }
+}

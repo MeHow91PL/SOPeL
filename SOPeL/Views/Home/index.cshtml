@@ -1,0 +1,29 @@
+﻿@model SOPeL.Models.Uzytkownik
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/Main")
+    @Styles.Render("~/Content/themes/base/css")
+</head>
+<body style="padding: 0">
+    <div id="tlo">
+        <div class="buttons-center">
+            <div id="buttons" class="">
+                <a class="przycisk" href="@Url.Action("Logowanie", "PortalPacjenta")">
+                    <img src="~/Content/Images/pacjentIcon.png" alt="Ikona pacjenta" />
+                    <span>Portal Pacjenta</span>
+                </a>
+                <a class="przycisk" href="@Url.Action("Logowanie", "Przychodnia")">
+                    <img src="~/Content/Images/doctorIcon.png" alt="Ikona doktora" />
+                    <span>Przychodnia</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
