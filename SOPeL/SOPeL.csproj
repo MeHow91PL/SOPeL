@@ -302,6 +302,7 @@
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\PortalPacjenta\RejestracjaOnline\index.cshtml" />
     <Content Include="Views\Przychodnia\Admin\Index.cshtml" />
