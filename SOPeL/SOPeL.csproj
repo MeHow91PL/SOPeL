@@ -230,6 +230,8 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="sample.snippet" />
+    <Content Include="ApplicationInsights.config" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\sopel20161129.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -253,6 +255,14 @@
     <Content Include="Views\Przychodnia\_SidebarPrzychodnia.cshtml" />
     <Content Include="Views\PortalPacjenta\_SidebarPortal.cshtml" />
     <Content Include="Views\PortalPacjenta\RejestracjaOnline\SiatkaTerminarza.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Views\web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
