@@ -32,7 +32,7 @@ namespace SOPeL.DAL
         }
 
         public DbSet<Rezerwacja> Rezerwacje { get; set; }
-        public DbSet<Uzytkownik> Uzytkownicy { get; set; }
+        public DbSet<Uzytkownik> Uzytkownicy { get; set; } 
         public DbSet<Opcja> Opcje { get; set; }
 
 
