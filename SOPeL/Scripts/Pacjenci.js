@@ -54,12 +54,12 @@ $(document).ready(function () {
                 success: function (response) {
                     $kontenerMaterialPortalPacjenta.html(response);
                 },
-                error: function () { }
+                error: function () {}
 
 
             });
         }
-        else { };
+        else {this.window.close()};
 
         });
     });

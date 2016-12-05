@@ -14,11 +14,17 @@ namespace SOPeL.Controllers
     {
         SopelContext db = new SopelContext();
         // GET: Pacjenci
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             
-            List<Pacjent> pacjenci = db.Pacjenci.ToList();
-            return View("~/Views/Przychodnia/Pacjenci/Index.cshtml",pacjenci);
+            var pacjenci = from s in db.Pacjenci select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                pacjenci = pacjenci.Where(s => s.Nazwisko.Contains(searchString)
+                                            || s.Pesel.Contains(searchString));
+            }
+
+            return View("~/Views/Przychodnia/Pacjenci/Index.cshtml",pacjenci.ToList());
         }
         
         internal List<Pacjent> GetListaPacjentow(string zapytanie)
@@ -38,12 +44,10 @@ namespace SOPeL.Controllers
         {
             if (db.Pacjenci.Any(p => p.ID == pacjent.ID))
             {
-
                 db.Entry(pacjent);
                 db.Entry(pacjent).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-
             }
             else
             {
@@ -51,26 +55,20 @@ namespace SOPeL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-                          
         }
 
         public PartialViewResult EdytujPacjenta(int id)
         {
-           
             Pacjent pacjent = db.Pacjenci.Find(id);
             return PartialView("_KartaPacjenta", pacjent);
         }
 
-
         public PartialViewResult UsunPacjenta(int id)
         {
-
             Pacjent pacjent = db.Pacjenci.Find(id);
             pacjent.Aktw = "N";
             db.SaveChanges();
             return PartialView("PacjenciPrzychodnia");
         }
-
-
     }
 }
