@@ -1,9 +1,0 @@
-﻿#bodyPortalPacjenta {
-    background: #f1f1f1;
-    background: -moz-linear-gradient(left, #fefefe, #f1f1f1);
-    background: -o-linear-gradient(left, #fefefe, #f1f1f1);
-    background: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#f1f1f1));
-    background: -webkit-linear-gradient(left, #fefefe, #f1f1f1);
-    background: linear-gradient(to left, #fefefe, #f1f1f1);
-    overflow-x: hidden;
-}
