@@ -1,0 +1,109 @@
+﻿#tlo {
+    background: url('Images/tloStart.png') no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.buttons-center {
+    position: absolute;
+    align-items: center;
+    height: 100%;
+    display: flex;
+}
+
+#buttons {
+    margin-left: 100px;
+}
+
+    #buttons a:hover {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #buttons a:active {
+        text-decoration: none;
+    }
+
+
+.przycisk {
+    font-size: xx-large;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #11616d;
+    margin: 0px;
+    color: white;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    display: block;
+    margin: 10px;
+}
+
+    .przycisk:hover {
+        opacity: 0.87;
+        -moz-transition: 150ms;
+        -o-transition: 150ms;
+        -webkit-transition: 150ms;
+        transition: 150ms;
+    }
+
+    .przycisk img {
+        margin: 0 10px;
+        vertical-align: middle;
+    }
+
+    .przycisk span {
+        vertical-align: middle;
+        color: white;
+        margin: 0 10px;
+    }
+
+
+
+
+.podpowiedz {
+    display: block;
+    float: left;
+    height: 100%;
+    padding: 8px 12px;
+    font-size: 1.5em;
+    line-height: 1.428571429;
+    color: #555555;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -moz-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+@media all and (max-width: 768px) {
+    #buttons {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+        #buttons a {
+            text-decoration: none;
+            margin: 0;
+        }
+
+    .przycisk {
+        margin: 10px 0;
+    }
+
+        .przycisk img {
+            margin: 0 10px;
+            vertical-align: middle;
+        }
+
+        .przycisk span {
+            font-size: large;
+        }
+}

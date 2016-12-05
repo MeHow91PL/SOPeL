@@ -1,0 +1,91 @@
+﻿@model SOPeL.ViewModels.TerminarzViewModel
+
+@{
+    ViewBag.Title ="Umów wizitę";
+    Layout ="~/Views/_Layout.cshtml";
+}
+
+@section style{
+    @Styles.Render("~/Content/RejestracjaOnline")
+}
+
+
+<div class="portalPacjenta">
+    <div class="container kontenerMaterial">
+        <div class="container">
+            <div id="terminarzDataKontener" class="col-sm-4">
+                <label for="dataRezerwacji">Data</label>
+                <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="dataRezerwacji" name="dataRezerwacji" class="form-control datepickerRejOnline" />
+            </div>
+            <div class="col-sm-4">
+                <label for="lekarz">Lekarz</label>
+                <select class="form-control" id="wyborLekarzaRejOnline">
+                    <option>Wybierz lekarza</option>
+                    @{
+                        foreach (var prac in Model.pracownicy)
+                        {
+                            <option id="@prac.ID">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label for="specjalizacja">Specjalizacja</label>
+                <select class="form-control" id="wyborSpecjalizacjiPortalPacjenta" onchange="wybranoSpecjalizacje(this)">
+                    <option></option>
+                    @{
+                        foreach (var spec in Model.pracownicy.Select(p => p.Specjalizacja).Distinct())
+                        {
+                            <option id="@spec">@spec</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container kontenerMaterial" id="podpowiedzi">
+        <div class="col-sm-4  podpowiedz">
+            <img class="img-responsive" src="~/Content/Images/plannerIcon.png" alt="Ikonka kalendarza" style="float:left" />
+            <img class="hidden-xs img-responsive" src="~/Content/Images/Up 2.png" alt="Ikonka kalendarza" style="float:right" />
+            <p style="float:left">Wybierz, aby określić datę rezerwacji</p>
+        </div>
+        <div class="col-sm-4  podpowiedz">
+            <img class="img-responsive" src="/Content/Images/doctorIcon.png" alt="Ikonka lekarza" style="float:left" />
+            <img class="hidden-xs img-responsive" src="~/Content/Images/Up 2.png" alt="Ikonka kalendarza" style="float:right" />
+            <p style="float:left">Wybierz, aby wyświetlić listę lekarzy</p>
+        </div>
+        <div class="col-sm-4  podpowiedz">
+            <img class="img-responsive" src="/Content/Images/clinicIcon.png" alt="Ikonka kliniki" style="float:left" />
+            <img class="hidden-xs img-responsive" src="~/Content/Images/Up 2.png" alt="Ikonka kalendarza" style="float:right" />
+            <p style="float:left">Wybierz, aby wyświetlić lekarzy danej specjalności</p>
+        </div>
+    </div>
+
+    <div class="container kontenerMaterial " id="kontenerMaterialPortalPacjenta" style="padding:0">
+        @*Treść ładowana AJAXem*@
+    </div>
+
+    @*@Html.Partial("_KartaRezerwacjiPortalPacjentaNiezalogowany")*@
+</div>
+    <script>
+
+        /// <reference path="jquery-3.1.1.js" />
+        
+
+        //Pobranie z bazy listy pracowników po wybranej specjalizacji
+        function wybranoSpecjalizacje(specList) {
+            
+        }
+    </script>
+@section scripts{
+    @Scripts.Render("~/Scripts/RejestracjaOnline")
+}
+
+
+
+
+
+
+
+
