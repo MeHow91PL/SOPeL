@@ -25,6 +25,12 @@ namespace SOPeL.DAL
         public DbSet<Adres> Adresy { get; set; }
         public DbSet<Pacjent> Pacjenci { get; set; }
         public DbSet<Pracownik> Pracownicy { get; set; }
+
+        internal static SopelContext Create()
+        {
+            return new SopelContext();
+        }
+
         public DbSet<Rezerwacja> Rezerwacje { get; set; }
         public DbSet<Uzytkownik> Uzytkownicy { get; set; }
         public DbSet<Opcja> Opcje { get; set; }
