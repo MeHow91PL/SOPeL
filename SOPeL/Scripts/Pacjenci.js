@@ -42,9 +42,6 @@ $(document).ready(function () {
 
     });
 
-
-
-
     $(".UsunPacjenta").click(function () {
         
         if (confirm('Czy jesteś pewien że chcesz usunąć pacjenta:')) {
