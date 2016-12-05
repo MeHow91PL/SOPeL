@@ -1,0 +1,144 @@
+﻿@model SOPeL.ViewModels.TerminarzViewModel
+
+@{
+    ViewBag.Title = "Umów wizitę";
+
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<script src="~/Scripts/terminarz.js"></script>
+   
+    <div class="container kontenerMaterial">
+        <div class="container">
+            <div id="terminarzDataKontener" class="  col-sm-4 ">
+                <label for="dataRezerwacji">Data</label>
+                <input type="text" onchange="wybranoLekarza()" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}",DateTime.Now.Day)" id="dataRezerwacji" name="dataRezerwacji" class="form-control datepickerRejOnline" />
+            </div>
+            <div class="  col-sm-4 ">
+                <label for="lekarz">Lekarz</label>
+                <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
+                    <option>Wybierz lekarza</option>
+                    @{
+                        foreach (var prac in Model.pracownicy)
+                        {
+                            <option id="@prac.ID" >@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="  col-sm-4 ">
+                <label for="specjalizacja">Specjalizacja</label>
+                <select class="form-control" id="wyborSpecjalizacjiPortalPacjenta" onchange="wybranoSpecjalizacje(this)">
+                    <option></option>
+                    @{
+                        foreach (var spec in Model.pracownicy.Select(p => p.Specjalizacja).Distinct())
+                        {
+                            <option id="@spec">@spec</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container kontenerMaterial" id="podpowiedzi">
+        <div class="  col-sm-4  podpowiedz">
+            <img class="img-responsive" src="~/Content/Images/plannerIcon.png" alt="Ikonka kalendarza" style="float:left" />
+            <img class="hidden-xs img-responsive" src="~/Content/Images/Up 2.png" alt="Ikonka kalendarza" style="float:right" />
+            <p style="float:left">Wybierz, aby określić datę rezerwacji</p>
+        </div>
+        <div class="  col-sm-4  podpowiedz">
+            <img class="img-responsive" src="/Content/Images/doctorIcon.png" alt="Ikonka lekarza" style="float:left" />
+            <img class="hidden-xs img-responsive" src="~/Content/Images/Up 2.png" alt="Ikonka kalendarza" style="float:right" />
+            <p style="float:left">Wybierz, aby wyświetlić listę lekarzy</p>
+        </div>
+        <div class="  col-sm-4  podpowiedz">
+            <img class="img-responsive" src="/Content/Images/clinicIcon.png" alt="Ikonka kliniki" style="float:left" />
+            <img class="hidden-xs img-responsive" src="~/Content/Images/Up 2.png" alt="Ikonka kalendarza" style="float:right" />
+            <p style="float:left">Wybierz, aby wyświetlić lekarzy danej specjalności</p>
+        </div>
+    </div>
+
+    <div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
+        @*Treść ładowana AJAXem*@
+    </div>
+
+    @*@Html.Partial("_KartaRezerwacjiPortalPacjentaNiezalogowany")*@
+    <script src="~/Scripts/terminarz.js"></script>
+    <script>
+
+
+        function wybranoLekarza() {
+                var kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+                var dataRezerwacji = $('#dataRezerwacji').val();
+                var selected = $('#wyborLekarzaPortalPacjenta').children(":selected").attr("id");
+                var podpowiedzi = $('#podpowiedzi');
+                var wzor = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
+
+                if (!wzor.test(dataRezerwacji)) {
+                    alert("Wybierz datę z kalendarza");
+                    kontenerMaterialPortalPacjenta.slideUp(500);
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("pobierzTerminarzWybranegoLekarza", "RejestracjaOnline")',
+                    data: {
+                        idi: selected,
+                        wybranaData: dataRezerwacji
+                    },
+                    success: function (response) {
+                        kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
+                        kontenerMaterialPortalPacjenta.html(response);
+                        });
+                        kontenerMaterialPortalPacjenta.slideDown(300);
+                        podpowiedzi.slideUp(300);
+                    },
+                    error: function () {
+                        kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
+                            kontenerMaterialPortalPacjenta.html("");
+                            podpowiedzi.slideDown(300);
+                        });
+                    }
+                });
+            }
+
+        //Pobranie z bazy listy pracowników po wybranej specjalizacji
+        function wybranoSpecjalizacje(specList) {
+            var specjalizacja = $(specList).children(":selected").attr("id");
+
+            if ($.trim(specjalizacja).length == 0) {
+                specjalizacja = "%"; //jeżeli nie jest wybrana żadna specjalizacja to zapytanie ma zwrócić wszystkich lekarzy. Zapytanie Select * from lekarze where specjalizacja like '%'
+            }
+
+            var lekarz = $('#wyborLekarzaPortalPacjenta');
+            var lekarzFontColor = lekarz.css("color");
+            var lekarzBgColor = lekarz.css("background-color");
+            var selectedLekarz = $(lekarz).children(":selected").attr("id");
+            $.ajax({
+                url: '@Url.Action("ListaPracownikow", "Rejestracja")',
+                type: "POST",
+                data: {
+                    spec: specjalizacja
+                },
+                success: function (response) {
+                    var s = "<option>Wybierz lekarza</option>";
+                    for (var i = 0; i < response.length; i++) {
+                        if(response[i].Id == selectedLekarz)
+                            s += "<option selected id = " + response[i].Id + ">" + response[i].Imie + " " + response[i].Nazwisko + " (" + response[i].Specjalizacja + ")</option>";
+                        else
+                            s += "<option id = " + response[i].Id + ">" + response[i].Imie + " " + response[i].Nazwisko + " (" + response[i].Specjalizacja + ")</option>";
+                    }
+                    lekarz.animate({ color: lekarzBgColor },200);
+                    lekarz.html(s);
+                    lekarz.animate({ color: lekarzFontColor }, 200);
+                    wybranoLekarza();
+                }
+
+            });
+        }
+    </script>
+
+
+
+
