@@ -150,6 +150,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SOPeL.DAL.TestContext.mdf" />
+    <Content Include="App_Data\SOPeL.DAL.TestContext_log.ldf">
+      <DependentUpon>SOPeL.DAL.TestContext.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\sopelLocal.mdf" />
+    <Content Include="App_Data\sopelLocal_log.ldf">
+      <DependentUpon>sopelLocal.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -283,9 +291,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201611301935468_init.cs" />
-    <Compile Include="Migrations\201611301935468_init.Designer.cs">
-      <DependentUpon>201611301935468_init.cs</DependentUpon>
+    <Compile Include="Migrations\201612051716589_migrumigru.cs" />
+    <Compile Include="Migrations\201612051716589_migrumigru.Designer.cs">
+      <DependentUpon>201612051716589_migrumigru.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -320,12 +328,10 @@
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\Przychodnia\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611301935468_init.resx">
-      <DependentUpon>201611301935468_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612051716589_migrumigru.resx">
+      <DependentUpon>201612051716589_migrumigru.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
