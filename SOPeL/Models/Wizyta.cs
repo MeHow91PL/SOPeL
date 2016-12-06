@@ -17,7 +17,7 @@ namespace SOPeL.Models
 
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
-        public DateTime DataRezerwacji { get; set; }
+        public DateTime DataWizyty { get; set; }
 
         [Display(Name = "Godzina od")]
         public string godzOd { get; set; }
