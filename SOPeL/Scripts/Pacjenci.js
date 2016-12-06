@@ -4,7 +4,7 @@
 $(document).ready(function () {
     var $dodajPacjenta = $("#dodajPacjenta");
     var $kartaRezerwacjiWizytyKontener = $("#kartaRezerwacjiWizytyKontener");
-    
+    var $kontenerMaterialPortalPacjenta = $("#kontenerMaterialPortalPacjenta");
 
     $dodajPacjenta.click(function () {
         //alert("Pojedyncze klikniecie klikniecie");
@@ -37,14 +37,13 @@ $(document).ready(function () {
                 $kartaRezerwacjiWizytyKontener.html(response);
             },
             error: function () { }
-
         });
 
     });
 
     $(".UsunPacjenta").click(function () {
         
-        if (confirm('Czy jesteś pewien że chcesz usunąć pacjenta:')) {
+        if (confirm('Czy jesteś pewien że chcesz usunąć pacjenta?')) {
             $.ajax({
                 url: '/Pacjenci/UsunPacjenta',
                 type: 'POST',
@@ -52,14 +51,11 @@ $(document).ready(function () {
                     id: $(this).data("idpacjenta")
                 },
                 success: function (response) {
-                    $kontenerMaterialPortalPacjenta.html(response);
+                   $kontenerMaterialPortalPacjenta.html(response);
                 },
                 error: function () {}
-
-
             });
         }
-        else {this.window.close()};
 
         });
     });
