@@ -6,9 +6,10 @@ using System.Web;
 
 namespace SOPeL.ViewModels
 {
-    public class PoczekalniaViewModel
+    public class WizytaViewModel
     {
         public ICollection<Pracownik> pracownicy { get; set; }
         public ICollection<Rezerwacja> rezerwacje { get; set; }
+        public ICollection<Wizyta> wizyty { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace SOPeL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class migrumigru : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(migrumigru));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612051716589_migrumigru"; }
+            get { return "201612061637073_init"; }
         }
         
         string IMigrationMetadata.Source

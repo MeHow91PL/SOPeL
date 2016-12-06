@@ -26,6 +26,9 @@ namespace SOPeL.App_Start
             bundles.Add(new ScriptBundle("~/Scripts/Pacjenci").Include(
                         "~/Scripts/Pacjenci.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/Wizyta").Include(
+                        "~/Scripts/Wizyta.js"));
+
             bundles.Add(new ScriptBundle("~/Scripts/Terminarz").Include(
                         "~/Scripts/Terminarz.js"));
 
