@@ -332,10 +332,6 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612061859513_init.cs" />
-    <Compile Include="Migrations\201612061859513_init.Designer.cs">
-      <DependentUpon>201612061859513_init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -373,11 +369,6 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\Przychodnia\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612061859513_init.resx">
-      <DependentUpon>201612061859513_init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
