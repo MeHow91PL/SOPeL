@@ -1,8 +1,10 @@
 ﻿/// <reference path="jquery-3.1.1.js" />
 
 $(document).ready(function () {
-    alert("alert na strat");
-    var wyborLekarza = $("#wyborLekarza");
+    var $dodajWizyte = $("#dodajWizyte");
+    var $KontenerKartaWizyty = $('#KontenerKartaWizyty')
+    var $kartaRezerwacjiWizytyKontener = $("#kartaRezerwacjiWizytyKontener");
+    
     var kontenerMaterialPortalPacjenta = $("#kontenerMaterialPortalPacjenta");
 
     //wyborLekarza.change(function () {
@@ -12,15 +14,18 @@ $(document).ready(function () {
 
 
 
-    $dodajWizyte.click(function () {
-        alert("Pojedyncze klikniecie klikniecie");
+    $(".dodajWizyte").click(function () {
+        //alert("alert");
 
         $kartaRezerwacjiWizytyKontener.css("display", "flex");
         $.ajax({
-            url: '/Pacjenci/dodajPacjenta',
+            url: '/Wizyta/dodajWizyte',
             type: 'POST',
+            data: {
+                id: $(this).data("idwizyty")
+            },
             success: function (response) {
-                $kartaRezerwacjiWizytyKontener.html(response);
+                $KontenerKartaWizyty.html(response);
             },
             error: function () {
 
@@ -29,6 +34,8 @@ $(document).ready(function () {
             }
         });
     });
+
+   
 
 
 

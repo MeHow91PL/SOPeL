@@ -115,7 +115,7 @@ namespace SOPeL.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        DataRezerwacji = c.DateTime(nullable: false),
+                        DataWizyty = c.DateTime(nullable: false),
                         godzOd = c.String(),
                         godzDo = c.String(),
                         DataModyfikacji = c.DateTime(nullable: false),
