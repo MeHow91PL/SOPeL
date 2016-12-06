@@ -15,15 +15,13 @@ namespace SOPeL.Controllers
         SopelContext db = new SopelContext();
         // GET: Pacjenci
         public ActionResult Index(string searchString)
-        {
-            
+        { 
             var pacjenci = from s in db.Pacjenci select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 pacjenci = pacjenci.Where(s => s.Nazwisko.Contains(searchString)
                                             || s.Pesel.Contains(searchString));
             }
-
             return View("~/Views/Przychodnia/Pacjenci/Index.cshtml",pacjenci.ToList());
         }
         

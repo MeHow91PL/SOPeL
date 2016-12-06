@@ -17,8 +17,6 @@ $(document).ready(function () {
                 $kartaRezerwacjiWizytyKontener.html(response);
             },
             error: function () {
-
-
                 alert("Error");
             }
         });
