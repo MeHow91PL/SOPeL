@@ -22,6 +22,10 @@
     color: #ffffff;
 }
 
+.terminarz .pacjent_podglad {
+    cursor: pointer;
+}
+
 
 /*################################### SIDEBAR #################################################*/
 

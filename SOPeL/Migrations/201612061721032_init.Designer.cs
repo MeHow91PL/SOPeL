@@ -13,7 +13,7 @@ namespace SOPeL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201612061637073_init"; }
+            get { return "201612061721032_init"; }
         }
         
         string IMigrationMetadata.Source
