@@ -14,11 +14,15 @@ namespace SOPeL.Controllers
     {
         SopelContext db = new SopelContext();
         // GET: Pacjenci
-        public ActionResult Index()
-        {
-            
-            List<Pacjent> pacjenci = db.Pacjenci.ToList();
-            return View("~/Views/Przychodnia/Pacjenci/Index.cshtml",pacjenci);
+        public ActionResult Index(string searchString)
+        { 
+            var pacjenci = from s in db.Pacjenci select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                pacjenci = pacjenci.Where(s => s.Nazwisko.Contains(searchString)
+                                            || s.Pesel.Contains(searchString));
+            }
+            return View("~/Views/Przychodnia/Pacjenci/Index.cshtml",pacjenci.ToList());
         }
         
         internal List<Pacjent> GetListaPacjentow(string zapytanie)
@@ -34,16 +38,14 @@ namespace SOPeL.Controllers
             return PartialView("_KartaPacjenta",pacjent);
         }
 
-        public ActionResult ZapiszDodajPacjenta([Bind(Include = "Imie,Nazwisko,Pesel,KodPocztowy,Miasto,Ulica,Telefon,Email,Plec,Aktw,ID")] Pacjent pacjent)
+        public ActionResult ZapiszDodajPacjenta([Bind(Include = " Imie,Nazwisko,Pesel,KodPocztowy,Miasto,Ulica,Telefon,Email,Plec,Aktw,ID")] Pacjent pacjent)
         {
             if (db.Pacjenci.Any(p => p.ID == pacjent.ID))
             {
-
                 db.Entry(pacjent);
                 db.Entry(pacjent).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-
             }
             else
             {
@@ -51,26 +53,21 @@ namespace SOPeL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-                          
         }
 
         public PartialViewResult EdytujPacjenta(int id)
         {
-           
             Pacjent pacjent = db.Pacjenci.Find(id);
             return PartialView("_KartaPacjenta", pacjent);
         }
 
-
         public PartialViewResult UsunPacjenta(int id)
         {
-
             Pacjent pacjent = db.Pacjenci.Find(id);
             pacjent.Aktw = "N";
+            var pacjenci = from s in db.Pacjenci select s;
             db.SaveChanges();
-            return PartialView("PacjenciPrzychodnia");
+            return PartialView("~/Views/Przychodnia/Pacjenci/PacjenciPrzychodnia.cshtml", pacjenci.ToList());
         }
-
-
     }
 }

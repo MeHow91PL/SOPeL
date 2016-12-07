@@ -18,7 +18,8 @@ namespace SOPeL.Controllers
         {
             var prac = db.Pracownicy.ToList();
             var rez = db.Rezerwacje.ToList();
-            var model = new PoczekalniaViewModel { pracownicy = prac, rezerwacje = rez };
+            
+            var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez };
             //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
             //ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
             //ViewBag.Rezerwacje = new List<Rezerwacja>();
@@ -42,6 +43,8 @@ namespace SOPeL.Controllers
 
             return pracownicy;
         }
+
+
 
         public PartialViewResult pobierzRezerwacje(string pracID)
         {
@@ -75,6 +78,18 @@ namespace SOPeL.Controllers
             //ViewBag.Rezerwacje = rezerwacje;
 
             return PartialView("~/Views/Przychodnia/Poczekalnia/PoczekalniaPrzychodnia.cshtml");
+        }
+
+
+
+
+        public ActionResult ZapiszDodajWizyte([Bind(Include = "Imie,Nazwisko,Pesel,KodPocztowy,Miasto,Ulica,Telefon,Email,Plec,Aktw,ID")] Wizyta wizyta)
+        {
+            db.Wizyty.Add(wizyta);
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿u
 @model List<SOPeL.Models.Pacjent>
 @{
     ViewBag.Title = "Pacjenci";
@@ -48,9 +48,14 @@
     </div>
 <div class="">
     <div class="container">
-        <div class="  col-sm-4 col-xs-10">
-            
-      <input /><button>Szukaj</button><br />
+        <div class="col-sm-4 col-xs-10">
+            @using (Html.BeginForm())
+            {
+                <p>
+                    Wyszukaj pacjenta @Html.TextBox("searchString")
+                    <input type="submit" value="Szukaj" />
+                </p>
+            }
             <button id="dodajPacjenta">Dodaj pacjenta</button>
         </div>
 
