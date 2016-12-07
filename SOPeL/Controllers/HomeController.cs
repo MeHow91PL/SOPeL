@@ -19,32 +19,32 @@ namespace SOPeL.Controllers
             return View();
         }
 
-        [HttpPost] // z widoku _LogowanieParatial
-        public ActionResult Logowanie(Uzytkownik uzytkownik)
-        {
-            //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
-            //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT haslo from uzytkownicy where login = '" + uzytkownik.Login + "'");
-            //try
-            //{
-            //    dr.Read();
-            //    if (dr[0].ToString() == uzytkownik.Haslo)  // sprawdza czy podane przez uzytkownika haslo odpowiada temu z bazy
-            //    {
-            //        dr.Close();
-            //        return RedirectToAction("Index", "Przychodnia");
-            //    }
-            //    else //gdy uzytkownik istniej w bazie ale hasło sie nie zgadza
-            //    {
-            //        dr.Close();
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //}
-            //catch (Exception)  //wyłapuje sytuacje, gdy użytkownik poda login nieistniejacy w bazie, bo wtedy dr.Read() nie ma wartosci
-            //{
+        //[HttpPost] // z widoku _LogowanieParatial
+        //public ActionResult Logowanie(Uzytkownik uzytkownik)
+        //{
+        //    //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
+        //    //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("SELECT haslo from uzytkownicy where login = '" + uzytkownik.Login + "'");
+        //    //try
+        //    //{
+        //    //    dr.Read();
+        //    //    if (dr[0].ToString() == uzytkownik.Haslo)  // sprawdza czy podane przez uzytkownika haslo odpowiada temu z bazy
+        //    //    {
+        //    //        dr.Close();
+        //    //        return RedirectToAction("Index", "Przychodnia");
+        //    //    }
+        //    //    else //gdy uzytkownik istniej w bazie ale hasło sie nie zgadza
+        //    //    {
+        //    //        dr.Close();
+        //    //        return RedirectToAction("Index", "Home");
+        //    //    }
+        //    //}
+        //    //catch (Exception)  //wyłapuje sytuacje, gdy użytkownik poda login nieistniejacy w bazie, bo wtedy dr.Read() nie ma wartosci
+        //    //{
 
-            //    return RedirectToAction("Index", "Home");
-            //}
-            var a = db.Pracownicy.ToArray();
-            return RedirectToAction("Index", "Home");
-        }
+        //    //    return RedirectToAction("Index", "Home");
+        //    //}
+        //    var a = db.Pracownicy.ToArray();
+        //    return RedirectToAction("Index", "Home");
+        //}
     }
 }

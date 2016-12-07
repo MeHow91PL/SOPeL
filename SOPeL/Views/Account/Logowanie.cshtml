@@ -1,0 +1,59 @@
+﻿@model SOPeL.ViewModels.LoginViewModel
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/Layout")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/bootstrap")
+
+
+</head>
+<body style="padding: 0">
+    <div id="tlo">
+        <div class="wysrodkujCentralnie">
+            <div id="kartaLogowania" class="kontenerOkienka">
+                <form id="formularzKartyLogowania" class="form-horizontal" returnUrl="@ViewBag.ReturnUrl" method="post" action="@Url.Action("Logowanie","Account")" )">
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("ReturnUrl", new { value = ViewBag.ReturnUrl })
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Login, new { @class = "col-sm-2 col-md-2 col-lg-2 control-label" })
+                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Login)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Haslo, new { @class = "col-sm-2 col-md-2 col-lg-2 control-label" })
+                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                @Html.TextBoxFor(m => m.Haslo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Haslo)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.Zapamietaj)
+                        @Html.LabelFor(m => m.Zapamietaj)
+                    </div>
+                    <div class="buttonFotterContainer">
+                        <input type="submit" class="" value="Zaloguj" />
+                        <input type="submit" class="" value="Anuluj" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    <script>
+
+    </script>
+
+</body>
+</html>

@@ -25,7 +25,7 @@ namespace SOPeL.Controllers
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
             ViewBag.CzasWiz = model.opcje.Single(o => o.Nazwa == "term_czas_wiz").Wartosc;
 
-            return View("~/Views/Przychodnia/Terminarz/Index.cshtml", model);
+            return View(model);
         }
 
         public ActionResult pobierzTerminarz(string wybranaData)
@@ -36,7 +36,7 @@ namespace SOPeL.Controllers
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
             ViewBag.CzasWiz = model.opcje.Single(o => o.Nazwa == "term_czas_wiz").Wartosc;
 
-            return View("SiatkaTerminarza.cshtml", model);
+            return View("SiatkaTerminarza", model);
         }
 
         private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData = null, int pracownikId = 0)
@@ -106,7 +106,7 @@ namespace SOPeL.Controllers
 
         public ActionResult Admin()
         {
-            return View("~/Views/Przychodnia/Admin/Index.cshtml");
+            return View();
         }
 
         private List<Rezerwacja> GetListaRezerwacji(string zapytanie)

@@ -51,7 +51,7 @@ namespace SOPeL.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Logowanie(LoginViewModel model, string returnUrl, string system)
+        public async Task<ActionResult> Logowanie(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace SOPeL.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl, system);
+                    return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -76,13 +76,13 @@ namespace SOPeL.Controllers
             }
         }
 
-        private ActionResult RedirectToLocal(string returnUrl, string system)
+        private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Logowanie", system);
+            return RedirectToAction("Logowanie");
         }
 
 
@@ -103,7 +103,7 @@ namespace SOPeL.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await UserManager.CreateAsync(user, model.Haslo);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

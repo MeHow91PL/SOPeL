@@ -17,7 +17,6 @@ namespace SOPeL.ViewModels
     {
         [Required]
         [Display(Name = "Login")]
-        [EmailAddress]
         public string Login { get; set; }
 
         [Required]
@@ -32,20 +31,25 @@ namespace SOPeL.ViewModels
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(100, ErrorMessage = "Login musi mieć przynajmniej 3 znaki.")]
+        [Display(Name = "Login")]
+        public string Login { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Hasło musi mieć przynajmniej 8 znaków.")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        [Display(Name = "Hasło")]
+        public string Haslo { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        [Display(Name = "Potwiedź hasło")]
+        [Compare("Haslo", ErrorMessage = "Wpisane hasła różnią się od siebie!")]
+        public string PotwierdzHaslo { get; set; }
     }
 
     public class ResetPasswordViewModel

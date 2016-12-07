@@ -291,9 +291,9 @@
     <Content Include="Scripts\Przychodnia.js" />
     <Content Include="Scripts\RejestracjaOnline.js" />
     <Content Include="Scripts\Terminarz.js" />
-    <Content Include="Views\_SidebarPrzychodnia.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\web.config" />
+    <Content Include="Views\Shared\_KartaWizyty.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -310,7 +310,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacjenciController.cs" />
-    <Compile Include="Controllers\PoczekalniaController.cs" />
     <Compile Include="Controllers\PrzychodniaController.cs" />
     <Compile Include="Controllers\TerminarzController.cs" />
     <Compile Include="Controllers\WizytaController.cs" />
@@ -321,13 +320,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612051716589_migrumigru.cs" />
-    <Compile Include="Migrations\201612051716589_migrumigru.Designer.cs">
-      <DependentUpon>201612051716589_migrumigru.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612051902026_AddedIdentityASP.cs" />
-    <Compile Include="Migrations\201612051902026_AddedIdentityASP.Designer.cs">
-      <DependentUpon>201612051902026_AddedIdentityASP.cs</DependentUpon>
+    <Compile Include="Migrations\201612071901511_Init.cs" />
+    <Compile Include="Migrations\201612071901511_Init.Designer.cs">
+      <DependentUpon>201612071901511_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -339,19 +334,20 @@
     <Compile Include="Models\Rezerwacja.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\Uzytkownik.cs" />
+    <Compile Include="Models\Wizyta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
-    <Compile Include="ViewModels\PoczekalniaViewModel.cs" />
     <Compile Include="ViewModels\TerminarzViewModel.cs" />
+    <Compile Include="ViewModels\WizytaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Logowanie.cshtml" />
+    <Content Include="Views\Account\Logowanie.cshtml" />
     <Content Include="Views\Pacjenci\Index.cshtml" />
     <Content Include="Views\Pacjenci\PacjenciPrzychodnia.cshtml" />
-    <Content Include="Views\Poczekalnia\Index.cshtml" />
-    <Content Include="Views\Poczekalnia\PoczekalniaPrzychodnia.cshtml" />
+    <Content Include="Views\Wizyta\Index.cshtml" />
+    <Content Include="Views\Wizyta\WizytaPrzychodnia.cshtml" />
     <Content Include="Views\Terminarz\Index.cshtml" />
     <Content Include="Views\Terminarz\SiatkaTerminarza.cshtml" />
     <Content Include="Views\Shared\_KartaPacjenta.cshtml" />
@@ -359,20 +355,19 @@
     <Content Include="Views\Shared\_KartaRezerwacjiWizyty.cshtml" />
     <Content Include="Views\Shared\_PortalPacjentaLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\SopelHome\index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\_Layout.cshtml" />
-    <Content Include="Views\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612051716589_migrumigru.resx">
-      <DependentUpon>201612051716589_migrumigru.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612071901511_Init.resx">
+      <DependentUpon>201612071901511_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612051902026_AddedIdentityASP.resx">
-      <DependentUpon>201612051902026_AddedIdentityASP.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

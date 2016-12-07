@@ -23,7 +23,38 @@
             <div class="sidebar" id="sidebarPrzychodnia">
                 <div id="zwijaczMenu">&lt;&lt;</div>
 
-                @Html.Action("getSidebar")
+                <ul id="navPortalPacjenta">
+                    <li id="Terminarz-Sidebar">
+                        <a href="@Url.Action("Index","Terminarz")" id="Terminarz">
+                            <img class="img-responsive" src="~/Content/Images/unnamed.png" alt="Terminarz" />
+                            <span>Terminarz</span>
+                        </a>
+                    </li>
+                    <li id="wizyta-sidebar">
+                        <a href="@Url.Action("Index","Wizyta")" id="Wizyta">
+                            <img class="img-responsive" src="~/Content/Images/heart-checkup.png" alt="Wizyta" />
+                            <span>Wizyta</span>
+                        </a>
+                    </li>
+                    <li id="admin-sidebar">
+                        <a href="@Url.Action("Index","Admin")" id="Admin">
+                            <img class="img-responsive" src="~/Content/Images/admin.svg" alt="Admin" />
+                            <span>Admin</span>
+                        </a>
+                    </li>
+                    <li id="pacjenci-sidebar">
+                        <a href="@Url.Action("Index","Pacjenci")" id="Pacjenci">
+                            <img class="img-responsive" src="~/Content/Images/pacjenci.png" alt="Pacjenci" />
+                            <span>Pacjenci</span>
+                        </a>
+                    </li>
+                    <li id="home-sidebar">
+                        <a href="@Url.Action("Index", "Home")" id="Home">
+                            <img class="img-responsive" src="~/Content/Images/homeIcon.png" alt="główna" />
+                            <span>Strona główna</span>
+                        </a>
+                    </li>
+                </ul>
 
                 <div id="przychodnia-sidebar-footer">
                     zalogowany

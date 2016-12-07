@@ -1,0 +1,88 @@
+﻿
+@model SOPeL.ViewModels.WizytaViewModel
+@{
+
+    ViewBag.Title = "Poczekalnia";
+    Layout = "~/Views/_Layout.cshtml";
+
+}
+
+@section style{
+    @Styles.Render("~/Content/Pacjenci")
+    <style>
+        #kartaRezerwacjiWizytyKontener {
+            position: fixed;
+            justify-content: center;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
+
+        #kartaRezerwacjiWizyty {
+            display: block;
+            padding: 20px;
+            max-width: 700px;
+        }
+
+        #kartaRezerwacjiWizytyDane {
+            float: left;
+            width: 80%;
+        }
+
+        #kartaRezerwacjiWizytyZdjeciePacjenta {
+            float: left;
+            width: 20%;
+        }
+
+        #kartaRezerwacjiWizytyButtonKontener input {
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+}
+
+
+<h2>Poczekalnia</h2>
+<div class="container kontenerMaterial">
+    <div class="container   col-sm-4 col-xs-10">
+        Pracownik:
+        <select class="form-control" id="wyborLekarza">
+            <option id="0">Wybierz lekarza</option>
+            @{
+                foreach (var prac in Model.pracownicy)
+                {
+                    <option id="@prac.ID">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
+        <a id="opcje-terminarza-button">
+            <img src="~/Content/Images/doctorIcon.png" alt="Opcje" class="img-responsive" />
+        </a>
+    </div>
+</div>
+<div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
+    @* Treść ładowana AJAXem *@
+    @Html.Partial("WizytaPrzychodnia")
+</div>
+
+
+<div class="wysrodkujCentralnie" id="kartaRezerwacjiWizytyKontener">
+    <div class="przychodnia" id="KontenerKartaWizyty">
+     
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        //przekazanie linku do akcji pobierzTerminarz - tutaj bo nie można używać razor w zewnętrznych plikach
+        var pobierzTerminarzAjax = '@Url.Action("pobierzTerminarz", "Terminarz")';
+    </script>
+    @Scripts.Render("~/Scripts/Wizyta")
+}
+}
