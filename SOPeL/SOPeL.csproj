@@ -269,10 +269,6 @@
     <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="sample.snippet" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="packages.config" />
@@ -295,10 +291,7 @@
     <Content Include="Scripts\Przychodnia.js" />
     <Content Include="Scripts\RejestracjaOnline.js" />
     <Content Include="Scripts\Terminarz.js" />
-    <Content Include="Views\PortalPacjenta\Index.cshtml" />
-    <Content Include="Views\Przychodnia\_SidebarPrzychodnia.cshtml" />
-    <Content Include="Views\PortalPacjenta\_SidebarPortal.cshtml" />
-    <Content Include="Views\PortalPacjenta\RejestracjaOnline\SiatkaTerminarza.cshtml" />
+    <Content Include="Views\_SidebarPrzychodnia.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\web.config" />
     <None Include="Web.Debug.config">
@@ -313,13 +306,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Strartup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacjenciController.cs" />
     <Compile Include="Controllers\PoczekalniaController.cs" />
-    <Compile Include="Controllers\PortalPacjentaController.cs" />
     <Compile Include="Controllers\PrzychodniaController.cs" />
-    <Compile Include="Controllers\RejestracjaOnlineController.cs" />
     <Compile Include="Controllers\TerminarzController.cs" />
     <Compile Include="Controllers\WizytaController.cs" />
     <Compile Include="DAL\SopelContext.cs" />
@@ -332,6 +324,10 @@
     <Compile Include="Migrations\201612051716589_migrumigru.cs" />
     <Compile Include="Migrations\201612051716589_migrumigru.Designer.cs">
       <DependentUpon>201612051716589_migrumigru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612051902026_AddedIdentityASP.cs" />
+    <Compile Include="Migrations\201612051902026_AddedIdentityASP.Designer.cs">
+      <DependentUpon>201612051902026_AddedIdentityASP.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -350,15 +346,14 @@
     <Compile Include="ViewModels\TerminarzViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\PortalPacjenta\RejestracjaOnline\index.cshtml" />
-    <Content Include="Views\Przychodnia\Admin\Index.cshtml" />
-    <Content Include="Views\Shared\Logowanie.cshtml" />
-    <Content Include="Views\Przychodnia\Pacjenci\Index.cshtml" />
-    <Content Include="Views\Przychodnia\Pacjenci\PacjenciPrzychodnia.cshtml" />
-    <Content Include="Views\Przychodnia\Poczekalnia\Index.cshtml" />
-    <Content Include="Views\Przychodnia\Poczekalnia\PoczekalniaPrzychodnia.cshtml" />
-    <Content Include="Views\Przychodnia\Terminarz\Index.cshtml" />
-    <Content Include="Views\Przychodnia\Terminarz\SiatkaTerminarza.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Logowanie.cshtml" />
+    <Content Include="Views\Pacjenci\Index.cshtml" />
+    <Content Include="Views\Pacjenci\PacjenciPrzychodnia.cshtml" />
+    <Content Include="Views\Poczekalnia\Index.cshtml" />
+    <Content Include="Views\Poczekalnia\PoczekalniaPrzychodnia.cshtml" />
+    <Content Include="Views\Terminarz\Index.cshtml" />
+    <Content Include="Views\Terminarz\SiatkaTerminarza.cshtml" />
     <Content Include="Views\Shared\_KartaPacjenta.cshtml" />
     <Content Include="Views\Shared\_KartaRezerwacjiPortalPacjentaNiezalogowany.cshtml" />
     <Content Include="Views\Shared\_KartaRezerwacjiWizyty.cshtml" />
@@ -368,12 +363,15 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\_Layout.cshtml" />
-    <Content Include="Views\Przychodnia\Index.cshtml" />
+    <Content Include="Views\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612051716589_migrumigru.resx">
       <DependentUpon>201612051716589_migrumigru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612051902026_AddedIdentityASP.resx">
+      <DependentUpon>201612051902026_AddedIdentityASP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
