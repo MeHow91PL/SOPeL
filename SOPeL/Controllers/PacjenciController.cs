@@ -22,7 +22,7 @@ namespace SOPeL.Controllers
                 pacjenci = pacjenci.Where(s => s.Nazwisko.Contains(searchString)
                                             || s.Pesel.Contains(searchString));
             }
-            return View("~/Views/Przychodnia/Pacjenci/Index.cshtml",pacjenci.ToList());
+            return View(pacjenci.ToList());
         }
         
         internal List<Pacjent> GetListaPacjentow(string zapytanie)
@@ -67,7 +67,7 @@ namespace SOPeL.Controllers
             pacjent.Aktw = "N";
             var pacjenci = from s in db.Pacjenci select s;
             db.SaveChanges();
-            return PartialView("~/Views/Przychodnia/Pacjenci/PacjenciPrzychodnia.cshtml", pacjenci.ToList());
+            return PartialView("PacjenciPrzychodnia", pacjenci.ToList());
         }
     }
 }

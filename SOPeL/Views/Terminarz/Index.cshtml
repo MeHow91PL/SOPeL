@@ -1,0 +1,127 @@
+﻿@model SOPeL.ViewModels.TerminarzViewModel
+
+@{
+    ViewBag.Title = "Terminarz";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@section style{
+    @Styles.Render("~/Content/Terminarz")
+}
+
+
+<div class="kontenerMaterial">
+    <div class="row">
+        <div id="terminarzDataKontener" class="abba col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <label for="wybor-daty-terminarz">Data</label>
+            <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}", DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="datepicker" />
+        </div>
+        <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="opcje-terminarza-button">
+            <img src="~/Content/Images/opcje.svg" alt="Opcje" />
+        </a>
+    </div>
+</div>
+<div class="kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
+    @* Treść ładowana AJAXem *@
+    @Html.Partial("SiatkaTerminarza")
+</div>
+<div class="wysrodkujCentralnie" id="kartaRezerwacjiWizytyKontener">
+    <div class="przychodnia">
+        @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
+    </div>
+</div>
+
+
+@*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
+@*<div id="opcje-terminarza-okno" class="kontenerMaterial display-none">
+        <div class="">
+            <div id="godziny_pracy">
+                <div id="term_ogolny_graf_panel">
+                    <fieldset>
+                        <legend>Grafik przychodni</legend>
+                        <label for="term-godz-pracy-od"> od </label> <input size="4" type="time" name="term_godz_od" id="term_godz_od" />
+                        <label for="term-godz-pracy-do"> do </label> <input size="4" type="time" name="term_godz_do" id="term_godz_do" />
+
+                        <div class="">
+                            <label for="czas-trwania-wyzyty">Czas trwania wizyty (min): </label><input type="number" maxlength="2" max="60" min="1" name="term_czas_wiz" id="term_czas_wiz" />
+                        </div>
+                    </fieldset>
+                </div>
+
+                @*<div id="term_indw_graf_panel">
+                    <fieldset>
+                        <legend>Grafik pracownika</legend>
+                        <div class="row">
+                            Pracownik:
+                            <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
+                                <option>Wybierz lekarza</option>
+                                @{
+                                    foreach (var prac in ViewBag.Pracownicy)
+                                    {
+                                        <option id="@prac.Id">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                                    }
+                                }
+                            </select>
+                            <table>
+                                <tr>
+                                    <td>Poniedziałek:</td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Wtorek:</td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Środa:</td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Czwartek</td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Piątek</td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Sobota:</td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Niedziela:</td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                    <td><input size="4" type="time" name="" id="" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+    <div class="row">
+        <input type="checkbox" name="term_indw_graf" id="term_indw_graf" /> Osobny grafik dla każdego pacownika
+    </div>
+            </div>
+
+    <button id="opcje-terminarza-zapisz-button" class="" type="button">Zapisz</button>
+    <button id="opcje-terminarza-anuluj-button" class="btn btn-danger" type="button">Anuluj</button>
+        </div>
+    </div>*@
+<div id="menu" style="display:none">
+    <a href="#">Umów pacjenta</a>
+    <hr />
+    <a href="#">Usuń termin</a>
+    <hr />
+    <a href="#">Inne wizyty w tym terminie</a>
+</div>
+@section scripts{
+    <script>
+        //przekazanie linku do akcji pobierzTerminarz - tutaj bo nie można używać razor w zewnętrznych plikach
+        var pobierzTerminarzAjax = '@Url.Action("pobierzTerminarz", "Terminarz")';
+    </script>
+    @Scripts.Render("~/Scripts/Terminarz")
+}

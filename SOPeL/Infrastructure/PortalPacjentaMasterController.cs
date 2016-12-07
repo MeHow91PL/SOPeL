@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SOPeL.Controllers;
 using System.Web.Mvc;
 
 namespace SOPeL.Infrastructure
 {
-    public class PortalPacjentaMasterController : Controller
+    public class PortalPacjentaMasterController : AccountController
     {
-        public PartialViewResult getSidebar()
-        {
-            return PartialView("~/Views/PortalPacjenta/_SidebarPortal.cshtml");
-        }
+       
     }
 }

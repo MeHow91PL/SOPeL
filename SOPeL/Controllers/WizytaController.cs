@@ -25,7 +25,7 @@ namespace SOPeL.Controllers
             //ViewBag.Pracownicy = GetListaPracownikow("Select * from pracownicy");
             //ViewBag.Rezerwacje = new List<Rezerwacja>();
             //Database.zamknijPolaczenie();
-            return View("~/Views/Przychodnia/Poczekalnia/Index.cshtml", model);
+            return View(model);
         }
 
 
@@ -78,7 +78,7 @@ namespace SOPeL.Controllers
 
             //ViewBag.Rezerwacje = rezerwacje;
 
-            return PartialView("~/Views/Przychodnia/Poczekalnia/PoczekalniaPrzychodnia.cshtml");
+            return PartialView("PoczekalniaPrzychodnia");
         }
 
 

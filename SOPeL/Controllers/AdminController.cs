@@ -12,7 +12,7 @@ namespace SOPeL.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View("~/Views/Przychodnia/Admin/Index.cshtml");
+            return View();
         }
     }
 }

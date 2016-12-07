@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SOPeL.Controllers;
 using System.Web.Mvc;
 
 namespace SOPeL.Infrastructure
 {
-    public class PrzychodniaMasterController : Controller
+    public class PrzychodniaMasterController : AccountController
     {
         public PartialViewResult getSidebar()
         {

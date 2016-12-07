@@ -1,4 +1,5 @@
-﻿using SOPeL.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SOPeL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace SOPeL.DAL
 {
-    public class SopelContext : DbContext
+    public class SopelContext : IdentityDbContext
     {
 
         public SopelContext() : base("sopelLocal")

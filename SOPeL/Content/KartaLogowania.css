@@ -1,16 +1,11 @@
 ﻿#kartaLogowania {
-    position:relative;
+    position: relative;
 }
 
     #kartaLogowania input {
-        margin: 10px 0;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        border-style:solid;
+        border-style: solid;
         border-color: #dddddd;
         padding: 5px;
-
     }
 
         #kartaLogowania input:active {
@@ -20,26 +15,60 @@
         }
 
 #formularzKartyLogowania .buttonFotterContainer {
-    margin: 30px auto 0px;
+    text-align: right;
 }
 
-#formularzKartyLogowania .buttonFotterContainer input {
-    background: #5cb7de;
-    color: white;
-    padding: 10px 30px;
-    border: none;
+    #formularzKartyLogowania .buttonFotterContainer input {
+        background: #5cb7de;
+        color: white;
+        padding: 10px 30px;
+        border: none;
+        margin: 15px 0;
+        -moz-transition: 100MS;
+        -o-transition: 100MS;
+        -webkit-transition: 100MS;
+        transition: 100MS;
     }
 
-#formularzKartyLogowania field-validation-error {
-    display:block;
-    float:none;
+     #formularzKartyLogowania .buttonFotterContainer input:hover {
+        background: #5f9db7;
+    }
+
+      #formularzKartyLogowania .buttonFotterContainer input:active {
+        background: #3a6f86;
+    }
+
+     #formularzKartyLogowania .buttonFotterContainer input:first-child {
+        margin-right:10px;
+    }
+
+#formularzKartyLogowania .portalExtraButtons {
+    text-align: right;
 }
 
-@media all and (max-width:768px) {
+#formularzKartyLogowania .portalExtraButtons a:last-child{
+    color:#3c7515;
+}
+
+#formularzKartyLogowania .portalExtraButtons a:hover {
+    text-decoration:none;
+    opacity:0.5;
+    -moz-transition: 100ms;
+    -o-transition: 100ms;
+    -webkit-transition: 100ms;
+    transition: 100ms;
+}
+
+#formularzKartyLogowania field-validation-error {
+    display: block;
+    float: none;
+}
+
+/*@media all and (max-width:768px) {
 
     #formularzKartyLogowania .buttonFotterContainer input {
         height: 40px;
         margin-top: 20px;
         font-size: small;
     }
-}
+}*/
