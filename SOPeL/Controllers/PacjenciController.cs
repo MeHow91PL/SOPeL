@@ -38,7 +38,7 @@ namespace SOPeL.Controllers
             return PartialView("_KartaPacjenta",pacjent);
         }
 
-        public ActionResult ZapiszDodajPacjenta([Bind(Include = "Imie,Nazwisko,Pesel,KodPocztowy,Miasto,Ulica,Telefon,Email,Plec,Aktw,ID")] Pacjent pacjent)
+        public ActionResult ZapiszDodajPacjenta([Bind(Include = " Imie,Nazwisko,Pesel,KodPocztowy,Miasto,Ulica,Telefon,Email,Plec,Aktw,ID")] Pacjent pacjent)
         {
             if (db.Pacjenci.Any(p => p.ID == pacjent.ID))
             {

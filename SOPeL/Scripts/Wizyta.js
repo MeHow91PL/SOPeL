@@ -16,13 +16,14 @@ $(document).ready(function () {
 
     $(".dodajWizyte").click(function () {
         //alert("alert");
+        
 
         $kartaRezerwacjiWizytyKontener.css("display", "flex");
         $.ajax({
             url: '/Wizyta/dodajWizyte',
             type: 'POST',
             data: {
-                id: $(this).data("idwizyty")
+                idrez: $(this).data("idwizyty")
             },
             success: function (response) {
                 $KontenerKartaWizyty.html(response);
@@ -30,7 +31,7 @@ $(document).ready(function () {
             error: function () {
 
 
-                alert("Error");
+                alert("Error dodja Wizyte");
             }
         });
     });
