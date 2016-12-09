@@ -16,9 +16,18 @@
     <div id="tlo">
         <div class="wysrodkujCentralnie">
             <div id="kartaLogowania" class="kontenerOkienka">
-                <form id="formularzKartyLogowania" class="form-horizontal" returnUrl="@ViewBag.ReturnUrl" method="post" action="@Url.Action("Logowanie","Account")" )">
+                <form id="formularzKartyLogowania" class="form-horizontal" method="post" action="@Url.Action("Logowanie","Account")">
                     @Html.AntiForgeryToken()
-                    @Html.Hidden("ReturnUrl", new { value = ViewBag.ReturnUrl })
+                    @Html.Hidden("ReturnUrl", (string)ViewBag.ReturnUrl)
+                    @{
+                        if (!string.IsNullOrEmpty(Html.ValidationMessage("loginError").ToString()))
+                        {
+                            <div class="errorMessages">
+                                @Html.ValidationMessage("loginError", "")
+                            </div>
+                        }
+                    }
+
                     <div class="row">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Login, new { @class = "col-sm-2 col-md-2 col-lg-2 control-label" })
@@ -37,23 +46,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="checkbox">
-                        @Html.CheckBoxFor(m => m.Zapamietaj)
-                        @Html.LabelFor(m => m.Zapamietaj)
+                    <div class="buttonFotterContainer ">
+                        <div class="row">
+                            <input type="submit" class="col-lg-12 col-md-12 col-sm-12" value="Zaloguj" />
+                        </div>
                     </div>
-                    <div class="buttonFotterContainer">
-                        <input type="submit" class="" value="Zaloguj" />
-                        <input type="submit" class="" value="Anuluj" />
+
+
+                    <div class="portalExtraButtons">
+                        @Html.ActionLink("Zarejestruj się", "Rejestracja", "Account") <br />
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    @*@Scripts.Render("~/bundles/jquery")*@
-    <script>
+    @*@Scripts.Render("~/Scripts/Account")*@
 
-    </script>
 
 </body>
 </html>

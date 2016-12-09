@@ -36,7 +36,9 @@ namespace SOPeL
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
-                }
+                },
+                ExpireTimeSpan = TimeSpan.FromMinutes(5),
+                SlidingExpiration = true
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 

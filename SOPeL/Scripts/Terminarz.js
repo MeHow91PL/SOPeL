@@ -202,40 +202,43 @@ $(document).ready(function () {
 
     //--------------------------------- OBSŁUGA KLIKANIA OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
 
-    $(".wolny-termin").dblclick(function () {
-        var splitId = $(this).attr("id").split("-");
-        var idLekarza = splitId[0];
-        var godzinaRezerwacji = splitId[1];
+    //Przeniesione bezpośrednio do siatki terminarza
 
-        kartaRezerwacjiWizytyKontener.css("display", "flex");
-        $.ajax({
-            url: $(this).data("action-url"),
-            type: 'POST',
-            data: {
-                dataRez: dataRezerwacji,
-                idLek: idLekarza,
-                godzRez: godzinaRezerwacji
-            },
-            success: function (response) {
-                $("#kartaRezerwacjiWizytyKontener").html(response);
-            },
-            error: function () {
-                alert("Error");
-            }
-        });
-    });
+    //function wyswietlOknoRezerwacji(panelRezerwacji)
+    //{
+    //    var splitId = $(panelRezerwacji).attr("id").split("-");
+    //    var idLekarza = splitId[0];
+    //    var godzinaRezerwacji = splitId[1];
+
+    //    kartaRezerwacjiWizytyKontener.css("display", "flex");
+    //    $.ajax({
+    //        url: $(panelRezerwacji).data("action-url"),
+    //        type: 'POST',
+    //        data: {
+    //            dataRez: dataRezerwacji,
+    //            idLek: idLekarza,
+    //            godzRez: godzinaRezerwacji
+    //        },
+    //        success: function (response) {
+    //            $("#kartaRezerwacjiWizytyKontener").html(response);
+    //        },
+    //        error: function () {
+    //            alert("Error");
+    //        }
+    //    });
+    //}
 
 
-    $("#zamknijOknoRezerwacjiButton").click(function () {
-        alert("zamknij");
+    //$("#zamknijOknoRezerwacjiButton").click(function () {
+    //    alert("zamknij");
 
-        kartaRezerwacjiWizytyKontener.hide();
-        alert("zamknij");
-    });
+    //    kartaRezerwacjiWizytyKontener.hide();
+    //    alert("zamknij");
+    //});
 
-    $("#zapiszOknoRezerwacjiButton").click(function () {
-        alert("zapisz");
-    });
+    //$("#zapiszOknoRezerwacjiButton").click(function () {
+    //    alert("zapisz");
+    //});
 
     //--------------------------------- END OBSŁUGA KLIKANIA TERMINARZA -------------------------------------------------------------------------------------------------
 

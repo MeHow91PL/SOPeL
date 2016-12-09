@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using SOPeL.Models;
 using SOPeL.ViewModels;
@@ -41,9 +42,9 @@ namespace SOPeL.Controllers
 
         // GET: /Account/Logowanie
         [AllowAnonymous]
-        public ActionResult Logowanie(string returnUrl)
+        public ActionResult Logowanie(string ReturnUrl = "/Home/Index")
         {
-            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ReturnUrl = ReturnUrl;
             return View();
         }
 
@@ -51,7 +52,7 @@ namespace SOPeL.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Logowanie(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Logowanie(LoginViewModel model, string ReturnUrl = "/Home/Index")
         {
             if (!ModelState.IsValid)
             {
@@ -64,14 +65,14 @@ namespace SOPeL.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal(ReturnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.Zapamietaj });
+                    return RedirectToAction("SendCode", new { ReturnUrl = ReturnUrl, RememberMe = model.Zapamietaj });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("loginError", "Podany login lub hasło są błędne");
                     return View(model);
             }
         }
@@ -86,23 +87,30 @@ namespace SOPeL.Controllers
         }
 
 
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Wyloguj()
+        {
+            var AutheticationManager = HttpContext.GetOwinContext().Authentication;
+            AutheticationManager.SignOut();
+
+            return RedirectToAction("Logowanie");
+        }
+
+        public ActionResult Rejestracja()
         {
             return View();
         }
 
+
         //
-        // POST: /Account/Register
+        // POST: /Account/Rejestracja
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Rejestracja(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Login, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Haslo);
                 if (result.Succeeded)
                 {
@@ -116,11 +124,19 @@ namespace SOPeL.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                //AddErrors(result);
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError("rejestracjaError", item);
+            }
         }
     }
 }

@@ -294,6 +294,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\web.config" />
     <Content Include="Views\Shared\_KartaWizyty.cshtml" />
+    <Content Include="Views\Account\Rejestracja.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

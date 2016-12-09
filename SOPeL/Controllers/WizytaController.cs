@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SOPeL.Controllers
 {
-    public class WizytaController : PrzychodniaMasterController
+    public class WizytaController : Controller
     {
         SopelContext db = new SopelContext();
         // GET: Poczekalnia
