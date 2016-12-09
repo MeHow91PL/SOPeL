@@ -28,7 +28,7 @@
 
         #kartaRezerwacjiWizytyDane {
             float: left;
-            width: 80%;
+            width: 40%;
         }
 
         #kartaRezerwacjiWizytyZdjeciePacjenta {
@@ -54,7 +54,7 @@
             @{
                 foreach (var prac in Model.pracownicy)
                 {
-                    <option id="@prac.ID">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                    <option id="@prac.ID" data-idlekarza="@prac.ID">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
                 }
             }
         </select>
@@ -65,15 +65,16 @@
         </a>
     </div>
 </div>
-<div class="container kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
+<div class="container kontenerMaterial" style="padding:0">
+    <div id="kontenerWizyt" >
     @* Treść ładowana AJAXem *@
     @Html.Partial("WizytaPrzychodnia")
-</div>
+</div></div>
 
 
 <div class="wysrodkujCentralnie" id="kartaRezerwacjiWizytyKontener">
     <div class="przychodnia" id="KontenerKartaWizyty">
-     
+     @*Treść ładowana ajaxem z pliku Wizyta.js*@
     </div>
 </div>
 
@@ -84,5 +85,4 @@
         var pobierzTerminarzAjax = '@Url.Action("pobierzTerminarz", "Terminarz")';
     </script>
     @Scripts.Render("~/Scripts/Wizyta")
-}
 }

@@ -32,5 +32,13 @@ namespace SOPeL.Models
 
         public virtual Pracownik Pracownik { get; set; }
         public virtual Pacjent Pacjent { get; set; }
+
+        [MaxLength(1)]
+         public string Stat { get; set; }
+        public Rezerwacja()
+        {
+            Stat = "R";
+                }
+
     }
 }
