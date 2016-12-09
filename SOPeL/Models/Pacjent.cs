@@ -11,14 +11,14 @@ namespace SOPeL.Models
     [Table("Pacjenci")]
     public class Pacjent : Osoba
     {
-
         public Pacjent()
         {
             Aktw = "T";
         }
+
         [Display(Name = "Data urodzenia")]
         [DataType(DataType.Date)]
-        [RegularExpression(@"([0-9]{4}-[0-9]{2}-[0-9]{2})$")]
+        //[RegularExpression(@"([0-9]{4}-[0-9]{2}-[0-9]{2})$")]
         public DateTime? DataUrodzenia { get; set; }
 
         [Display(Name = "Płeć")]
@@ -28,9 +28,5 @@ namespace SOPeL.Models
         //[Required(ErrorMessage = "Dokument tożsamości jest wymagany.")]
         [Display(Name = "Dokument tożsamości", ShortName = "Dokument tożsamości")]
         public string DokumentTozsamosci { get; set; }
-
     }
-
-
-
 }
