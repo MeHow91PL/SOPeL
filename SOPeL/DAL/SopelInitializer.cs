@@ -23,6 +23,15 @@ namespace SOPeL.DAL
 
         public static void SeedsopelLocal(SopelContext context)
         {
+            var uzytkownicy = new List<Uzytkownik>
+            {
+                new Uzytkownik() {Login="Ja", Haslo="Ja", Id=1 },
+                new Uzytkownik() {Login="admin", Haslo="admin", Id=2 }
+            };
+            uzytkownicy.ForEach(s => context.Uzytkownicy.AddOrUpdate(s));
+            context.SaveChanges();
+
+
             var opcje = new List<Opcja>
             {
                new Opcja() { Nazwa="term_godz_od", ID=1, Wartosc="08:00"},

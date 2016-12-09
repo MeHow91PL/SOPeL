@@ -266,6 +266,8 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\SOPeL20161209 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\SOPeL20161209 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\SopelProject1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SopelProject1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -315,9 +317,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612092106020_init.cs" />
-    <Compile Include="Migrations\201612092106020_init.Designer.cs">
-      <DependentUpon>201612092106020_init.cs</DependentUpon>
+    <Compile Include="Migrations\201612092137150_initi.cs" />
+    <Compile Include="Migrations\201612092137150_initi.Designer.cs">
+      <DependentUpon>201612092137150_initi.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -361,8 +363,8 @@
     <Folder Include="Views\SopelHome\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612092106020_init.resx">
-      <DependentUpon>201612092106020_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612092137150_initi.resx">
+      <DependentUpon>201612092137150_initi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
