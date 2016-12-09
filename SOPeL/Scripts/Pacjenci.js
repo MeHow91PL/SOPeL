@@ -39,6 +39,10 @@ $(document).ready(function () {
 
     });
 
+    $(document).click(function (e) {
+        $("#kartaRezerwacjiWizyty").remove();
+    });
+
     $(".UsunPacjenta").click(function () {
         
         if (confirm('Czy jesteś pewien że chcesz usunąć pacjenta?')) {
