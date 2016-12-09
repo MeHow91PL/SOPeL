@@ -288,6 +288,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\web.config" />
     <Content Include="Views\Shared\_KartaWizyty.cshtml" />
+    <Content Include="Views\Account\Rejestracja.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -314,9 +315,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612090205053_Init.cs" />
-    <Compile Include="Migrations\201612090205053_Init.Designer.cs">
-      <DependentUpon>201612090205053_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201612092106020_init.cs" />
+    <Compile Include="Migrations\201612092106020_init.Designer.cs">
+      <DependentUpon>201612092106020_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -360,8 +361,8 @@
     <Folder Include="Views\SopelHome\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612090205053_Init.resx">
-      <DependentUpon>201612090205053_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612092106020_init.resx">
+      <DependentUpon>201612092106020_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
