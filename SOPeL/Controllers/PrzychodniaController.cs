@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace SOPeL.Controllers
 {
     
+    [Authorize]
     public class PrzychodniaController : Controller
     {
         SopelContext db = new SopelContext();

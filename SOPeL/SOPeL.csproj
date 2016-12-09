@@ -186,10 +186,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\sopelLocal.mdf" />
-    <Content Include="App_Data\sopelLocal_log.ldf">
-      <DependentUpon>sopelLocal.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -292,7 +288,6 @@
     <Content Include="Web.config" />
     <Content Include="Views\web.config" />
     <Content Include="Views\Shared\_KartaWizyty.cshtml" />
-    <Content Include="Views\SopelHome\index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -319,6 +314,10 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
+    <Compile Include="Migrations\201612090205053_Init.cs" />
+    <Compile Include="Migrations\201612090205053_Init.Designer.cs">
+      <DependentUpon>201612090205053_Init.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -356,7 +355,14 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\Poczekalnia\" />
+    <Folder Include="Views\SopelHome\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612090205053_Init.resx">
+      <DependentUpon>201612090205053_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

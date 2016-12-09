@@ -13,6 +13,7 @@ using System.Data.Entity.Core.Objects;
 
 namespace SOPeL.Controllers
 {
+    [Authorize]
     public class PacjenciController : Controller
     {
         SopelContext db = new SopelContext();

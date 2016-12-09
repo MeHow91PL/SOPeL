@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace SOPeL.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         // GET: Admin
