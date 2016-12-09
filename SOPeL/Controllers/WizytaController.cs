@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace SOPeL.Controllers
 {
+    [Authorize]
     public class WizytaController : Controller
     {
         SopelContext db = new SopelContext();

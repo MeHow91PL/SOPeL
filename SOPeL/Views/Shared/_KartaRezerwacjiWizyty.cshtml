@@ -3,7 +3,7 @@
 <div id="kartaRezerwacjiWizyty"  >
     <form id="formularzkartaRezerwacjiWizyty" method="post" action="@Url.Action("zatwierdzenieRezerwacji")" onsubmit="return zatwierdzKarteRezerwacji()">
         <div class="row"> 
-            <div id="kartaRezerwacjiWizytyDane">
+            <div id="kartaRezerwacjiWizytyDane" class="">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     @Html.LabelFor(m => m.Pacjent.Imie)
                     @Html.TextBoxFor(m => m.Pacjent.Imie, new { @class = "form-control", @autocomplete = "off" })

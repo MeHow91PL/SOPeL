@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace SOPeL.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
@@ -95,6 +96,7 @@ namespace SOPeL.Controllers
             return RedirectToAction("Logowanie");
         }
 
+        [AllowAnonymous]
         public ActionResult Rejestracja()
         {
             return View();

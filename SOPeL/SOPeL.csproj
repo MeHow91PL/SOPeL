@@ -186,10 +186,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\sopelLocal.mdf" />
-    <Content Include="App_Data\sopelLocal_log.ldf">
-      <DependentUpon>sopelLocal.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -318,9 +314,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612082124312_init.cs" />
-    <Compile Include="Migrations\201612082124312_init.Designer.cs">
-      <DependentUpon>201612082124312_init.cs</DependentUpon>
+    <Compile Include="Migrations\201612090205053_Init.cs" />
+    <Compile Include="Migrations\201612090205053_Init.Designer.cs">
+      <DependentUpon>201612090205053_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -359,12 +355,13 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\Poczekalnia\" />
     <Folder Include="Views\SopelHome\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612082124312_init.resx">
-      <DependentUpon>201612082124312_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612090205053_Init.resx">
+      <DependentUpon>201612090205053_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
