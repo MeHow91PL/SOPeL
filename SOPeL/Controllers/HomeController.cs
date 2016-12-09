@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 namespace SOPeL.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private SopelContext db = new SopelContext();
