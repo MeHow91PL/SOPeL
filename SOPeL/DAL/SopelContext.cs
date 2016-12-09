@@ -38,6 +38,8 @@ namespace SOPeL.DAL
         public DbSet<Wizyta> Wizyty { get; set; }
 
 
+
+
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

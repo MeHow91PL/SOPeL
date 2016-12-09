@@ -9,7 +9,6 @@ namespace SOPeL.Models
     public abstract class Osoba
     {
 
-        
         [ScaffoldColumn(false)]
         public int ID { get; set; }
 
@@ -34,11 +33,9 @@ namespace SOPeL.Models
         [MaxLength(100)]
         public string Email { get; set; }
 
-
         public virtual Adres Adres { get; set; }
 
         public virtual Adres AdresTymczasowy { get; set; }
-
 
         [MaxLength(1)]
         
