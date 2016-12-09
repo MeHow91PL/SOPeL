@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     });
 
-    $(document).click(function (e) {
+    $(document).on('click', '#closeButton', function () {
         $("#kartaRezerwacjiWizyty").remove();
     });
 
