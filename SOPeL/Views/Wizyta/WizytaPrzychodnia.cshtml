@@ -4,16 +4,19 @@
         
             
             @{
-                foreach (var item in Model.rezerwacje )
+                foreach (var item in Model.rezerwacje)
                 {
+                    if (@item.DataRezerwacji.ToShortDateString() == DateTime.Now.ToShortDateString())
+                    {
                     <tr>
                         <td class="pacjent_oczekujacy">@item.Pacjent.Nazwisko  @item.Pacjent.Imie <br/> @item.Pacjent.Pesel</td>
-                        <td class="pacjent_oczekujacy">@item.godzOd</td>
+                        <td class="pacjent_oczekujacy">@item.godzOd @item.DataRezerwacji @item.PracownikID @item.Stat</td>
                         <td class="panel-rezerwacji wolny-termin"><div data-idwizyty="@item.Id" class="dodajWizyte">OBSŁUŻ PACJENTA</div></td>
                     </tr>
+                        }
+                    }
                 }
-            }
-                   
+
 
 
     </table>

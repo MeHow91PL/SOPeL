@@ -2,21 +2,39 @@
 
 $(document).ready(function () {
     var $dodajWizyte = $("#dodajWizyte");
-    var $KontenerKartaWizyty = $('#KontenerKartaWizyty')
+    var $KontenerKartaWizyty = $('#KontenerKartaWizyty');
     var $kartaRezerwacjiWizytyKontener = $("#kartaRezerwacjiWizytyKontener");
-    
-    var kontenerMaterialPortalPacjenta = $("#kontenerMaterialPortalPacjenta");
-
-    //wyborLekarza.change(function () {
-    //    pobierzListeRezerwacji(wyborLekarza.children(":selected").attr("id"));
-    //});
+    var $wyborLekarza = $("#wyborLekarza");
+    var $kontenerWizyt = $("#kontenerWizyt");
 
 
+    var $kontenerMaterialPortalPacjenta = $("#kontenerMaterialPortalPacjenta");
+
+
+
+    $wyborLekarza.change(function () {
+        
+        var selected = $wyborLekarza.children(":selected").attr("id");
+        $.ajax({
+            url: '/Wizyta/WyswietlanieLekarzy',
+            type: 'POST',
+            data: {
+                idlekarza: selected
+            },
+            success: function (response) {
+                $kontenerWizyt.html(response);
+            },
+            error: function () {
+
+
+                alert("Error zmiana lekarza");
+            }
+        })
+    });
 
 
     $(".dodajWizyte").click(function () {
-        //alert("alert");
-        
+ 
 
         $kartaRezerwacjiWizytyKontener.css("display", "flex");
         $.ajax({
@@ -34,34 +52,9 @@ $(document).ready(function () {
                 alert("Error dodja Wizyte");
             }
         });
+
+
+
     });
-
-   
-
-
-
-
-
-
-    //function pobierzListeRezerwacji(selectedID) {
-    //    $.ajax({
-    //        url: '@Url.Action("pobierzRezerwacje", "Poczekalnia")',
-    //        data: {
-    //            pracID: selectedID
-    //        },
-    //        success: function (response) {
-    //            kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
-    //                kontenerMaterialPortalPacjenta.html(response);
-    //            });
-    //            kontenerMaterialPortalPacjenta.slideDown(300);
-    //        },
-    //        error: function () {
-    //            alert("Błąd połączenia z serwerem!");
-
-    //            kontenerMaterialPortalPacjenta.slideUp(300, function myfunction() {
-    //                kontenerMaterialPortalPacjenta.html("");
-    //            });
-    //        }
-    //    });
-    //}
 })
+

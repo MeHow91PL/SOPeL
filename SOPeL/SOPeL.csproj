@@ -186,10 +186,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SOPeL.DAL.TestContext.mdf" />
-    <Content Include="App_Data\SOPeL.DAL.TestContext_log.ldf">
-      <DependentUpon>SOPeL.DAL.TestContext.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\sopelLocal.mdf" />
     <Content Include="App_Data\sopelLocal_log.ldf">
       <DependentUpon>sopelLocal.mdf</DependentUpon>
@@ -272,7 +268,8 @@
     <Content Include="sample.snippet" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\sopel20161129.pubxml" />
+    <None Include="Properties\PublishProfiles\SOPeL20161209 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SOPeL20161209 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -291,6 +288,7 @@
     <Content Include="Scripts\Przychodnia.js" />
     <Content Include="Scripts\RejestracjaOnline.js" />
     <Content Include="Scripts\Terminarz.js" />
+    <Content Include="Scripts\Wizyta.js" />
     <Content Include="Web.config" />
     <Content Include="Views\web.config" />
     <Content Include="Views\Shared\_KartaWizyty.cshtml" />
@@ -320,9 +318,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612071901511_Init.cs" />
-    <Compile Include="Migrations\201612071901511_Init.Designer.cs">
-      <DependentUpon>201612071901511_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201612082124312_init.cs" />
+    <Compile Include="Migrations\201612082124312_init.Designer.cs">
+      <DependentUpon>201612082124312_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -355,19 +353,19 @@
     <Content Include="Views\Shared\_KartaRezerwacjiWizyty.cshtml" />
     <Content Include="Views\Shared\_PortalPacjentaLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\SopelHome\index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612071901511_Init.resx">
-      <DependentUpon>201612071901511_Init.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Views\Poczekalnia\" />
+    <Folder Include="Views\SopelHome\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Poczekalnia\" />
+    <EmbeddedResource Include="Migrations\201612082124312_init.resx">
+      <DependentUpon>201612082124312_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
