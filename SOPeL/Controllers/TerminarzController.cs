@@ -12,7 +12,7 @@ namespace SOPeL.Controllers
     [Authorize]
     
     [System.Runtime.InteropServices.Guid("932276C1-039A-41C2-81C8-C84BD5147EA9")]
-    public class TerminarzController : PrzychodniaMasterController
+    public class TerminarzController : Controller
     {
         SopelContext db = new SopelContext();
 

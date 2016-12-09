@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SOPeL.Controllers
 {
-    public class AdminController : PrzychodniaMasterController
+    public class AdminController : Controller
     {
         // GET: Admin
         public ActionResult Index()

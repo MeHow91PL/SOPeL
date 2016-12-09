@@ -1,0 +1,79 @@
+﻿@model PortalPacjenta.Models.Pacjent
+
+
+<div id="kartaRezerwacjiWizyty" class="kontenerOkienka">
+    
+        <form id="formularzkartaRezerwacjiWizyty" method="post" action="@Url.Action("ZapiszDodajPacjenta")">
+
+                <div id="kartaRezerwacjiWizytyDane">
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m => m.Imie)
+                        @Html.TextBoxFor(m => m.Imie, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Imie)
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m => m.Nazwisko)
+                        @Html.TextBoxFor(m => m.Nazwisko, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Nazwisko)
+                    </div>
+                    <div class="form-group col-lg-5 col-md-5 col-sm-5 ">
+                        @Html.LabelFor(m => m.Pesel)
+                        @Html.TextBoxFor(m => m.Pesel, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Pesel)
+                    </div>
+                    <div class="form-group col-lg-5 col-md-5 col-sm-5 ">
+                        @Html.LabelFor(m => m.DataUrodzenia)
+                        @Html.TextBoxFor(m => m.DataUrodzenia, new { @class = "form-control datepicker", placeholder = "np. 1991-08-30" })
+                        @Html.ValidationMessageFor(m => m.DataUrodzenia)
+                    </div>
+                    <div class="form-group col-lg-2 col-md-2 col-sm-2 ">
+                        @Html.LabelFor(m => m.Plec)
+                        @Html.TextBoxFor(m => m.Plec, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Plec)
+                    </div>
+                    <div class="form-group   col-sm-4 ">
+                        @Html.LabelFor(m => m.Adres.KodPocztowy)
+                        @Html.TextBoxFor(m => m.Adres.KodPocztowy, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.KodPocztowy)
+                    </div>
+                    <div class="form-group col-lg-8 col-md-8 col-sm-8 ">
+                        @Html.LabelFor(m => m.Adres.Miasto)
+                        @Html.TextBoxFor(m => m.Adres.Miasto, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.Miasto)
+                    </div>
+                    <div class="form-group col-lg-8 col-md-8 col-sm-8 ">
+                        @Html.LabelFor(m => m.Adres.Ulica)
+                        @Html.TextBoxFor(m => m.Adres.Ulica, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.Ulica)
+                    </div>
+                    <div class="form-group col-lg-2 col-md-2 col-sm-2 ">
+                        @Html.LabelFor(m => m.Adres.NrDomu)
+                        @Html.TextBoxFor(m => m.Adres.NrDomu, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.NrDomu)
+                    </div>
+                    <div class="form-group col-lg-2 col-md-2 col-sm-2 ">
+                        @Html.LabelFor(m => m.Adres.NrLokalu)
+                        @Html.TextBoxFor(m => m.Adres.NrLokalu, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.NrLokalu)
+                    </div>
+                    @Html.TextBoxFor(m => m.ID, new { @type = "hidden" })
+                </div>
+
+
+                <row>
+                    <div class="buttonFotterContainer">
+                        <input type="submit" class="col-lg-offset-5 col-lg-3 col-md-offset-5 col-md-3 col-sm-offset-5 col-sm-3 " value="Zapisz" />
+                        <input type="button" onclick="zamknijOknoKartyRezerwacji()" class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 " value="Anuluj" />
+                    </div>
+                </row>
+            
+</form>
+    </div>
+
+
+
+
+
+
+

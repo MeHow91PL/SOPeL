@@ -2,7 +2,7 @@
 
 <div id="kartaRezerwacjiWizyty"  >
     <form id="formularzkartaRezerwacjiWizyty" method="post" action="@Url.Action("zatwierdzenieRezerwacji")" onsubmit="return zatwierdzKarteRezerwacji()">
-        <div class="row">
+        <div class="row"> 
             <div id="kartaRezerwacjiWizytyDane">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     @Html.LabelFor(m => m.Pacjent.Imie)
@@ -53,13 +53,26 @@
 
         </div>
         <div class="" id="kartaRezerwacjiWizytyButtonKontener">
-            <input type="submit" id="zapiszOknoRezerwacjiButton" class="col-lg-offset-4 col-lg-2 col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2" value="Zapisz" />
+            <input type="submit" id="zapiszOknoRezerwacjiButton" onclick="zapiszOknoRezerwacji" class="col-lg-offset-4 col-lg-2 col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2" value="Zapisz" />
             @{ if (ViewBag.edycjaWizyty == true)
                 {
                     <input type="submit" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" name="submitButton" value="Usuń" />
                 }
             }
-            <input type="button" id="zamknijOknoRezerwacjiButton" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" value="Anuluj" />
+            <input type="button" id="zamknijOknoRezerwacjiButton" onclick="zamknijOknoRezerwacji()" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" value="Anuluj" />
         </div>
     </form>
 </div>
+
+<script>    
+    /// <reference path="jquery-3.1.1.js" />
+
+    function zamknijOknoRezerwacji() {
+        $("#kartaRezerwacjiWizytyKontener").hide();
+    }
+
+    function zapiszOknoRezerwacji() {
+
+    }
+    
+</script>

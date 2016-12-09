@@ -13,7 +13,7 @@ using System.Data.Entity.Core.Objects;
 
 namespace SOPeL.Controllers
 {
-    public class PacjenciController : PrzychodniaMasterController
+    public class PacjenciController : Controller
     {
         SopelContext db = new SopelContext();
         // GET: Pacjenci

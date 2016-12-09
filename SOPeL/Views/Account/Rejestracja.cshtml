@@ -1,0 +1,75 @@
+﻿@model SOPeL.ViewModels.RegisterViewModel
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/Layout")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/bootstrap")
+
+
+</head>
+<body style="padding: 0">
+    <div id="tlo">
+        <div class="wysrodkujCentralnie">
+            <div id="kartaLogowania" class="kontenerOkienka">
+
+                <form id="formularzKartyLogowania" class="form-horizontal" returnUrl="@ViewBag.ReturnUrl" method="post" action="@Url.Action("Rejestracja","Account")">
+                    @Html.AntiForgeryToken()
+                    <div class="errorMessages">
+                        @Html.ValidationMessage("rejestracjaError", "")
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Login, new { @class = "col-sm-4 col-md-4 col-lg-4 control-label" })
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Login)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-sm-4 col-md-4 col-lg-4 control-label" })
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Haslo, new { @class = "col-sm-4 col-md-4 col-lg-4 control-label" })
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                @Html.TextBoxFor(m => m.Haslo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Haslo)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PotwierdzHaslo, new { @class = "col-sm-4 col-md-4 col-lg-4 control-label" })
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                @Html.TextBoxFor(m => m.PotwierdzHaslo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PotwierdzHaslo)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttonFotterContainer">
+                        <input type="submit" class="" value="Zarejestruj" />
+                        <input type="button" id="resetBtnRejestracja" class="" value="Resetuj" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/Account")
+
+</body>
+</html>
