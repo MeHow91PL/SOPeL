@@ -31,7 +31,7 @@ namespace SOPeL.Controllers
 
             var prac = db.Pracownicy.ToList();
             var wiz = db.Wizyty.ToList();
-            var rez = db.Rezerwacje.Where(r => r.Stat == "R").ToList();
+            var rez = db.Rezerwacje.Where(r => r.Stat != "W").ToList();
             var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
             return View(model);
 
@@ -45,7 +45,7 @@ namespace SOPeL.Controllers
             {
                 var prac = db.Pracownicy.ToList();
                 var wiz = db.Wizyty.ToList();
-                var rez = db.Rezerwacje.Where(r=>r.Stat=="R").ToList();
+                var rez = db.Rezerwacje.Where(r=> r.Stat != "W").ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia", model);
                
@@ -54,7 +54,7 @@ namespace SOPeL.Controllers
             {
                 var prac = db.Pracownicy.ToList();
                 var wiz = db.Wizyty.ToList();
-                var rez = db.Rezerwacje.Where(r => r.PracownikID == idlekarza && r.Stat=="R").ToList();
+                var rez = db.Rezerwacje.Where(r => r.PracownikID == idlekarza && r.Stat != "W").ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia",model);
                 

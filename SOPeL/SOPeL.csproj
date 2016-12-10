@@ -320,9 +320,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612100120153_initi.cs" />
-    <Compile Include="Migrations\201612100120153_initi.Designer.cs">
-      <DependentUpon>201612100120153_initi.cs</DependentUpon>
+    <Compile Include="Migrations\201612101252053_Init.cs" />
+    <Compile Include="Migrations\201612101252053_Init.Designer.cs">
+      <DependentUpon>201612101252053_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -365,8 +365,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612100120153_initi.resx">
-      <DependentUpon>201612100120153_initi.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612101252053_Init.resx">
+      <DependentUpon>201612101252053_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
