@@ -10,6 +10,11 @@ namespace SOPeL.Models
     [Table("Rezerwacje")]
     public class Rezerwacja
     {
+        public Rezerwacja()
+        {
+            Stat = "R";
+        }
+
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
@@ -35,10 +40,5 @@ namespace SOPeL.Models
 
         [MaxLength(1)]
          public string Stat { get; set; }
-        public Rezerwacja()
-        {
-            Stat = "R";
-                }
-
     }
 }
