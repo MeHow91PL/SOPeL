@@ -39,8 +39,9 @@ $(document).ready(function () {
 
     });
 
-    $(document).click(function (e) {
+    $(document).on('click', '#closeButton', function () {
         $("#kartaRezerwacjiWizyty").remove();
+        window.location.reload();
     });
 
     $(".UsunPacjenta").click(function () {
@@ -58,7 +59,8 @@ $(document).ready(function () {
                 error: function () {}
             });
         }
-
-        });
+        window.location.reload();
     });
+    
+});
 
