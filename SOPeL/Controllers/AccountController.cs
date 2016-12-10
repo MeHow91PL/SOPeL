@@ -43,7 +43,7 @@ namespace SOPeL.Controllers
 
         // GET: /Account/Logowanie
         [AllowAnonymous]
-        public ActionResult Logowanie(string ReturnUrl = "/Home/Index")
+        public ActionResult Logowanie(string ReturnUrl = "/Przychodnia/Index")
         {
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
@@ -53,7 +53,7 @@ namespace SOPeL.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Logowanie(LoginViewModel model, string ReturnUrl = "/Home/Index")
+        public async Task<ActionResult> Logowanie(LoginViewModel model, string ReturnUrl = "/Przychodnia/Index")
         {
             if (!ModelState.IsValid)
             {

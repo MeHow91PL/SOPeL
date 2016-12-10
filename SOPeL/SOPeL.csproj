@@ -203,7 +203,7 @@
     <Content Include="Content\Images\Pacjent3Icon.png" />
     <Content Include="Content\Images\pacjentIcon.png" />
     <Content Include="Content\Images\plannerIcon.png" />
-    <Content Include="Content\Images\tloStart.png" />
+    <Content Include="Content\themes\base\images\tloStart.png" />
     <Content Include="Content\Images\unnamed.png" />
     <Content Include="Content\Images\Up 2.png" />
     <Content Include="Content\Images\userIcon.png" />
@@ -266,7 +266,9 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\SOPeL20161209 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\SOPeL20161209 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\SopelProject1 - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\SopelProject1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SopelProject1 - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\SopelProject1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -291,6 +293,7 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\Shared\_KartaWizyty.cshtml" />
     <Content Include="Views\Account\Rejestracja.cshtml" />
+    <Content Include="Views\Home\index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -355,12 +358,11 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Przychodnia\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Poczekalnia\" />
-    <Folder Include="Views\SopelHome\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612092137150_initi.resx">
