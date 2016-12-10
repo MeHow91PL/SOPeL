@@ -1,77 +1,82 @@
 ﻿@model SOPeL.Models.Pacjent
 
-
-<div id="kartaRezerwacjiWizyty" class="kontenerOkienka col-lg-12 col-md-12 col-sm-12">
-    
+<div id="kartaRezerwacjiWizyty" class="kontenerOkienka">
         <form id="formularzkartaRezerwacjiWizyty" method="post" action="@Url.Action("ZapiszDodajPacjenta")">
+            <div class="row">
+                <div id="" class="col-lg-8 col-md-8 col-sm-8">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                        @Html.LabelFor(m => m.Imie)
+                        @Html.TextBoxFor(m => m.Imie, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Imie)
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                        @Html.LabelFor(m => m.Nazwisko)
+                        @Html.TextBoxFor(m => m.Nazwisko, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Nazwisko)
+                    </div>
 
-            <div id="kartaRezerwacjiWizytyDane">
+                    <div class="form-group col-lg-5 col-md-5 col-sm-5 ">
+                        @Html.LabelFor(m => m.Pesel)
+                        @Html.TextBoxFor(m => m.Pesel, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Pesel)
+                    </div>
+                    <div class="form-group col-lg-5 col-md-5 col-sm-5 ">
+                        @Html.LabelFor(m => m.DataUrodzenia)
+                        @Html.TextBoxFor(m => m.DataUrodzenia, "{0:yyyy-MM-dd}", new { @class = "form-control datepicker", placeholder = "np. 1991-08-30" })
+                        @Html.ValidationMessageFor(m => m.DataUrodzenia)
+                    </div>
+                    <div class="form-group col-lg-2 col-md-2 col-sm-2 ">
+                        @Html.LabelFor(m => m.Plec)
+                        @Html.TextBoxFor(m => m.Plec, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Plec)
+                    </div>
+                    <div class="form-group col-lg-4 col-md-4 col-sm-4 ">
+                        @Html.LabelFor(m => m.Adres.KodPocztowy)
+                        @Html.TextBoxFor(m => m.Adres.KodPocztowy, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.KodPocztowy)
+                    </div>
+                    <div class="form-group col-lg-8 col-md-8 col-sm-8 ">
+                        @Html.LabelFor(m => m.Adres.Miasto)
+                        @Html.TextBoxFor(m => m.Adres.Miasto, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.Miasto)
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 ">
+                        @Html.LabelFor(m => m.Adres.Ulica)
+                        @Html.TextBoxFor(m => m.Adres.Ulica, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.Ulica)
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-3 ">
+                        @Html.LabelFor(m => m.Adres.NrDomu)
+                        @Html.TextBoxFor(m => m.Adres.NrDomu, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.NrDomu)
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-3 ">
+                        @Html.LabelFor(m => m.Adres.NrLokalu)
+                        @Html.TextBoxFor(m => m.Adres.NrLokalu, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Adres.NrLokalu)
+                    </div>
+                    <div class="form-group col-lg-4 col-md-4 col-sm-4 ">
+                        @Html.LabelFor(m => m.Telefon)
+                        @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Telefon)
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(m => m.ID, new { @type = "hidden" })
+                        @Html.TextBoxFor(m => m.Adres.Id, new { @type = "hidden" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
 
-                <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                    @Html.LabelFor(m => m.Imie)
-                    @Html.TextBoxFor(m => m.Imie, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Imie)
-                </div>
-                <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                    @Html.LabelFor(m => m.Nazwisko)
-                    @Html.TextBoxFor(m => m.Nazwisko, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Nazwisko)
-                </div>
+                    <div @*id="kartaRezerwacjiPortalPacjentaNiezalogowanyZdjeciePacjenta"*@ class="hidden-xs">
+                        <img class="img-responsive" src="~/Content/Images/userIcon.png" />
+                    </div>
 
-                <div class="form-group col-lg-5 col-md-5 col-sm-5 ">
-                    @Html.LabelFor(m => m.Pesel)
-                    @Html.TextBoxFor(m => m.Pesel, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Pesel)
                 </div>
-                <div class="form-group col-lg-5 col-md-5 col-sm-5 ">
-                    @Html.LabelFor(m => m.DataUrodzenia)
-                    @Html.TextBoxFor(m => m.DataUrodzenia, "{0:yyyy-MM-dd}", new { @class = "form-control datepicker", placeholder = "np. 1991-08-30" })
-                    @Html.ValidationMessageFor(m => m.DataUrodzenia)
                 </div>
-                <div class="form-group col-lg-2 col-md-2 col-sm-2 ">
-                    @Html.LabelFor(m => m.Plec)
-                    @Html.TextBoxFor(m => m.Plec, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Plec)
+                <div class="buttonFotterContainer">
+                    <input type="submit" class="col-lg-offset-4 col-lg-2 col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2" value="Zapisz" />
+                    <input type="button" id="closeButton" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" value="Anuluj" />
                 </div>
-                <div class="form-group   col-sm-4 ">
-                    @Html.LabelFor(m => m.Adres.KodPocztowy)
-                    @Html.TextBoxFor(m => m.Adres.KodPocztowy, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Adres.KodPocztowy)
-                </div>
-                <div class="form-group col-lg-8 col-md-8 col-sm-8 ">
-                    @Html.LabelFor(m => m.Adres.Miasto)
-                    @Html.TextBoxFor(m => m.Adres.Miasto, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Adres.Miasto)
-                </div>
-                <div class="form-group col-lg-7 col-md-7 col-sm-7 ">
-                    @Html.LabelFor(m => m.Adres.Ulica)
-                    @Html.TextBoxFor(m => m.Adres.Ulica, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Adres.Ulica)
-                </div>
-                <div class="form-group col-lg-2 col-md-2 col-sm-2 ">
-                    @Html.LabelFor(m => m.Adres.NrDomu)
-                    @Html.TextBoxFor(m => m.Adres.NrDomu, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Adres.NrDomu)
-                </div>
-                <div class="form-group col-lg-3 col-md-3 col-sm-3 ">
-                    @Html.LabelFor(m => m.Adres.NrLokalu)
-                    @Html.TextBoxFor(m => m.Adres.NrLokalu, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Adres.NrLokalu)
-                </div>
-                <div class="form-group col-lg-4 col-md-4 col-sm-4 ">
-                    @Html.LabelFor(m => m.Telefon)
-                    @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Telefon)
-                </div>
-                <div>
-                    @Html.TextBoxFor(m => m.ID, new { @type = "hidden" })
-                    @Html.TextBoxFor(m => m.Adres.Id, new { @type = "hidden" })
-                </div>
-            </div>
-                 <div class="buttonFotterContainer col-lg-8 col-md-8 col-sm-8">
-                     <input type="submit" class="col-lg-offset-4 col-lg-3 col-md-offset-4 col-md-3 col-sm-offset-4 col-sm-3" value="Zapisz" />
-                     <input type="button" id="closeButton" class="col-lg-offset-1 col-lg-4 col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4" value="Anuluj" />
-                 </div>
 </form>
     </div>
 

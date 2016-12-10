@@ -315,10 +315,6 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612092102094_init.cs" />
-    <Compile Include="Migrations\201612092102094_init.Designer.cs">
-      <DependentUpon>201612092102094_init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -359,11 +355,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Poczekalnia\" />
     <Folder Include="Views\SopelHome\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612092102094_init.resx">
-      <DependentUpon>201612092102094_init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
