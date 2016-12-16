@@ -71,8 +71,8 @@ namespace SOPeL.Controllers
         {
             Pacjent pacjent = db.Pacjenci.Find(id);
             pacjent.Aktw = "N";
-            var pacjenci = from s in db.Pacjenci select s;
             db.SaveChanges();
+            var pacjenci = from s in db.Pacjenci select s;
             return PartialView("PacjenciPrzychodnia", pacjenci.ToList());
         }
     }

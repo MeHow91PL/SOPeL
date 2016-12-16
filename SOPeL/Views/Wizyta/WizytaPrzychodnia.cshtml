@@ -10,7 +10,7 @@
                     {
                     <tr>
                         <td class="pacjent_oczekujacy">@item.Pacjent.Nazwisko  @item.Pacjent.Imie <br/> @item.Pacjent.Pesel</td>
-                        <td class="pacjent_oczekujacy">@item.godzOd @item.DataRezerwacji @item.PracownikID @item.Stat</td>
+                        <td class="pacjent_oczekujacy">Godzina: @item.godzOd, Data: @item.DataRezerwacji.ToShortDateString()</td>
                         <td class="panel-rezerwacji wolny-termin"><div data-idwizyty="@item.Id" class="dodajWizyte">OBSŁUŻ PACJENTA</div></td>
                     </tr>
                         }

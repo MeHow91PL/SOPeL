@@ -59,7 +59,7 @@ $(document).ready(function () {
                 error: function () {}
             });
         }
-        window.location.reload();
+        //window.location.reload();
     });
     
 });

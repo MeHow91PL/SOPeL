@@ -48,6 +48,15 @@
     cursor:pointer;
 }
 
+.przychodnia .terminarz .terminarzZarezerwowanyTermin span:last-child {
+    color:white;
+    font-weight: bold;
+}
+
+.terminarzZarezerwowanyTermin .W {
+    background: #b9de1d;
+}
+
 .terminarzPanelGodzin {
     width:10%;
     text-align:center;

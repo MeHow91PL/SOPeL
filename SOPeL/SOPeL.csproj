@@ -264,12 +264,8 @@
     <Content Include="sample.snippet" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\SOPeL20161209 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\SOPeL20161209 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\SopelProject1 - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\SopelProject1 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\SopelProject1 - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\SopelProject1 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\PortalPacjenta1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\PortalPacjenta1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -320,9 +316,9 @@
     </Compile>
     <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
     <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612101252053_Init.cs" />
-    <Compile Include="Migrations\201612101252053_Init.Designer.cs">
-      <DependentUpon>201612101252053_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201612101301209_eeee.cs" />
+    <Compile Include="Migrations\201612101301209_eeee.Designer.cs">
+      <DependentUpon>201612101301209_eeee.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -365,8 +361,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612101252053_Init.resx">
-      <DependentUpon>201612101252053_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612101301209_eeee.resx">
+      <DependentUpon>201612101301209_eeee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

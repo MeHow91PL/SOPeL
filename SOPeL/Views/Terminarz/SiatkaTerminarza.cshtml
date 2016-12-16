@@ -30,7 +30,7 @@
                     for (int y = 0; y < iloscPracowników; y++)//Tworzy kolumnę dla każdego pracownika
                     {
                         bool rezerwacjaIstnieje = false;
-                        string nazwiskoPacjenta = "", imiePacjenta = "", pesel = "", email = "", telefon = "", dokToz = "";
+                        string nazwiskoPacjenta = "", imiePacjenta = "", pesel = "", email = "", telefon = "", dokToz = "", statusRez = "R";
                         int idRez = 0;
 
                         foreach (var item in Model.rezerwacje)
@@ -46,14 +46,22 @@
                                 telefon = item.Pacjent.Telefon;
                                 email = item.Pacjent.Email;
                                 idRez = item.Id;
+
+                                if (item.Stat == null)
+                                {
+                                    item.Stat = "R";
+                                }
+                                statusRez = item.Stat;
+
                                 break;
                             }
                         }
                         if (rezerwacjaIstnieje)
                         {
                             <td id="@Model.pracownicy[y].ID-@timeString" imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez" class="terminarzZarezerwowanyTermin">
-                                <div class="kafelekRezerwacji">
+                                <div class="kafelekRezerwacji @statusRez">
                                     <span>@imiePacjenta @nazwiskoPacjenta</span>
+                                    <span> @statusRez</span>
                                 </div>
                             </td>
                             rezerwacjaIstnieje = false;
