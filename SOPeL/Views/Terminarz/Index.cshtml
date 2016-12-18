@@ -25,16 +25,17 @@
     @* Treść ładowana AJAXem *@
     @Html.Partial("SiatkaTerminarza")
 </div>
-<div class="wysrodkujCentralnie" id="kartaRezerwacjiWizytyKontener">
-    <div class="przychodnia">
-        @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
+<div class="wysrodkujCentralnie">
+    <div id="kartaRezerwacjiWizytyKontener">
+        <div class="przychodnia">
+            @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
+        </div>
     </div>
-</div>
 
 
-@*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
-@*<div id="opcje-terminarza-okno" class="kontenerMaterial display-none">
-        <div class="">
+    @*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
+        <div id="opcje-terminarza-kontener">
+    <div id="opcje-terminarza-okno" class="kontenerMaterial display-none">
             <div id="godziny_pracy">
                 <div id="term_ogolny_graf_panel">
                     <fieldset>
@@ -47,20 +48,22 @@
                         </div>
                     </fieldset>
                 </div>
-
-                @*<div id="term_indw_graf_panel">
+                <div class="row">
+                    <input type="checkbox" name="term_indw_graf" id="term_indw_graf" /> Osobny grafik dla każdego pacownika
+                </div>
+                <div id="term_indw_graf_panel">
                     <fieldset>
                         <legend>Grafik pracownika</legend>
                         <div class="row">
                             Pracownik:
                             <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
                                 <option>Wybierz lekarza</option>
-                                @{
-                                    foreach (var prac in ViewBag.Pracownicy)
-                                    {
-                                        <option id="@prac.Id">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
-                                    }
-                                }
+                                @*@{
+                                        foreach (var prac in ViewBag.Pracownicy)
+                                        {
+                                            <option id="@prac.Id">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                                        }
+                                    }*@
                             </select>
                             <table>
                                 <tr>
@@ -102,21 +105,24 @@
                         </div>
                     </fieldset>
                 </div>
-    <div class="row">
-        <input type="checkbox" name="term_indw_graf" id="term_indw_graf" /> Osobny grafik dla każdego pacownika
-    </div>
+
             </div>
 
-    <button id="opcje-terminarza-zapisz-button" class="" type="button">Zapisz</button>
-    <button id="opcje-terminarza-anuluj-button" class="btn btn-danger" type="button">Anuluj</button>
+            <button id="opcje-terminarza-zapisz-button" class="" type="button">Zapisz</button>
+            <button id="opcje-terminarza-anuluj-button" class="btn btn-danger" type="button">Anuluj</button>
         </div>
-    </div>*@
-<div id="menu" style="display:none">
-    <a href="#">Umów pacjenta</a>
-    <hr />
-    <a href="#">Usuń termin</a>
-    <hr />
-    <a href="#">Inne wizyty w tym terminie</a>
+    </div>
+
+
+    <div id="menu" style="display:none">
+        <a href="#">Umów pacjenta</a>
+        <hr />
+        <a href="#">Usuń termin</a>
+        <hr />
+        <a href="#">Inne wizyty w tym terminie</a>
+    </div>
+
+
 </div>
 @section scripts{
     <script>

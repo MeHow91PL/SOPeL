@@ -253,14 +253,15 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\tloStart.png" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
-    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Infrastructure\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="sample.snippet" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="packages.config" />
@@ -314,11 +315,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\PortalPacjentaMasterController.cs" />
-    <Compile Include="Infrastructure\PrzychodniaMasterController.cs" />
-    <Compile Include="Migrations\201612101301209_eeee.cs" />
-    <Compile Include="Migrations\201612101301209_eeee.Designer.cs">
-      <DependentUpon>201612101301209_eeee.cs</DependentUpon>
+    <Compile Include="Infrastructure\Opcje.cs" />
+    <Compile Include="Migrations\201612171034545_Init.cs" />
+    <Compile Include="Migrations\201612171034545_Init.Designer.cs">
+      <DependentUpon>201612171034545_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -361,8 +361,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612101301209_eeee.resx">
-      <DependentUpon>201612101301209_eeee.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612171034545_Init.resx">
+      <DependentUpon>201612171034545_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

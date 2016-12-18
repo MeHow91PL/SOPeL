@@ -4,7 +4,6 @@ $(document).ready(function () {
 
     //Obsługa menu nawigacyjnego
     var sidebar = $("#sidebarPrzychodnia");
-    var sidebar = $("#sidebarPrzychodnia");
 
     $("#zwijaczMenu").click(function () {
         sidebar.toggleClass("sidebarZwiniety", 200);

@@ -1,43 +1,43 @@
 ﻿.terminarz {
-    height:40px;
-    padding:5px;
+    height: 40px;
+    padding: 5px;
 }
 
-.terminarz .panelNazwyPracownika{
-    text-align:center;
-    vertical-align:middle;
-    background:#ffffff;
-}
+    .terminarz .panelNazwyPracownika {
+        text-align: center;
+        vertical-align: middle;
+        background: #ffffff;
+    }
 
-.terminarz .wolny-termin {
-    height:40px;
-    text-align:center;
-    vertical-align:middle;
-    cursor:pointer;
-}
+    .terminarz .wolny-termin {
+        height: 40px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+    }
 
-.terminarz .wolny-termin:hover {
-    opacity:0.8;
-}
+        .terminarz .wolny-termin:hover {
+            opacity: 0.8;
+        }
 
-.terminarz .panel-rezerwacji {
-    background : #5de9e0;
-    color:white;
-}
+    .terminarz .panel-rezerwacji {
+        background: #5de9e0;
+        color: white;
+    }
 
-   .terminarz .teminarzaPanelRezerwacjiBrakTerminu{
-       background : #f7f7f7;
-    height:40px;
-    padding:5px;
-   }
+    .terminarz .teminarzaPanelRezerwacjiBrakTerminu {
+        background: #f7f7f7;
+        height: 40px;
+        padding: 5px;
+    }
 
-  .przychodnia .terminarz .teminarzaPanelRezerwacji {
-    background : #2196F3;
-    height:40px;
-    color:white;
-    text-align:center;
-    vertical-align:middle;
-    cursor:default;
+.przychodnia .terminarz .teminarzaPanelRezerwacji {
+    background: #2196F3;
+    height: 40px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    cursor: default;
 }
 
 
@@ -45,65 +45,74 @@
     background: #2196F3;
     height: 40px;
     padding: 2px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.przychodnia .terminarz .terminarzZarezerwowanyTermin span:last-child {
-    color:white;
-    font-weight: bold;
-}
+    .przychodnia .terminarz .terminarzZarezerwowanyTermin span:last-child {
+        color: white;
+        font-weight: bold;
+    }
 
 .terminarzZarezerwowanyTermin .W {
     background: #b9de1d;
 }
 
 .terminarzPanelGodzin {
-    width:10%;
-    text-align:center;
-}
-
-.kafelekRezerwacji {
-    width:100%;
-    height:100%;
-    min-height: 20px;
-    background: #80D8FF;
-    border: solid 1px black;
-    vertical-align:middle;
+    width: 10%;
     text-align: center;
 }
 
-.kafelekRezerwacji span {
-    font-family: 'Roboto', sans-serif;
-    font-weight:400;
-    vertical-align:middle;
-    font-size:9pt;
-    margin:auto;
+.kafelekRezerwacji {
+    width: 100%;
+    height: 100%;
+    min-height: 20px;
+    background: #80D8FF;
+    border: solid 1px black;
+    vertical-align: middle;
+    text-align: center;
 }
 
-#opcje-terminarza-button{
-    width:50px;
-    height:50px;
+    .kafelekRezerwacji span {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        vertical-align: middle;
+        font-size: 9pt;
+        margin: auto;
+    }
+
+#opcje-terminarza-button {
+    width: 50px;
+    height: 50px;
     display: block;
 }
 
-    #opcje-terminarza-button img{
-
+    #opcje-terminarza-button img {
     }
 
+#opcje-terminarza-kontener {
+    position: fixed;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
 #opcje-terminarza-okno {
-   display:none;
+    display: block;
 }
 
 #okno-ustawiania-indywidualnego-grafika {
-    padding:50px;
+    padding: 50px;
 }
 
 
 #kartaPacjenta {
-        display: block;
-        margin: 20px;
-        visibility:collapse;
-        height:0;
+    display: block;
+    margin: 20px;
+    visibility: collapse;
+    height: 0;
 }
 
     #kartaPacjenta label {
@@ -118,58 +127,57 @@
         margin: 10px auto;
     }
 
-        .kafelekRezerwacji {
-    vertical-align:middle;
-    text-align: center;
-}
+    .kafelekRezerwacji {
+        vertical-align: middle;
+        text-align: center;
+    }
 
-.kafelekRezerwacji span {
-    font-family: 'Roboto', sans-serif;
-    font-weight:400;
-    vertical-align:middle;
-    font-size:x-small;
-    margin:auto;
-}
+        .kafelekRezerwacji span {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            vertical-align: middle;
+            font-size: x-small;
+            margin: auto;
+        }
 }
 /*------------------karta do usuwania pacjenta------------------------*/
 #kartaUsuwaniaPacjenta {
     position: fixed;
-    justify-content:center;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    display:none;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
 }
 
 /*#############  KARTA REZERWACJI  ####################################################################################################################*/
 
 #kartaRezerwacjiWizytyKontener {
     position: fixed;
-    justify-content:center;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    display:none;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
 }
 
 #kartaRezerwacjiWizyty {
-    display:block;
-    padding:20px;
+    display: block;
+    padding: 20px;
     max-width: 700px;
 }
 
 #kartaRezerwacjiWizytyDane {
     float: left;
-    width:80%;
+    width: 80%;
 }
 
 #kartaRezerwacjiWizytyZdjeciePacjenta {
-
 }
 
-#kartaRezerwacjiWizytyButtonKontener input{
+#kartaRezerwacjiWizytyButtonKontener input {
     margin-top: 30px;
     margin-bottom: 10px;
 }

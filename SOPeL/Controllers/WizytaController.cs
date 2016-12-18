@@ -38,7 +38,7 @@ namespace SOPeL.Controllers
         }
         public ActionResult WyswietlanieLekarzy(int? idlekarza)
         {
-          
+
 
 
             if ((idlekarza == null)|| (idlekarza==0))
@@ -48,7 +48,7 @@ namespace SOPeL.Controllers
                 var rez = db.Rezerwacje.Where(r=> r.Stat != "W").ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia", model);
-               
+
             }
             else
             {
@@ -57,72 +57,13 @@ namespace SOPeL.Controllers
                 var rez = db.Rezerwacje.Where(r => r.PracownikID == idlekarza && r.Stat != "W").ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia",model);
-                
+
             }
         }
-
-
-
-
-        //internal List<Pracownik> GetListaPracownikow(string zapytanie)
-        //{
-        //    List<Pracownik> pracownicy = new List<Pracownik>();
-
-        //    //NpgsqlDataReader dr = Database.wykonajZapytanieDQL(zapytanie);
-
-        //    //while (dr.Read())
-        //    //{
-        //    //    pracownicy.Add(new Pracownik() { Id = (int)dr["id"], Imie = dr["imie"].ToString(), Nazwisko = dr["nazwisko"].ToString(), Specjalizacja = dr["specjalizacja"].ToString() });
-        //    //}
-
-        //    //dr.Close();
-
-        //    return pracownicy;
-        //}
-
-
-
-        //public PartialViewResult pobierzRezerwacje(string pracID)
-        //{
-        //    List<Rezerwacja> rezerwacje = new List<Rezerwacja>();
-
-        //    //Database.otworzPolaczenie("serwer1518407.home.pl", "18292517_0000002", "Sopel2016", "18292517_0000002");
-
-        //    //NpgsqlDataReader dr = Database.wykonajZapytanieDQL("Select * from v_rezerwacjePacjentow where rez_data=current_date and prac_id = " + pracID);
-
-        //    //while (dr.Read())
-        //    //{
-        //    //   rezerwacje.Add(new Rezerwacja()
-        //    //    {
-        //    //        Pacjent = new Pacjent()
-        //    //        {
-        //    //            Id = Convert.ToInt32(dr["pac_id"].ToString()),
-        //    //            Imie = dr["pac_imie"].ToString(),
-        //    //            Nazwisko = dr["pac_nazwisko"].ToString(),
-        //    //            Pesel = dr["pac_pesel"].ToString()
-        //    //        },
-        //    //        godzOd = dr["rez_godz_pocz"].ToString()
-        //    //    }
-        //    //        );
-        //    //}
-
-        //    //dr.Close();
-
-        //    //Database.zamknijPolaczenie();
-
-
-        //    //ViewBag.Rezerwacje = rezerwacje;
-
-        //    return PartialView("PoczekalniaPrzychodnia");
-        //}
-
-
-       
 
         public PartialViewResult dodajWizyte(int idrez)
         {
 
-            
             Wizyta wizyta = new Wizyta();
             Rezerwacja rezerwacja = db.Rezerwacje.Find(idrez);
             wizyta.Pacjent = rezerwacja.Pacjent;
@@ -132,11 +73,8 @@ namespace SOPeL.Controllers
             wizyta.PacjentID = rezerwacja.PacjentID;
             wizyta.PracownikID = rezerwacja.PracownikID;
 
-
-
             return PartialView("_KartaWizyty", wizyta);
         }
-
 
         public ActionResult ZapiszDodajWizyte([Bind(Include = "Id,DataWizyty,DataModyfikacji,PacjentID,PracownikID,RezerwacjaId,Rozpoznanie,Wywiad,Badanie")] Wizyta wizyta)
         {

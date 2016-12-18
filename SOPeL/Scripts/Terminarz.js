@@ -8,12 +8,10 @@ $(document).ready(function () {
     var wyborDatyTerminarz = $("#wybor-daty-terminarz");
     var dataRezerwacji = $('#wybor-daty-terminarz').val();
     var $kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
-    var opcjeTerminarzaDiv = $('#opcje-terminarza-okno');
+
     var terminarzDataKontener = $("#terminarzDataKontener");
     var czasTrwaniaWizyty = $("#term_czas_wiz");
-    var ogolnyGrafik = $("#term_ogolny_graf_panel");
-    var idywidualnyGrafik = $("#term_indw_graf_panel");
-    var indwGrafCheckbox = $("#term_indw_graf");
+
     var kartaRezerwacjiWizytyKontener = $("#kartaRezerwacjiWizytyKontener");
     var menu = $("#menu");
 
@@ -94,37 +92,36 @@ $(document).ready(function () {
 
 
     //--------------------------------- OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
+    var opcjeTerminarzaKontener = $('#opcje-terminarza-kontener');
+    var idywidualnyGrafik = $("#term_indw_graf_panel");
+    var indwGrafCheckbox = $("#term_indw_graf");
+    var ogolnyGrafik = $("#term_ogolny_graf_panel");
+    var ogolnyGrafikInputs = $("#term_ogolny_graf_panel input");
 
     $("#opcje-terminarza-button").click(function () {
         loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
-        opcjeTerminarzaDiv.css("display", "block");
         $.ajax({
-            url: pobierzTerminarzAjax,
+            url: '/Terminarz/PobierzOpcjeTerminarza',
             type: "POST",
             success: function (response) { //resposne to słownik sparsowany do jsona, klucz to nazwa opcji w bazie
                 loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
 
                 //ładowanie wartości opcji odczytanych z bazy do formularza opcji terminarza
                 for (opcja in response) {
-                    $("#" + opcja).val(response[opcja]);
+                    $("#" + response[opcja].Nazwa).val(response[opcja].Wartosc);
                 }
-                console.log(response['term_indw_graf']);
-                console.debug();
 
                 //jeżeli włączona jest opcja indywidualnego grafika to ukryj ogolny grafik i pokaż ust indywidualnych grafików
-                if (response['term_indw_graf'] == '1') {
+                if (response['term_indw_graf'] === '1') {
                     indwGrafCheckbox.attr("checked", true);
-                    idywidualnyGrafik.switchClass("ukryty", "widoczny", 150, "swing");
-                    ogolnyGrafik.switchClass("widoczny", "ukryty", 150, "swing");
 
                 }
                 else {
                     indwGrafCheckbox.attr("checked", false);
-                    idywidualnyGrafik.switchClass("widoczny", "ukryty", 150, "swing");
-                    ogolnyGrafik.switchClass("ukryty", "widoczny", 150, "swing");
                 }
+                PrzelaczIndywidualnyGrafik(indwGrafCheckbox);
+                opcjeTerminarzaKontener.css("display", "flex");
 
-                opcjeTerminarzaDiv.dialog(oknoOpcjiTerminarza).dialog("open");
             },
             error: function () {
                 alert("Błąd połączenia z serwerem!");
@@ -135,7 +132,7 @@ $(document).ready(function () {
 
     //Kontrola wartości wpisywanych przez użytkownika
     czasTrwaniaWizyty.keyup(function () {
-        if ($(this).val().length > 1 && $(this).val().substring(0, 1) == '0') {//jeżeli poda zero na początku to wycina zero i zostawia pozostałe cyfry
+        if ($(this).val().length > 1 && $(this).val().substring(0, 1) === '0') {//jeżeli poda zero na początku to wycina zero i zostawia pozostałe cyfry
             $(this).val($(this).val().substring(1));
         }
         else if ($(this).val() > 60) {// jeżeli wpisze wartość większą niż 60 to ustawi 60
@@ -153,41 +150,34 @@ $(document).ready(function () {
 
     //Zmiana opcji z grafiku przychodni na osobne grafiki dla każdego pracownika
     indwGrafCheckbox.change(function () {
-        if ($(this).is(':checked')) {
-            $(this).val("1");//value ustawiany jest po to, aby zapisać stan opcji do bazy
-            idywidualnyGrafik.switchClass("ukryty", "widoczny", 150, "swing");
-            ogolnyGrafik.switchClass("widoczny", "ukryty", 150, "swing");
-        }
-        else {
-            $(this).val("0");//value ustawiany jest po to, aby zapisać stan opcji do bazy
-            idywidualnyGrafik.switchClass("widoczny", "ukryty", 150, "swing");
-            ogolnyGrafik.switchClass("ukryty", "widoczny", 150, "swing");
-        }
+        PrzelaczIndywidualnyGrafik(this);
     });
 
     $("#opcje-terminarza-zapisz-button").click(function () {
         loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
-        var dict = {};
-        $("#opcje-terminarza-okno input").each(function (i, val) {
-            alert(val.id);
+        var dict = new Object();
+        console.log("Przed pętlą");
+        console.log(dict);
+        $("#opcje-terminarza-okno input[id^='term']").each(function (i, val) {// $("#opcje-terminarza-okno input[id^='term']") pobiera wszystkie inputy z okna terminarza których id rozpoczyna się od term, czyli są to opcje terminarza w bazie
             dict[$(this).attr("id")] = $(this).val();
         });
-
-
+        console.log("Po pętli");
+        console.log(dict);
         $.ajax({
-            url: '@Url.Action("zapiszOpcjeTerminarza", "Terminarz")',
-            type: 'POST',
+            url: "/Terminarz/ZapiszOpcjeTerminarza",
+            type: "POST",
             data: {
                 opcj: dict
             },
             success: function (response) {
                 loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
-                opcjeTerminarzaDiv.dialog("close");
+                ZamknijOkno(opcjeTerminarzaKontener);
                 pobierzTerminarz(dataRezerwacji);
             },
-            error: function () {
+            error: function (response) {
                 loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
-                alert("Error");
+                console.log(response);
+                alert(response);
             }
         });
     });
@@ -195,9 +185,34 @@ $(document).ready(function () {
 
 
     $("#opcje-terminarza-anuluj-button").click(function () {
-        opcjeTerminarzaDiv.dialog("close");
+        if (confirm("Czy na pewno chcesz anulować wprowadzone zmiany?")) {
+            ZamknijOkno(opcjeTerminarzaKontener);
+        }
     });
 
+
+
+
+    function PrzelaczIndywidualnyGrafik(checkbox) {
+        if ($(checkbox).is(':checked')) {
+            $(checkbox).val("1");//value ustawiany jest po to, aby zapisać stan opcji do bazy
+            idywidualnyGrafik.css("display", "block");
+            ogolnyGrafikInputs.each(function () {
+                $(this).prop("disabled", true);
+            });
+        }
+        else {
+            $(checkbox).val("0");//value ustawiany jest po to, aby zapisać stan opcji do bazy
+            idywidualnyGrafik.css("display", "none");
+            ogolnyGrafikInputs.each(function () {
+                $(this).prop("disabled", false);
+            });
+        }
+    }
+
+    function ZamknijOkno(okienko) {
+        okienko.css("display", "none");
+    }
     //--------------------------------- END OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
 
     //--------------------------------- OBSŁUGA KLIKANIA OPCJE TERMINARZA -------------------------------------------------------------------------------------------------
@@ -252,7 +267,7 @@ $(document).ready(function () {
             "width": "200px",
             "position": "fixed",
             "background": "white",
-            "top": event.pageY - $(window).scrollTop(), //od relatywnej pozycji kliknięcia względm dokumenty należy odjąć ilość px o które ktrona jest scrollowana żeby box wyświetlał się w miejscu kliknięcia
+            "top": event.pageY - $(window).scrollTop(), //od relatywnej pozycji kliknięcia względm dokumentu należy odjąć ilość px o które ktrona jest scrollowana żeby box wyświetlał się w miejscu kliknięcia
             "border-radius": "5px",
             "box-shadow": "1px 1px 5px black",
             "padding": "20px",
