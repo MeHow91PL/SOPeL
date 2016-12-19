@@ -28,7 +28,7 @@ namespace SOPeL.DAL
             {
                new Opcja() { Nazwa="term_godz_od", ID=1, Wartosc="08:00"},
                new Opcja() { Nazwa="term_godz_do", ID=2, Wartosc="16:00"},
-               new Opcja() { Nazwa="term_czas_wiz", ID=3, Wartosc="10"}
+               new Opcja() { Nazwa="term_czas_wiz", ID=3, Wartosc="10"},
                new Opcja() { Nazwa="term_indw_graf", ID=4, Wartosc="0"}
             };
             opcje.ForEach(s => context.Opcje.AddOrUpdate(s));
@@ -60,18 +60,21 @@ namespace SOPeL.DAL
             var rezerwacje = new List<Rezerwacja>
            {
                new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-05"), DataRezerwacji =DateTime.Parse("2016-12-05"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
-                new Rezerwacja() {  Id=11, DataModyfikacji=DateTime.Parse("2016-12-17"), DataRezerwacji =DateTime.Parse("2016-12-17"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
-                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-17"), DataRezerwacji =DateTime.Parse("2016-12-17"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
-                new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-18"), DataRezerwacji =DateTime.Parse("2016-12-18"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
-                new Rezerwacja() { Id=11, DataModyfikacji=DateTime.Parse("2016-12-18"), DataRezerwacji =DateTime.Parse("2016-12-18"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
-                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-18"), DataRezerwacji =DateTime.Parse("2016-12-18"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
+                new Rezerwacja() {  Id=11, DataModyfikacji=DateTime.Parse("2016-12-21"), DataRezerwacji =DateTime.Parse("2016-12-21"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
+                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-21"), DataRezerwacji =DateTime.Parse("2016-12-21"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
+                new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-22"), DataRezerwacji =DateTime.Parse("2016-12-22"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
+                new Rezerwacja() { Id=11, DataModyfikacji=DateTime.Parse("2016-12-22"), DataRezerwacji =DateTime.Parse("2016-12-22"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
+                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-22"), DataRezerwacji =DateTime.Parse("2016-12-22"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
                 new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-19"), DataRezerwacji =DateTime.Parse("2016-12-19"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
                 new Rezerwacja() { Id=11, DataModyfikacji=DateTime.Parse("2016-12-19"), DataRezerwacji =DateTime.Parse("2016-12-19"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
                 new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-19"), DataRezerwacji =DateTime.Parse("2016-12-19"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
                 new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-20"), DataRezerwacji =DateTime.Parse("2016-12-20"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
                 new Rezerwacja() { Id=11, DataModyfikacji=DateTime.Parse("2016-12-20"), DataRezerwacji =DateTime.Parse("2016-12-20"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
                 new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-20"), DataRezerwacji =DateTime.Parse("2016-12-20"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
-                           };
+                new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-23"), DataRezerwacji =DateTime.Parse("2016-12-23"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
+                new Rezerwacja() { Id=11, DataModyfikacji=DateTime.Parse("2016-12-23"), DataRezerwacji =DateTime.Parse("2016-12-23"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
+                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-23"), DataRezerwacji =DateTime.Parse("2016-12-23"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 }
+            };
             rezerwacje.ForEach(g => context.Rezerwacje.AddOrUpdate(g));
             context.SaveChanges();
 

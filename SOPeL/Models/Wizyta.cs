@@ -48,6 +48,11 @@ namespace SOPeL.Models
         [Display(Name = "Wywiad")]
         public string Wywiad { get; set; }
 
+        [Display(Name = "Zalecenia")]
+        public string Zalecenia { get; set; }
+
+        [Display(Name = "Skierowanie")]
+        public string Skierowanie { get; set; }
 
     }
 }

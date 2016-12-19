@@ -76,7 +76,7 @@ namespace SOPeL.Controllers
             return PartialView("_KartaWizyty", wizyta);
         }
 
-        public ActionResult ZapiszDodajWizyte([Bind(Include = "Id,DataWizyty,DataModyfikacji,PacjentID,PracownikID,RezerwacjaId,Rozpoznanie,Wywiad,Badanie")] Wizyta wizyta)
+        public ActionResult ZapiszDodajWizyte([Bind(Include = "Id, Zalecenia,Skierowanie ,DataWizyty,DataModyfikacji,PacjentID,PracownikID,RezerwacjaId,Rozpoznanie,Wywiad,Badanie")] Wizyta wizyta)
         {
             db.Wizyty.Add(wizyta);
             var idrez = wizyta.RezerwacjaId;
