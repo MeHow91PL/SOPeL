@@ -107,5 +107,13 @@ namespace SOPeL.Controllers
             }
         }
 
+        public JsonResult PacjentAutocomplete(string Prefix)
+        {
+            var pacjenci = db.Pacjenci.Where(p => p.Nazwisko.StartsWith(Prefix) 
+            || p.Imie.StartsWith(Prefix)  
+            || p.Pesel.StartsWith(Prefix)).Take(10);
+
+            return Json(pacjenci, JsonRequestBehavior.AllowGet);
+        }
     }
 }

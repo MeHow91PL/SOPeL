@@ -1,39 +1,15 @@
 ﻿@model SOPeL.Models.Rezerwacja
 
-<div id="kartaRezerwacjiWizyty" class="kontenerOkienka" >
+<div id="kartaRezerwacjiWizyty" class="kontenerOkienka">
     <form id="formularzkartaRezerwacjiWizyty" method="post" action="@Url.Action("zatwierdzenieRezerwacji")" onsubmit="return zatwierdzKarteRezerwacji()">
         <div class="row">
-            <div  class="col-lg-8 col-md-8 col-sm-8">
+            <div class="col-lg-8 col-md-8 col-sm-8">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    @Html.LabelFor(m => m.Pacjent.Imie)
-                    @Html.TextBoxFor(m => m.Pacjent.Imie, new { @class = "form-control", @autocomplete = "off" })
-                    @Html.ValidationMessageFor(m => m.Pacjent.Imie)
+                    @Html.LabelFor(m => m.Pacjent)
+                    @Html.TextBoxFor(m => m.Pacjent, new { @class = "form-control ui-autocomplete", @autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.Pacjent)
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    @Html.LabelFor(m => m.Pacjent.Nazwisko)
-                    @Html.TextBoxFor(m => m.Pacjent.Nazwisko, new { @class = "form-control", @autocomplete = "off" })
-                    @Html.ValidationMessageFor(m => m.Pacjent.Nazwisko)
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    @Html.LabelFor(m => m.Pacjent.Pesel)
-                    @Html.TextBoxFor(m => m.Pacjent.Pesel, new { @class = "form-control", @onkeyup = "walidujKarteRezerwacji()", @autocomplete = "off" })
-                    <span class="errorMessage" id="peselErrorMessageSpan"></span>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    @Html.LabelFor(m => m.Pacjent.DokumentTozsamosci)
-                    @Html.TextBoxFor(m => m.Pacjent.DokumentTozsamosci, new { @class = "form-control", @autocomplete = "off", @placeholder = "np. ABC123456", @onkeyup = "walidujKarteRezerwacji()" })
-                    <span class="errorMessage" id="dokTozsamosciErrorMessageSpan"></span>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    @Html.LabelFor(m => m.Pacjent.Telefon)
-                    @Html.TextBoxFor(m => m.Pacjent.Telefon, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Pacjent.Telefon)
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    @Html.LabelFor(m => m.Pacjent.Email)
-                    @Html.TextBoxFor(m => m.Pacjent.Email, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Pacjent.Email)
-                </div>
+
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     @Html.LabelFor(m => m.godzOd)
                     @Html.TextBoxFor(m => m.godzOd, new { @class = "form-control", @readonly = "readonly" })
@@ -54,28 +30,47 @@
                 @Html.TextBoxFor(m => m.Pacjent.Plec, new { @type = "hidden" })
 
             </div>
-            </div>
-            <div class="" id="kartaRezerwacjiWizytyButtonKontener">
-                <input type="submit" id="zapiszOknoRezerwacjiButton" onclick="zapiszOknoRezerwacji" class="col-lg-offset-4 col-lg-2 col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2" value="Zapisz" />
-                @{ if (ViewBag.edycjaWizyty == true)
-                    {
-                        <input type="submit" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" name="submitButton" value="Usuń" />
-                    }
+        </div>
+        <div class="" id="kartaRezerwacjiWizytyButtonKontener">
+            <input type="submit" id="zapiszOknoRezerwacjiButton" onclick="zapiszOknoRezerwacji" class="col-lg-offset-4 col-lg-2 col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2" value="Zapisz" />
+            @{ if (ViewBag.edycjaWizyty == true)
+                {
+                    <input type="submit" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" name="submitButton" value="Usuń" />
                 }
-                <input type="button" id="zamknijOknoRezerwacjiButton" onclick="zamknijOknoRezerwacji()" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" value="Anuluj" />
-            </div>
-</form>
+            }
+            <input type="button" id="zamknijOknoRezerwacjiButton" onclick="zamknijOknoRezerwacji()" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" value="Anuluj" />
+        </div>
+    </form>
 </div>
 
-<script>    
+<script>
+
     /// <reference path="jquery-3.1.1.js" />
+    $("#Pacjent").autocomplete({
+        source:
+            function (request, response) {
+            $.ajax({
+                url: "/Terminarz/PacjentAutocomplete",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: request.term },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        console.log(item);
+                        return {
+                            label: item.Pesel + " | " + item.Imie + " | " + item.Nazwisko,
+                            value: item.Pesel + " | " + item.Imie + " | " + item.Nazwisko
+                        };
+                    }))
 
-    function zamknijOknoRezerwacji() {
-        $("#kartaRezerwacjiWizytyKontener").hide();
-    }
+                }
+            })
+        }
+    });
 
+   
     function zapiszOknoRezerwacji() {
 
     }
-    
+
 </script>
