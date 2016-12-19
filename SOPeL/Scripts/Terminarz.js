@@ -277,24 +277,11 @@ $(document).ready(function () {
         menu.slideDown(200);
     });
 
-    //var nadMenu = true;
-
-    //menu.mouseenter(function (event) {
-    //    nadMenu = true;
-    //});
-
-    //menu.mouseleave(function (event) {
-    //    nadMenu = false;
-    //});
-
-    ////zamknięcie okienka po poruszeniu myszki poza context
-    //$(document).mousemove(function (event) {
-    //    $("#przychodnia-sidebar-footer").text(nadMenu);
-    //    if (!nadMenu) {
-    //        menu.hide();
-    //    }
-    //});
+    
 
     //--------------------------------- END OBSŁUGA CONTEXT MENU -------------------------------------------------------------------------------------------------
+
+
+    
 
 });
