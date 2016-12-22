@@ -25,88 +25,88 @@
     @* Treść ładowana AJAXem *@
     @Html.Partial("SiatkaTerminarza")
 </div>
-<div class="wysrodkujCentralnie">
-    <div id="kartaRezerwacjiWizytyKontener">
-        <div class="przychodnia">
-            @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
-        </div>
+<div id="kartaRezerwacjiWizytyKontener" class="wysrodkujCentralnie">
+    <div class="przychodnia">
+        @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
     </div>
+</div>
 
 
-    @*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
-        <div id="opcje-terminarza-kontener">
-    <div id="opcje-terminarza-okno" class="kontenerMaterial display-none">
-            <div id="godziny_pracy">
-                <div id="term_ogolny_graf_panel">
-                    <fieldset>
-                        <legend>Grafik przychodni</legend>
-                        <label for="term-godz-pracy-od"> od </label> <input size="4" type="time" name="term_godz_od" id="term_godz_od" />
-                        <label for="term-godz-pracy-do"> do </label> <input size="4" type="time" name="term_godz_do" id="term_godz_do" />
+@*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
+<div id="opcje-terminarza-kontener" class="wysrodkujCentralnie">
+    <div id="opcje-terminarza-okno" class="kontenerOkienka display-none">
+        <div id="godziny_pracy">
+            <div id="term_ogolny_graf_panel">
+                <fieldset>
+                    <legend>Grafik przychodni</legend>
+                    <label for="term-godz-pracy-od"> od </label> <input size="4" type="time" name="term_godz_od" id="term_godz_od" />
+                    <label for="term-godz-pracy-do"> do </label> <input size="4" type="time" name="term_godz_do" id="term_godz_do" />
 
-                        <div class="">
-                            <label for="czas-trwania-wyzyty">Czas trwania wizyty (min): </label><input type="number" maxlength="2" max="60" min="1" name="term_czas_wiz" id="term_czas_wiz" />
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="row">
-                    <input type="checkbox" name="term_indw_graf" id="term_indw_graf" /> Osobny grafik dla każdego pacownika
-                </div>
-                <div id="term_indw_graf_panel">
-                    <fieldset>
-                        <legend>Grafik pracownika</legend>
-                        <div class="row">
-                            Pracownik:
-                            <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
-                                <option>Wybierz lekarza</option>
-                                @*@{
-                                        foreach (var prac in ViewBag.Pracownicy)
-                                        {
-                                            <option id="@prac.Id">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
-                                        }
-                                    }*@
-                            </select>
-                            <table>
-                                <tr>
-                                    <td>Poniedziałek:</td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Wtorek:</td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Środa:</td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Czwartek</td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Piątek</td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Sobota:</td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Niedziela:</td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                    <td><input size="4" type="time" name="" id="" /></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </fieldset>
-                </div>
-
+                    <div class="">
+                        <label for="czas-trwania-wyzyty">Czas trwania wizyty (min): </label><input type="number" maxlength="2" max="60" min="1" name="term_czas_wiz" id="term_czas_wiz" />
+                    </div>
+                </fieldset>
             </div>
+            <div class="row">
+                <input type="checkbox" name="term_indw_graf" id="term_indw_graf" /> Osobny grafik dla każdego pacownika
+            </div>
+            <div id="term_indw_graf_panel">
+                <fieldset>
+                    <legend>Grafik pracownika</legend>
+                    <div class="row">
+                        Pracownik:
+                        <select class="form-control" onchange="wybranoLekarza()" id="wyborLekarzaPortalPacjenta">
+                            <option>Wybierz lekarza</option>
+                            @*@{
+                                    foreach (var prac in ViewBag.Pracownicy)
+                                    {
+                                        <option id="@prac.Id">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                                    }
+                                }*@
+                        </select>
+                        <table>
+                            <tr>
+                                <td>Poniedziałek:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Wtorek:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Środa:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Czwartek</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Piątek</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Sobota:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                            <tr>
+                                <td>Niedziela:</td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                                <td><input size="4" type="time" name="" id="" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+
+        </div>
+        <div class="row">
 
             <button id="opcje-terminarza-zapisz-button" class="" type="button">Zapisz</button>
             <button id="opcje-terminarza-anuluj-button" class="btn btn-danger" type="button">Anuluj</button>

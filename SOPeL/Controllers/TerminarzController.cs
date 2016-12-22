@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 namespace SOPeL.Controllers
@@ -107,11 +108,11 @@ namespace SOPeL.Controllers
             }
         }
 
-        public JsonResult PacjentAutocomplete(string Prefix)
+        public async Task<JsonResult> PacjentAutocomplete(string Prefix)
         {
-            var pacjenci = db.Pacjenci.Where(p => p.Nazwisko.StartsWith(Prefix) 
-            || p.Imie.StartsWith(Prefix)  
-            || p.Pesel.StartsWith(Prefix)).Take(10);
+            var pacjenci = await db.Pacjenci.Where(p => p.Nazwisko.StartsWith(Prefix)
+            || p.Imie.StartsWith(Prefix)
+            || p.Pesel.StartsWith(Prefix)).Take(10).ToListAsync();
 
             return Json(pacjenci, JsonRequestBehavior.AllowGet);
         }
