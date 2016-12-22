@@ -13,12 +13,22 @@
 	top: 0;
 	left: 0;
 	cursor: default;
-	background:black;
-    list-style:none;
-    padding:0;
-    border-radius: 10px;
+	list-style:none;
+	padding:0;
+	display: block;
 }
 
-.ui-autocomplete li{
-    padding: 10px 20px;
+.ui-autocomplete li.ui-menu-item{
+    padding: 10px;
+
+}
+
+.ui-autocomplete li:hover{
+	background:#0094ff;
+}
+
+.ui-autocomplete li .ui-state-active{
+    background:none;
+    color:white;
+
 }

@@ -20,6 +20,7 @@
 }
 .ui-menu .ui-menu-item {
 	position: relative;
+    background:red;
 	margin: 0;
 	padding: 3px 1em 3px .4em;
 	cursor: pointer;
@@ -33,10 +34,6 @@
 	font-size: 0;
 	line-height: 0;
 	border-width: 1px 0 0 0;
-}
-.ui-menu .ui-state-focus,
-.ui-menu .ui-state-active {
-	margin: -1px;
 }
 
 /* icon support */

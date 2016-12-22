@@ -55,7 +55,10 @@
                 dataType: "json",
                 data: { Prefix: request.term },
                 success: function (data) {
-                    response($.map(data, function (item) {
+                    console.log("Data:");
+                    console.log(data);
+                    response($.map(data, function (item, i) {
+                        console.log("Item:" + i);
                         console.log(item);
                         return {
                             label: item.Pesel + " | " + item.Imie + " | " + item.Nazwisko,
@@ -68,7 +71,7 @@
         }
     });
 
-   
+
     function zapiszOknoRezerwacji() {
 
     }
