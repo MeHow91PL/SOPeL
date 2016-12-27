@@ -32,6 +32,9 @@ namespace SOPeL.App_Start
             bundles.Add(new ScriptBundle("~/Scripts/Terminarz").Include(
                         "~/Scripts/Terminarz.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/Admin").Include(
+                         "~/Scripts/Admin.js"));
+
             bundles.Add(new ScriptBundle("~/Scripts/RejestracjaOnline").Include(
                         "~/Scripts/RejestracjaOnline.js"));
 

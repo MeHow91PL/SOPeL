@@ -29,7 +29,8 @@ namespace SOPeL.DAL
                new Opcja() { Nazwa="term_godz_od", ID=1, Wartosc="08:00"},
                new Opcja() { Nazwa="term_godz_do", ID=2, Wartosc="16:00"},
                new Opcja() { Nazwa="term_czas_wiz", ID=3, Wartosc="10"},
-               new Opcja() { Nazwa="term_indw_graf", ID=4, Wartosc="0"}
+               new Opcja() { Nazwa="term_indw_graf", ID=4, Wartosc="0"},
+               new Opcja() { Nazwa="ogol_podz_imie_nazw", ID=5, Wartosc=";"}
             };
             opcje.ForEach(s => context.Opcje.AddOrUpdate(s));
             context.SaveChanges();

@@ -11,7 +11,11 @@ body {
 
 a {
     cursor: pointer;
-    text-decoration: none
+    text-decoration: none;
+}
+
+div{
+    background: none;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -28,6 +32,75 @@ a {
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
+
+
+.wysrodkujCentralnie {
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.1);
+}
+
+.kontenerMaterial {
+    background: white;
+    box-shadow: 0px 1px 1px #888888; /*rgba(0, 0, 0, 0.5);*/ /* to rgba nie waliduje sie prawidlowo*/
+    padding: 20px;
+    margin: 10px auto;
+}
+
+.kontenerOkienka {
+    color: #3b3b3b;
+    background: #ffffff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    padding: 50px;
+}
+
+.button {
+    padding: 10px 30px;
+    border: none;
+    margin: 15px 0 0;
+    -moz-transition: 100MS;
+    -o-transition: 100MS;
+    -webkit-transition: 100MS;
+    transition: 100MS;
+    border: 1px white solid;
+}
+
+.button-blue {
+    background: #5cb7de;
+    color: white;
+}
+
+    .button-blue:hover {
+        background: #5f9db7;
+    }
+
+    .button-blue:active {
+        background: #3a6f86;
+    }
+
+.button-red {
+    background: #ff2d2d;
+    color: white;
+}
+
+    .button-red:hover {
+        background: #ff3d3d;
+    }
+
+    .button-red:active {
+        background: #ae0404;
+    }
 
 .display-none {
     display: none;
@@ -55,36 +128,4 @@ a {
 
 .maxSzerokosc {
     width: 100%;
-}
-
-.wysrodkujCentralnie {
-    height: 100%;
-    position: absolute;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.1);
-
-}
-
-.kontenerMaterial {
-    background: white;
-    box-shadow: 0px 1px 1px #888888; /*rgba(0, 0, 0, 0.5);*/ /* to rgba nie waliduje sie prawidlowo*/
-    padding: 20px;
-    margin: 10px auto;
-}
-
-.kontenerOkienka{
-    color: #3b3b3b;
-    background: #ffffff;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    padding: 50px;
 }

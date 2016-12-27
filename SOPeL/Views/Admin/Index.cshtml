@@ -6,5 +6,19 @@
 
 
 <div>
-    <h2>Admin</h2>
+    <button id="opcjeOgolneBtn" onclick="pokazOpcjeGlowne()">
+        Opcje ogólne
+    </button>
 </div>
+
+
+<div>
+    <div id="opcje-ogolne-kontener" class="wysrodkujCentralnie display-none">
+        @* Okno łaldowane przez AJAX *@
+        @Html.Action("PokazOpcjeGlowne")
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/Admin")
+}

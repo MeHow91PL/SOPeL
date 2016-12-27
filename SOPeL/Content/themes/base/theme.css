@@ -11,6 +11,8 @@
  * To view and modify this theme, visit http://jqueryui.com/themeroller/
  */
 
+
+
 /* Component containers
 ----------------------------------*/
 .ui-widget {
@@ -93,20 +95,7 @@ button .ui-state-focus {
 .ui-state-focus a:visited {
 	color: #212121/*{fcHover}*/;
 	text-decoration: none;
-}
-.ui-state-active,
-.ui-widget-content .ui-state-active,
-.ui-widget-header .ui-state-active {
-	background: #ffffff/*{bgColorActive}*/ url("images/ui-bg_glass_65_ffffff_1x400.png")/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #212121/*{fcActive}*/;
-}
-.ui-state-active a,
-.ui-state-active a:link,
-.ui-state-active a:visited {
-	color: #212121/*{fcActive}*/;
-	text-decoration: none;
-}
+
 
 /* Interaction Cues
 ----------------------------------*/

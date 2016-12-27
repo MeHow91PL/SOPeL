@@ -9,26 +9,22 @@
  * http://api.jqueryui.com/autocomplete/#theming
  */
 .ui-autocomplete {
-	position: absolute;
-	top: 0;
-	left: 0;
-	cursor: default;
-	list-style:none;
-	padding:0;
-	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    list-style: none;
+    padding: 0;
+    display: block;
 }
 
-.ui-autocomplete li.ui-menu-item{
-    padding: 10px;
+    .ui-autocomplete .ui-menu-item-wrapper {
+        padding: 10px;
+    }
 
-}
 
-.ui-autocomplete li:hover{
-	background:#0094ff;
-}
-
-.ui-autocomplete li .ui-state-active{
-    background:none;
-    color:white;
-
-}
+        .ui-autocomplete .ui-menu-item-wrapper:hover,
+        .ui-autocomplete .ui-state-active {
+            background: #44b1ff;
+            color: white;
+        }

@@ -1,0 +1,40 @@
+﻿@model SOPeL.ViewModels.OpcjeGlowneViewModel
+
+<div id="opcje-ogolne-okno" class="kontenerOkienka">
+    <form action="@Url.Action("ZapiszOpcjeGlowne", "Admin")" method="post">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <fieldset>
+                    <label for="ogol_podz_imie_nazw">Znak podziału imienia i nazwiska</label>
+                    <select size="1" type="text" maxlength="1" name="ogol_podz_imie_nazw" id="ogol_podz_imie_nazw">
+                        @if (Model.ogol_podz_imie_nazw == ";")
+                        {
+                            <option selected id="podzialSrednik">;</option>
+                            <option id="podzialPrzecinek">,</option>
+                        }
+                        else if (Model.ogol_podz_imie_nazw == ",")
+                        {
+                            <option id="podzialSrednik">;</option>
+                            <option selected id="podzialPrzecinek">,</option>
+                        }
+                    </select>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+                <input type="submit" class="col-lg-6 col-md-6 col-sm-6 button button-blue" value="Zapisz">
+                <button class="col-lg-6 col-md-6 col-sm-6 button button-red">Anuluj</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+
+    $("#opcje-ogolne-kontener").ready(function () {
+        alert("ready");
+        test();
+    });
+
+</script>

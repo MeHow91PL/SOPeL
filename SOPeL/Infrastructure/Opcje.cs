@@ -7,13 +7,17 @@ namespace SOPeL.Infrastructure
 {
     public class Opcje
     {
-        public class Terminarz
+        public static class Terminarz
         {
-            public string godzOd { get; set; }
-            public string godzDo { get; set; }
-            public string czasTrwaniaWizyty { get; set; }
+            public static string godzOd { get; set; }
+            public static string godzDo { get; set; }
+            public static string czasTrwaniaWizyty { get; set; }
+            public static GrafikDlaPrzychodni grafikDlaPrzychodni { get; set; }
+            public static string znakPodzialuImieniaINazwiska { get; set; }
 
-            enum OgolnyDlaPrzychodni
+
+
+            public enum GrafikDlaPrzychodni
             {
                 Tak,
                 Nie
