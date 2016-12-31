@@ -57,7 +57,7 @@ namespace SOPeL.Controllers
                     Convert.ToInt32(wybranaData.Substring(8, 2))
                     );
 
-                 rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToList();
+                rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToList();
             }
             else rez = db.Rezerwacje.ToList();
 
@@ -115,6 +115,31 @@ namespace SOPeL.Controllers
             || p.Pesel.StartsWith(Prefix)).Take(10).ToListAsync();
 
             return Json(pacjenci, JsonRequestBehavior.AllowGet);
+        }
+
+        public bool ZapiszRezerwacje(Rezerwacja model)
+        {
+            try
+            {
+                db.Rezerwacje.Add(new Rezerwacja
+                {
+                    DataRezerwacji = model.DataRezerwacji,
+                    godzOd = model.godzOd,
+                    PacjentID = model.PacjentID,
+                    PracownikID = model.PracownikID,
+                    DataModyfikacji = DateTime.Now,
+                    Stat = model.Stat
+                });
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
     }
 }

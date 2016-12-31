@@ -68,7 +68,7 @@
                         }
                         else
                         {
-                            <td id="@Model.pracownicy[y].ID-@timeString" class="panel-rezerwacji wolny-termin" ondblclick="wyswietlOknoRezerwacji(this)">Wolny termin</td>
+                            <td id="@Model.pracownicy[y].ID-@timeString" class="panel-rezerwacji wolny-termin">Wolny termin</td>
                         }
                     }
                 }
@@ -83,29 +83,7 @@
 
 <script>
     /// <reference path="jquery-3.1.1.js" />
-    function wyswietlOknoRezerwacji(panelRezerwacji) {
-        var splitId = $(panelRezerwacji).attr("id").split("-");
-        var idLekarza = splitId[0];
-        var godzinaRezerwacji = splitId[1];
-
-        $("#kartaRezerwacjiWizytyKontener").css("display", "flex");
-        $.ajax({
-            url: "/Terminarz/pokazOknoRezerwacji",
-            type: 'POST',
-            data: {
-                dataRez: $('#wybor-daty-terminarz').val(),
-                idLek: idLekarza,
-                godzRez: godzinaRezerwacji
-            },
-            success: function (response) {
-                $("#kartaRezerwacjiWizytyKontener").html(response);
-            },
-            error: function () {
-                alert("Error");
-            }
-        });
-    }
 
 
-   
+
 </script>

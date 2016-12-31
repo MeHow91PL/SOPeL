@@ -1,13 +1,13 @@
 ﻿@model SOPeL.Models.Rezerwacja
 
 <div id="kartaRezerwacjiWizyty" class="kontenerOkienka">
-    <form id="formularzkartaRezerwacjiWizyty" method="post" action="@Url.Action("zatwierdzenieRezerwacji")" onsubmit="return zatwierdzKarteRezerwacji()">
+    <form id="formularzkartaRezerwacjiWizyty" method="post" onsubmit="return zatwierdzKarteRezerwacji()">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8">
                 <div class="col-lg-12 col-md-12 col-sm-12 ui-autocomplete">
                     <label for="Pacjent">Pacjent</label>
-                    @Html.TextBoxFor(m => m.Pacjent, new { @class = "form-control ui-autocomplete-input", @autocomplete = "off" })
-                    @Html.ValidationMessageFor(m => m.Pacjent)
+                    @Html.TextBox("Pacjent", "",new { @class = "form-control ui-autocomplete-input", @autocomplete = "off" })
+                    @Html.ValidationMessage("Pacjent")
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-6">
@@ -27,23 +27,25 @@
                     <img class="img-responsive" src="~/Content/Images/userIcon.png" />
                 </div>
                 @Html.TextBoxFor(m => m.Id, new { @type = "hidden" })
+                @Html.TextBoxFor(m => m.PacjentID, new { @type = "hidden" })
+                @Html.TextBoxFor(m => m.PracownikID, new { @type = "hidden" })
                 @Html.TextBoxFor(m => m.Pacjent.Plec, new { @type = "hidden" })
 
             </div>
         </div>
         <div class="" id="kartaRezerwacjiWizytyButtonKontener">
-            <input type="submit" id="zapiszOknoRezerwacjiButton" onclick="zapiszOknoRezerwacji" class="col-lg-offset-4 col-lg-2 col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2" value="Zapisz" />
+            <input type="button" id="zapiszOknoRezerwacjiButton" class="col-lg-offset-4 col-lg-2 col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2" value="Zapisz" />
             @{ if (ViewBag.edycjaWizyty == true)
                 {
-                    <input type="submit" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" name="submitButton" value="Usuń" />
+                    <input type="button" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" name="submitButton" value="Usuń" />
                 }
             }
             <input type="button" id="zamknijOknoRezerwacjiButton" onclick="zamknijOknoRezerwacji()" class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2" value="Anuluj" />
         </div>
     </form>
 </div>
+
 <script>
-    /// <reference path="jquery-3.1.1.js" />
     $("#Pacjent").autocomplete({
         source:
             function (request, response) {
@@ -56,37 +58,25 @@
                         response($.map(data, function (item, i) {
                             return {
                                 label: item.Pesel + " | " + item.Imie + " | " + item.Nazwisko,
-                                value: item.Pesel + " | " + item.Imie + " | " + item.Nazwisko
+                                value: item.Pesel + " | " + item.Imie + " | " + item.Nazwisko,
+                                id: item.ID
                             };
                         }))
-
                     }
                 })
-            }
+            },
+        create: function () {//wykonywane przy tworzeniu elementów listy podpowiedzi
+            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                return $("<li>")
+                  .addClass("ui-menu-item-wrapper")
+                  .attr("data-id", item.id)//dodaje pole data-id do elementów listy, później będzie on przekazany do input.autocomplete
+                  .append(item.label)
+                  .appendTo(ul);
+            };
+        },
+        select: function (event, ui) {
+            $(this).attr("data-idPac", ui.item.id);
+            $("#PacjentID").val(ui.item.id);
+        }
     });
-
-
-    
-    //var shiftIsPressed = false; //zmienna będzie służyła do rozpoznania czy klawisz shift jest wciśnięty
-
-    //$(".ui-autocomplete-input").keydown(function (event) {
-    //    if (event.which == 16) { // 16 to kod klawisza Shift
-    //        shiftIsPressed = true;
-    //    }
-
-    //    if (event.which == 8 && shiftIsPressed) { // 8 to kod klawisza backspace, jeżeli wciśnięty jest shitf i backspace to program wyczyści pole wyszukiwania
-    //        console.log($(this).val(""));
-    //    }
-    //});
-
-    //$(".ui-autocomplete-input").keyup(function (event) {
-    //    if (event.which == 16) { // 16 to kod klawisza Shift
-    //        shiftIsPressed = false;
-    //    }
-    //});
-
-    function zapiszOknoRezerwacji() {
-
-    }
-
 </script>

@@ -13,8 +13,7 @@ $(document).ready(function () {
 
 
     var shiftIsPressed = false; //zmienna będzie służyła do rozpoznania czy klawisz shift jest wciśnięty
-
-    $("input").keydown(function (event) {
+    $('#PrzychodniaBodyKontener').on('keydown', 'input', function (event) {
         if (event.which == 16) { // 16 to kod klawisza Shift
             shiftIsPressed = true;
         }
@@ -24,7 +23,7 @@ $(document).ready(function () {
         }
     });
 
-    $("input").keyup(function (event) {
+    $('#PrzychodniaBodyKontener').on('keyup', 'input', function (event) {
         if (event.which == 16) { // 16 to kod klawisza Shift
             shiftIsPressed = false;
         }

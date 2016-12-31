@@ -16,7 +16,6 @@ $(document).ready(function () {
     var menu = $("#menu");
 
 
-
     $kontenerMaterialPortalPacjenta.css({
         "height": "100%",
         "visibility": "visible"
@@ -50,6 +49,10 @@ $(document).ready(function () {
 
 
     wyborDatyTerminarz.change(function () {
+        pobierzTerminarz()
+    });
+
+    function pobierzTerminarz() {
         dataRezerwacji = wyborDatyTerminarz.val();
         var wzor = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
         var parts = dataRezerwacji.split('-');
@@ -59,10 +62,6 @@ $(document).ready(function () {
             $kontenerMaterialPortalPacjenta.slideUp(500);
             return;
         }
-        pobierzTerminarz(dataRezerwacji);
-    });
-
-    function pobierzTerminarz(dataRezerwacji) {
         $.ajax({
             url: pobierzTerminarzAjax,
             data: {
@@ -172,7 +171,7 @@ $(document).ready(function () {
             success: function (response) {
                 loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
                 ZamknijOkno(opcjeTerminarzaKontener);
-                pobierzTerminarz(dataRezerwacji);
+                pobierzTerminarz();
             },
             error: function (response) {
                 loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
@@ -182,16 +181,11 @@ $(document).ready(function () {
         });
     });
 
-
-
     $("#opcje-terminarza-anuluj-button").click(function () {
         if (confirm("Czy na pewno chcesz anulować wprowadzone zmiany?")) {
             ZamknijOkno(opcjeTerminarzaKontener);
         }
     });
-
-
-
 
     function PrzelaczIndywidualnyGrafik(checkbox) {
         if ($(checkbox).is(':checked')) {
@@ -219,48 +213,37 @@ $(document).ready(function () {
 
     //Przeniesione bezpośrednio do siatki terminarza
 
-    //function wyswietlOknoRezerwacji(panelRezerwacji)
-    //{
-    //    var splitId = $(panelRezerwacji).attr("id").split("-");
-    //    var idLekarza = splitId[0];
-    //    var godzinaRezerwacji = splitId[1];
+    $('#PrzychodniaBodyKontener').on('dblclick', '.wolny-termin', function () {
+        var splitId = $(this).attr("id").split("-");
+        var idLekarza = splitId[0];
+        var godzinaRezerwacji = splitId[1];
 
-    //    kartaRezerwacjiWizytyKontener.css("display", "flex");
-    //    $.ajax({
-    //        url: $(panelRezerwacji).data("action-url"),
-    //        type: 'POST',
-    //        data: {
-    //            dataRez: dataRezerwacji,
-    //            idLek: idLekarza,
-    //            godzRez: godzinaRezerwacji
-    //        },
-    //        success: function (response) {
-    //            $("#kartaRezerwacjiWizytyKontener").html(response);
-    //        },
-    //        error: function () {
-    //            alert("Error");
-    //        }
-    //    });
-    //}
+        $("#kartaRezerwacjiWizytyKontener").css("display", "flex");
+        $.ajax({
+            url: "/Terminarz/pokazOknoRezerwacji",
+            type: 'POST',
+            data: {
+                dataRez: $('#wybor-daty-terminarz').val(),
+                idLek: idLekarza,
+                godzRez: godzinaRezerwacji
+            },
+            success: function (response) { $("#kartaRezerwacjiWizytyKontener").html(response); },
+            error: function () { alert("Error"); }
+        });
+    });
 
-
-    //$("#zamknijOknoRezerwacjiButton").click(function () {
-    //    alert("zamknij");
-
-    //    kartaRezerwacjiWizytyKontener.hide();
-    //    alert("zamknij");
-    //});
-
-    //$("#zapiszOknoRezerwacjiButton").click(function () {
-    //    alert("zapisz");
-    //});
+    $('#PrzychodniaBodyKontener').on('click', '#zamknijOknoRezerwacjiButton', function () {
+        if (confirm("Na pewno zamknąć okno rezerwacji?")) {
+            kartaRezerwacjiWizytyKontener.hide();
+        }
+    });
 
     //--------------------------------- END OBSŁUGA KLIKANIA TERMINARZA -------------------------------------------------------------------------------------------------
 
     //--------------------------------- OBSŁUGA CONTEXT MENU -------------------------------------------------------------------------------------------------
 
     //Wywołanie okienka z menu,
-    $(".panel-rezerwacji").contextmenu(function (event) {
+    $('#PrzychodniaBodyKontener').on('contextmenu', '.wolny-termin', function (event) {
         event.preventDefault();// zablokowanie domyślej obsługi zdarzenia ppm
 
         menu.css({
@@ -279,7 +262,42 @@ $(document).ready(function () {
 
 
 
-    //--------------------------------- END OBSŁUGA CONTEXT MENU -------------------------------------------------------------------------------------------------
+    //--------------------------------- END OBSŁUGA CONTEXT MENU --------------------------------------------------------------------------------------------------
+
+
+
+
+    //--------------------------------- KARTA REZERWACJI ----------------------------------------------------------------------------------------------------------
+
+    
+
+
+    $('#PrzychodniaBodyKontener').on('click', '#zapiszOknoRezerwacjiButton', function (event) {
+        zapiszRezerwacje();
+    });
+
+    function zapiszRezerwacje() {
+        $.ajax({
+            url: "/Terminarz/ZapiszRezerwacje",
+            type: "POST",
+            data: $("#formularzkartaRezerwacjiWizyty").serialize(),
+            success: function (response) {
+                if (response) {
+                    alert("Rezerwacja zapisana!");
+                    $('#formularzkartaRezerwacjiWizyty input[type="text"]').each(function () { $(this).val(""); });
+                    $("#kartaRezerwacjiWizytyKontener").css("display", "none");
+                    pobierzTerminarz();
+                }
+                else { alert("Błąd przy zapisywaniu rezerwacji!"); }
+            },
+            error: function () { alert("Błąd serwera"); }
+        })
+    };
+
+
+    //--------------------------------- END KARTA REZERWACJI ------------------------------------------------------------------------------------------------------
+
+
 
 
 
