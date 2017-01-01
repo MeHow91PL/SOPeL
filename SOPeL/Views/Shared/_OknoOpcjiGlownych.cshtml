@@ -18,23 +18,14 @@
                             <option selected id="podzialPrzecinek">,</option>
                         }
                     </select>
+
                 </fieldset>
             </div>
         </div>
 
         <div class="row">
-                <input type="submit" class="col-lg-6 col-md-6 col-sm-6 button button-blue" value="Zapisz">
-                <button class="col-lg-6 col-md-6 col-sm-6 button button-red">Anuluj</button>
+            <input type="submit" class="col-lg-6 col-md-6 col-sm-6 button button-blue" value="Zapisz">
+            <div class="col-lg-6 col-md-6 col-sm-6 button button-red" id="opcje-główne-anulujButton" onclick="zamknijOpcjeGlowne()">Anuluj</div>
         </div>
-
     </form>
 </div>
-
-<script>
-
-    $("#opcje-ogolne-kontener").ready(function () {
-        alert("ready");
-        test();
-    });
-
-</script>

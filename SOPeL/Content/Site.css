@@ -14,7 +14,7 @@ a {
     text-decoration: none;
 }
 
-div{
+div {
     background: none;
 }
 
@@ -74,6 +74,12 @@ div{
     -webkit-transition: 100MS;
     transition: 100MS;
     border: 1px white solid;
+    cursor: pointer;
+    text-align: center;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .button-blue {
@@ -102,6 +108,26 @@ div{
         background: #ae0404;
     }
 
+.button-kafelek {
+    padding: 20px;
+    display: inline-block;
+    border: solid 1px;
+    cursor: pointer;
+    -moz-transition: 100ms;
+    -o-transition: 100ms;
+    -webkit-transition: 100ms;
+    transition: 100ms;
+}
+
+    .button-kafelek:hover {
+        background:blue;
+    }
+        .button-kafelek:active {
+        background:red;
+    }
+        .button-kafelek:focus {
+        background:yellow;
+    }
 .display-none {
     display: none;
 }

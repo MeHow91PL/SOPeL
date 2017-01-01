@@ -57,8 +57,8 @@
                     success: function (data) {
                         response($.map(data, function (item, i) {
                             return {
-                                label: item.Pesel + " | " + item.Imie + " | " + item.Nazwisko,
-                                value: item.Pesel + " | " + item.Imie + " | " + item.Nazwisko,
+                                label: item.Pesel + " | " + item.Imie + " " + item.Nazwisko,
+                                value: item.Pesel + " | " + item.Imie + " " + item.Nazwisko,
                                 id: item.ID
                             };
                         }))
@@ -76,7 +76,7 @@
         },
         select: function (event, ui) {
             $(this).attr("data-idPac", ui.item.id);
-            $("#PacjentID").val(ui.item.id);
+            $("#PacjentID").val(ui.item.id); //przypisanie id wybranego pacjenta do ukrytego inputa dla pola PacjetID Modelu rezerwacji
         }
     });
 </script>

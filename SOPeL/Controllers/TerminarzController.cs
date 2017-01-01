@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -70,15 +71,7 @@ namespace SOPeL.Controllers
             return model;
         }
 
-        [HttpPost]
-        public PartialViewResult pokazOknoRezerwacji(string dataRez, int idLek, string godzRez, bool edycjaWizyty = false)
-        {
-            ViewBag.edycjaWizyty = edycjaWizyty;
-            var model = new Rezerwacja { DataRezerwacji = DateTime.Parse(dataRez), godzOd = godzRez, PracownikID = idLek };
-
-            return PartialView("_KartaRezerwacjiWizyty", model);
-        }
-
+        //--------------------------------- Opcje terminarza -----------------------------------------------------------------------
         public JsonResult PobierzOpcjeTerminarza()
         {
             var opcjeTemrminarza = db.Opcje.Where(o => o.Nazwa.StartsWith("term")).ToDictionary(o => o.Nazwa);
@@ -108,11 +101,49 @@ namespace SOPeL.Controllers
             }
         }
 
+
+        //--------------------------------- Rezerwacja wizyt -----------------------------------------------------------------------
+        [HttpPost]
+        public PartialViewResult pokazOknoRezerwacji(string dataRez, int idLek, string godzRez, bool edycjaWizyty = false)
+        {
+            ViewBag.edycjaWizyty = edycjaWizyty;
+            var model = new Rezerwacja { DataRezerwacji = DateTime.Parse(dataRez), godzOd = godzRez, PracownikID = idLek };
+
+            return PartialView("_KartaRezerwacjiWizyty", model);
+        }
+
+
         public async Task<JsonResult> PacjentAutocomplete(string Prefix)
         {
-            var pacjenci = await db.Pacjenci.Where(p => p.Nazwisko.StartsWith(Prefix)
-            || p.Imie.StartsWith(Prefix)
-            || p.Pesel.StartsWith(Prefix)).Take(10).ToListAsync();
+            List<Pacjent> pacjenci = null;
+            Regex pattern = new Regex(@"^[0-9]{1,11}$");
+
+            if (pattern.IsMatch(Prefix)) // jeżeli wprowadzony ciąg jest liczbą to szukaj po peselu
+            {
+                pacjenci = await db.Pacjenci.Where(p => p.Pesel.StartsWith(Prefix)).Take(20).ToListAsync();
+            }
+            else
+            {
+
+                string znakPodziału = db.Opcje.Single(o => o.Nazwa == OpcjeManager.Ogólne.ZnakPodziałuImieniaINazwiska.nazwa).Wartosc;
+
+                if (Prefix.Contains(znakPodziału))
+                {
+                    int pozycjaZnakuPodzialu = Prefix.IndexOf(znakPodziału);
+                    string nazw = Prefix.Substring(0, pozycjaZnakuPodzialu);
+                    string imie = Prefix.Substring(pozycjaZnakuPodzialu + 1); // pozycjaZnakuPodzialu + 1 to pierwsza litra wyszukiwanego imienia
+
+                    pacjenci = await db.Pacjenci.Where(
+                        p => p.Nazwisko.StartsWith(nazw) && //wyszukuje nazwisko w substringu od początku do wystąpienia znaku podziału
+                        p.Imie.StartsWith(imie))//wyszukuje imię w substringu od wystąpienia znaku podziału
+                        .Take(20).ToListAsync(); // pobiera 20 pierwszych wyników i konwertuje je do listy
+                }
+                else
+                {
+                    pacjenci = await db.Pacjenci.Where(p => p.Nazwisko.StartsWith(Prefix)).Take(20).ToListAsync();
+                }
+
+            }
 
             return Json(pacjenci, JsonRequestBehavior.AllowGet);
         }

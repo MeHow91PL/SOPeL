@@ -318,7 +318,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Opcje.cs" />
+    <Compile Include="Infrastructure\OpcjeManager.cs" />
     <Compile Include="Migrations\201612291549302_init.cs" />
     <Compile Include="Migrations\201612291549302_init.Designer.cs">
       <DependentUpon>201612291549302_init.cs</DependentUpon>

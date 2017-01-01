@@ -213,7 +213,7 @@ $(document).ready(function () {
 
     //Przeniesione bezpośrednio do siatki terminarza
 
-    $('#PrzychodniaBodyKontener').on('dblclick', '.wolny-termin', function () {
+    $('#PrzychodniaBodyKontener').on('dblclick', '.wolny-termin', function () { //dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         var splitId = $(this).attr("id").split("-");
         var idLekarza = splitId[0];
         var godzinaRezerwacji = splitId[1];
@@ -232,7 +232,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#PrzychodniaBodyKontener').on('click', '#zamknijOknoRezerwacjiButton', function () {
+    $('#PrzychodniaBodyKontener').on('click', '#zamknijOknoRezerwacjiButton', function () {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         if (confirm("Na pewno zamknąć okno rezerwacji?")) {
             kartaRezerwacjiWizytyKontener.hide();
         }
@@ -243,7 +243,7 @@ $(document).ready(function () {
     //--------------------------------- OBSŁUGA CONTEXT MENU -------------------------------------------------------------------------------------------------
 
     //Wywołanie okienka z menu,
-    $('#PrzychodniaBodyKontener').on('contextmenu', '.wolny-termin', function (event) {
+    $('#PrzychodniaBodyKontener').on('contextmenu', '.wolny-termin', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         event.preventDefault();// zablokowanie domyślej obsługi zdarzenia ppm
 
         menu.css({
@@ -269,10 +269,10 @@ $(document).ready(function () {
 
     //--------------------------------- KARTA REZERWACJI ----------------------------------------------------------------------------------------------------------
 
-    
 
 
-    $('#PrzychodniaBodyKontener').on('click', '#zapiszOknoRezerwacjiButton', function (event) {
+
+    $('#PrzychodniaBodyKontener').on('click', '#zapiszOknoRezerwacjiButton', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         zapiszRezerwacje();
     });
 

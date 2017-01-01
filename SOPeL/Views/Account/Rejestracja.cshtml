@@ -12,7 +12,7 @@
 
 
 </head>
-<body style="padding: 0">
+<body style="padding: 0" onload="ustawFocus()">
     <div id="tlo">
         <div class="wysrodkujCentralnie">
             <div id="kartaLogowania" class="kontenerOkienka">
@@ -69,8 +69,12 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Scripts/Account")
+    <script>
+        function ustawFocus()
+        {
+            document.getElementById("Login").focus();
+        }
+    </script>
 
 </body>
 </html>

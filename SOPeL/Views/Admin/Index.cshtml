@@ -6,18 +6,23 @@
 
 
 <div>
-    <button id="opcjeOgolneBtn" onclick="pokazOpcjeGlowne()">
+
+    <div id="opcjeOgolneBtn" class="button-kafelek" onclick="pokazOpcjeGlowne()">
         Opcje ogólne
-    </button>
+    </div>
 </div>
 
 
+
+@* ------------------------------------- KONTENER NA OKIENKA --------------------------------------------------------------------- *@
 <div>
     <div id="opcje-ogolne-kontener" class="wysrodkujCentralnie display-none">
         @* Okno łaldowane przez AJAX *@
-        @Html.Action("PokazOpcjeGlowne")
+
     </div>
 </div>
+
+@* ----------------------------------- END KONTENER NA OKIENKA ------------------------------------------------------------------- *@
 
 @section scripts{
     @Scripts.Render("~/Scripts/Admin")

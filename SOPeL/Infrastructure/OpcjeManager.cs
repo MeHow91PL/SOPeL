@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SOPeL.Infrastructure
 {
-    public class Opcje
+    public class OpcjeManager 
     {
         public static class Terminarz
         {
@@ -22,6 +22,15 @@ namespace SOPeL.Infrastructure
                 Tak,
                 Nie
             }
+        }
+
+        public static class Ogólne
+        {
+            public class ZnakPodziałuImieniaINazwiska
+            {
+                public static readonly string nazwa = "ogol_podz_imie_nazw";
+            }
+
         }
     }
 }
