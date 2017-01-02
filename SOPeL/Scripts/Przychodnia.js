@@ -28,4 +28,10 @@ $(document).ready(function () {
             shiftIsPressed = false;
         }
     });
+
+    $("#PrzychodniaBodyKontener").on("click", ".lista-pacjentow", function (event) {
+        //$.ajax({
+        //    url: 
+        //});
+    });
 });

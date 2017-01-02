@@ -21,7 +21,6 @@ namespace SOPeL.Controllers
             return View();
         }
 
-        [HttpPost]
         public PartialViewResult PokazOpcjeGlowne()
         {
             OpcjeGlowneViewModel model = new OpcjeGlowneViewModel() { ogol_podz_imie_nazw =  db.Opcje.Single(o => o.Nazwa == "ogol_podz_imie_nazw").Wartosc};
