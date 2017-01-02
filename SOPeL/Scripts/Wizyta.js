@@ -35,8 +35,8 @@ $(document).ready(function () {
 
     $(".dodajWizyte").click(function () {
  
-
-        $kartaRezerwacjiWizytyKontener.css("display", "flex");
+       
+        $("#KontenerKartaWizyty").css("display", "flex");
         $.ajax({
             url: '/Wizyta/dodajWizyte',
             type: 'POST',
@@ -47,8 +47,7 @@ $(document).ready(function () {
                 $KontenerKartaWizyty.html(response);
             },
             error: function () {
-
-
+                
                 alert("Error dodja Wizyte");
             }
         });
