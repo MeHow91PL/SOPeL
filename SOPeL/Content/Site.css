@@ -36,7 +36,7 @@ div {
 
 .wysrodkujCentralnie {
     height: 100%;
-    position: fixed;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,6 +63,7 @@ div {
     -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
     padding: 50px;
+    display:flex;
 }
 
 .button {
