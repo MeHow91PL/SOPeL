@@ -67,8 +67,8 @@ namespace SOPeL.DAL
                     rezerwacje.Add(new Rezerwacja()
                     {
                         Id = i,
-                        DataModyfikacji = DateTime.Today,
-                        DataRezerwacji = DateTime.Today,
+                        DataModyfikacji = DateTime.Today.AddDays(i),
+                        DataRezerwacji = DateTime.Today.AddDays(i),
                         godzOd = "09:30",
                         godzDo = "10:00",
                         PacjentID = 1,
@@ -82,5 +82,5 @@ namespace SOPeL.DAL
             }
         }
     }
-
+}
 
