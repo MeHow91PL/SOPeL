@@ -302,6 +302,7 @@
     <Content Include="Views\Kartoteki\Edit.cshtml" />
     <Content Include="Views\Kartoteki\Index.cshtml" />
     <Content Include="Views\Shared\_ListaPacjentow.cshtml" />
+    <Content Include="Views\Wizyta\ListaWizyt.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

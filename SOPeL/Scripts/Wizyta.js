@@ -6,6 +6,7 @@ $(document).ready(function () {
     var $kartaRezerwacjiWizytyKontener = $("#kartaRezerwacjiWizytyKontener");
     var $wyborLekarza = $("#wyborLekarza");
     var $kontenerWizyt = $("#kontenerWizyt");
+    var $wyswietlHistorie = $("#wyswietlHistorie");
 
 
     var $kontenerMaterialPortalPacjenta = $("#kontenerMaterialPortalPacjenta");
@@ -32,6 +33,12 @@ $(document).ready(function () {
         })
     });
 
+
+ 
+
+    $('#PrzychodniaBodyKontener').on('click', '.wyswietlHistorie', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
+        alert("kliku kliku");
+    });
 
     $(".dodajWizyte").click(function () {
  
