@@ -1,71 +1,20 @@
 ﻿@model IEnumerable<SOPeL.Models.Pacjent>
 
-<div class="form-horizontal">
-    <div class="form-group">
-        @Html.Label("SzukajPacjenta", "Szukaj", new { @class= "col-sm-2 col-md-2 col-lg-2" })
-        @Html.TextBox("SzukajPacjenta", "", new { @class = "form-control col-lg-6 col-md-6 col-sm-6" })
-    </div>
+
+@using (Ajax.BeginForm("SzukajPacjentow", "Kartoteki",
+                new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ListaPacjentowTabela" }))
+{
+    <h3>Search:</h3>
+    @Html.TextBox("searchString", null, new { id = "Search" })
+    <input type="submit" value="Search" class="btn btn-primary" />
+}
+<div id="searchResults"></div>
+
+
+<div class="row">
+    @Html.Label("SzukajPacjenta", "Szukaj", new { @class = "col-sm-2 col-md-2 col-lg-2" })
+    @Html.TextBox("SzukajPacjenta", "", new { @class = "form-control col-lg-6 col-md-6 col-sm-6" })
 </div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Pesel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Imie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nazwisko)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataUrodzenia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Plec)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DokumentTozsamosci)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pesel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Imie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nazwisko)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataUrodzenia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Plec)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DokumentTozsamosci)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.ActionLink("Usun", "UsunPacjenta", new { id = item.ID })
-            </td>
-        </tr>
-    }
-
-</table>
+<div class="row" id="ListaPacjentowTabela">
+   @Html.Partial("_ListaPacjentowTabela", Model)
+</div>

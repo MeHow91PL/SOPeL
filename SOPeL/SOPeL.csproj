@@ -302,6 +302,7 @@
     <Content Include="Views\Kartoteki\Edit.cshtml" />
     <Content Include="Views\Kartoteki\Index.cshtml" />
     <Content Include="Views\Shared\_ListaPacjentow.cshtml" />
+    <Content Include="Views\Shared\_ListaPacjentowTabela.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -328,6 +329,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\OpcjeManager.cs" />
+    <Compile Include="Infrastructure\PacjenciManager.cs" />
+    <Compile Include="Migrations\201701031703283_Initial.cs" />
+    <Compile Include="Migrations\201701031703283_Initial.Designer.cs">
+      <DependentUpon>201701031703283_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -368,6 +374,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Poczekalnia\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701031703283_Initial.resx">
+      <DependentUpon>201701031703283_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

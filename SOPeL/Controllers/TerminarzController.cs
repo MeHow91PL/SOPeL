@@ -20,9 +20,9 @@ namespace SOPeL.Controllers
         SopelContext db = new SopelContext();
 
         // GET: Rejestracja
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var model = pobierzTerminarzViewModel(DateTime.Today.ToString("yyyy-MM-dd"));
+            var model = await pobierzTerminarzViewModel(DateTime.Today.ToString("yyyy-MM-dd"));
 
             ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
@@ -31,9 +31,9 @@ namespace SOPeL.Controllers
             return View(model);
         }
 
-        public ActionResult pobierzTerminarz(string wybranaData)
+        public async Task<ActionResult> pobierzTerminarz(string wybranaData)
         {
-            var model = pobierzTerminarzViewModel(wybranaData);
+            var model = await pobierzTerminarzViewModel(wybranaData);
 
             ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
@@ -42,7 +42,7 @@ namespace SOPeL.Controllers
             return View("SiatkaTerminarza", model);
         }
 
-        private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData = null, int pracownikId = 0)
+        private async Task<TerminarzViewModel> pobierzTerminarzViewModel(string wybranaData = null, int pracownikId = 0)
         {
             List<Opcja> opcje = null;
             List<Pracownik> prac = null;
@@ -58,14 +58,14 @@ namespace SOPeL.Controllers
                     Convert.ToInt32(wybranaData.Substring(8, 2))
                     );
 
-                rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToList();
+                rez = await db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToListAsync();
             }
             else rez = db.Rezerwacje.ToList();
 
-            if (pracownikId > 0) prac = db.Pracownicy.Where(p => p.ID == pracownikId).ToList();
-            else prac = db.Pracownicy.ToList();
+            if (pracownikId > 0) prac = await db.Pracownicy.Where(p => p.ID == pracownikId).ToListAsync();
+            else prac = await db.Pracownicy.ToListAsync();
 
-            opcje = db.Opcje.ToList();
+            opcje = await db.Opcje.ToListAsync();
             var model = new TerminarzViewModel { opcje = opcje, pracownicy = prac, rezerwacje = rez };
 
             return model;
@@ -113,38 +113,10 @@ namespace SOPeL.Controllers
         }
 
 
-        public async Task<JsonResult> PacjentAutocomplete(string Prefix)
+        public JsonResult PacjentAutocomplete(string Prefix)
         {
-            List<Pacjent> pacjenci = null;
-            Regex pattern = new Regex(@"^[0-9]{1,11}$");
-
-            if (pattern.IsMatch(Prefix)) // jeżeli wprowadzony ciąg jest liczbą to szukaj po peselu
-            {
-                pacjenci = await db.Pacjenci.Where(p => p.Pesel.StartsWith(Prefix)).Take(20).ToListAsync();
-            }
-            else
-            {
-
-                string znakPodziału = db.Opcje.Single(o => o.Nazwa == OpcjeManager.Ogólne.ZnakPodziałuImieniaINazwiska.nazwa).Wartosc;
-
-                if (Prefix.Contains(znakPodziału))
-                {
-                    int pozycjaZnakuPodzialu = Prefix.IndexOf(znakPodziału);
-                    string nazw = Prefix.Substring(0, pozycjaZnakuPodzialu);
-                    string imie = Prefix.Substring(pozycjaZnakuPodzialu + 1); // pozycjaZnakuPodzialu + 1 to pierwsza litra wyszukiwanego imienia
-
-                    pacjenci = await db.Pacjenci.Where(
-                        p => p.Nazwisko.StartsWith(nazw) && //wyszukuje nazwisko w substringu od początku do wystąpienia znaku podziału
-                        p.Imie.StartsWith(imie))//wyszukuje imię w substringu od wystąpienia znaku podziału
-                        .Take(20).ToListAsync(); // pobiera 20 pierwszych wyników i konwertuje je do listy
-                }
-                else
-                {
-                    pacjenci = await db.Pacjenci.Where(p => p.Nazwisko.StartsWith(Prefix)).Take(20).ToListAsync();
-                }
-
-            }
-
+            List<Pacjent> pacjenci = PacjenciManager.SzukajPacjentow(Prefix);
+            
             return Json(pacjenci, JsonRequestBehavior.AllowGet);
         }
 

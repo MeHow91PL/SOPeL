@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using SOPeL.DAL;
 using SOPeL.Models;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using SOPeL.Infrastructure;
 
 namespace SOPeL.Controllers
 {
@@ -21,16 +24,21 @@ namespace SOPeL.Controllers
             return View(db.Pacjenci.ToList());
         }
 
-        public PartialViewResult PokazListePacjentow()
+        public async Task<PartialViewResult> PokazListePacjentow()
         {
-            var model = db.Pacjenci.ToList();
+            var model = await db.Pacjenci.ToListAsync();
 
             return PartialView("_ListaPacjentow", model);
         }
 
 
 
+        public PartialViewResult SzukajPacjentow(string searchString)
+        {
+            var pacjenci = PacjenciManager.SzukajPacjentow(searchString);
 
+            return PartialView("_ListaPacjentowTabela", pacjenci);
+        }
 
 
 
