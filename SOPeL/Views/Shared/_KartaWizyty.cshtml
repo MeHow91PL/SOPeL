@@ -2,7 +2,7 @@
 <div class="row" style="height:99%;width:99%;">
 <div   class="kontenerOkienka">
 
-@using (Html.BeginForm("ZapiszDodajWizyte", "Wizyta", FormMethod.Post))
+@using (Html.BeginForm("ZapiszDodajWizyte", "Wizyta", FormMethod.Post, new { @class = "maxSzerokosc" }))
 {
     @Html.AntiForgeryToken()
 
