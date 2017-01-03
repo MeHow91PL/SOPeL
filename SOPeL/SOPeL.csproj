@@ -328,9 +328,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\OpcjeManager.cs" />
-    <Compile Include="Migrations\201701021633261_init.cs" />
-    <Compile Include="Migrations\201701021633261_init.Designer.cs">
-      <DependentUpon>201701021633261_init.cs</DependentUpon>
+    <Compile Include="Migrations\201701022008054_init.cs" />
+    <Compile Include="Migrations\201701022008054_init.Designer.cs">
+      <DependentUpon>201701022008054_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -374,8 +374,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701021633261_init.resx">
-      <DependentUpon>201701021633261_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701022008054_init.resx">
+      <DependentUpon>201701022008054_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
