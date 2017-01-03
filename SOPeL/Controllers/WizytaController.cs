@@ -76,6 +76,16 @@ namespace SOPeL.Controllers
             return PartialView("_KartaWizyty", wizyta);
         }
 
+
+
+        public PartialViewResult WyswietlHistorieWizyt(int idPac)
+        {
+            var Model = db.Wizyty.Where(w => w.PacjentID == idPac).ToList();
+            return PartialView("ListaWizyt", Model);
+        }
+
+
+
         public ActionResult ZapiszDodajWizyte([Bind(Include = "Id, Zalecenia,Skierowanie ,DataWizyty,DataModyfikacji,PacjentID,PracownikID,RezerwacjaId,Rozpoznanie,Wywiad,Badanie")] Wizyta wizyta)
         {
             db.Wizyty.Add(wizyta);
@@ -86,5 +96,8 @@ namespace SOPeL.Controllers
             return RedirectToAction("Index");
 
         }
+
+       
+
     }
 }

@@ -1,95 +1,104 @@
 ﻿@model SOPeL.Models.Wizyta
 <div class="row" style="height:99%;width:99%;">
-<div  @*id="kartaRezerwacjiWizyty"*@ class="kontenerOkienka maxWysokosc" style="display:flex">
+    <div class="kontenerOkienka">
 
-@using (Html.BeginForm("ZapiszDodajWizyte", "Wizyta", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+        @using (Html.BeginForm("ZapiszDodajWizyte", "Wizyta", FormMethod.Post, new { @class = "maxSzerokosc" }))
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+            <div class="form-horizontal">
 
-        <h4>Wizyta</h4>
-         <h3>@Model.Pacjent.Nazwisko @Model.Pacjent.Imie </h3>
-        <h5>@Model.DataWizyty.ToShortDateString()</h5>
-        <h5>-----------------------------</h5>
-        <hr />
-        
-        <div class="col-md-6 col-lg-6 col-sm-12">
-            Bieżąca wizyta
-            <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <h4>Wizyta</h4>
+                <h3>@Model.Pacjent.Nazwisko @Model.Pacjent.Imie </h3>
+                <h5>@Model.DataWizyty.ToShortDateString()</h5>
+                <h5>-----------------------------</h5>
+                <hr />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataWizyty, htmlAttributes: new { @class = "control-label col-md-3" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.DataWizyty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.DataWizyty , "", new { @class = "text-danger" })
+                <div class="col-md-9 col-lg-9 col-sm-12">
+                    Bieżąca wizyta
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataWizyty, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.DataWizyty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.DataWizyty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                   
+                   
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Rozpoznanie, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                           
+                            @Html.EditorFor(model => model.Rozpoznanie, new { htmlAttributes = new { @class = "form-control ui-autocomplete-input" } })
+                            @Html.ValidationMessageFor(model => model.Rozpoznanie, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.Badanie, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Badanie, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Badanie, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Wywiad, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Wywiad, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Wywiad, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Zalecenia, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Zalecenia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Zalecenia, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Skierowanie, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Skierowanie, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Skierowanie, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    @Html.TextBoxFor(m => m.RezerwacjaId, new { @type = "hidden" })
+                    @Html.TextBoxFor(m => m.PracownikID, new { @type = "hidden" })
+                    @Html.TextBoxFor(m => m.PacjentID, new { @type = "hidden" })
+                    @Html.TextBoxFor(m => m.DataModyfikacji, new { @type = "hidden" })
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Zapisz Wizytę" class="btn btn-default" />
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-sm-12">
+                    Historia leczenia
+                    <hr />
+                    @Html.Action("WyswietlHistorieWizyt","Wizyta",new { idPac = Model.PacjentID })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Rozpoznanie, htmlAttributes: new { @class = "control-label col-md-3" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Rozpoznanie, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Rozpoznanie, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            }
 
-        <div class="form-group">
-            
-            @Html.LabelFor(model => model.Badanie, htmlAttributes: new { @class = "control-label col-md-3" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Badanie, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Badanie, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Wywiad, htmlAttributes: new { @class = "control-label col-md-3" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Wywiad, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Wywiad, "", new { @class = "text-danger" })
-            </div>
-
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Zalecenia, htmlAttributes: new { @class = "control-label col-md-3" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Zalecenia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Zalecenia, "", new { @class = "text-danger" })
-            </div>
-
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Skierowanie, htmlAttributes: new { @class = "control-label col-md-3" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Skierowanie, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Skierowanie, "", new { @class = "text-danger" })
-            </div>
-
-        </div>
-        @Html.TextBoxFor(m => m.RezerwacjaId, new { @type = "hidden" })
-        @Html.TextBoxFor(m => m.PracownikID, new { @type = "hidden" })
-        @Html.TextBoxFor(m => m.PacjentID, new { @type = "hidden" })
-        @Html.TextBoxFor(m => m.DataModyfikacji,new { @type="hidden"})
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Zapisz Wizytę" class="btn btn-default" />
-                
-            </div>
-        </div>
-            </div>
-
-        <div class="col-md-6 col-lg-6 col-sm-12">Historia leczenia
-        <hr />
-        
-        
-        </div>
     </div>
 
-}
-    
-    </div>
-   
-    </div>
+</div>
+
+@*<script>
+    $("#ICD10").autocomplete({
+        source:"/Terminarz/PacjentAutocomplete"});
+
+        </script>*@
