@@ -269,8 +269,8 @@
     <Content Include="sample.snippet" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\PortalPacjenta1 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\PortalPacjenta1 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\SOPeLprod - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SOPeLprod - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -301,7 +301,7 @@
     <Content Include="Views\Kartoteki\Details.cshtml" />
     <Content Include="Views\Kartoteki\Edit.cshtml" />
     <Content Include="Views\Kartoteki\Index.cshtml" />
-    <Content Include="Views\Kartoteki\_ListaPacjentow.cshtml" />
+    <Content Include="Views\Shared\_ListaPacjentow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -317,7 +317,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Kartoteki.cs" />
+    <Compile Include="Controllers\KartotekiController.cs" />
     <Compile Include="Controllers\PacjenciController.cs" />
     <Compile Include="Controllers\PrzychodniaController.cs" />
     <Compile Include="Controllers\TerminarzController.cs" />
@@ -328,10 +328,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\OpcjeManager.cs" />
-    <Compile Include="Migrations\201701021633261_init.cs" />
-    <Compile Include="Migrations\201701021633261_init.Designer.cs">
-      <DependentUpon>201701021633261_init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -372,11 +368,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Poczekalnia\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701021633261_init.resx">
-      <DependentUpon>201701021633261_init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

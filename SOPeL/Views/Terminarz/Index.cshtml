@@ -14,7 +14,7 @@
     <div class="row">
         <div id="terminarzDataKontener" class="abba col-lg-10 col-md-10 col-sm-10 col-xs-10">
             <label for="wybor-daty-terminarz">Data</label>
-            <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}", DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="datepicker" />
+            <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}", DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="form-control datepicker" />
         </div>
         <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="opcje-terminarza-button">
             <img src="~/Content/Images/opcje.svg" alt="Opcje" />
@@ -30,7 +30,6 @@
         @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
     </div>
 </div>
-
 
 @*-----------------------------------------------Okno z opcjami terminarza--------------------------------------------------------------------------------------------*@
 <div id="opcje-terminarza-kontener" class="wysrodkujCentralnie">

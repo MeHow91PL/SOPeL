@@ -58,29 +58,29 @@ namespace SOPeL.DAL
 
 
 
-            var rezerwacje = new List<Rezerwacja>
-           {
-               new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-05"), DataRezerwacji =DateTime.Parse("2016-12-05"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
-                new Rezerwacja() {  Id=11, DataModyfikacji=DateTime.Parse("2016-12-21"), DataRezerwacji =DateTime.Parse("2016-12-21"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
-                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-21"), DataRezerwacji =DateTime.Parse("2016-12-21"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
-                new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-22"), DataRezerwacji =DateTime.Parse("2016-12-22"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
-                new Rezerwacja() { Id=11, DataModyfikacji=DateTime.Parse("2016-12-22"), DataRezerwacji =DateTime.Parse("2016-12-22"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
-                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-22"), DataRezerwacji =DateTime.Parse("2016-12-22"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
-                new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-19"), DataRezerwacji =DateTime.Parse("2016-12-19"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
-                new Rezerwacja() { Id=11, DataModyfikacji=DateTime.Parse("2016-12-19"), DataRezerwacji =DateTime.Parse("2016-12-19"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
-                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-19"), DataRezerwacji =DateTime.Parse("2016-12-19"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
-                new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-20"), DataRezerwacji =DateTime.Parse("2016-12-20"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
-                new Rezerwacja() { Id=11, DataModyfikacji=DateTime.Parse("2016-12-20"), DataRezerwacji =DateTime.Parse("2016-12-20"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
-                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-20"), DataRezerwacji =DateTime.Parse("2016-12-20"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 },
-                new Rezerwacja() { Id=10, DataModyfikacji=DateTime.Parse("2016-12-23"), DataRezerwacji =DateTime.Parse("2016-12-23"), godzOd ="09:30", godzDo="10:00",  PacjentID=1,  PracownikID=1 },
-                new Rezerwacja() { Id=11, DataModyfikacji=DateTime.Parse("2016-12-23"), DataRezerwacji =DateTime.Parse("2016-12-23"), godzOd ="09:30", godzDo="10:00",  PacjentID=2,  PracownikID=2 },
-                new Rezerwacja() { Id=12, DataModyfikacji=DateTime.Parse("2016-12-23"), DataRezerwacji =DateTime.Parse("2016-12-23"), godzOd ="10:30", godzDo="11:00",  PacjentID=1,  PracownikID=2 }
-            };
-            rezerwacje.ForEach(g => context.Rezerwacje.AddOrUpdate(g));
-            context.SaveChanges();
+            var rezerwacje = new List<Rezerwacja>();
+            {
 
+
+                for (int i = 0; i < 30; i++)
+                {
+                    rezerwacje.Add(new Rezerwacja()
+                    {
+                        Id = i,
+                        DataModyfikacji = DateTime.Today,
+                        DataRezerwacji = DateTime.Today,
+                        godzOd = "09:30",
+                        godzDo = "10:00",
+                        PacjentID = 1,
+                        PracownikID = 1
+                    });
+                }
+
+                rezerwacje.ForEach(g => context.Rezerwacje.AddOrUpdate(g));
+                context.SaveChanges();
+
+            }
         }
     }
-}
 
 

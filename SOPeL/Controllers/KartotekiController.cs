@@ -11,7 +11,7 @@ using SOPeL.Models;
 
 namespace SOPeL.Controllers
 {
-    public class Kartoteki : Controller
+    public class KartotekiController : Controller
     {
         private SopelContext db = new SopelContext();
 
@@ -21,7 +21,12 @@ namespace SOPeL.Controllers
             return View(db.Pacjenci.ToList());
         }
 
+        public PartialViewResult PokazListePacjentow()
+        {
+            var model = db.Pacjenci.ToList();
 
+            return PartialView("_ListaPacjentow", model);
+        }
 
 
 
