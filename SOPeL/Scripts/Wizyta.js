@@ -7,6 +7,7 @@ $(document).ready(function () {
     var $wyborLekarza = $("#wyborLekarza");
     var $kontenerWizyt = $("#kontenerWizyt");
     var $wyswietlHistorie = $("#wyswietlHistorie");
+    var $HistoriaWizyty = $("#HistoriaWizyty");
 
 
     var $kontenerMaterialPortalPacjenta = $("#kontenerMaterialPortalPacjenta");
@@ -38,6 +39,21 @@ $(document).ready(function () {
 
     $('#PrzychodniaBodyKontener').on('click', '.wyswietlHistorie', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         alert("kliku kliku");
+        $("#HistoriaWizyty").css("display", "flex");
+        $.ajax({
+            url: '/Wizyta/pokazHistorie',
+            type: 'POST',
+            data: {
+                idwizy: $(this).data("idwiz")
+            },
+            success: function (response) {
+                $HistoriaWizyty.html(response);
+            },
+            error: function () {
+
+                alert("Error dodja Wizyte");
+            }
+        });
     });
 
     $(".dodajWizyte").click(function () {
@@ -63,4 +79,3 @@ $(document).ready(function () {
 
     });
 })
-

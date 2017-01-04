@@ -3,7 +3,7 @@
 <ul class="list-group">
     @{ foreach (SOPeL.Models.Wizyta item in Model)
         {
-            <li  data-idwizytyhistoria="@item.Id" value="@item.Id"class="list-group-item"><div class="wyswietlHistorie">@item.DataWizyty.ToShortDateString() </div></li>
+            <li   value="@item.Id"class="list-group-item"><div data-idwiz="@item.Id" class="wyswietlHistorie">@item.DataWizyty.ToShortDateString() </div></li>
         }
     }
 </ul>
