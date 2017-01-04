@@ -41,7 +41,11 @@ namespace SOPeL.Controllers
         }
 
 
-
+        public PartialViewResult DodajPacjenta()
+        {
+            Pacjent pacjent = new Pacjent();
+            return PartialView("_KartaPacjenta", pacjent);
+        }
 
 
 

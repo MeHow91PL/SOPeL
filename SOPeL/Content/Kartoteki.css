@@ -1,0 +1,32 @@
+﻿#SzukajPacjentowForm {
+    margin-bottom: 10px;
+}
+
+    #SzukajPacjentowForm .row {
+        -ms-align-content: center;
+        -webkit-align-content: center;
+        align-content: center;
+    }
+
+    #SzukajPacjentowForm .button {
+        border: none;
+        display: block;
+        float: left;
+        padding: 5px;
+    }
+
+        #SzukajPacjentowForm .button:hover {
+            -moz-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            -o-transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+
+        #SzukajPacjentowForm .button:active {
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -o-transform: scale(1);
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }

@@ -31,23 +31,44 @@ $(document).ready(function () {
     });
 
     $PrzychodniaBodyKontener.on("click", ".lista-pacjentow-btn", function (event) {
-        var html = '<div id="ListaPacjentowKontener" class="wysrodkujCentralnie">' +
-                    '<div id="ListaPacjentowOkno" class="kontenerOkienka">' +
-                    'Ładowanie...' +
-                    '</div></div>';
-        $PrzychodniaBodyKontener.append(html)
+        //var html = '<div id="ListaPacjentowKontener" class="wysrodkujCentralnie">' +
+        //            '<div id="ListaPacjentowOkno" class="kontenerOkienka">' +
+        //            'Ładowanie...' +
+        //            '</div></div>';
+        //$PrzychodniaBodyKontener.append(html)
 
-        $.ajax({
-            url: "/Kartoteki/PokazListePacjentow",
-            success: function (response) {
-                $("#ListaPacjentowOkno").html(response);
-                //$("#ListaPacjentowKontener").css("display", "flex");
-            }
-        });
+        //$.ajax({
+        //    url: "/Kartoteki/PokazListePacjentow",
+        //    success: function (response) {
+        //        $("#ListaPacjentowOkno").html(response);
+        //        //$("#ListaPacjentowKontener").css("display", "flex");
+        //    }
+        //});
+
+        ZbudujOkienko("ListaPacjentowKontener", "ListaPacjentowOkno", "/Kartoteki/PokazListePacjentow");
     });
 
     //funkcja po każdym znaku wykonuje submit formularza, który przez zapytanie ajaxowe zwraca listę pacjentów
     $PrzychodniaBodyKontener.on("keyup", ".SzukajPacjentaInput", function () {
-        $("#form0").submit();
+        $("#SzukajPacjentowForm").submit();
     });
+
+    $PrzychodniaBodyKontener.on("click", ".dodaj-pacjenta", function () {
+        ZbudujOkienko("KartaPacjentaKontener", "KartaPacjentawOkno", "/Kartoteki/DodajPacjenta");
+    });
+    function ZbudujOkienko(kontener, idOkna, urlAction) {
+        var html = '<div id="' + kontener + '" class="wysrodkujCentralnie">' +
+                        '<div id="' + idOkna + '" class="kontenerOkienka">' +
+                        'Ładowanie...' +
+                        '</div></div>';
+        $PrzychodniaBodyKontener.append(html)
+
+        $.ajax({
+            url: urlAction,
+            success: function (response) {
+                $("#" + idOkna).html(response);
+            }
+        });
+    }
 });
+
