@@ -76,6 +76,13 @@ namespace SOPeL.Controllers
             return PartialView("_KartaWizyty", wizyta);
         }
 
+        public JsonResult ICD10Autocomplete(string term)
+        {
+            var icd10 = db.KodyICD10.Select(i => i.Kod).Where(i => i.StartsWith(term)).ToList();
+           // string[] icd10= new string[] { "one", "two", "free", "baba", "patrzy" };
+
+            return Json(icd10,JsonRequestBehavior.AllowGet);
+        }
 
 
         public PartialViewResult WyswietlHistorieWizyt(int idPac)
@@ -84,7 +91,15 @@ namespace SOPeL.Controllers
             return PartialView("ListaWizyt", Model);
         }
 
+        public PartialViewResult pokazHistorie(int idwizy)
+        {
 
+            Wizyta wizyta = db.Wizyty.Find(idwizy);
+           
+          
+
+            return PartialView("_KartaWizytyHistoria", wizyta);
+        }
 
         public ActionResult ZapiszDodajWizyte([Bind(Include = "Id, Zalecenia,Skierowanie ,DataWizyty,DataModyfikacji,PacjentID,PracownikID,RezerwacjaId,Rozpoznanie,Wywiad,Badanie")] Wizyta wizyta)
         {

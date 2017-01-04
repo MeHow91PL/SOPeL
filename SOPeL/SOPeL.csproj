@@ -304,6 +304,7 @@
     <Content Include="Views\Shared\_ListaPacjentow.cshtml" />
     <Content Include="Views\Shared\_ListaPacjentowTabela.cshtml" />
     <Content Include="Views\Wizyta\ListaWizyt.cshtml" />
+    <Content Include="Views\Shared\_KartaWizytyHistoria.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
