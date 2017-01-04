@@ -14350,7 +14350,7 @@ new ICD10() { Id=14265, Kod="Z99.9",Nazwa="Zależność od nieokreślonego urzą
 
 
             };
-                rozpoznania.ForEach(g => context.Rozpoznania.AddOrUpdate(g));
+                rozpoznania.ForEach(g => context.KodyICD10.AddOrUpdate(g));
                 context.SaveChanges();
 
 
