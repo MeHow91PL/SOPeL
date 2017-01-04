@@ -1,20 +1,14 @@
 ﻿@model IEnumerable<SOPeL.Models.Pacjent>
 
 
-@using (Ajax.BeginForm("SzukajPacjentow", "Kartoteki",
+@using (Ajax.BeginForm("SzukajPacjentow", "Kartoteki", new { @id = "SzukajPacjentowForm" },
                 new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ListaPacjentowTabela" }))
 {
-    <h3>Search:</h3>
-    @Html.TextBox("searchString", null, new { id = "Search" })
-    <input type="submit" value="Search" class="btn btn-primary" />
+    <h3>Szukaj:</h3>
+    @Html.TextBox("searchString", null, new { @class = "SzukajPacjentaInput" })
 }
 <div id="searchResults"></div>
-
-
-<div class="row">
-    @Html.Label("SzukajPacjenta", "Szukaj", new { @class = "col-sm-2 col-md-2 col-lg-2" })
-    @Html.TextBox("SzukajPacjenta", "", new { @class = "form-control col-lg-6 col-md-6 col-sm-6" })
-</div>
 <div class="row" id="ListaPacjentowTabela">
    @Html.Partial("_ListaPacjentowTabela", Model)
 </div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

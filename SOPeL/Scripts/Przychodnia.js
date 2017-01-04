@@ -45,4 +45,9 @@ $(document).ready(function () {
             }
         });
     });
+
+    //funkcja po każdym znaku wykonuje submit formularza, który przez zapytanie ajaxowe zwraca listę pacjentów
+    $PrzychodniaBodyKontener.on("keyup", ".SzukajPacjentaInput", function () {
+        $("#form0").submit();
+    });
 });
