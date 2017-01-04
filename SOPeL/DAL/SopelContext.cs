@@ -36,7 +36,7 @@ namespace SOPeL.DAL
         public DbSet<Uzytkownik> Uzytkownicy { get; set; } 
         public DbSet<Opcja> Opcje { get; set; }
         public DbSet<Wizyta> Wizyty { get; set; }
-        public DbSet<ICD10> Rozpoznania { get; set; }
+        public DbSet<ICD10> KodyICD10 { get; set; }
 
 
 
