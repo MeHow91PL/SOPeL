@@ -59,27 +59,25 @@ namespace SOPeL.DAL
 
 
             var rezerwacje = new List<Rezerwacja>();
+
+            for (int i = 0; i < 30; i++)
             {
-
-
-                for (int i = 0; i < 30; i++)
+                rezerwacje.Add(new Rezerwacja()
                 {
-                    rezerwacje.Add(new Rezerwacja()
-                    {
-                        Id = i,
-                        DataModyfikacji = DateTime.Today.AddDays(i),
-                        DataRezerwacji = DateTime.Today.AddDays(i),
-                        godzOd = "09:30",
-                        godzDo = "10:00",
-                        PacjentID = 1,
-                        PracownikID = 1
-                    });
-                }
-
-                rezerwacje.ForEach(g => context.Rezerwacje.AddOrUpdate(g));
-                context.SaveChanges();
-
+                    DataModyfikacji = DateTime.Today.AddDays(i),
+                    DataRezerwacji = DateTime.Today.AddDays(i),
+                    godzOd = "09:30",
+                    godzDo = "10:00",
+                    PacjentID = 1,
+                    PracownikID = 1
+                });
             }
+
+            context.Rezerwacje.;
+            rezerwacje.ForEach(g => context.Rezerwacje.AddOrUpdate(g));
+            context.SaveChanges();
+
+
         }
     }
 }
