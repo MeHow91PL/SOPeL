@@ -94,11 +94,47 @@
                             }
 
     </div>
-
+    <div class="col-lg-12 col-md-12 col-sm-12 ui-autocomplete">
+        <label for="Pacjent">Pacjent</label>
+        <div class="input-group">
+            @Html.TextBox("Pacjent", "", new { @class = "form-control ui-autocomplete-input col-lg-10 col-md-10 col-sm-10", @autocomplete = "off" })
+         </div><!-- /input-group -->
+        @*@Html.ValidationMessage("Pacjent")*@
+    </div>
 </div>
 
-@*<script>
-    $("#ICD10").autocomplete({
-        source:"/Terminarz/PacjentAutocomplete"});
-
-        </script>*@
+<script>
+    $("#Pacjent").autocomplete({
+        source:
+            function (request, response) {
+                $.ajax({
+                    url: "/Terminarz/PacjentAutocomplete",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item, i) {
+                            return {
+                                label: item.Pesel + " | " + item.Imie + " " + item.Nazwisko,
+                                value: item.Pesel + " | " + item.Imie + " " + item.Nazwisko,
+                                id: item.ID
+                            };
+                        }))
+                    }
+                })
+            },
+        create: function () {//wykonywane przy tworzeniu elementów listy podpowiedzi
+            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                return $("<li>")
+                  .addClass("ui-menu-item-wrapper")
+                  .attr("data-id", item.id)//dodaje pole data-id do elementów listy, później będzie on przekazany do input.autocomplete
+                  .append(item.label)
+                  .appendTo(ul);
+            };
+        },
+        select: function (event, ui) {
+            $(this).attr("data-idPac", ui.item.id);
+            $("#PacjentID").val(ui.item.id); //przypisanie id wybranego pacjenta do ukrytego inputa dla pola PacjetID Modelu rezerwacji
+        }
+    });
+</script>
