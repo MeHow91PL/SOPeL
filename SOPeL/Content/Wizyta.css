@@ -1,0 +1,35 @@
+﻿#ZapiszDodajWizyteForm {
+}
+
+
+    #ZapiszDodajWizyteForm .form-wizyta {
+        resize: vertical;
+        height: 5em;
+    }
+
+.DanePacjentaWizyta {
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    color: #222;
+    font-size: large;
+    cursor: default;
+}
+
+.DaneWizyta {
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    color: #222;
+    cursor: default;
+    
+}
+
+.DaneWizytaObsluz {
+    cursor: pointer;
+}
+
+.OpcjeDodatkowePoczekalnia {
+    padding: 0px;
+    width:5%;
+}

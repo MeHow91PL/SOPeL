@@ -51,6 +51,9 @@ namespace SOPeL.Models
         [Display(Name = "Zalecenia")]
         public string Zalecenia { get; set; }
 
+        [Display(Name = "Leki")]
+        public string Leki { get; set; }
+
         [Display(Name = "Skierowanie")]
         public string Skierowanie { get; set; }
 

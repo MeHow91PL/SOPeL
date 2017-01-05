@@ -1,21 +1,52 @@
 ﻿@model SOPeL.ViewModels.WizytaViewModel
 <div class="przychodnia">
-    <table class="table table-bordered terminarz">
-        
-            
-            @{
-                foreach (var item in Model.rezerwacje)
-                {
-                    if (@item.DataRezerwacji.ToShortDateString() == DateTime.Now.ToShortDateString())
-                    {
-                    <tr>
-                        <td class="pacjent_oczekujacy">@item.Pacjent.Nazwisko  @item.Pacjent.Imie <br/> @item.Pacjent.Pesel</td>
-                        <td class="pacjent_oczekujacy">Godzina: @item.godzOd, Data: @item.DataRezerwacji.ToShortDateString()</td>
-                        <td class="panel-rezerwacji wolny-termin"><div data-idwizyty="@item.Id" class="dodajWizyte">OBSŁUŻ PACJENTA</div></td>
-                    </tr>
-                        }
-                    }
-                }
+    <table class="table table-striped terminarz">
+
+
+        @{
+            <tr>
+                <td class="DaneWizyta">Dane Pacjenta</td>
+                <td class="DaneWizyta">Godzina</td>
+                <td class="DaneWizyta">Data</td>
+                <td class="DaneWizyta">Status</td>
+                <td class="DaneWizyta">Ewuś</td>
+                <td class="DaneWizyta"></td>
+                <td class="DaneWizyta">Opcje</td>
+            </tr>
+    foreach (var item in Model.rezerwacje)
+    {
+        if (@item.DataRezerwacji.ToShortDateString() == DateTime.Now.ToShortDateString())
+        {
+            <tr>
+                <td class="DanePacjentaWizyta">@item.Pacjent.Nazwisko  @item.Pacjent.Imie <br /> @item.Pacjent.Pesel</td>
+                <td class="DaneWizyta">@item.godzOd</td>
+                <td class="DaneWizyta">@item.DataRezerwacji.ToShortDateString()</td>
+                <td class="DaneWizyta">@item.Stat</td>
+                <td class="DaneWizyta">-</td>
+                <td class="DaneWizyta DaneWizytaObsluz">
+                    <div data-idwizyty="@item.Id" class="dodajWizyte button button-blue">
+                        
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
+                        <span>OBSŁUŻ</span>
+                        
+                    </div>
+                </td>
+                <td  class="DaneWizyta OpcjeDodatkowePoczekalnia">
+                    <div  class="input-group-btn button button-blue">
+                        <button  type="button" class="button button-blue btn-lg dropdown-toggle" data-toggle="dropdown" aria-hidden="true" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-plus"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Drukuj</a></li>
+                            <li><a href="#">Historia</a></li>
+                            <li><a href="#">Jeszcze coś</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Usuń rezerwacje</a></li>
+                        </ul>
+                    </div><!-- /btn-group -->
+                </td>
+            </tr>
+        }
+    }
+        }
 
 
 
