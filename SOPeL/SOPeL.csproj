@@ -199,6 +199,7 @@
     <Content Include="Content\Images\JednostkaOrgIcon.png" />
     <Content Include="Content\Images\KartotekiIcon.png" />
     <Content Include="Content\Images\loader.gif" />
+    <Content Include="Content\Images\logoalfa.png" />
     <Content Include="Content\Images\opcje.svg" />
     <Content Include="Content\Images\pacjenci.png" />
     <Content Include="Content\Images\pacjent2Icon.png" />
@@ -260,6 +261,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\Images\tloStart.png" />
+    <Content Include="Content\Wizyta.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -342,6 +344,10 @@
     <Compile Include="Migrations\201701051736527_Initi.Designer.cs">
       <DependentUpon>201701051736527_Initi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701052157298_zmiany.cs" />
+    <Compile Include="Migrations\201701052157298_zmiany.Designer.cs">
+      <DependentUpon>201701052157298_zmiany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\ICD10.cs" />
@@ -387,6 +393,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701051736527_Initi.resx">
       <DependentUpon>201701051736527_Initi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701052157298_zmiany.resx">
+      <DependentUpon>201701052157298_zmiany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
