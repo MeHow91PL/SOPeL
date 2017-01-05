@@ -1,4 +1,19 @@
-﻿#SzukajPacjentowForm {
+﻿#Kartoteki-Kafelki{
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+
+#Kartoteki-Kafelki .button-kafelek p{
+    font-weight:600;
+}
+
+#Kartoteki-Kafelki .wysrodkujCentralnie{
+    position:relative;
+    background:none;
+}
+
+#SzukajPacjentowForm {
     margin-bottom: 10px;
 }
 

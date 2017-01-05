@@ -196,6 +196,7 @@
     <Content Include="Content\Images\doctorIcon.png" />
     <Content Include="Content\Images\heart-checkup.png" />
     <Content Include="Content\Images\HomeIcon.png" />
+    <Content Include="Content\Images\JednostkaOrgIcon.png" />
     <Content Include="Content\Images\KartotekiIcon.png" />
     <Content Include="Content\Images\loader.gif" />
     <Content Include="Content\Images\opcje.svg" />
@@ -204,6 +205,8 @@
     <Content Include="Content\Images\Pacjent3Icon.png" />
     <Content Include="Content\Images\pacjentIcon.png" />
     <Content Include="Content\Images\plannerIcon.png" />
+    <Content Include="Content\Images\PoradnieIcon.png" />
+    <Content Include="Content\Images\PracownikIcon.png" />
     <Content Include="Content\Images\ZestawieniaIcon.png" />
     <Content Include="Content\Kartoteki.css" />
     <Content Include="Content\themes\base\images\tloStart.png" />
@@ -270,7 +273,9 @@
     <Content Include="sample.snippet" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\SOPeLprod - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\SOPeLprod - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SOPeLprod - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\SOPeLprod - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -333,9 +338,9 @@
     </Compile>
     <Compile Include="Infrastructure\OpcjeManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
-    <Compile Include="Migrations\201701041646095_init.cs" />
-    <Compile Include="Migrations\201701041646095_init.Designer.cs">
-      <DependentUpon>201701041646095_init.cs</DependentUpon>
+    <Compile Include="Migrations\201701051736527_Initi.cs" />
+    <Compile Include="Migrations\201701051736527_Initi.Designer.cs">
+      <DependentUpon>201701051736527_Initi.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -380,8 +385,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701041646095_init.resx">
-      <DependentUpon>201701041646095_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701051736527_Initi.resx">
+      <DependentUpon>201701051736527_Initi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

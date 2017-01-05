@@ -44,7 +44,6 @@ $(document).ready(function () {
         //        //$("#ListaPacjentowKontener").css("display", "flex");
         //    }
         //});
-
         ZbudujOkienko("ListaPacjentowKontener", "ListaPacjentowOkno", "/Kartoteki/PokazListePacjentow");
     });
 
@@ -56,6 +55,7 @@ $(document).ready(function () {
     $PrzychodniaBodyKontener.on("click", ".dodaj-pacjenta", function () {
         ZbudujOkienko("KartaPacjentaKontener", "KartaPacjentawOkno", "/Kartoteki/DodajPacjenta");
     });
+
     function ZbudujOkienko(kontener, idOkna, urlAction) {
         var html = '<div id="' + kontener + '" class="wysrodkujCentralnie">' +
                         '<div id="' + idOkna + '" class="kontenerOkienka">' +

@@ -5,8 +5,12 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif !important;
     font-weight: 400;
+}
+
+#PrzychodniaBodyKontener {
+    background: #eeeeee;
 }
 
 a {
@@ -46,35 +50,16 @@ div {
     background: rgba(0,0,0,0.1);
 }
 
-.kontenerMaterial {
-    background: white;
-    box-shadow: 0px 1px 1px #888888; /*rgba(0, 0, 0, 0.5);*/ /* to rgba nie waliduje sie prawidlowo*/
-    padding: 20px;
-    margin: 10px auto;
-}
-
-.kontenerOkienka {
-    color: #3b3b3b;
-    background: #ffffff;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    padding: 50px;
-}
 
 .button {
     padding: 10px 30px;
-    background:white;
+    background: white;
     cursor: pointer;
     margin: 0;
     -moz-transition: 100MS;
     -o-transition: 100MS;
     -webkit-transition: 100MS;
     transition: 100MS;
-    border: 1px black solid;
     text-align: center;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -111,20 +96,47 @@ div {
     }
 
 .button-kafelek {
-    display: inline-block;
+    width: 46%;
+    height: 46%;
+    margin: 1%;
+    float: left;
+    background: white;
+    box-shadow: 1px 1px 1px #888888;
 }
 
     .button-kafelek:hover {
-        background: blue;
+        box-shadow:none;
+        background:#5cb7de;
+        color:white;
     }
 
     .button-kafelek:active {
-        background: red;
+        background: #3a6f86;
     }
 
     .button-kafelek:focus {
-        background: yellow;
+        background: #3a6f86;
     }
+
+.kontenerMaterial {
+    background: white;
+    box-shadow: 0px 1px 1px #888888;
+    padding: 20px;
+    margin: 10px auto;
+}
+
+.kontenerOkienka {
+    color: #3b3b3b;
+    background: #ffffff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    padding: 50px;
+}
+
 
 .display-none {
     display: none;
