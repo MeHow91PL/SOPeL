@@ -48,7 +48,6 @@ namespace SOPeL.App_Start
                       "~/Content/RejestracjaOnline.css"));
 
             bundles.Add(new StyleBundle("~/Content/Layout").Include(
-                      "~/Content/reset.css",
                       "~/Content/Site.css",
                       "~/Content/SidebarModuly.css",
                       "~/Content/PortalPacjenta.css",
@@ -60,11 +59,8 @@ namespace SOPeL.App_Start
                       "~/Content/Wizyta.css",
                       "~/Content/Kartoteki.css" ));
 
-            bundles.Add(new StyleBundle("~/Content/Main").Include(
-                      "~/Content/reset.css",
-                      "~/Content/index.css",
-                      "~/Content/KartaLogowania.css",
-                      "~/Content/Site.css"));
+            bundles.Add(new StyleBundle("~/Content/reset").Include(
+                      "~/Content/reset.css"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                       "~/Content/bootstrap-theme.css",

@@ -313,6 +313,7 @@
     <Content Include="Views\Shared\_ListaPacjentowTabela.cshtml" />
     <Content Include="Views\Wizyta\ListaWizyt.cshtml" />
     <Content Include="Views\Shared\_KartaWizytyHistoria.cshtml" />
+    <Content Include="Views\Zestawienia\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -333,6 +334,7 @@
     <Compile Include="Controllers\PrzychodniaController.cs" />
     <Compile Include="Controllers\TerminarzController.cs" />
     <Compile Include="Controllers\WizytaController.cs" />
+    <Compile Include="Controllers\ZestawieniaController.cs" />
     <Compile Include="DAL\SopelContext.cs" />
     <Compile Include="DAL\SopelInitializer.cs" />
     <Compile Include="Global.asax.cs">

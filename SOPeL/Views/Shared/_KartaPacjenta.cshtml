@@ -1,24 +1,30 @@
 ﻿@model SOPeL.Models.Pacjent
 
-<div id="kartaRezerwacjiWizyty" class="kontenerOkienka">
-        <form id="formularzkartaRezerwacjiWizyty" method="post" action="@Url.Action("ZapiszDodajPacjenta")">
-            <div class="row">
-                <div id="" class="col-lg-8 col-md-8 col-sm-8">
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+<div id="KartaPacjenta">
+    <form id="KartaPacjentaForm" method="post" action="@Url.Action("ZapiszDodajPacjenta")">
+        <div class="row">
+            <div id="" class="col-lg-8 col-md-8 col-sm-8">
+                <fieldset>
+                    <legend>Dane pacjenta</legend>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-3">
+                        @Html.LabelFor(m => m.Pesel)
+                        @Html.TextBoxFor(m => m.Pesel, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Pesel)
+                    </div>
+                    <div class="form-group col-lg-4 col-md-4 col-sm-4">
                         @Html.LabelFor(m => m.Imie)
                         @Html.TextBoxFor(m => m.Imie, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Imie)
                     </div>
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                    <div class="form-group col-lg-5 col-md-5 col-sm-5 ">
                         @Html.LabelFor(m => m.Nazwisko)
                         @Html.TextBoxFor(m => m.Nazwisko, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Nazwisko)
                     </div>
-
                     <div class="form-group col-lg-5 col-md-5 col-sm-5 ">
-                        @Html.LabelFor(m => m.Pesel)
-                        @Html.TextBoxFor(m => m.Pesel, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Pesel)
+                        @Html.LabelFor(m => m.Telefon)
+                        @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Telefon)
                     </div>
                     <div class="form-group col-lg-5 col-md-5 col-sm-5 ">
                         @Html.LabelFor(m => m.DataUrodzenia)
@@ -27,9 +33,12 @@
                     </div>
                     <div class="form-group col-lg-2 col-md-2 col-sm-2 ">
                         @Html.LabelFor(m => m.Plec)
-                        @Html.TextBoxFor(m => m.Plec, new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.Plec, new SelectList(new List<string> { "M", "K" }), new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Plec)
                     </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Adres</legend>
                     <div class="form-group col-lg-4 col-md-4 col-sm-4 ">
                         @Html.LabelFor(m => m.Adres.KodPocztowy)
                         @Html.TextBoxFor(m => m.Adres.KodPocztowy, new { @class = "form-control" })
@@ -55,30 +64,26 @@
                         @Html.TextBoxFor(m => m.Adres.NrLokalu, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Adres.NrLokalu)
                     </div>
-                    <div class="form-group col-lg-4 col-md-4 col-sm-4 ">
-                        @Html.LabelFor(m => m.Telefon)
-                        @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Telefon)
-                    </div>
                     <div>
                         @Html.TextBoxFor(m => m.ID, new { @type = "hidden" })
                         @Html.TextBoxFor(m => m.Adres.Id, new { @type = "hidden" })
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                </fieldset>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
 
-                    <div @*id="kartaRezerwacjiPortalPacjentaNiezalogowanyZdjeciePacjenta"*@ class="hidden-xs">
-                        <img class="img-responsive" src="~/Content/Images/userIcon.png" />
-                    </div>
+                <div @*id="kartaRezerwacjiPortalPacjentaNiezalogowanyZdjeciePacjenta"*@ class="hidden-xs">
+                    <img class="img-responsive" src="~/Content/Images/userIcon.png" />
+                </div>
 
-                </div>
-                </div>
-                <div class="buttonFotterContainer">
-                    <input type="submit" class="button button-blue" value="Zapisz" />
-                    <input type="button" id="closeButton" class="button button-red" value="Anuluj" />
-                </div>
-</form>
-    </div>
+            </div>
+        </div>
+        <div class="buttonFotterContainer">
+            <input type="submit" class="button button-blue" value="Zapisz" />
+            <input type="button" id="closeButton" class="button button-red" value="Anuluj" />
+        </div>
+    </form>
+</div>
 
 
 
