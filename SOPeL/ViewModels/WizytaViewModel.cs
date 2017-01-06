@@ -11,5 +11,6 @@ namespace SOPeL.ViewModels
         public ICollection<Pracownik> pracownicy { get; set; }
         public ICollection<Rezerwacja> rezerwacje { get; set; }
         public ICollection<Wizyta> wizyty { get; set; }
+        public ICollection<Rezerwacja> rezerwacjeDzisiejsze { get; set; }
     }
 }

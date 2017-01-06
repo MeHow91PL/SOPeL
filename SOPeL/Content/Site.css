@@ -81,6 +81,9 @@ div {
         background: #3a6f86;
     }
 
+
+
+
 .button-red {
     background: #ff2d2d;
     border: 1px white solid;
@@ -105,9 +108,9 @@ div {
 }
 
     .button-kafelek:hover {
-        box-shadow:none;
-        background:#5cb7de;
-        color:white;
+        box-shadow: none;
+        background: #5cb7de;
+        color: white;
     }
 
     .button-kafelek:active {

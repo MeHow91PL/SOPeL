@@ -11,8 +11,8 @@
 
 <h2>Poczekalnia</h2>
 <div class="container kontenerMaterial">
-    <div class="container   col-sm-4 col-xs-10">
-        Pracownik:
+    <div class="container col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <label for="wyborLekarza">Pracownik</label>
         <select class="form-control" id="wyborLekarza">
             <option id="0">Wybierz lekarza</option>
             @{
@@ -23,24 +23,37 @@
             }
         </select>
     </div>
-    <div class="col-lg-1 col-lg-offset-7 col-md-1 col-md-offset-7 col-sm-1 col-sm-offset-7 col-xs-2">
+
+    <div id="terminarzDataKontener" class="abba col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <label for="wybor-daty-terminarz">Data</label>
+        <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}", DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="form-control datepicker" />
+    </div>
+    <div id="terminarzDataKontener" class="abba col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <label for="wybor-daty-terminarz">Status Wizyty</label>
+        <select class="form-control" id="statusWizyty">
+            <option id="0">R - Rezerwacja</option>
+            <option id="1">W - Wizyta Obsłużona</option>
+        </select>
+    </div>
+    <div class="col-lg-1 col-lg-offset-1  col-md-1  col-md-offset-1 col-xs-1 col-xs-offset-1">
         <a id="opcje-terminarza-button">
             <img src="~/Content/Images/doctorIcon.png" alt="Opcje" class="img-responsive" />
         </a>
     </div>
 </div>
 <div class="container kontenerMaterial" style="padding:0">
-    <div id="kontenerWizyt" >
-    @* Treść ładowana AJAXem *@
-    @Html.Partial("WizytaPrzychodnia")
-</div></div>
+    <div id="kontenerWizyt">
+        @* Treść ładowana AJAXem *@
+        @Html.Partial("WizytaPrzychodnia")
+    </div>
+</div>
 
 
 <div id="KartaDodawaniaWizyty">
-    <div  id="KontenerKartaWizyty" class="wysrodkujCentralnie display-none heighAuto">
-     @*Treść ładowana ajaxem z pliku Wizyta.js  ładowana jest _KartaWizyty*@
+    <div id="KontenerKartaWizyty" class="wysrodkujCentralnie display-none heighAuto">
+        @*Treść ładowana ajaxem z pliku Wizyta.js  ładowana jest _KartaWizyty*@
     </div>
-    </div>
+</div>
 
 <div>
     <div id="HistoriaWizyty" class="wysrodkujCentralnie display-none heighAuto">

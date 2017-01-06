@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace SOPeL.Controllers
 {
@@ -20,7 +21,7 @@ namespace SOPeL.Controllers
             //var yesterDay = DateTime.Now.AddDays(-1);
             //var yesterDayshort = yesterDay.ToShortDateString();
             //var nextDay = DateTime.Now.AddDays(+1);
-            //var toDay = DateTime.Now.ToShortDateString();
+            var toDay = DateTime.Now.ToShortDateString();
 
             //var rez = (from n in db.Rezerwacje.OrderByDescending(n => n.DataRezerwacji) where  (n.DataRezerwacji.Date() = yesterDayshort ) /*&& (n.DataRezerwacji < nextDay)*/ select n).ToList();
 
@@ -32,7 +33,8 @@ namespace SOPeL.Controllers
             var prac = db.Pracownicy.ToList();
             var wiz = db.Wizyty.ToList();
             var rez = db.Rezerwacje.Where(r => r.Stat != "W").ToList();
-            var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
+            //var rezToday = db.Rezerwacje.Where(g => g.DataRezerwacji.TruncateTime() == toDay).ToList();
+            var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz};
             return View(model);
 
         }

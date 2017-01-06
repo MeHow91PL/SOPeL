@@ -199,6 +199,7 @@
     <Content Include="Content\Images\JednostkaOrgIcon.png" />
     <Content Include="Content\Images\KartotekiIcon.png" />
     <Content Include="Content\Images\loader.gif" />
+    <Content Include="Content\Images\logoalfa.png" />
     <Content Include="Content\Images\opcje.svg" />
     <Content Include="Content\Images\pacjenci.png" />
     <Content Include="Content\Images\pacjent2Icon.png" />
@@ -260,6 +261,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\Images\tloStart.png" />
+    <Content Include="Content\Wizyta.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -338,9 +340,9 @@
     </Compile>
     <Compile Include="Infrastructure\OpcjeManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
-    <Compile Include="Migrations\201701051736527_Initi.cs" />
-    <Compile Include="Migrations\201701051736527_Initi.Designer.cs">
-      <DependentUpon>201701051736527_Initi.cs</DependentUpon>
+    <Compile Include="Migrations\201701060932268_init.cs" />
+    <Compile Include="Migrations\201701060932268_init.Designer.cs">
+      <DependentUpon>201701060932268_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -385,8 +387,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701051736527_Initi.resx">
-      <DependentUpon>201701051736527_Initi.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701060932268_init.resx">
+      <DependentUpon>201701060932268_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

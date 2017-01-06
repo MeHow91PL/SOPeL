@@ -7,23 +7,47 @@
         height: 5em;
     }
 
+
+    #ZapiszDodajWizyteForm .form-wizyta-leki {
+        resize: vertical;
+        height: 1em;
+    }
+
 .DanePacjentaWizyta {
     height: 40px;
     text-align: center;
     vertical-align: middle;
     color: #222;
-    font-size: large;
+    font-size: medium;
     cursor: default;
 }
 
 .DaneWizyta {
     height: 40px;
     text-align: center;
-    vertical-align: middle;
+    vertical-align: middle!important;
     color: #222;
     cursor: default;
+  
     
 }
+
+#TabelaWizyty .input-group-btn:last-child > .btn,
+    .input-group-btn:last-child > .btn-group {
+        z-index: auto;
+       
+    }
+
+#TabelaWizyty .glyphicon-ok {
+    /*font-size: 2em;*/
+    color: forestgreen;
+}
+
+#TabelaWizyty .glyphicon-remove {
+    /*font-size: 2em;*/
+    color: red;
+}
+
 
 .DaneWizytaObsluz {
     cursor: pointer;
@@ -31,5 +55,26 @@
 
 .OpcjeDodatkowePoczekalnia {
     padding: 0px;
-    width:5%;
+    width:1%;
+    height:50%;
 }
+
+
+
+/* Przyciski do klikania daty by wyswietlic historie*/
+
+.button-historia {
+    cursor: pointer;
+    padding-left:9px;
+    background: white;
+    border: 1px white solid;
+    
+}
+
+    .button-historia:hover {
+        background: #bebebe;
+    }
+
+    .button-historia:active {
+        background: #808080;
+    }
