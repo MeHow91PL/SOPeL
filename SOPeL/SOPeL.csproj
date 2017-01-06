@@ -262,6 +262,11 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\Images\tloStart.png" />
     <Content Include="Content\Wizyta.css" />
+    <Content Include="Content\Images\ZestPacjIcon.png" />
+    <Content Include="Content\Images\ZestRezIcon.png" />
+    <Content Include="Content\Images\ZestUzytIcon.png" />
+    <Content Include="Content\Images\ZestWizIcon.png" />
+    <Content Include="Content\Wizyta.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -313,6 +318,7 @@
     <Content Include="Views\Shared\_ListaPacjentowTabela.cshtml" />
     <Content Include="Views\Wizyta\ListaWizyt.cshtml" />
     <Content Include="Views\Shared\_KartaWizytyHistoria.cshtml" />
+    <Content Include="Views\Zestawienia\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -333,6 +339,7 @@
     <Compile Include="Controllers\PrzychodniaController.cs" />
     <Compile Include="Controllers\TerminarzController.cs" />
     <Compile Include="Controllers\WizytaController.cs" />
+    <Compile Include="Controllers\ZestawieniaController.cs" />
     <Compile Include="DAL\SopelContext.cs" />
     <Compile Include="DAL\SopelInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -343,6 +350,10 @@
     <Compile Include="Migrations\201701060932268_init.cs" />
     <Compile Include="Migrations\201701060932268_init.Designer.cs">
       <DependentUpon>201701060932268_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701052157298_zmiany.cs" />
+    <Compile Include="Migrations\201701052157298_zmiany.Designer.cs">
+      <DependentUpon>201701052157298_zmiany.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -389,6 +400,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701060932268_init.resx">
       <DependentUpon>201701060932268_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701052157298_zmiany.resx">
+      <DependentUpon>201701052157298_zmiany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

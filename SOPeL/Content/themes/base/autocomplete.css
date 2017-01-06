@@ -16,6 +16,8 @@
     list-style: none;
     padding: 0;
     display: block;
+    max-height:200px;
+    overflow-y:auto;
 }
 
     .ui-autocomplete .ui-menu-item-wrapper {

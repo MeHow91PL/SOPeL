@@ -9,9 +9,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/reset")
     @Styles.Render("~/Content/themes/base/css")
-    @Styles.Render("~/Content/Layout")
     @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/Layout")
     @RenderSection("style", required: false)
 
 
@@ -19,83 +20,72 @@
 
 </head>
 <body style="padding: 0" id="bodyPrzychodnia" class="maxSzerokosc maxWysokosc">
+    <div class="maxWysokosc">
+        <div class="sidebar" id="sidebarPrzychodnia">
+            <div id="zwijaczMenu">&lt;&lt;</div>
+
+            <ul id="navPortalPacjenta">
+                <li id="Terminarz-Sidebar">
+                    <a href="@Url.Action("Index","Terminarz")" id="Terminarz">
+                        <img class="img-responsive" src="~/Content/Images/unnamed.png" alt="Terminarz" />
+                        <span>Terminarz</span>
+                    </a>
+                </li>
+                <li id="wizyta-sidebar">
+                    <a href="@Url.Action("Index","Wizyta")" id="Wizyta">
+                        <img class="img-responsive" src="~/Content/Images/heart-checkup.png" alt="Wizyta" />
+                        <span>Wizyta</span>
+                    </a>
+                </li>
+                <li id="admin-sidebar">
+                    <a href="@Url.Action("Index","Admin")" id="Admin">
+                        <img class="img-responsive" src="~/Content/Images/admin.svg" alt="Admin" />
+                        <span>Admin</span>
+                    </a>
+                </li>
+                <li id="pacjenci-sidebar">
+                    <a href="@Url.Action("Index","Kartoteki")" id="Kartoteki">
+                        <img class="img-responsive" src="~/Content/Images/KartotekiIcon.png" alt="Kartoteki" />
+                        <span>Kartoteki</span>
+                    </a>
+                </li>
+                <li id="pacjenci-sidebar">
+                    <a href="@Url.Action("Index","Zestawienia")" id="Zestawienia">
+                        <img class="img-responsive" src="~/Content/Images/ZestawieniaIcon.png" alt="Zestawienia" />
+                        <span>Zestawienia</span>
+                    </a>
+                </li>
+                <li id="home-sidebar">
+                    <a href="@Url.Action("Index", "Home")" id="Home">
+                        <img class="img-responsive" src="~/Content/Images/HomeIcon.png" alt="główna" />
+                        <span>Ekran główny</span>
+                    </a>
+                </li>
+            </ul>
+            <div id="przychodnia-sidebar-footer">
+                zalogowany
+                @Html.ActionLink("Wyloguj", "Wyloguj", "Account")
+            </div>
 
 
+        </div>
+        <div id="PrzychodniaBodyKontener" class="maxWysokosc">
+            <div id="renderBody">
 
-    <div class="container-fluid maxWysokosc">
-        <div class="maxWysokosc">
-            <div class="sidebar" id="sidebarPrzychodnia">
-                <div id="zwijaczMenu">&lt;&lt;</div>
-
-                <ul id="navPortalPacjenta">
-                    <li id="Terminarz-Sidebar">
-                        <a href="@Url.Action("Index","Terminarz")" id="Terminarz">
-                            <img class="img-responsive" src="~/Content/Images/unnamed.png" alt="Terminarz" />
-                            <span>Terminarz</span>
-                        </a>
-                    </li>
-                    <li id="wizyta-sidebar">
-                        <a href="@Url.Action("Index","Wizyta")" id="Wizyta">
-                            <img class="img-responsive" src="~/Content/Images/heart-checkup.png" alt="Wizyta" />
-                            <span>Wizyta</span>
-                        </a>
-                    </li>
-                    <li id="admin-sidebar">
-                        <a href="@Url.Action("Index","Admin")" id="Admin">
-                            <img class="img-responsive" src="~/Content/Images/admin.svg" alt="Admin" />
-                            <span>Admin</span>
-                        </a>
-                    </li>
-                    <li id="pacjenci-sidebar">
-                        <a href="@Url.Action("Index","Kartoteki")" id="Kartoteki">
-                            <img class="img-responsive" src="~/Content/Images/KartotekiIcon.png" alt="Kartoteki" />
-                            <span>Kartoteki</span>
-                        </a>
-                    </li>
-                    <li id="pacjenci-sidebar">
-                        <a href="@Url.Action("Index","Zestawienia")" id="Zestawienia">
-                            <img class="img-responsive" src="~/Content/Images/ZestawieniaIcon.png" alt="Zestawienia" />
-                            <span>Zestawienia</span>
-                        </a>
-                    </li>
-                    <li id="home-sidebar">
-                        <a href="@Url.Action("Index", "Home")" id="Home">
-                            <img class="img-responsive" src="~/Content/Images/HomeIcon.png" alt="główna" />
-                            <span>Ekran główny</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <div id="przychodnia-sidebar-footer">
-                    zalogowany
-                    @Html.ActionLink("Wyloguj", "Wyloguj", "Account")
-                </div>
-
+                @RenderBody()
 
             </div>
-            <div id="PrzychodniaBodyKontener" class="maxWysokosc">
-                <div id="renderBody">
-
-                    @RenderBody()
-
-                </div>
-                <div class="wysrodkujCentralnie maxWysokosc maxSzerokosc ukryty" id="loader-kontener">
-                    <img id="loader" src="~/Content/Images/loader.gif" alt="Wczytuję..." />
-                </div>
+            <div class="wysrodkujCentralnie maxWysokosc maxSzerokosc ukryty" id="loader-kontener">
+                <img id="loader" src="~/Content/Images/loader.gif" alt="Wczytuję..." />
             </div>
         </div>
-
     </div>
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/Przychodnia")
     @RenderSection("scripts", required: false)
-
-
-
 
 </body>
 </html>
