@@ -41,14 +41,14 @@ div {
 
 
 .wysrodkujCentralnie {
-    height: 100%;
-    position: fixed;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     top: 0;
     left: 0;
     right: 0;
+    bottom:0;
     background: rgba(0,0,0,0.1);
 }
 
@@ -141,7 +141,6 @@ div {
     box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
     padding: 50px;
     overflow:auto;
-    height:100%;
 }
 
 

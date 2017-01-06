@@ -347,13 +347,9 @@
     </Compile>
     <Compile Include="Infrastructure\OpcjeManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
-    <Compile Include="Migrations\201701060932268_init.cs" />
-    <Compile Include="Migrations\201701060932268_init.Designer.cs">
-      <DependentUpon>201701060932268_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701052157298_zmiany.cs" />
-    <Compile Include="Migrations\201701052157298_zmiany.Designer.cs">
-      <DependentUpon>201701052157298_zmiany.cs</DependentUpon>
+    <Compile Include="Migrations\201701061656594_init.cs" />
+    <Compile Include="Migrations\201701061656594_init.Designer.cs">
+      <DependentUpon>201701061656594_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -398,11 +394,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701060932268_init.resx">
-      <DependentUpon>201701060932268_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701052157298_zmiany.resx">
-      <DependentUpon>201701052157298_zmiany.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701061656594_init.resx">
+      <DependentUpon>201701061656594_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
