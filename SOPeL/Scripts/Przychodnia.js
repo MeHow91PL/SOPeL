@@ -57,9 +57,6 @@ $(document).ready(function () {
     });
 
     function ZbudujOkienko(kontener, idOkna, urlAction) {
-        $PrzychodniaBodyKontener
-
-
         var html = '<div id="' + kontener + '" class="wysrodkujCentralnie col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
                         '<div id="' + idOkna + '" class="kontenerOkienka  col-lg-10 col-md-12 col-sm-12 col-xs-12 col-xs-12">' +
                         'Ładowanie...' +

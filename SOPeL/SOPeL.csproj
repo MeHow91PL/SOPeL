@@ -262,6 +262,10 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\Images\tloStart.png" />
     <Content Include="Content\Wizyta.css" />
+    <Content Include="Content\Images\ZestPacjIcon.png" />
+    <Content Include="Content\Images\ZestRezIcon.png" />
+    <Content Include="Content\Images\ZestUzytIcon.png" />
+    <Content Include="Content\Images\ZestWizIcon.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

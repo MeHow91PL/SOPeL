@@ -27,13 +27,13 @@
                         </div>
                     </div>
 
-                   
-                   
+
+
                     <div class="form-group">
                         @Html.LabelFor(model => model.Rozpoznanie, htmlAttributes: new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
                             @Html.TextBoxFor(m=>m.Rozpoznanie, new { @class = "form-control ui-autocomplete-input", @autocomplete = "off" })
-                            
+
                             @*@Html.EditorFor(model => model.Rozpoznanie, new { htmlAttributes = new { @class = "form-control ui-autocomplete-input" } })*@
                             @Html.ValidationMessageFor(model => model.Rozpoznanie, "", new { @class = "text-danger" })
                         </div>
@@ -67,7 +67,7 @@
                             </div>
                         </div>
 
-                    
+
                     <div class="form-group">
                         @Html.LabelFor(model => model.Zalecenia, htmlAttributes: new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
@@ -107,12 +107,10 @@
                             }
         </div>
     </div>
-   
+
 
 <script>
     $("#Rozpoznanie").autocomplete({
-               
-
         source: "/Wizyta/ICD10Autocomplete"})
             </script>
 
