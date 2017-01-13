@@ -137,6 +137,10 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -270,6 +274,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\Admin.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
@@ -280,6 +285,7 @@
     <Content Include="sample.snippet" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="packages.config" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Properties\PublishProfiles\SOPeLprod - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\SOPeLprod - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\SOPeLprod - Web Deploy %282%29.pubxml" />
@@ -299,6 +305,7 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\Pacjenci.js" />
+    <Content Include="Scripts\printThis.js" />
     <Content Include="Scripts\Przychodnia.js" />
     <Content Include="Scripts\RejestracjaOnline.js" />
     <Content Include="Scripts\Terminarz.js" />
