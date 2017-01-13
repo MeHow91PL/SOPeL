@@ -11,6 +11,7 @@ using SOPeL.Models;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using SOPeL.Infrastructure;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SOPeL.Controllers
 {
@@ -47,7 +48,10 @@ namespace SOPeL.Controllers
             return PartialView("_KartaPacjenta", pacjent);
         }
 
-
+        public PartialViewResult SkierTest()
+        {
+            return PartialView("SkierowaniePattern", new SkierowanieTest() { data = "2017-01-11", poradnia = "Kardiologiczna" });
+        }
 
 
 
