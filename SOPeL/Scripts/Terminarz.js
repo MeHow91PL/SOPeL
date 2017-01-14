@@ -155,13 +155,9 @@ $(document).ready(function () {
     $("#opcje-terminarza-zapisz-button").click(function () {
         loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
         var dict = new Object();
-        console.log("Przed pętlą");
-        console.log(dict);
         $("#opcje-terminarza-okno input[id^='term']").each(function (i, val) {// $("#opcje-terminarza-okno input[id^='term']") pobiera wszystkie inputy z okna terminarza których id rozpoczyna się od term, czyli są to opcje terminarza w bazie
             dict[$(this).attr("id")] = $(this).val();
         });
-        console.log("Po pętli");
-        console.log(dict);
         $.ajax({
             url: "/Terminarz/ZapiszOpcjeTerminarza",
             type: "POST",
@@ -175,7 +171,6 @@ $(document).ready(function () {
             },
             error: function (response) {
                 loaderKontener.switchClass("widoczny", "ukryty", 150, "swing");
-                console.log(response);
                 alert(response);
             }
         });

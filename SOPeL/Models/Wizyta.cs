@@ -10,7 +10,7 @@ namespace SOPeL.Models
 {
 
     [Table("Wizyty")]
-    public class Wizyta 
+    public class Wizyta : ICloneable
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }
@@ -57,5 +57,9 @@ namespace SOPeL.Models
         [Display(Name = "Skierowanie")]
         public string Skierowanie { get; set; }
 
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

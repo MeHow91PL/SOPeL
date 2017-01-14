@@ -11,7 +11,7 @@ using SOPeL.Models;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using SOPeL.Infrastructure;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rotativa;
 
 namespace SOPeL.Controllers
 {
@@ -52,6 +52,13 @@ namespace SOPeL.Controllers
         {
             return PartialView("SkierowaniePattern", new SkierowanieTest() { data = "2017-01-11", poradnia = "Kardiologiczna" });
         }
+
+        public ActionResult DownloadViewPDF()
+        {
+            return new PartialViewAsPdf("SkierowaniePattern", new SkierowanieTest() { data = "2017-01-11", poradnia = "Kardiologiczna" });
+        }
+
+
 
 
 
@@ -95,7 +102,7 @@ namespace SOPeL.Controllers
 
 
         // POST: Kartoteki/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -127,7 +134,7 @@ namespace SOPeL.Controllers
         }
 
         // POST: Kartoteki/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

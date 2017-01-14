@@ -28,17 +28,10 @@
                 </div>
                 <hr />
 
-
-
-
-
-
-
                 <div class="col-md-9 col-lg-9 col-sm-12">
                     Bieżąca wizyta
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Rozpoznanie, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -52,12 +45,18 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Wywiad, htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             @Html.TextAreaFor(model => model.Wywiad, new { @class = "form-control form-wizyta" })
                             @Html.ValidationMessageFor(model => model.Wywiad, "", new { @class = "text-danger" })
                         </div>
-                    </div>
+                        <div class="col-md-1">
+                            <button type="button" onclick="druk()" name="submit" value="wywiad" class="btn btn-default">
+                                <span class="glyphicon glyphicon-print"></span>
+                            </button>
 
+
+                        </div>
+                    </div>
 
                     <div class="form-group">
 
@@ -77,7 +76,7 @@
                             @Html.EditorFor(model => model.Leki, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         </div>
                         <div class="col-md-1 col-lg-1 col-sm-1">
-                            <button class="btn btn-default">
+                            <button type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-minus"></span>
                             </button>
                         </div>
@@ -87,15 +86,11 @@
                             @Html.TextBoxFor(model => model.Leki, new { @class = "form-control" })
                         </div>
                         <div class="col-md-1 col-lg-1 col-sm-1">
-                            <button class="btn btn-default lista-pacjentow-btn">
+                            <button type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </div>
                     </div>
-
-
-
-
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Zalecenia, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -111,11 +106,7 @@
                             @Html.TextBoxFor(model => model.Skierowanie, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Skierowanie, "", new { @class = "text-danger" })
                         </div>
-
                     </div>
-
-
-
                 </div>
                 <div class="row">
                     <div class="col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1 col-sm-12">
@@ -125,23 +116,15 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
-
-
                 <div class="col-md-3 col-lg-3 col-sm-3">
-                   
-
 
                 </div>
                 <div class="col-md-5 col-lg-5 col-sm-5">
                     <button type="submit" class="btn btn-success">Zapisz wizytę</button>
                     <button type="submit" class="btn btn-info">Drukuj</button>
                     <button type="submit" class="btn btn-danger">Wyjdź bez zapisywania</button>
-
                 </div>
-              
-
             </div>
             @Html.TextBoxFor(m => m.RezerwacjaId, new { @type = "hidden" })
             @Html.TextBoxFor(m => m.PracownikID, new { @type = "hidden" })
@@ -149,18 +132,37 @@
             @Html.TextBoxFor(m => m.DataModyfikacji, new { @type = "hidden" })
             @Html.TextBoxFor(m => m.DataWizyty, new { @type = "hidden" })
         }
-
-
-
-
+    </div>
+    <div id="test">
+        sadasdasdasd
     </div>
 </div>
-
-
+    <script src="~/Scripts/printThis.js"></script>
 <script>
     $("#Rozpoznanie").autocomplete({
-
-
         source: "/Wizyta/ICD10Autocomplete"
     })
+
+    function druk() {
+        var IdPac = $("#PacjentID").val();
+        var Wyw = $("#Wywiad").val();
+        $.ajax({
+            url: "/Wizyta/DrukujWywiad",
+            Type: "POST",
+            data: {
+                idPac: IdPac,
+                wyw: Wyw
+            },
+            success: function (response) {
+                $(response).printThis({
+                    debug: false,
+                    printContainer: true
+                });
+            },
+            error: function (response) {
+                alert("Błąd wydruku! Szczegóły w logach");
+                console.log(response);
+            }
+        });
+    }
 </script>

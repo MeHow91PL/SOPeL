@@ -4,8 +4,9 @@
 }
 
 
-
-<button onclick="drukSkierowania()">skierowanie</button>
+@section scripts{
+    <script src="~/Scripts/printThis.js"></script>
+}
 
 <div id="Kartoteki-Kafelki" class="row">
     <div id="PacjenciBtn" class="button button-kafelek lista-pacjentow-btn">
@@ -41,24 +42,24 @@
         </div>
     </div>
 </div>
+<div style="display:none">
+    <div id="test">
+        test
+    </div>
+</div>
+
 <script>
     function drukSkierowania() {
         $.ajax({
-            url: '/Kartoteki/SkierTest',
+            url: '/Kartoteki/DownloadViewPDF',
             type: 'POST',
             success: function (response) {
-                console.log("Success: " + response);
-
                 var mywindow = window.open('', 'skierowanie', 'height=400,width=600');
-
-                mywindow.document.write('<html><head><title>my div</title>');
-                mywindow.document.write('</head><body >');
                 mywindow.document.write(response);
-                mywindow.document.write('</body></html>');
-
-                mywindow.print();
-                mywindow.close();
             }
         });
+
+
+
     }
 </script>
