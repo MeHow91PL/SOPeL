@@ -134,9 +134,9 @@
         }
     </div>
     <div id="test">
-        sadasdasdasd
     </div>
 </div>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
     <script src="~/Scripts/printThis.js"></script>
 <script>
     $("#Rozpoznanie").autocomplete({
@@ -154,10 +154,7 @@
                 wyw: Wyw
             },
             success: function (response) {
-                $(response).printThis({
-                    debug: false,
-                    printContainer: true
-                });
+                $(response).printThis();
             },
             error: function (response) {
                 alert("Błąd wydruku! Szczegóły w logach");

@@ -48,6 +48,10 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="BarcodeLib, Version=1.0.0.22, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BarcodeLib.1.0.0.22\lib\net20\BarcodeLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -214,6 +218,7 @@
     <Content Include="Content\Images\PracownikIcon.png" />
     <Content Include="Content\Images\ZestawieniaIcon.png" />
     <Content Include="Content\Kartoteki.css" />
+    <Content Include="Content\Recepta.css" />
     <Content Include="Content\Skierowanie.css" />
     <Content Include="Content\themes\base\images\tloStart.png" />
     <Content Include="Content\Images\unnamed.png" />
@@ -329,6 +334,7 @@
     <Content Include="Views\Zestawienia\Index.cshtml" />
     <Content Include="Views\Kartoteki\SkierowaniePattern.cshtml" />
     <Content Include="Views\Wizyta\Wydruk-Wywiad.cshtml" />
+    <Content Include="Views\Shared\_WydrukRecepta.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

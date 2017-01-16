@@ -109,8 +109,6 @@ namespace SOPeL.Controllers
                 Pacjent = pac,
                 Wywiad = wyw
             };
-
-            vm.Wywiad.Replace("\n", "<br />");
             return PartialView("Wydruk-Wywiad",vm);
         }
 
