@@ -50,7 +50,7 @@
                             @Html.ValidationMessageFor(model => model.Wywiad, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-1">
-                            <button type="button" onclick="druk()" name="submit" value="wywiad" class="btn btn-default">
+                            <button type="button" onclick="wydrukWywiadu()" name="submit" value="wywiad" class="btn btn-default">
                                 <span class="glyphicon glyphicon-print"></span>
                             </button>
 
@@ -76,8 +76,8 @@
                             @Html.EditorFor(model => model.Leki, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         </div>
                         <div class="col-md-1 col-lg-1 col-sm-1">
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-minus"></span>
+                            <button type="button" onclick="wydrukRecepty()" class="wydruk-recepty btn btn-default">
+                                <span class="glyphicon glyphicon-print"></span>
                             </button>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
         source: "/Wizyta/ICD10Autocomplete"
     })
 
-    function druk() {
+    function wydrukWywiadu() {
         var IdPac = $("#PacjentID").val();
         var Wyw = $("#Wywiad").val();
         $.ajax({
@@ -153,6 +153,20 @@
                 idPac: IdPac,
                 wyw: Wyw
             },
+            success: function (response) {
+                $(response).printThis();
+            },
+            error: function (response) {
+                alert("Błąd wydruku! Szczegóły w logach");
+                console.log(response);
+            }
+        });
+    }
+
+    function wydrukRecepty() {
+        $.ajax({
+            url: "/Wizyta/DrukujRecepte",
+            Type: "POST",
             success: function (response) {
                 $(response).printThis();
             },

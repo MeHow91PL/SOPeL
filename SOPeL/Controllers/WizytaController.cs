@@ -112,6 +112,10 @@ namespace SOPeL.Controllers
             return PartialView("Wydruk-Wywiad",vm);
         }
 
+        public ActionResult DrukujRecepte()
+        {
+            return PartialView("_WydrukRecepta");
+        }
 
 
 

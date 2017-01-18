@@ -201,6 +201,7 @@
     <Content Include="Content\Images\097-512.png" />
     <Content Include="Content\Images\admin.svg" />
     <Content Include="Content\Images\clinicIcon.png" />
+    <Content Include="Content\Images\code128bar.jpg" />
     <Content Include="Content\Images\doctorIcon.png" />
     <Content Include="Content\Images\heart-checkup.png" />
     <Content Include="Content\Images\HomeIcon.png" />
