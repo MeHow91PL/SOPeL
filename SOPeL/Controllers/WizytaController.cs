@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Rotativa;
+using static SOPeL.Infrastructure.Enums;
 
 namespace SOPeL.Controllers
 {
@@ -33,7 +34,7 @@ namespace SOPeL.Controllers
 
             var prac = db.Pracownicy.ToList();
             var wiz = db.Wizyty.ToList();
-            var rez = db.Rezerwacje.Where(r => r.Stat != "W").ToList();
+            var rez = db.Rezerwacje.Where(r => r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak).ToList();
             //var rezToday = db.Rezerwacje.Where(g => g.DataRezerwacji.TruncateTime() == toDay).ToList();
             var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
             return View(model);
@@ -48,7 +49,7 @@ namespace SOPeL.Controllers
             {
                 var prac = db.Pracownicy.ToList();
                 var wiz = db.Wizyty.ToList();
-                var rez = db.Rezerwacje.Where(r => r.Stat != "W").ToList();
+                var rez = db.Rezerwacje.Where(r => r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak).ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia", model);
 
@@ -57,7 +58,7 @@ namespace SOPeL.Controllers
             {
                 var prac = db.Pracownicy.ToList();
                 var wiz = db.Wizyty.ToList();
-                var rez = db.Rezerwacje.Where(r => r.PracownikID == idlekarza && r.Stat != "W").ToList();
+                var rez = db.Rezerwacje.Where(r => r.PracownikID == idlekarza && r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak).ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia", model);
 
@@ -130,7 +131,7 @@ namespace SOPeL.Controllers
                 db.Wizyty.Add(wizyta);
                 var idrez = wizyta.RezerwacjaId;
                 Rezerwacja rezerwacja = db.Rezerwacje.Find(idrez);
-                rezerwacja.Stat = "W";
+                rezerwacja.Stat = Status.Wykonany;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

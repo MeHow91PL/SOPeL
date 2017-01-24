@@ -260,7 +260,33 @@ $(document).ready(function () {
     //--------------------------------- END OBSŁUGA CONTEXT MENU --------------------------------------------------------------------------------------------------
 
 
+    $('#PrzychodniaBodyKontener').on('click', '.usun-rezerwacje-btn', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
+        usunRezerwacje(this);
+    });
 
+    function usunRezerwacje(obj) {
+        console.log();
+        if(confirm("Czy na pewno usunąć wybraną rezerwację?"))
+        {
+            $.ajax({
+                url: "/Terminarz/UsunRezerwacje",
+                type: "POST",
+                data: {
+                    idRez: $(obj).data("idrez")
+                },
+                success: function (response) {
+                    if (response) {
+                        alert("Rezerwacja usunięta pomyślnie!");
+                        pobierzTerminarz();
+                    }
+                    else { alert("Błąd przy zapisywaniu rezerwacji!"); }
+                },
+                error: function (response) {
+                    alert("Błąd serwera");
+                }
+            });
+        }
+    }
 
     //--------------------------------- KARTA REZERWACJI ----------------------------------------------------------------------------------------------------------
 
@@ -286,8 +312,8 @@ $(document).ready(function () {
                 else { alert("Błąd przy zapisywaniu rezerwacji!"); }
             },
             error: function () { alert("Błąd serwera"); }
-        })
-    };
+        });
+    }
 
 
     //--------------------------------- END KARTA REZERWACJI ------------------------------------------------------------------------------------------------------

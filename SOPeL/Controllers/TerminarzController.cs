@@ -10,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using static SOPeL.Infrastructure.Enums;
+
 namespace SOPeL.Controllers
 {
     [Authorize]
@@ -58,7 +60,7 @@ namespace SOPeL.Controllers
                     Convert.ToInt32(wybranaData.Substring(8, 2))
                     );
 
-                rez = await db.Rezerwacje.Where(r => r.DataRezerwacji == data).ToListAsync();
+                rez = await db.Rezerwacje.Where(r => r.DataRezerwacji == data && r.Aktw == Aktywny.Tak).ToListAsync();
             }
             else rez = db.Rezerwacje.ToList();
 
@@ -116,7 +118,7 @@ namespace SOPeL.Controllers
         public JsonResult PacjentAutocomplete(string Prefix)
         {
             List<Pacjent> pacjenci = PacjenciManager.SzukajPacjentow(Prefix);
-            
+
             return Json(pacjenci, JsonRequestBehavior.AllowGet);
         }
 
@@ -143,6 +145,24 @@ namespace SOPeL.Controllers
                 return false;
             }
 
+        }
+
+        public bool UsunRezerwacje(int idRez)
+        {
+            try
+            {
+                Rezerwacja rez = db.Rezerwacje.Find(idRez);
+                rez.Aktw = Aktywny.Nie;
+                db.Entry(rez).State = EntityState.Modified;
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

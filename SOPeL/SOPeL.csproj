@@ -362,11 +362,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\OpcjeManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
-    <Compile Include="Migrations\201701131703083_ititi.cs" />
-    <Compile Include="Migrations\201701131703083_ititi.Designer.cs">
-      <DependentUpon>201701131703083_ititi.cs</DependentUpon>
+    <Compile Include="Migrations\201701242226167_inititi.cs" />
+    <Compile Include="Migrations\201701242226167_inititi.Designer.cs">
+      <DependentUpon>201701242226167_inititi.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -412,8 +413,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701131703083_ititi.resx">
-      <DependentUpon>201701131703083_ititi.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701242226167_inititi.resx">
+      <DependentUpon>201701242226167_inititi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

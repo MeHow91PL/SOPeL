@@ -30,7 +30,8 @@
                     for (int y = 0; y < iloscPracowników; y++)//Tworzy kolumnę dla każdego pracownika
                     {
                         bool rezerwacjaIstnieje = false;
-                        string nazwiskoPacjenta = "", imiePacjenta = "", pesel = "", email = "", telefon = "", dokToz = "", statusRez = "R";
+                        string nazwiskoPacjenta = "", imiePacjenta = "", pesel = "", email = "", telefon = "", dokToz = "";
+                        SOPeL.Infrastructure.Enums.Status statusRez = SOPeL.Infrastructure.Enums.Status.Rezerwacja;
                         int idRez = 0;
 
                         foreach (var item in Model.rezerwacje)
@@ -46,11 +47,6 @@
                                 telefon = item.Pacjent.Telefon;
                                 email = item.Pacjent.Email;
                                 idRez = item.Id;
-
-                                if (item.Stat == null)
-                                {
-                                    item.Stat = "R";
-                                }
                                 statusRez = item.Stat;
 
                                 break;
@@ -58,11 +54,23 @@
                         }
                         if (rezerwacjaIstnieje)
                         {
-                            <td id="@Model.pracownicy[y].ID-@timeString" imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez" class="terminarzZarezerwowanyTermin">
+                            <td id="@Model.pracownicy[y].ID-@timeString" imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez" class="panel-rezerwacji">
                                 <div class="kafelekRezerwacji @statusRez">
-                                    <span>@imiePacjenta @nazwiskoPacjenta</span>
-                                    <span> @statusRez</span>
-                                </div>
+                                        <div class="left-side col-lg-3 col-md-3 col-sm-3">
+                                            <span> @statusRez</span>
+                                        </div>
+
+                                        <div class="central col-lg-6 col-md-6 col-sm-6">
+                                            <div class="dane-pacjenta">
+                                                @imiePacjenta @nazwiskoPacjenta
+                                            </div>
+                                        </div>
+                                        <div class="right-side col-lg-3 col-md-3 col-sm-3">
+                                            <div class="przyciski">
+                                                <span data-idrez="@idRez" class="usun-rezerwacje-btn glyphicon glyphicon-remove"></span>
+                                            </div>
+                                        </div>
+                                    </div>
                             </td>
                             rezerwacjaIstnieje = false;
                         }
