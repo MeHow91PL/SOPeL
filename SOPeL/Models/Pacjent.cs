@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static SOPeL.Infrastructure.Enums;
 
 namespace SOPeL.Models
 {
@@ -13,7 +14,7 @@ namespace SOPeL.Models
     {
         public Pacjent()
         {
-            Aktw = "T";
+            Aktw = Aktywny.Tak;
         }
 
         [Display(Name = "Data urodzenia")]

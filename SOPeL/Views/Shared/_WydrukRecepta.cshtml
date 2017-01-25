@@ -1,0 +1,90 @@
+﻿<link href="~/Content/Recepta.css" rel="stylesheet" />
+
+<table cellpadding="0" cellspacing="0" id="ReceptaBody">
+    <tr>
+        <td colspan="2">Recepta 0012330120302030123012</td>
+    </tr>
+    <tr>
+        <td colspan="2" class="dane-swiad">
+            KAMSOFT S.A. <br />
+            ul. Wspólna 40/32, 61-479 Poznań <br />
+            REGON: 223992423, NIP: 12345678 <br />
+            Nr umowy: 150001212/12/12/2/1231242142<br /><br />
+            <img width="200" height="15" src="~/Content/Images/code128bar.jpg" /><br />
+            Świadczeniodawca
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2" class="border-right">
+            Pacjent <br />
+            <span class="pacjent-dane">
+                Michał Kokosiński <br />
+                ul. Kilińskiego 9c/5 <br />
+                74-200 Pyrzyce <br />
+            </span>
+            PESEL: <span class="pac-nr-pesel">91083012411</span>
+        </td>
+        <td class="oddzial-nfz border-left text-center">
+            Oddział NFZ <br />
+            <span class="oddzial-nfz-nr">15</span>
+        </td>
+    </tr>
+    <tr>
+        <td class="uprawnienia-dodatkowe border-left text-center">
+            Uprawnienia <br />
+            dodatkowe <br />
+            <span class="uprawnienie-dodatkowe">X</span>
+        </td>
+    </tr>
+    <tr style="padding:0">
+        <td>Rp</td>
+        <td>Odpłatność</td>
+    </tr>
+    <tr>
+        <td class="lek lek1">Lek 1 x 1x12 tabl ml coś test</td>
+        <td class="odplatnosc odplatnosc1">30%</td>
+    </tr>
+    <tr>
+        <td class="lek lek2">Lek 2 x 1x12 tabl ml coś test</td>
+        <td class="odplatnosc odplatnosc2">30%</td>
+    </tr>
+    <tr>
+        <td class="lek lek3">Lek 3 x 1x12 tabl ml coś test</td>
+        <td class="odplatnosc odplatnosc3">30%</td>
+    </tr>
+    <tr>
+        <td class="lek lek4">Lek 4 x 1x12 tabl ml coś test</td>
+        <td class="odplatnosc odplatnosc4">30%</td>
+    </tr>
+    <tr>
+        <td class="lek lek5">Lek5 x 1x12 tabl ml coś test</td>
+       <td class="odplatnosc odplatnosc5">30%</td>
+    </tr>
+    <tr>
+        <td class="kod-numeru-recepty text-center" colspan="2">
+            <br />
+
+            <img width="300" height="15" src="~/Content/Images/code128bar.jpg" />
+            <br />
+            Numer recepty
+        </td>
+    </tr>
+    <tr>
+        <td class="data-wystawenia border-right">
+            Data wystawienia: <br />
+            @DateTime.Today.ToString("yyyy-MM-dd")
+        </td>
+        <td class="dane-lekarza border-left text-center" rowspan="2">
+            Dane i podpis lekarza <br />
+            lek. Kokosiński Michał <br />
+            PWZ: 1234565 <br />
+            <i>Wydruk własny</i>
+        </td>
+    </tr>
+    <tr>
+        <td class="data-realizacji border-right">
+            Data realizacji "od dnia": <br />
+            <i>2017-02-01</i>
+        </td>
+    </tr>
+</table>

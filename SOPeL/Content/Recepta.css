@@ -1,0 +1,53 @@
+﻿@media print {
+
+    @page{
+        size:auto;
+        margin:0;
+    }
+
+    #ReceptaBody {
+        width: 100mm;
+        height: 210mm;
+        display: block;
+    }
+
+        #ReceptaBody td {
+            padding: 5px;
+        }
+
+        #ReceptaBody .border-left {
+            border-bottom: 1px solid black;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+        }
+
+        #ReceptaBody .border-right {
+            border-bottom: 1px solid black;
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+        }
+
+        #ReceptaBody td.uprawnienia-dodatkowe {
+            text-align: center;
+        }
+
+        #ReceptaBody .lek {
+            border: 1px dashed black;
+            border-left: none;
+            padding: 10px;
+        }
+
+        #ReceptaBody .odplatnosc {
+            border: 1px dashed black;
+            border-right: none;
+            padding: 10px;
+        }
+
+        #ReceptaBody .data-realizacji {
+            border-bottom: none;
+        }
+
+        #ReceptaBody .dane-lekarza {
+            border-bottom: none;
+        }
+}

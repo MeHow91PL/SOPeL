@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Rotativa;
+using static SOPeL.Infrastructure.Enums;
 
 namespace SOPeL.Controllers
 {
@@ -32,9 +34,9 @@ namespace SOPeL.Controllers
 
             var prac = db.Pracownicy.ToList();
             var wiz = db.Wizyty.ToList();
-            var rez = db.Rezerwacje.Where(r => r.Stat != "W").ToList();
+            var rez = db.Rezerwacje.Where(r => r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak).ToList();
             //var rezToday = db.Rezerwacje.Where(g => g.DataRezerwacji.TruncateTime() == toDay).ToList();
-            var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz};
+            var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
             return View(model);
 
         }
@@ -43,11 +45,11 @@ namespace SOPeL.Controllers
 
 
 
-            if ((idlekarza == null)|| (idlekarza==0))
+            if ((idlekarza == null) || (idlekarza == 0))
             {
                 var prac = db.Pracownicy.ToList();
                 var wiz = db.Wizyty.ToList();
-                var rez = db.Rezerwacje.Where(r=> r.Stat != "W").ToList();
+                var rez = db.Rezerwacje.Where(r => r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak).ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia", model);
 
@@ -56,9 +58,9 @@ namespace SOPeL.Controllers
             {
                 var prac = db.Pracownicy.ToList();
                 var wiz = db.Wizyty.ToList();
-                var rez = db.Rezerwacje.Where(r => r.PracownikID == idlekarza && r.Stat != "W").ToList();
+                var rez = db.Rezerwacje.Where(r => r.PracownikID == idlekarza && r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak).ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
-                return PartialView("WizytaPrzychodnia",model);
+                return PartialView("WizytaPrzychodnia", model);
 
             }
         }
@@ -81,9 +83,9 @@ namespace SOPeL.Controllers
         public JsonResult ICD10Autocomplete(string term)
         {
             var icd10 = db.KodyICD10.Select(i => i.Kod).Where(i => i.StartsWith(term)).ToList();
-           // string[] icd10= new string[] { "one", "two", "free", "baba", "patrzy" };
+            // string[] icd10= new string[] { "one", "two", "free", "baba", "patrzy" };
 
-            return Json(icd10,JsonRequestBehavior.AllowGet);
+            return Json(icd10, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -95,26 +97,48 @@ namespace SOPeL.Controllers
 
         public PartialViewResult pokazHistorie(int idwizy)
         {
-
             Wizyta wizyta = db.Wizyty.Find(idwizy);
-           
-          
-
             return PartialView("_KartaWizytyHistoria", wizyta);
         }
 
-        public ActionResult ZapiszDodajWizyte([Bind(Include = "Id, Zalecenia,Skierowanie ,DataWizyty,DataModyfikacji,PacjentID,PracownikID,RezerwacjaId,Rozpoznanie,Wywiad,Badanie,Leki")] Wizyta wizyta)
+
+        public ActionResult DrukujWywiad(int idPac, string wyw)
         {
-            db.Wizyty.Add(wizyta);
-            var idrez = wizyta.RezerwacjaId;
-            Rezerwacja rezerwacja = db.Rezerwacje.Find(idrez);
-            rezerwacja.Stat = "W";
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Pacjent pac = db.Pacjenci.Find(idPac);
+            WydrukWywiaduViewModel vm = new WydrukWywiaduViewModel
+            {
+                Pacjent = pac,
+                Wywiad = wyw
+            };
+            return PartialView("Wydruk-Wywiad",vm);
+        }
+
+        public ActionResult DrukujRecepte()
+        {
+            return PartialView("_WydrukRecepta");
+        }
+
+
+
+        public ActionResult ZapiszDodajWizyte([Bind(Include = "Id, Zalecenia,Skierowanie ,DataWizyty,DataModyfikacji,PacjentID,Pacjent,PracownikID,Pracownik,RezerwacjaId,Rozpoznanie,Wywiad,Badanie,Leki")] Wizyta wizyta, string submit)
+        {
+            if (submit == "wywiad")
+            {
+                return RedirectToAction("DrukujWywiad",wizyta);
+            }
+            else
+            {
+                db.Wizyty.Add(wizyta);
+                var idrez = wizyta.RezerwacjaId;
+                Rezerwacja rezerwacja = db.Rezerwacje.Find(idrez);
+                rezerwacja.Stat = Status.Wykonany;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
         }
 
-       
+
 
     }
 }

@@ -7,6 +7,7 @@ using SOPeL.Models;
 using System.Data.Entity.Migrations;
 using SOPeL.Migrations;
 using Microsoft.AspNet.Identity.EntityFramework;
+using static SOPeL.Infrastructure.Enums;
 
 namespace SOPeL.DAL
 {
@@ -48,8 +49,8 @@ namespace SOPeL.DAL
 
             var pacjenci = new List<Pacjent>
            {
-               new Pacjent() { ID=1, Imie="Jan", Nazwisko="Kowalski", Pesel="86062905358", Telefon="666555444", Email="kowalski@wp.pl", Aktw="T"},
-                new Pacjent() { ID=2, Imie="Piotr", Nazwisko="Nowak", Pesel="86062905359", Telefon="666555444", Email="nowak@poczta.onet.pl", Aktw="T"}
+               new Pacjent() { ID=1, Imie="Jan", Nazwisko="Kowalski", Pesel="86062905358", Telefon="666555444", Email="kowalski@wp.pl", Aktw= Aktywny.Tak},
+                new Pacjent() { ID=2, Imie="Piotr", Nazwisko="Nowak", Pesel="86062905359", Telefon="666555444", Email="nowak@poczta.onet.pl", Aktw = Aktywny.Tak}
            };
             pacjenci.ForEach(g => context.Pacjenci.AddOrUpdate(g));
             context.SaveChanges();

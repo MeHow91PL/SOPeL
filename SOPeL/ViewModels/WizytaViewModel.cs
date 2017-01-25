@@ -13,4 +13,10 @@ namespace SOPeL.ViewModels
         public ICollection<Wizyta> wizyty { get; set; }
         public ICollection<Rezerwacja> rezerwacjeDzisiejsze { get; set; }
     }
+
+    public class WydrukWywiaduViewModel
+    {
+        public Pacjent Pacjent { get; set; }
+        public string Wywiad { get; set; }
+    }
 }

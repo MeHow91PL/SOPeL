@@ -31,19 +31,6 @@ $(document).ready(function () {
     });
 
     $PrzychodniaBodyKontener.on("click", ".lista-pacjentow-btn", function (event) {
-        //var html = '<div id="ListaPacjentowKontener" class="wysrodkujCentralnie">' +
-        //            '<div id="ListaPacjentowOkno" class="kontenerOkienka">' +
-        //            'Ładowanie...' +
-        //            '</div></div>';
-        //$PrzychodniaBodyKontener.append(html)
-
-        //$.ajax({
-        //    url: "/Kartoteki/PokazListePacjentow",
-        //    success: function (response) {
-        //        $("#ListaPacjentowOkno").html(response);
-        //        //$("#ListaPacjentowKontener").css("display", "flex");
-        //    }
-        //});
         ZbudujOkienko("ListaPacjentowKontener", "ListaPacjentowOkno", "/Kartoteki/PokazListePacjentow");
     });
 

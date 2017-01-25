@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using static SOPeL.Infrastructure.Enums;
 
 namespace SOPeL.Models
 {
@@ -37,9 +38,7 @@ namespace SOPeL.Models
 
         public virtual Adres AdresTymczasowy { get; set; }
 
-        [MaxLength(1)]
-        
-        public string Aktw { get; set; }
+        public Aktywny Aktw { get; set; }
 
     }
 }

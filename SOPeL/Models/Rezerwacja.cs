@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using static SOPeL.Infrastructure.Enums;
 
 namespace SOPeL.Models
 {
@@ -12,7 +13,7 @@ namespace SOPeL.Models
     {
         public Rezerwacja()
         {
-            Stat = "R";
+            Stat = Status.Rezerwacja;
         }
 
         [ScaffoldColumn(false)]
@@ -29,8 +30,12 @@ namespace SOPeL.Models
         public string godzDo { get; set; }
 
         [Display(Name = "Data ost. mod.")]
-        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}",ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataModyfikacji { get; set; }
+
+        public Status Stat { get; set; }
+        public Aktywny Aktw { get; set; }
+
 
         public int PracownikID { get; set; }
         public int PacjentID { get; set; }
@@ -38,7 +43,5 @@ namespace SOPeL.Models
         public virtual Pracownik Pracownik { get; set; }
         public virtual Pacjent Pacjent { get; set; }
 
-        [MaxLength(1)]
-         public string Stat { get; set; }
     }
 }

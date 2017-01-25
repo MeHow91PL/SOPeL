@@ -10,6 +10,7 @@ using System.Net;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Core.Objects;
+using static SOPeL.Infrastructure.Enums;
 
 namespace SOPeL.Controllers
 {
@@ -19,7 +20,7 @@ namespace SOPeL.Controllers
         SopelContext db = new SopelContext();
         // GET: Pacjenci
         public ActionResult Index(string searchString)
-        { 
+        {
             var pacjenci = from s in db.Pacjenci select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -28,7 +29,7 @@ namespace SOPeL.Controllers
             }
             return View(pacjenci.ToList());
         }
-        
+
         internal List<Pacjent> GetListaPacjentow(string zapytanie)
         {
             List<Pacjent> pacjenci = new List<Pacjent>();
@@ -70,7 +71,7 @@ namespace SOPeL.Controllers
         public PartialViewResult UsunPacjenta(int id)
         {
             Pacjent pacjent = db.Pacjenci.Find(id);
-            pacjent.Aktw = "N";
+            pacjent.Aktw = Aktywny.Nie;
             db.SaveChanges();
             var pacjenci = from s in db.Pacjenci select s;
             return PartialView("PacjenciPrzychodnia", pacjenci.ToList());

@@ -9,6 +9,12 @@
         background: #ffffff;
     }
 
+    .terminarz .panel-rezerwacji {
+        position: relative;
+        padding: 2px;
+        height: 100%;
+    }
+
     .terminarz .wolny-termin {
         height: 40px;
         text-align: center;
@@ -18,48 +24,15 @@
         -ms-user-select: none;
         -webkit-user-select: none;
         user-select: none;
+        background: #5de9e0;
+        color: white;
     }
 
         .terminarz .wolny-termin:hover {
             opacity: 0.8;
         }
 
-    .terminarz .panel-rezerwacji {
-        background: #5de9e0;
-        color: white;
-    }
 
-    .terminarz .teminarzaPanelRezerwacjiBrakTerminu {
-        background: #f7f7f7;
-        height: 40px;
-        padding: 5px;
-    }
-
-.przychodnia .terminarz .teminarzaPanelRezerwacji {
-    background: #2196F3;
-    height: 40px;
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    cursor: default;
-}
-
-
-.przychodnia .terminarz .terminarzZarezerwowanyTermin {
-    background: #2196F3;
-    height: 40px;
-    padding: 2px;
-    cursor: pointer;
-}
-
-    .przychodnia .terminarz .terminarzZarezerwowanyTermin span:last-child {
-        color: white;
-        font-weight: bold;
-    }
-
-.terminarzZarezerwowanyTermin .W {
-    background: #b9de1d;
-}
 
 .terminarzPanelGodzin {
     width: 10%;
@@ -72,16 +45,59 @@
     min-height: 20px;
     background: #80D8FF;
     border: solid 1px black;
-    vertical-align: middle;
     text-align: center;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
 }
 
+    .kafelekRezerwacji .left-side {
+        text-align: left;
+    }
+
+    .kafelekRezerwacji .central {
+        text-align: center;
+    }
+
+    .kafelekRezerwacji .right-side {
+        text-align: right;
+    }
+
     .kafelekRezerwacji span {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
+        top: 0;
         vertical-align: middle;
         font-size: 9pt;
         margin: auto;
+    }
+
+    .kafelekRezerwacji div {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .kafelekRezerwacji .przyciski {
+    }
+
+        .kafelekRezerwacji .przyciski .usun-rezerwacje-btn {
+            cursor: pointer;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .kafelekRezerwacji .przyciski .usun-rezerwacje-btn:hover {
+            color:darkred;
+        }
+        .kafelekRezerwacji .przyciski .usun-rezerwacje-btn:active {
+            color:indianred;
+        }
+
+
+    .kafelekRezerwacji .W {
+        background: #b9de1d;
     }
 
 #opcje-terminarza-button {
@@ -162,7 +178,7 @@
     display: block;
     padding: 20px;
     max-width: 700px;
-    height:auto;
+    height: auto;
 }
 
 #kartaRezerwacjiWizytyDane {

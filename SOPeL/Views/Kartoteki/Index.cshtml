@@ -4,8 +4,10 @@
 }
 
 
+@section scripts{
+    <script src="~/Scripts/printThis.js"></script>
+}
 
-<button onclick="drukSkierowania()">skierowanie</button>
 <div id="Kartoteki-Kafelki" class="row">
     <div id="PacjenciBtn" class="button button-kafelek lista-pacjentow-btn">
         <div class="wysrodkujCentralnie">
@@ -40,27 +42,24 @@
         </div>
     </div>
 </div>
-<div id="testDruku">
-    Ale urwał!
+<div style="display:none">
+    <div id="test">
+        test
+    </div>
 </div>
-@section scripts{
-    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
-    <script src="~/Scripts/printThis.js"></script>
-}
+
 <script>
     function drukSkierowania() {
-        //$.ajax({
-        //    url: '/Kartoteki/SkierTest',
-        //    type: 'POST',
-        //    success: function (response) {
-        //        var mywindow = window.open('', 'skierowanie', 'height=400,width=600');
-        //        mywindow.document.write(response);
+        $.ajax({
+            url: '/Kartoteki/DownloadViewPDF',
+            type: 'POST',
+            success: function (response) {
+                var mywindow = window.open('', 'skierowanie', 'height=400,width=600');
+                mywindow.document.write(response);
+            }
+        });
 
-        //        mywindow.print();
-        //        mywindow.close();
-        //    }
-        //});
 
-        $("#testDruku").printThis();
+
     }
 </script>
