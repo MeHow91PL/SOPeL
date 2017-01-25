@@ -11,7 +11,6 @@ using SOPeL.Models;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using SOPeL.Infrastructure;
-using Rotativa;
 
 namespace SOPeL.Controllers
 {
@@ -53,11 +52,6 @@ namespace SOPeL.Controllers
 
             
             return PartialView("SkierowaniePattern", new SkierowanieTest() { data = "2017-01-11", poradnia = "Kardiologiczna" });
-        }
-
-        public ActionResult DownloadViewPDF()
-        {
-            return new PartialViewAsPdf("SkierowaniePattern", new SkierowanieTest() { data = "2017-01-11", poradnia = "Kardiologiczna" });
         }
 
 

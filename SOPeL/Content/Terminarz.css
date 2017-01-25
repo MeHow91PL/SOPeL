@@ -77,27 +77,46 @@
         vertical-align: middle;
     }
 
-    .kafelekRezerwacji .przyciski {
+    .kafelekRezerwacji .przyciski span {
+        cursor: pointer;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
     }
 
-        .kafelekRezerwacji .przyciski .usun-rezerwacje-btn {
-            cursor: pointer;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            -webkit-user-select: none;
-            user-select: none;
-        }
+    .kafelekRezerwacji .przyciski .usun-rezerwacje-btn {
+    }
+
+
 
         .kafelekRezerwacji .przyciski .usun-rezerwacje-btn:hover {
-            color:darkred;
+            color: darkred;
         }
+
         .kafelekRezerwacji .przyciski .usun-rezerwacje-btn:active {
-            color:indianred;
+            color: indianred;
+        }
+
+    .kafelekRezerwacji .przyciski .status-ewus-btn {
+        color:darkorange;
+    }
+
+        .kafelekRezerwacji .przyciski  .status-ewus-btn .glyphicon-alert:hover {
+            color: darkgreen;
+        }
+
+        .kafelekRezerwacji .przyciski  .status-ewus-btn .glyphicon-alert:active {
+            color: forestgreen;
         }
 
 
-    .kafelekRezerwacji .W {
-        background: #b9de1d;
+    .Wykonany {
+        background-color: lightgray;
+    }
+
+    .Rezerwacja{
+        background-color: lightgreen;
     }
 
 #opcje-terminarza-button {
