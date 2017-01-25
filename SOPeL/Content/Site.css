@@ -58,10 +58,10 @@ div {
     background: white;
     cursor: pointer;
     margin: 0;
-    -moz-transition: 100MS;
-    -o-transition: 100MS;
-    -webkit-transition: 100MS;
-    transition: 100MS;
+    -moz-transition: 0ms;
+    -o-transition: 0ms;
+    -webkit-transition: 0ms;
+    transition: 0ms;
     text-align: center;
     -moz-user-select: none;
     -ms-user-select: none;

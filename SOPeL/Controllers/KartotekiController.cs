@@ -50,6 +50,8 @@ namespace SOPeL.Controllers
 
         public PartialViewResult SkierTest()
         {
+
+            
             return PartialView("SkierowaniePattern", new SkierowanieTest() { data = "2017-01-11", poradnia = "Kardiologiczna" });
         }
 
