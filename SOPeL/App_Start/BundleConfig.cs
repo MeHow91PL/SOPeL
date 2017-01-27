@@ -56,6 +56,7 @@ namespace SOPeL.App_Start
                       "~/Content/Pacjenci.css",
                       "~/Content/KartaRezerwacjiPrzychodnia.css",
                       "~/Content/KartaLogowania.css",
+                      "~/Content/hint.min.css",
                       "~/Content/Wizyta.css",
                       "~/Content/Kartoteki.css" ));
 

@@ -43,6 +43,16 @@ $(document).ready(function () {
         ZbudujOkienko("KartaPacjentaKontener", "KartaPacjentawOkno", "/Kartoteki/DodajPacjenta");
     });
 
+    $PrzychodniaBodyKontener.on("mouseenter", '[data-toggle="popover"]', function () {
+        $('[data-toggle="popover"]').popover({ html: true });
+        $('[data-toggle="popover"]').popover('show');
+    });
+
+    $PrzychodniaBodyKontener.on("mouseleave", '[data-toggle="popover"]', function () {
+        $('[data-toggle="popover"]').popover({ html: true });
+        $('[data-toggle="popover"]').popover('hide');
+    });
+
     function ZbudujOkienko(kontener, idOkna, urlAction) {
         var html = '<div id="' + kontener + '" class="wysrodkujCentralnie col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
                         '<div id="' + idOkna + '" class="kontenerOkienka  col-lg-10 col-md-12 col-sm-12 col-xs-12 col-xs-12">' +

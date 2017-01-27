@@ -257,6 +257,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\hint.base.css" />
+    <Content Include="Content\hint.base.min.css" />
+    <Content Include="Content\hint.css" />
+    <Content Include="Content\hint.min.css" />
     <Content Include="Content\Images\097-512.png" />
     <Content Include="Content\Images\admin.svg" />
     <Content Include="Content\Images\clinicIcon.png" />
@@ -277,6 +281,7 @@
     <Content Include="Content\Images\PracownikIcon.png" />
     <Content Include="Content\Images\ZestawieniaIcon.png" />
     <Content Include="Content\Kartoteki.css" />
+    <Content Include="Content\Recepta.css" />
     <Content Include="Content\Skierowanie.css" />
     <Content Include="Content\themes\base\images\tloStart.png" />
     <Content Include="Content\Images\unnamed.png" />
@@ -390,6 +395,7 @@
     <Content Include="Views\Shared\_KartaWizytyHistoria.cshtml" />
     <Content Include="Views\Zestawienia\Index.cshtml" />
     <Content Include="Views\Kartoteki\SkierowaniePattern.cshtml" />
+    <Content Include="Views\Podpowiedzi\StatusEWus.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

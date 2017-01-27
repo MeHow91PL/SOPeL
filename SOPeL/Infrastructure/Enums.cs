@@ -20,4 +20,12 @@ namespace SOPeL.Infrastructure
             Rezerwacja
         }
     }
+
+    public static class Ścieżki
+    {
+        /// <summary>
+        /// Ścieżka do widoku podpowiadającego jaki status ewuś oznacza konkretna ikona
+        /// </summary>
+        public static string StatusEWus { get; } = "~/Views/Podpowiedzi/StatusEWus.cshtml";
+    }
 }

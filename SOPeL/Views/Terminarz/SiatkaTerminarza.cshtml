@@ -1,5 +1,6 @@
 ﻿@model SOPeL.ViewModels.TerminarzViewModel
-<button type="button" class="btn btn-primary" data-toggle="popover" data-placement="top" title="Popover title" data-content="Default popover">Popover on top</button>
+@using SOPeL.Infrastructure
+
 <table class="table table-bordered terminarz">
     <tr>
         <td></td>
@@ -56,22 +57,25 @@
                         {
                             <td id="@Model.pracownicy[y].ID-@timeString" imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez" class="panel-rezerwacji">
                                 <div class="kafelekRezerwacji @statusRez">
-                                        <div class="left-side col-lg-3 col-md-3 col-sm-3">
-                                            <span></span>
-                                        </div>
-
-                                        <div class="central col-lg-6 col-md-6 col-sm-6">
-                                            <div class="dane-pacjenta">
-                                                @imiePacjenta @nazwiskoPacjenta
-                                            </div>
-                                        </div>
-                                        <div class="right-side col-lg-3 col-md-3 col-sm-3">
-                                            <div class="przyciski">
-                                                <span data-idrez="@idRez" class="usun-rezerwacje-btn glyphicon glyphicon-remove" title="Usuń rezerwację"></span>
-                                                <span data-idrez="@idRez" class="status-ewus-btn glyphicon glyphicon-alert" title="Status eWuś"></span>
-                                            </div>
+                                    <div class="left-side col-lg-3 col-md-3 col-sm-3">
+                                        <div class="przyciski">
+                                            <span data-idrez="@idRez" class="usun-rezerwacje-btn glyphicon glyphicon-remove" title="Usuń rezerwację"></span>
                                         </div>
                                     </div>
+
+                                    <div class="central col-lg-6 col-md-6 col-sm-6">
+                                        <div class="dane-pacjenta">
+                                            @imiePacjenta @nazwiskoPacjenta
+                                        </div>
+                                    </div>
+                                    <div class="right-side col-lg-3 col-md-3 col-sm-3">
+                                        <div class="przyciski">
+                                            <span data-idrez="@idRez" class="status-ewus-btn glyphicon glyphicon-alert" title="Status eWuś" data-toggle="popover"
+                                                  data-placement="auto" data-content='@Html.Partial(Ścieżki.StatusEWus)'></span>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             rezerwacjaIstnieje = false;
                         }
@@ -87,14 +91,4 @@
                     }
     }
 </table>
-@Scripts.Render("~/Scripts/Przychodnia")
-<script src="~/Scripts/bootstrap.min.js"></script>
 
-<script>
-    /// <reference path="jquery-3.1.1.js" />
-    
-    $(document).ready(function () {
-        $('[data-toggle="popover"]').popover();
-    });
-
-</script>
