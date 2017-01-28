@@ -11,10 +11,9 @@
 
     .terminarz .panel-rezerwacji {
         position: relative;
-        padding: 2px;
+        padding: 5px;
         height: 100%;
         background: #5de9e0;
-
     }
 
     .terminarz .wolny-termin {
@@ -34,8 +33,8 @@
             opacity: 0.8;
         }
 
-         .terminarz .wolny-termin:active {
-            cursor:pointer;
+        .terminarz .wolny-termin:active {
+            cursor: pointer;
         }
 
 .terminarzPanelGodzin {
@@ -48,7 +47,7 @@
     height: 100%;
     min-height: 20px;
     background: #fdffca;
-    border: solid 1px #454545;
+    border: none;
     text-align: center;
     position: relative;
     top: 0;
@@ -56,9 +55,13 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    -moz-box-shadow: 0 0 1px black;
-    -webkit-box-shadow: 0 0 1px black;
-    box-shadow: 0 0 1px black;
+    -moz-box-shadow: 0 0 3px black;
+    -webkit-box-shadow: 0 0 3px black;
+    box-shadow: 0 0 3px black;
+    -moz-transition: 100ms;
+    -o-transition: 100ms;
+    -webkit-transition: 100ms;
+    transition: 100ms;
 }
 
     .kafelekRezerwacji .left-side {
@@ -93,39 +96,59 @@
         cursor: pointer;
     }
 
-    .kafelekRezerwacji .przyciski .usun-rezerwacje-btn {
-    }
-
-
-
-        .kafelekRezerwacji .przyciski .usun-rezerwacje-btn:hover {
-            color: darkred;
+        .kafelekRezerwacji .przyciski .usun-rezerwacje-btn {
+            color: darkgoldenrod;
         }
 
-        .kafelekRezerwacji .przyciski .usun-rezerwacje-btn:active {
-            color: indianred;
+            .kafelekRezerwacji .przyciski .usun-rezerwacje-btn:hover {
+                color: darkred;
+            }
+
+            .kafelekRezerwacji .przyciski .usun-rezerwacje-btn:active {
+                color: indianred;
+            }
+
+        .kafelekRezerwacji .przyciski .edytuj-rezerwacje-btn {
+            color: darkblue;
+            margin-left:2px;
         }
 
-    .kafelekRezerwacji .przyciski .status-ewus-btn {
-        color:orange;
-    }
+            .kafelekRezerwacji .przyciski .edytuj-rezerwacje-btn:hover {
+                color: #4b4eff;
+            }
 
-        .kafelekRezerwacji .przyciski  .status-ewus-btn .glyphicon-alert:hover {
-            color: darkgreen;
+            .kafelekRezerwacji .przyciski .edytuj-rezerwacje-btn:active {
+                color: darkblue;
+            }
+
+        .kafelekRezerwacji .przyciski .status-ewus-btn {
+            color: orange;
         }
 
-        .kafelekRezerwacji .przyciski  .status-ewus-btn .glyphicon-alert:active {
-            color: forestgreen;
-        }
+            .kafelekRezerwacji .przyciski .status-ewus-btn:hover {
+                color: darkgoldenrod;
+            }
+
+            .kafelekRezerwacji .przyciski .status-ewus-btn:active {
+                color: orange;
+            }
 
 
-    .Wykonany {
-        background-color: lightgray;
-    }
+.Wykonany {
+    background-color: lightgray;
+}
 
-    .Rezerwacja{
-        background-color: lightgreen;
-    }
+.Wykonany:hover {
+    background-color: #e5e5e5;
+}
+
+.Rezerwacja {
+    background-color: #d2ffc2;
+}
+
+.Rezerwacja:hover {
+    background-color: #eafce3;
+}
 
 #opcje-terminarza-button {
     width: 50px;

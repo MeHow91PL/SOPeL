@@ -395,7 +395,8 @@
     <Content Include="Views\Shared\_KartaWizytyHistoria.cshtml" />
     <Content Include="Views\Zestawienia\Index.cshtml" />
     <Content Include="Views\Kartoteki\SkierowaniePattern.cshtml" />
-    <Content Include="Views\Podpowiedzi\StatusEWus.cshtml" />
+    <Content Include="Views\Podpowiedzi\InfoKartaRezerwacji.cshtml" />
+    <Content Include="Views\Podpowiedzi\InfoStatusEWus.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -425,9 +426,9 @@
     <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\OpcjeManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
-    <Compile Include="Migrations\201701251300163_init.cs" />
-    <Compile Include="Migrations\201701251300163_init.Designer.cs">
-      <DependentUpon>201701251300163_init.cs</DependentUpon>
+    <Compile Include="Migrations\201701272253364_init.cs" />
+    <Compile Include="Migrations\201701272253364_init.Designer.cs">
+      <DependentUpon>201701272253364_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -474,8 +475,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701251300163_init.resx">
-      <DependentUpon>201701251300163_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701272253364_init.resx">
+      <DependentUpon>201701272253364_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

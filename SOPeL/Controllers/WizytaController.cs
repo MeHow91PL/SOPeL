@@ -51,7 +51,6 @@ namespace SOPeL.Controllers
                 var rez = db.Rezerwacje.Where(r => r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak).ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia", model);
-
             }
             else
             {
@@ -60,7 +59,6 @@ namespace SOPeL.Controllers
                 var rez = db.Rezerwacje.Where(r => r.PracownikID == idlekarza && r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak).ToList();
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia", model);
-
             }
         }
 

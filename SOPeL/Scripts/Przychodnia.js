@@ -44,13 +44,12 @@ $(document).ready(function () {
     });
 
     $PrzychodniaBodyKontener.on("mouseenter", '[data-toggle="popover"]', function () {
-        $('[data-toggle="popover"]').popover({ html: true });
-        $('[data-toggle="popover"]').popover('show');
+        $(this).popover({ html: true, delay: 5000 });
+        $(this).popover('show');
     });
 
     $PrzychodniaBodyKontener.on("mouseleave", '[data-toggle="popover"]', function () {
-        $('[data-toggle="popover"]').popover({ html: true });
-        $('[data-toggle="popover"]').popover('hide');
+        $(this).popover('destroy');
     });
 
     function ZbudujOkienko(kontener, idOkna, urlAction) {

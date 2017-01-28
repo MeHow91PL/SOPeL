@@ -55,11 +55,13 @@
                         }
                         if (rezerwacjaIstnieje)
                         {
-                            <td id="@Model.pracownicy[y].ID-@timeString" imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez" class="panel-rezerwacji">
+                            <td id="@Model.pracownicy[y].ID-@timeString" class="panel-rezerwacji"
+                                imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez">
                                 <div class="kafelekRezerwacji @statusRez">
                                     <div class="left-side col-lg-3 col-md-3 col-sm-3">
                                         <div class="przyciski">
                                             <span data-idrez="@idRez" class="usun-rezerwacje-btn glyphicon glyphicon-remove" title="Usuń rezerwację"></span>
+                                            <span data-idrez="@idRez" class="edytuj-rezerwacje-btn glyphicon glyphicon-pencil" title="Edytuj"></span>
                                         </div>
                                     </div>
 
@@ -70,8 +72,8 @@
                                     </div>
                                     <div class="right-side col-lg-3 col-md-3 col-sm-3">
                                         <div class="przyciski">
-                                            <span data-idrez="@idRez" class="status-ewus-btn glyphicon glyphicon-alert" title="Status eWuś" data-toggle="popover"
-                                                  data-placement="auto" data-content='@Html.Partial(Ścieżki.StatusEWus)'></span>
+                                            <span data-idrez="@idRez" class="status-ewus-btn glyphicon glyphicon-alert" title="Status eWuś"
+                                                  data-toggle="popover" data-placement="auto" data-content='@Html.Partial(Ścieżki.InfoStatusEWus)'></span>
 
                                         </div>
                                     </div>

@@ -26,6 +26,11 @@ namespace SOPeL.Infrastructure
         /// <summary>
         /// Ścieżka do widoku podpowiadającego jaki status ewuś oznacza konkretna ikona
         /// </summary>
-        public static string StatusEWus { get; } = "~/Views/Podpowiedzi/StatusEWus.cshtml";
+        public static string InfoStatusEWus { get; } = "~/Views/Podpowiedzi/InfoStatusEWus.cshtml";
+
+        /// <summary>
+        /// Ścieżka do widoku podpowiadającego jaki status ewuś oznacza konkretna ikona
+        /// </summary>
+        public static string InfoKartaRezerwacji { get; } = "~/Views/Podpowiedzi/InfoKartaRezerwacji.cshtml";
     }
 }
