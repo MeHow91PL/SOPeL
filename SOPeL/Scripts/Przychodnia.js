@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     //Obsługa menu nawigacyjnego
     var sidebar = $("#sidebarPrzychodnia");
-    var $PrzychodniaBodyKontener = $("#PrzychodniaBodyKontener");
+    var $PrzychodniaBodyKontener = $("#renderBody");
 
     $("#zwijaczMenu").click(function () {
         sidebar.toggleClass("sidebarZwiniety", 200);
@@ -43,16 +43,27 @@ $(document).ready(function () {
         ZbudujOkienko("KartaPacjentaKontener", "KartaPacjentawOkno", "/Kartoteki/DodajPacjenta");
     });
 
-    $PrzychodniaBodyKontener.on("mouseenter", '[data-toggle="popover"]', function () {
-        $(this).popover({ html: true, delay: 5000 });
+    var atykwyPopover;
+
+    $PrzychodniaBodyKontener.on("mouseenter", '[data-toggle="popover"]', function (e) {
+        $(atykwyPopover).popover('destroy');
+
+        $(this).popover({ html: true, trigger: 'manual' });
         $(this).popover('show');
+        atykwyPopover = $(this);
+    });
+
+    $PrzychodniaBodyKontener.on("mouseover", '[data-toggle="popover"]', function (e) {
+       // console.log(e);
     });
 
     $PrzychodniaBodyKontener.on("mouseleave", '[data-toggle="popover"]', function () {
         $(this).popover('destroy');
     });
 
-    function ZbudujOkienko(kontener, idOkna, urlAction) {
+
+
+    function ZbudujOkienko(kontener, idOkna, urlAction, idRezerwacji) {
         var html = '<div id="' + kontener + '" class="wysrodkujCentralnie col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
                         '<div id="' + idOkna + '" class="kontenerOkienka  col-lg-10 col-md-12 col-sm-12 col-xs-12 col-xs-12">' +
                         'Ładowanie...' +
@@ -61,6 +72,9 @@ $(document).ready(function () {
 
         $.ajax({
             url: urlAction,
+            data: {
+                idRez : idRezerwacji
+            },
             success: function (response) {
                 $("#" + idOkna).html(response);
             }

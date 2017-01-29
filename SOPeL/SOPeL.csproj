@@ -397,6 +397,7 @@
     <Content Include="Views\Kartoteki\SkierowaniePattern.cshtml" />
     <Content Include="Views\Podpowiedzi\InfoKartaRezerwacji.cshtml" />
     <Content Include="Views\Podpowiedzi\InfoStatusEWus.cshtml" />
+    <Content Include="Views\Shared\_WydrukRecepta.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -122,29 +122,68 @@ namespace SOPeL.Controllers
             return Json(pacjenci, JsonRequestBehavior.AllowGet);
         }
 
-        public bool ZapiszRezerwacje(Rezerwacja model)
+        public JsonResult ZapiszRezerwacje(Rezerwacja model)
         {
+            Pacjent pac = db.Pacjenci.Find(model.PacjentID);
+            Pracownik prac = db.Pracownicy.Find(model.PracownikID);
             try
             {
-                db.Rezerwacje.Add(new Rezerwacja
+                if (db.Rezerwacje.Any(r => r.PacjentID == model.PacjentID && r.DataRezerwacji == model.DataRezerwacji && r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak))
                 {
-                    DataRezerwacji = model.DataRezerwacji,
-                    godzOd = model.godzOd,
-                    PacjentID = model.PacjentID,
-                    PracownikID = model.PracownikID,
-                    DataModyfikacji = DateTime.Now,
-                    Stat = model.Stat
-                });
+                    throw new Exception("Dnia " + model.DataRezerwacji.ToShortDateString() + " istnieje już inna rezerwacja dla pacjenta " + pac.Imie + " " + pac.Nazwisko);
+                }
+
+                if (model.Id == 0) //Model == 0 dla nowej rezeracji
+                {
+
+                    if (db.Rezerwacje.Any(r => r.DataRezerwacji == model.DataRezerwacji && r.godzOd == model.godzOd && r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak))
+                    {
+                        throw new Exception("Istnieje już inna rezerwacja w podanym terminie");
+                    }
+
+                    db.Rezerwacje.Add(new Rezerwacja
+                    {
+                        DataRezerwacji = model.DataRezerwacji,
+                        godzOd = model.godzOd,
+                        PacjentID = model.PacjentID,
+                        PracownikID = model.PracownikID,
+                        DataModyfikacji = DateTime.Now,
+                        Stat = model.Stat
+                    });
+                }
+                else // Gdy rezerwacja jest edytowana
+                {
+                    Rezerwacja rez = db.Rezerwacje.Find(model.Id);
+                    rez.Pacjent = db.Pacjenci.Find(model.PacjentID);
+                    rez.Pracownik = db.Pracownicy.Find(model.PracownikID);
+                    rez.DataModyfikacji = DateTime.Now;
+                    rez.Stat = model.Stat;
+                    rez.Pacjent = db.Pacjenci.Find(model.PacjentID);
+                    db.Entry(rez).State = EntityState.Modified;
+                }
 
                 db.SaveChanges();
 
-                return true;
+                return Json(new AjaxResult() { ZakończonoPomyślnie = true, Komunikat = "Rezerwacja zapisana pomyślnie" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new AjaxResult() { ZakończonoPomyślnie = false, Komunikat = ex.Message });
+            }
+
+        }
+
+        public PartialViewResult EdytujRezerwacje(int idRez)
+        {
+            try
+            {
+                Rezerwacja rez = db.Rezerwacje.Find(idRez);
+                return PartialView(Ścieżki.KartaRezerwacjiWizyty, rez);
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
-
         }
 
         public bool UsunRezerwacje(int idRez)

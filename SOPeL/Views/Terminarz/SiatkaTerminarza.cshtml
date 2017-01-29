@@ -57,7 +57,7 @@
                         {
                             <td id="@Model.pracownicy[y].ID-@timeString" class="panel-rezerwacji"
                                 imie="@imiePacjenta" nazw="@nazwiskoPacjenta" pesel="@pesel" email="@email" tel="@telefon" dokToz="@dokToz" idrez="@idRez">
-                                <div class="kafelekRezerwacji @statusRez">
+                                <div class="kafelekRezerwacji @statusRez" data-toggle="popover" data-placement="auto" data-content='Status rezerwacji: @statusRez' title="@imiePacjenta @nazwiskoPacjenta  -  PESEL: @pesel">
                                     <div class="left-side col-lg-3 col-md-3 col-sm-3">
                                         <div class="przyciski">
                                             <span data-idrez="@idRez" class="usun-rezerwacje-btn glyphicon glyphicon-remove" title="Usuń rezerwację"></span>

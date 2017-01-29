@@ -8,6 +8,7 @@ $(document).ready(function () {
     var wyborDatyTerminarz = $("#wybor-daty-terminarz");
     var dataRezerwacji = $('#wybor-daty-terminarz').val();
     var $kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+    var $PrzychodniaBodyKontener = $('#PrzychodniaBodyKontener');
 
     var terminarzDataKontener = $("#terminarzDataKontener");
     var czasTrwaniaWizyty = $("#term_czas_wiz");
@@ -208,7 +209,7 @@ $(document).ready(function () {
 
     //Przeniesione bezpośrednio do siatki terminarza
 
-    $('#PrzychodniaBodyKontener').on('dblclick', '.wolny-termin', function () { //dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
+    $PrzychodniaBodyKontener.on('dblclick', '.wolny-termin', function () { //dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         var splitId = $(this).attr("id").split("-");
         var idLekarza = splitId[0];
         var godzinaRezerwacji = splitId[1];
@@ -227,18 +228,69 @@ $(document).ready(function () {
         });
     });
 
-    $('#PrzychodniaBodyKontener').on('click', '#zamknijOknoRezerwacjiButton', function () {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
+    $PrzychodniaBodyKontener.on('click', '#zamknijOknoRezerwacjiButton', function () {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         if (confirm("Na pewno zamknąć okno rezerwacji?")) {
             kartaRezerwacjiWizytyKontener.hide();
         }
     });
+
+    $PrzychodniaBodyKontener.on("dbclick", '.kafelekRezerwacji', function () {
+        alert("");
+    });
+
+    $PrzychodniaBodyKontener.on("click", '.edytuj-rezerwacje-btn', function () {
+        var id = $(this).data("idrez");
+        EdytujRezerwacje(id);
+    });
+
+    $PrzychodniaBodyKontener.on('click', '.usun-rezerwacje-btn', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
+        var id = $(this).data("idrez");
+        usunRezerwacje(id);
+    });
+
+    function EdytujRezerwacje(idRezerwacji) {
+        $("#kartaRezerwacjiWizytyKontener").css("display", "flex");
+        $.ajax({
+            url: "/Terminarz/EdytujRezerwacje",
+            type: 'POST',
+            data: {
+                idRez: idRezerwacji
+            },
+            success: function (response) { $("#kartaRezerwacjiWizytyKontener").html(response); },
+            error: function () { alert("Error"); }
+        });
+    }
+
+    function usunRezerwacje(idRezerwacji) {
+        console.log();
+        if (confirm("Czy na pewno usunąć wybraną rezerwację?")) {
+            $.ajax({
+                url: "/Terminarz/UsunRezerwacje",
+                type: "POST",
+                data: {
+                    idRez: idRezerwacji
+                },
+                success: function (response) {
+                    if (response) {
+                        alert("Rezerwacja usunięta pomyślnie!");
+                        pobierzTerminarz();
+                    }
+                    else { alert("Błąd przy zapisywaniu rezerwacji!"); }
+                },
+                error: function (response) {
+                    alert("Błąd serwera");
+                }
+            });
+        }
+    }
+
 
     //--------------------------------- END OBSŁUGA KLIKANIA TERMINARZA -------------------------------------------------------------------------------------------------
 
     //--------------------------------- OBSŁUGA CONTEXT MENU -------------------------------------------------------------------------------------------------
 
     //Wywołanie okienka z menu,
-    $('#PrzychodniaBodyKontener').on('contextmenu', '.wolny-termin', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
+    $PrzychodniaBodyKontener.on('contextmenu', '.wolny-termin', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         event.preventDefault();// zablokowanie domyślej obsługi zdarzenia ppm
 
         menu.css({
@@ -260,40 +312,12 @@ $(document).ready(function () {
     //--------------------------------- END OBSŁUGA CONTEXT MENU --------------------------------------------------------------------------------------------------
 
 
-    $('#PrzychodniaBodyKontener').on('click', '.usun-rezerwacje-btn', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
-        usunRezerwacje(this);
-    });
-
-    function usunRezerwacje(obj) {
-        console.log();
-        if(confirm("Czy na pewno usunąć wybraną rezerwację?"))
-        {
-            $.ajax({
-                url: "/Terminarz/UsunRezerwacje",
-                type: "POST",
-                data: {
-                    idRez: $(obj).data("idrez")
-                },
-                success: function (response) {
-                    if (response) {
-                        alert("Rezerwacja usunięta pomyślnie!");
-                        pobierzTerminarz();
-                    }
-                    else { alert("Błąd przy zapisywaniu rezerwacji!"); }
-                },
-                error: function (response) {
-                    alert("Błąd serwera");
-                }
-            });
-        }
-    }
-
     //--------------------------------- KARTA REZERWACJI ----------------------------------------------------------------------------------------------------------
 
 
 
 
-    $('#PrzychodniaBodyKontener').on('click', '#zapiszOknoRezerwacjiButton', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
+    $PrzychodniaBodyKontener.on('click', '#zapiszOknoRezerwacjiButton', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         zapiszRezerwacje();
     });
 
@@ -303,17 +327,23 @@ $(document).ready(function () {
             type: "POST",
             data: $("#formularzkartaRezerwacjiWizyty").serialize(),
             success: function (response) {
-                if (response) {
-                    alert("Rezerwacja zapisana!");
+                if (response.ZakończonoPomyślnie) {
+                    console.log(response);
+                    alert(response.Komunikat);
                     $('#formularzkartaRezerwacjiWizyty input[type="text"]').each(function () { $(this).val(""); });
                     $("#kartaRezerwacjiWizytyKontener").css("display", "none");
                     pobierzTerminarz();
                 }
-                else { alert("Błąd przy zapisywaniu rezerwacji!"); }
+                else {
+                    console.log(response);
+
+                    alert(response.Komunikat);
+                }
             },
             error: function () { alert("Błąd serwera"); }
         });
     }
+
 
 
     //--------------------------------- END KARTA REZERWACJI ------------------------------------------------------------------------------------------------------
