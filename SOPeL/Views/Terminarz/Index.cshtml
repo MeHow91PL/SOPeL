@@ -10,6 +10,16 @@
 }
 
 
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery.magnific-popup.min.js"></script>
+
+<a class="test-popup-link" href="/Terminarz/test">Open popup</a>
+<script>
+    $('.test-popup-link').magnificPopup({
+        type: 'ajax',
+        prependTo: '#PrzychodniaBodyKontener'
+    });
+</script>
 <div class="kontenerMaterial">
     <div class="row">
         <div id="terminarzDataKontener" class="abba col-lg-10 col-md-10 col-sm-10 col-xs-10">
@@ -25,7 +35,7 @@
     @* Treść ładowana AJAXem *@
     @Html.Partial("SiatkaTerminarza")
 </div>
-<div  id="kartaRezerwacjiWizytyKontener" class="wysrodkujCentralnie">
+<div id="kartaRezerwacjiWizytyKontener" class="wysrodkujCentralnie">
     <div class="kontenerOkienka">
         @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
     </div>

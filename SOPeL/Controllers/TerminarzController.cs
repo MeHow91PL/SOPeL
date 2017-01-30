@@ -73,6 +73,11 @@ namespace SOPeL.Controllers
             return model;
         }
 
+        public PartialViewResult test()
+        {
+            return PartialView("_KartaRezerwacjiWizyty");
+        }
+
         //--------------------------------- Opcje terminarza -----------------------------------------------------------------------
         public JsonResult PobierzOpcjeTerminarza()
         {
