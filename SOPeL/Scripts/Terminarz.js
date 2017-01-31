@@ -214,7 +214,6 @@ $(document).ready(function () {
         var idLekarza = splitId[0];
         var godzinaRezerwacji = splitId[1];
 
-        $("#kartaRezerwacjiWizytyKontener").css("display", "flex");
         $.ajax({
             url: "/Terminarz/pokazOknoRezerwacji",
             type: 'POST',
@@ -223,14 +222,38 @@ $(document).ready(function () {
                 idLek: idLekarza,
                 godzRez: godzinaRezerwacji
             },
-            success: function (response) { $("#kartaRezerwacjiWizytyKontener").html(response); },
+            success: function (response) {
+                $("#kartaRezerwacjiWizytyKontener").html(response);
+                $("#kartaRezerwacjiWizytyKontener").css("display", "flex");
+            },
             error: function () { alert("Error"); }
         });
+
+        //$(this).magnificPopup({
+        //    type: 'ajax',
+        //    ajax: {
+        //        settings: {
+        //            url: '/Terminarz/pokazOknoRezerwacji',
+        //            type: 'POST',
+        //            data: {
+        //                dataRez: $('#wybor-daty-terminarz').val(),
+        //                idLek: idLekarza,
+        //                godzRez: godzinaRezerwacji
+        //            }
+        //        }
+        //    },
+        //    closeBtnInside: false,
+        //    showCloseBtn: false,
+        //    modal: true,
+        //    prependTo: $("#kartaRezerwacjiWizytyKontener")
+        //});
+
+        //$(this).magnificPopup('open');
     });
 
     $PrzychodniaBodyKontener.on('click', '#zamknijOknoRezerwacjiButton', function () {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         if (confirm("Na pewno zamknąć okno rezerwacji?")) {
-            kartaRezerwacjiWizytyKontener.hide();
+            $("#kartaRezerwacjiWizytyKontener").css("display", "none");
         }
     });
 
@@ -275,7 +298,9 @@ $(document).ready(function () {
                         alert("Rezerwacja usunięta pomyślnie!");
                         pobierzTerminarz();
                     }
-                    else { alert("Błąd przy zapisywaniu rezerwacji!"); }
+                    else {
+                        alert("Błąd przy zapisywaniu rezerwacji!");
+                    }
                 },
                 error: function (response) {
                     alert("Błąd serwera");

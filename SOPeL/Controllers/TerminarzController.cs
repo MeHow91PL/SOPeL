@@ -73,10 +73,7 @@ namespace SOPeL.Controllers
             return model;
         }
 
-        public PartialViewResult test()
-        {
-            return PartialView("_KartaRezerwacjiWizyty");
-        }
+
 
         //--------------------------------- Opcje terminarza -----------------------------------------------------------------------
         public JsonResult PobierzOpcjeTerminarza()
@@ -122,9 +119,18 @@ namespace SOPeL.Controllers
 
         public JsonResult PacjentAutocomplete(string Prefix)
         {
-            List<Pacjent> pacjenci = PacjenciManager.SzukajPacjentow(Prefix);
+            try
+            {
+                List<Pacjent> pacjenci = PacjenciManager.SzukajPacjentow(Prefix);
+                return Json(pacjenci, JsonRequestBehavior.AllowGet);
 
-            return Json(pacjenci, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         public JsonResult ZapiszRezerwacje(Rezerwacja model)

@@ -32,6 +32,8 @@ $(document).ready(function () {
 
     $PrzychodniaBodyKontener.on("click", ".lista-pacjentow-btn", function (event) {
         ZbudujOkienko("ListaPacjentowKontener", "ListaPacjentowOkno", "/Kartoteki/PokazListePacjentow");
+
+
     });
 
     //funkcja po każdym znaku wykonuje submit formularza, który przez zapytanie ajaxowe zwraca listę pacjentów
@@ -41,6 +43,8 @@ $(document).ready(function () {
 
     $PrzychodniaBodyKontener.on("click", ".dodaj-pacjenta", function () {
         ZbudujOkienko("KartaPacjentaKontener", "KartaPacjentawOkno", "/Kartoteki/DodajPacjenta");
+
+
     });
 
     var atykwyPopover;
