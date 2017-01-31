@@ -281,6 +281,7 @@
     <Content Include="Content\Images\PracownikIcon.png" />
     <Content Include="Content\Images\ZestawieniaIcon.png" />
     <Content Include="Content\Kartoteki.css" />
+    <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\Recepta.css" />
     <Content Include="Content\Skierowanie.css" />
     <Content Include="Content\themes\base\images\tloStart.png" />
@@ -368,6 +369,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.magnific-popup.js" />
+    <Content Include="Scripts\jquery.magnific-popup.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -398,6 +401,7 @@
     <Content Include="Views\Podpowiedzi\InfoKartaRezerwacji.cshtml" />
     <Content Include="Views\Podpowiedzi\InfoStatusEWus.cshtml" />
     <Content Include="Views\Shared\_WydrukRecepta.cshtml" />
+    <Content Include="Views\Terminarz\test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

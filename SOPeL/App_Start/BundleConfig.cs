@@ -20,6 +20,9 @@ namespace SOPeL.App_Start
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/magnific").Include(
+                        "~/Scripts/jquery.magnific-popup.js"));
+
             bundles.Add(new ScriptBundle("~/Scripts/Przychodnia").Include(
                         "~/Scripts/Przychodnia.js"));
 
@@ -58,10 +61,13 @@ namespace SOPeL.App_Start
                       "~/Content/KartaLogowania.css",
                       "~/Content/hint.min.css",
                       "~/Content/Wizyta.css",
-                      "~/Content/Kartoteki.css" ));
+                      "~/Content/Kartoteki.css"));
+
+            bundles.Add(new StyleBundle("~/Content/magnific").Include(
+                      "~/Content/magnific-popup.css"));
 
             bundles.Add(new StyleBundle("~/Content/reset").Include(
-                      "~/Content/reset.css"));
+                       "~/Content/reset.css"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                       "~/Content/bootstrap-theme.css",
