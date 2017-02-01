@@ -21,12 +21,12 @@ namespace SOPeL.Controllers
         // GET: Kartoteki
         public ActionResult Index()
         {
-            return View(db.Pacjenci.ToList());
+            return View();
         }
 
-        public async Task<PartialViewResult> PokazListePacjentow()
+        public PartialViewResult PokazListePacjentow()
         {
-            var model = await db.Pacjenci.ToListAsync();
+            var model =  PacjenciManager.SzukajPacjentow("*");
 
             return PartialView("_ListaPacjentow", model);
         }
@@ -50,7 +50,7 @@ namespace SOPeL.Controllers
         public PartialViewResult SkierTest()
         {
 
-            
+
             return PartialView("SkierowaniePattern", new SkierowanieTest() { data = "2017-01-11", poradnia = "Kardiologiczna" });
         }
 

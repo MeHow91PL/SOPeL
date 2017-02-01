@@ -7,13 +7,15 @@
 
 <div class="kontenerMaterial">
     <div class="row">
-        <div id="terminarzDataKontener" class="abba col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <div id="terminarzDataKontener" class="abba col-lg-2 col-md-2 col-sm-2 col-xs-12">
             <label for="wybor-daty-terminarz">Data</label>
             <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}", DateTime.Now.Day)" id="wybor-daty-terminarz" name="wybor-daty-terminarz" class="form-control datepicker" />
         </div>
-        <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="opcje-terminarza-button">
-            <img src="~/Content/Images/opcje.svg" alt="Opcje" />
-        </a>
+        <div id="terminarz-buttons-top" class="right col-lg-10 col-md-10 col-sm-10 col-xs-12">
+            <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="opcje-terminarza-button">
+                <img src="~/Content/Images/opcje.svg" alt="Opcje" />
+            </a>
+        </div>
     </div>
 </div>
 <div class="kontenerMaterial" id="kontenerMaterialPortalPacjenta" style="padding:0">
@@ -21,9 +23,9 @@
     @Html.Partial("SiatkaTerminarza")
 </div>
 <div id="kartaRezerwacjiWizytyKontener" class="wysrodkujCentralnie">
-        @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
+    @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
 </div>
-<div id="kartaPacjentaKontener" class="wysrodkujCentralnie">
+<div id="kartaPacjentaKontener" style="display:none" class="wysrodkujCentralnie">
     @Html.Partial("_KartaRezerwacjiWizyty", new SOPeL.Models.Rezerwacja())
 </div>
 

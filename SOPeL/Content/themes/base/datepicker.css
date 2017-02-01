@@ -55,7 +55,7 @@
 	margin: 0 2.3em;
 	line-height: 1.8em;
 	text-align: center;
-    font-weight:400;
+	font-weight:400;
 }
 .ui-datepicker .ui-datepicker-title select {
 	font-size: 1em;
@@ -67,6 +67,13 @@
 	background:#2196F3;
 	color:white;
 	border: none;
+}
+.ui-datepicker .ui-state-active{
+	background:#1e879f !important;
+}
+
+.ui-datepicker-today a{
+	background-color: #cf0101 !important;
 }
 .ui-datepicker table {
 	width: 100%;

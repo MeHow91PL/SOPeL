@@ -36,6 +36,10 @@ $(document).ready(function () {
 
     });
 
+    $PrzychodniaBodyKontener.on("click", ".zamknij-okienko-btn", function (event) {
+        UkryjOkienko($(this).data('idokienka'));
+    });
+
     //funkcja po każdym znaku wykonuje submit formularza, który przez zapytanie ajaxowe zwraca listę pacjentów
     $PrzychodniaBodyKontener.on("keyup", ".SzukajPacjentaInput", function () {
         $("#SzukajPacjentowForm").submit();
@@ -58,7 +62,7 @@ $(document).ready(function () {
     });
 
     $PrzychodniaBodyKontener.on("mouseover", '[data-toggle="popover"]', function (e) {
-       // console.log(e);
+        // console.log(e);
     });
 
     $PrzychodniaBodyKontener.on("mouseleave", '[data-toggle="popover"]', function () {
@@ -72,17 +76,37 @@ $(document).ready(function () {
                         '<div id="' + idOkna + '" class="kontenerOkienka  col-lg-10 col-md-12 col-sm-12 col-xs-12 col-xs-12">' +
                         'Ładowanie...' +
                         '</div></div>';
-        $PrzychodniaBodyKontener.append(html)
 
-        $.ajax({
-            url: urlAction,
-            data: {
-                idRez : idRezerwacji
-            },
-            success: function (response) {
-                $("#" + idOkna).html(response);
-            }
-        });
+        var exitButton = '<div class="exit-button-kontener col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12">' +
+                        '<span class="button zamknij-okienko-btn glyphicon glyphicon-remove" data-idokienka="' + kontener + '"></span>' +
+                        '</div>';
+
+        if (!$('#' + idOkna).length) {// Jeżeli oknko już jest zbudowane w DOM to tylko je wyświetl
+            $PrzychodniaBodyKontener.append(html)
+            $.ajax({
+                url: urlAction,
+                data: {
+                    idRez: idRezerwacji
+                },
+                success: function (response) {
+                    var newHtml = exitButton + response;
+                    $("#" + idOkna).html(newHtml);
+                },
+                error: function (resp) {
+                    $("#" + idOkna).html(exitButton + "Błąd przy pobieraniu danych");
+                }
+            });
+        }
+        else {
+            $('#' + kontener).show();
+        }
+
+    }
+
+    function UkryjOkienko(idOkienka) {
+        if (confirm("Czy na pewno zamknąć okno?")) {
+            $('#' + idOkienka).css("display", "none");
+        }
     }
 });
 

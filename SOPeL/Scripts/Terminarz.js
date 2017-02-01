@@ -45,7 +45,14 @@ $(document).ready(function () {
     //wyświetla kalendarz przy wejściu w pole wyboru daty
     wyborDatyTerminarz.datepicker({
         dateFormat: "yy-mm-dd",
-        changeYear: true
+        changeYear: true,
+        dayNames: ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"],
+        dayNamesMin: ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "So"],
+        monthNames: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
+        monthNamesShort: ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Grud"],
+        firstDay: 1, //który dzień ma być wyświetlany jako pierwszy. 1 oznacza poniedziałek. Domyślnie ustawione na 0
+        numberOfMonths: 1, // ilość miesięcy która się wyświtli. Można zrobić np [2,3] - co pokaże 2 wiersze i 3 kolumny mies
+        showOtherMonths: true // pokazuje dni z poprzedniego i następnego miesiąca których nie da się wybrać
     });
 
 

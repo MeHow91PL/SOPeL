@@ -12,6 +12,8 @@ namespace SOPeL.Infrastructure
 {
     public class PacjenciManager
     {
+        static int maxIlośćPacjentów = 10;
+
         public static List<Pacjent> SzukajPacjentow(string query)
         {
             SopelContext db = new SopelContext(); //tylko do tej statycznej metody
@@ -20,9 +22,13 @@ namespace SOPeL.Infrastructure
 
             Regex pattern = new Regex(@"^[0-9]{1,11}$");
 
-            if (pattern.IsMatch(query)) // jeżeli wprowadzony ciąg jest liczbą to szukaj po peselu
+            if (string.IsNullOrWhiteSpace(query) || query == "*")
             {
-                pacjenci = db.Pacjenci.Where(p => p.Pesel.StartsWith(query)).Take(20).ToList();
+                pacjenci = db.Pacjenci.Take(maxIlośćPacjentów).ToList();
+            }
+            else if (pattern.IsMatch(query)) // jeżeli wprowadzony ciąg jest liczbą to szukaj po peselu
+            {
+                pacjenci = db.Pacjenci.Where(p => p.Pesel.StartsWith(query)).Take(maxIlośćPacjentów).ToList();
             }
             else
             {
@@ -38,11 +44,11 @@ namespace SOPeL.Infrastructure
                     pacjenci = db.Pacjenci.Where(
                         p => p.Nazwisko.StartsWith(nazw) && //wyszukuje nazwisko w substringu od początku do wystąpienia znaku podziału
                         p.Imie.StartsWith(imie))//wyszukuje imię w substringu od wystąpienia znaku podziału
-                        .Take(20).ToList(); // pobiera 20 pierwszych wyników i konwertuje je do listy
+                        .Take(maxIlośćPacjentów).ToList(); // pobiera 20 pierwszych wyników i konwertuje je do listy
                 }
                 else
                 {
-                    pacjenci = db.Pacjenci.Where(p => p.Nazwisko.StartsWith(query)).Take(20).ToList();
+                    pacjenci = db.Pacjenci.Where(p => p.Nazwisko.StartsWith(query)).Take(maxIlośćPacjentów).ToList();
                 }
 
             }

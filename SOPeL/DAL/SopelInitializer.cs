@@ -39,7 +39,8 @@ namespace SOPeL.DAL
             var pracownicy = new List<Pracownik>
             {
                 new Pracownik() { ID=1, Imie="Stephen", Nazwisko="Strange", Pesel="86062905358", Telefon="666555444", Email="ss@marvel.pl", PWZ="1234565", Specjalizacja="Chirurgia", TytulNaukowy="dr"},
-                new Pracownik() {ID=2, Imie="Michaela", Nazwisko="Quinn", Pesel="86062905358", Telefon="123456789", Email="dr@quinn.pl", PWZ="7654323", Specjalizacja="Internista", TytulNaukowy="dr"}
+                new Pracownik() {ID=2, Imie="Michaela", Nazwisko="Quinn", Pesel="86062905358", Telefon="123456789", Email="dr@quinn.pl", PWZ="7654323", Specjalizacja="Internista", TytulNaukowy="dr"},
+                new Pracownik() {ID=3, Imie="Lekarz", Nazwisko="Trzeci", Pesel="86062905358", Telefon="123456789", Email="dr@quinn.pl", PWZ="7654323", Specjalizacja="Neurolog", TytulNaukowy="dr"}
 
             };
             pracownicy.ForEach(z => context.Pracownicy.AddOrUpdate(z));
@@ -47,11 +48,13 @@ namespace SOPeL.DAL
 
 
 
-            var pacjenci = new List<Pacjent>
-           {
-               new Pacjent() { ID=1, Imie="Jan", Nazwisko="Kowalski", Pesel="86062905358", Telefon="666555444", Email="kowalski@wp.pl", Aktw= Aktywny.Tak},
-                new Pacjent() { ID=2, Imie="Piotr", Nazwisko="Nowak", Pesel="86062905359", Telefon="666555444", Email="nowak@poczta.onet.pl", Aktw = Aktywny.Tak}
-           };
+            var pacjenci = new List<Pacjent>();
+
+                for (int i = 1; i <= 50; i++)
+            {
+                pacjenci.Add(new Pacjent() { ID = i, Imie = "Pacjent" + i.ToString(), Nazwisko = "Nazwisko-Pacjenta" + i.ToString(), Pesel = "86062905358", Telefon = "666555444", Email = "kowalski@wp.pl", Aktw = Aktywny.Tak });
+            }
+
             pacjenci.ForEach(g => context.Pacjenci.AddOrUpdate(g));
             context.SaveChanges();
 

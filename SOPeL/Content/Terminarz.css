@@ -5,7 +5,7 @@
 
     .terminarz .panelNazwyPracownika {
         text-align: center;
-        vertical-align: middle;
+        vertical-align: middle !important;
         background: #ffffff;
     }
 
@@ -14,6 +14,7 @@
         padding: 5px;
         height: 100%;
         background: #5de9e0;
+        vertical-align:middle !important;
     }
 
     .terminarz .wolny-termin {
@@ -40,6 +41,8 @@
 .terminarzPanelGodzin {
     width: 10%;
     text-align: center;
+    padding:0 !important;
+    vertical-align:middle !important;
 }
 
 .kafelekRezerwacji {
@@ -215,12 +218,6 @@
 /*#############  KARTA REZERWACJI  ####################################################################################################################*/
 
 #kartaRezerwacjiWizytyKontener {
-    position: fixed;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     display: none;
 }
 

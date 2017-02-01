@@ -1,17 +1,17 @@
-﻿#Kartoteki-Kafelki{
-    width:100%;
-    height:100%;
-    position:absolute;
+﻿#Kartoteki-Kafelki {
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
 
-#Kartoteki-Kafelki .button-kafelek p{
-    font-weight:600;
-}
+    #Kartoteki-Kafelki .button-kafelek p {
+        font-weight: 600;
+    }
 
-#Kartoteki-Kafelki .wysrodkujCentralnie{
-    position:relative;
-    background:none;
-}
+    #Kartoteki-Kafelki .wysrodkujCentralnie {
+        position: relative;
+        background: none;
+    }
 
 #SzukajPacjentowForm {
     margin-bottom: 10px;
@@ -45,3 +45,8 @@
             -webkit-transform: scale(1);
             transform: scale(1);
         }
+
+
+#ListaPacjentowTabela {
+    cursor: pointer;
+}

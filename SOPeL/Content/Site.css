@@ -41,7 +41,7 @@ div {
 
 
 .wysrodkujCentralnie {
-    position: absolute;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,16 +53,52 @@ div {
     height:100%;
 }
 
+.kontenerOkienka {
+    color: #3b3b3b;
+    background: #ffffff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+    padding: 50px;
+    overflow:auto;
+    max-height: 100%;
+}
+
+.exit-button-kontener{
+    text-align: right;
+    position: absolute;
+    left:0;
+    top:0;
+    padding:0;
+}
+
+.exit-button-kontener .button{
+    padding: 20px 20px;margin: 20px;
+    padding:0;
+    text-align: right;
+    color:#720000;
+}
+
+.exit-button-kontener .button:hover{
+    color:#e63232;
+}
+.exit-button-kontener .button:active{
+    color:#aa2424;
+}
+
 
 .button {
     padding: 10px 30px;
     background: white;
     cursor: pointer;
     margin: 0;
-    -moz-transition: 0ms;
-    -o-transition: 0ms;
-    -webkit-transition: 0ms;
-    transition: 0ms;
+    -moz-transition: 100ms;
+    -o-transition: 100ms;
+    -webkit-transition: 100ms;
+    transition: 100ms;
     text-align: center;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -126,22 +162,9 @@ div {
 
 .kontenerMaterial {
     background: white;
-    box-shadow: 0px 1px 1px #939393;
+    box-shadow: 0 15px 10px -16px #939393;
     padding: 20px;
     margin: 10px auto;
-}
-
-.kontenerOkienka {
-    color: #3b3b3b;
-    background: #ffffff;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
-    padding: 50px;
-    overflow:auto;
 }
 
 
