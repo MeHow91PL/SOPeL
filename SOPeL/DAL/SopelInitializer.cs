@@ -25,6 +25,11 @@ namespace SOPeL.DAL
 
         public static void SeedsopelLocal(SopelContext context)
         {
+            Random rand = new Random();
+            string[] imiona = { "Jan", "Filip", "Franciszek", "Mikołaj", "Aleksander", "Kacper", "Wojciech" };
+            string[] nazwiska = { "Kowalski", "Nowak", "Wiśniewski", "Wójcik", "Kowalczyk", "Kamiński", "Lewandowski" };
+            string[] spec = { "Chirurg", "Internista", "Neurolog" };
+
             var opcje = new List<Opcja>
             {
                new Opcja() { Nazwa="term_godz_od", ID=1, Wartosc="08:00"},
@@ -36,27 +41,34 @@ namespace SOPeL.DAL
             opcje.ForEach(s => context.Opcje.AddOrUpdate(s));
             context.SaveChanges();
 
-            var pracownicy = new List<Pracownik>
-            {
-                new Pracownik() { ID=1, Imie="Stephen", Nazwisko="Strange", Pesel="86062905358", Telefon="666555444", Email="ss@marvel.pl", PWZ="1234565", Specjalizacja="Chirurgia", TytulNaukowy="dr"},
-                new Pracownik() {ID=2, Imie="Michaela", Nazwisko="Quinn", Pesel="86062905358", Telefon="123456789", Email="dr@quinn.pl", PWZ="7654323", Specjalizacja="Internista", TytulNaukowy="dr"},
-                new Pracownik() {ID=3, Imie="Lekarz", Nazwisko="Trzeci", Pesel="86062905358", Telefon="123456789", Email="dr@quinn.pl", PWZ="7654323", Specjalizacja="Neurolog", TytulNaukowy="dr"}
 
-            };
+            var pracownicy = new List<Pracownik>();
+
+            for (int i = 1; i <= 3; i++)
+            {
+                string imie = imiona[rand.Next(0, imiona.Length)];
+                string nazw = nazwiska[rand.Next(0, nazwiska.Length)];
+                pracownicy.Add(new Pracownik() { ID = i, Imie = imie, Nazwisko = nazw, Pesel = "86062905358", Telefon = rand.Next(500000000, 900000000).ToString(), Email = imie + "." + nazw + "@gmail.com", PWZ = "1234565", Specjalizacja = spec[rand.Next(0, spec.Length)], TytulNaukowy = "dr" });
+            }
+
             pracownicy.ForEach(z => context.Pracownicy.AddOrUpdate(z));
             context.SaveChanges();
+            pracownicy.Clear();
 
 
 
             var pacjenci = new List<Pacjent>();
 
-                for (int i = 1; i <= 50; i++)
+            for (int i = 1; i <= 50; i++)
             {
-                pacjenci.Add(new Pacjent() { ID = i, Imie = "Pacjent" + i.ToString(), Nazwisko = "Nazwisko-Pacjenta" + i.ToString(), Pesel = "86062905358", Telefon = "666555444", Email = "kowalski@wp.pl", Aktw = Aktywny.Tak });
+                string imie = imiona[rand.Next(0, imiona.Length)];
+                string nazw = nazwiska[rand.Next(0, nazwiska.Length)];
+                pacjenci.Add(new Pacjent() { ID = i, Imie = imie, Nazwisko = nazw, Pesel = "86062905358", Telefon = rand.Next(500000000, 900000000).ToString(), Email = imie + "." + nazw + "@gmail.com", Aktw = Aktywny.Tak });
             }
 
             pacjenci.ForEach(g => context.Pacjenci.AddOrUpdate(g));
             context.SaveChanges();
+            pacjenci.Clear();
 
 
 
@@ -64,25 +76,30 @@ namespace SOPeL.DAL
 
             var rezerwacje = new List<Rezerwacja>();
             {
-
-
+                int newId = 0;
                 for (int i = 0; i < 30; i++)
                 {
-                    rezerwacje.Add(new Rezerwacja()
+                    for (int y = 0; y < 11; y++)
                     {
-                        Id = i,
-                        DataModyfikacji = DateTime.Today.AddDays(i),
-                        DataRezerwacji = DateTime.Today.AddDays(i),
-                        godzOd = "09:30",
-                        godzDo = "10:00",
-                        PacjentID = 1,
-                        PracownikID = 1
-                    });
+
+                        rezerwacje.Add(new Rezerwacja()
+                        {
+                            Id = newId,
+                            DataModyfikacji = DateTime.Today.AddDays(i),
+                            DataRezerwacji = DateTime.Today.AddDays(i),
+                            godzOd = rand.Next(10, 18).ToString() + ":30",
+                            godzDo = rand.Next(10, 18).ToString() + ":00",
+                            PacjentID = rand.Next(1, 49),
+                            PracownikID = rand.Next(1, 4)
+                        });
+                        newId++;
+                    }
+
                 }
 
                 rezerwacje.ForEach(g => context.Rezerwacje.AddOrUpdate(g));
                 context.SaveChanges();
-
+                rezerwacje.Clear();
 
                 var rozpoznania = new List<ICD10>
            {
