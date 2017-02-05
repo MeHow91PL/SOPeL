@@ -1,143 +1,135 @@
 ﻿@model SOPeL.Models.Wizyta
-<div class="row" style="height:99%;width:99%;">
-    <div class="kontenerOkienka" style="display:flex">
 
-        @using (Html.BeginForm("ZapiszDodajWizyte", "Wizyta", FormMethod.Post, new { @id = "ZapiszDodajWizyteForm", @class = "maxSzerokosc" }))
-        {
-            @Html.AntiForgeryToken()
+@using (Html.BeginForm("ZapiszDodajWizyte", "Wizyta", FormMethod.Post, new { @id = "ZapiszDodajWizyteForm", @class = "maxSzerokosc" }))
+{
+    @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">
+                <img src="~/Content/Images/userIcon.png" />
+            </div>
+
+            <div class="col-md-8 col-lg-8 col-sm-8 col-sm-8">
                 <div class="row">
-                    <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">
-                        <img src="~/Content/Images/userIcon.png" />
-                    </div>
-
-                    <div class="col-md-8 col-lg-8 col-sm-8 col-sm-8">
-                        <div class="row">
-                            <div class="col-md-10 col-lg-10 col-sm-10">
-                                <h5>Wizyta, @Model.DataWizyty.ToShortDateString()</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-10 col-lg-10 col-sm-10">
-                                <h4>@Model.Pacjent.Nazwisko @Model.Pacjent.Imie – @Model.Pacjent.Pesel</h4>
-                            </div>
-                        </div>
+                    <div class="col-md-10 col-lg-10 col-sm-10">
+                        <h5>Wizyta, @Model.DataWizyty.ToShortDateString()</h5>
                     </div>
                 </div>
+                <div class="row">
+
+                    <div class="col-md-10 col-lg-10 col-sm-10">
+                        <h4>@Model.Pacjent.Nazwisko @Model.Pacjent.Imie – @Model.Pacjent.Pesel</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <div class="col-md-9 col-lg-9 col-sm-12">
+            Bieżąca wizyta
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Rozpoznanie, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Rozpoznanie, new { @class = "form-control ui-autocomplete-input", @autocomplete = "off" })
+
+                    @*@Html.EditorFor(model => model.Rozpoznanie, new { htmlAttributes = new { @class = "form-control ui-autocomplete-input" } })*@
+                    @Html.ValidationMessageFor(model => model.Rozpoznanie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Wywiad, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.TextAreaFor(model => model.Wywiad, new { @class = "form-control form-wizyta" })
+                    @Html.ValidationMessageFor(model => model.Wywiad, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    <button type="button" onclick="wydrukWywiadu()" name="submit" value="wywiad" class="btn btn-default">
+                        <span class="glyphicon glyphicon-print"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.Badanie, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.TextAreaFor(model => model.Badanie, new { @class = "form-control form-wizyta" })
+                    @Html.ValidationMessageFor(model => model.Badanie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-3 control-label">
+                    @Html.LabelFor(model => model.Leki)
+                </div>
+                <div class="col-md-8 col-lg-8 col-sm-8">
+                    @Html.EditorFor(model => model.Leki, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+                <div class="col-md-1 col-lg-1 col-sm-1">
+                    <button type="button" onclick="wydrukRecepty()" class="wydruk-recepty btn btn-default">
+                        <span class="glyphicon glyphicon-print"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-3 col-lg-8  col-lg-offset-3">
+                    @Html.TextBoxFor(model => model.Leki, new { @class = "form-control" })
+                </div>
+                <div class="col-md-1 col-lg-1 col-sm-1">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Zalecenia, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.TextAreaFor(model => model.Zalecenia, new { @class = "form-control form-wizyta" })
+                    @Html.ValidationMessageFor(model => model.Zalecenia, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Skierowanie, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(model => model.Skierowanie, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Skierowanie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1 col-sm-12">
+                Historia leczenia
                 <hr />
-
-                <div class="col-md-9 col-lg-9 col-sm-12">
-                    Bieżąca wizyta
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Rozpoznanie, htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
-                            @Html.TextBoxFor(m => m.Rozpoznanie, new { @class = "form-control ui-autocomplete-input", @autocomplete = "off" })
-
-                            @*@Html.EditorFor(model => model.Rozpoznanie, new { htmlAttributes = new { @class = "form-control ui-autocomplete-input" } })*@
-                            @Html.ValidationMessageFor(model => model.Rozpoznanie, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Wywiad, htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-8">
-                            @Html.TextAreaFor(model => model.Wywiad, new { @class = "form-control form-wizyta" })
-                            @Html.ValidationMessageFor(model => model.Wywiad, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-md-1">
-                            <button type="button" onclick="wydrukWywiadu()" name="submit" value="wywiad" class="btn btn-default">
-                                <span class="glyphicon glyphicon-print"></span>
-                            </button>
-
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-
-                        @Html.LabelFor(model => model.Badanie, htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
-                            @Html.TextAreaFor(model => model.Badanie, new { @class = "form-control form-wizyta" })
-                            @Html.ValidationMessageFor(model => model.Badanie, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-
-                        <div class="col-md-3 control-label">
-                            @Html.LabelFor(model => model.Leki)
-                        </div>
-                        <div class="col-md-8 col-lg-8 col-sm-8">
-                            @Html.EditorFor(model => model.Leki, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                        </div>
-                        <div class="col-md-1 col-lg-1 col-sm-1">
-                            <button type="button" onclick="wydrukRecepty()" class="wydruk-recepty btn btn-default">
-                                <span class="glyphicon glyphicon-print"></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-8 col-md-offset-3 col-lg-8  col-lg-offset-3">
-                            @Html.TextBoxFor(model => model.Leki, new { @class = "form-control" })
-                        </div>
-                        <div class="col-md-1 col-lg-1 col-sm-1">
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Zalecenia, htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
-                            @Html.TextAreaFor(model => model.Zalecenia, new { @class = "form-control form-wizyta" })
-                            @Html.ValidationMessageFor(model => model.Zalecenia, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Skierowanie, htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.Skierowanie, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Skierowanie, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1 col-sm-12">
-                        Historia leczenia
-                        <hr />
-                        @Html.Action("WyswietlHistorieWizyt", "Wizyta", new { idPac = Model.PacjentID })
-                    </div>
-                </div>
+                @Html.Action("WyswietlHistorieWizyt", "Wizyta", new { idPac = Model.PacjentID })
             </div>
-            <div class="row">
-                <div class="col-md-3 col-lg-3 col-sm-3">
+        </div>
+    </div>
+        <div class="row" style="height:auto">
 
-                </div>
-                <div class="col-md-5 col-lg-5 col-sm-5">
-                    <button type="submit" class="btn btn-success">Zapisz wizytę</button>
-                    <button type="submit" class="btn btn-info">Drukuj</button>
-                    <button type="submit" class="btn btn-danger">Wyjdź bez zapisywania</button>
-                </div>
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <button type="submit" class="button button-blue">Zapisz wizytę</button>
+                <button type="submit" class="button button-green">Drukuj</button>
+                <button type="submit" class="button button-red">Wyjdź bez zapisywania</button>
             </div>
+        </div>
             @Html.TextBoxFor(m => m.RezerwacjaId, new { @type = "hidden" })
             @Html.TextBoxFor(m => m.PracownikID, new { @type = "hidden" })
             @Html.TextBoxFor(m => m.PacjentID, new { @type = "hidden" })
             @Html.TextBoxFor(m => m.DataModyfikacji, new { @type = "hidden" })
             @Html.TextBoxFor(m => m.DataWizyty, new { @type = "hidden" })
-        }
-    </div>
-    <div id="test">
-    </div>
-</div>
+}
+
 <script src="~/Scripts/jquery-3.1.1.js"></script>
-    <script src="~/Scripts/printThis.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/printThis.js"></script>
 <script>
     $("#Rozpoznanie").autocomplete({
         source: "/Wizyta/ICD10Autocomplete"

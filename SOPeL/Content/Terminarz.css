@@ -3,60 +3,97 @@
     padding: 5px;
 }
 
-    .terminarz .panelNazwyPracownika {
-        text-align: center;
-        vertical-align: middle !important;
-        background: #ffffff;
+.terminarz-top-panel {
+    height: 100px;
+}
+
+#terminarz-buttons-top {
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    height:100%;
+    position:relative;
+    top:0;
+    bottom:0;
+}
+
+    #terminarz-buttons-top .button {
+        display: inline-flex;
+        padding:20px;
     }
 
-    .terminarz .panel-rezerwacji {
-        position: relative;
-        padding: 5px;
-        height: 100%;
-        background: #5de9e0;
-        vertical-align:middle !important;
-    }
+        #terminarz-buttons-top .button:hover         {
+           background-color: rgba(0,0,0,0.1);
+        }
+        #terminarz-buttons-top .button:active{
+           background-color: rgba(0,0,0,0.2);
 
-    .terminarz .wolny-termin {
-        height: 40px;
-        text-align: center;
-        vertical-align: middle;
-        cursor: copy;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-        background: #5de9e0;
-        color: white;
-    }
-
-        .terminarz .wolny-termin:hover {
-            opacity: 0.8;
         }
 
-        .terminarz .wolny-termin:active{
-            background-color: #7af1e9;
+        #terminarz-buttons-top .button img {
+            height: 30px;
+            width: 30px;
         }
+
+#siatka-terminarza-kontener {
+    overflow-x:auto;
+}
+
+.terminarz .panelNazwyPracownika {
+    text-align: center;
+    vertical-align: middle !important;
+    background: #ffffff;
+}
+
+.terminarz .panel-rezerwacji {
+    position: relative;
+    padding: 5px;
+    height: 40px;
+    background: #5de9e0;
+    vertical-align: middle !important;
+    white-space:nowrap;
+}
+
+.terminarz .wolny-termin {
+    text-align: center;
+    vertical-align: middle;
+    cursor: copy;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: #5de9e0;
+    color: white;
+}
+
+    .terminarz .wolny-termin:hover {
+        opacity: 0.8;
+    }
+
+    .terminarz .wolny-termin:active {
+        background-color: #7af1e9;
+    }
 
 .terminarzPanelGodzin {
     width: 10%;
     text-align: center;
-    padding:0 !important;
-    vertical-align:middle !important;
+    padding: 0 !important;
+    vertical-align: middle !important;
 }
 
 .kafelekRezerwacji {
-    width: 100%;
-    height: 100%;
-    min-height: 20px;
-    background: #fdffca;
-    border: none;
-    text-align: center;
     position: relative;
     top: 0;
     bottom: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 20px;
     display: flex;
+    text-align: center;
     align-items: center;
+    justify-content:center;
+    background: #fdffca;
+    border: none;
     cursor: pointer;
     -moz-box-shadow: 0 0 3px black;
     -webkit-box-shadow: 0 0 3px black;
@@ -113,7 +150,7 @@
 
         .kafelekRezerwacji .przyciski .edytuj-rezerwacje-btn {
             color: darkblue;
-            margin-left:2px;
+            margin-left: 2px;
         }
 
             .kafelekRezerwacji .przyciski .edytuj-rezerwacje-btn:hover {
@@ -141,17 +178,17 @@
     background-color: lightgray;
 }
 
-.Wykonany:hover {
-    background-color: #e5e5e5;
-}
+    .Wykonany:hover {
+        background-color: #e5e5e5;
+    }
 
 .Rezerwacja {
     background-color: #d2ffc2;
 }
 
-.Rezerwacja:hover {
-    background-color: #eafce3;
-}
+    .Rezerwacja:hover {
+        background-color: #eafce3;
+    }
 
 #opcje-terminarza-button {
     width: 50px;

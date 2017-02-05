@@ -2,6 +2,14 @@
 
 <table class="table table-hover">
     <tr>
+        @{
+            if (ViewBag.WybierzPacjenta != null && ViewBag.WybierzPacjenta)
+            {
+                <th>
+                    Wybierz
+                </th>
+            }
+        }
         <th>
             @Html.DisplayNameFor(model => model.Pesel)
         </th>
@@ -15,23 +23,22 @@
             @Html.DisplayNameFor(model => model.Telefon)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DataUrodzenia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Plec)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DokumentTozsamosci)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th></th>
+        <th>Akcje</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            @{
+                if (ViewBag.WybierzPacjenta != null && ViewBag.WybierzPacjenta)
+                {
+                    <td>
+                        <div class="wybierzBtn" data-pacid="@item.ID" data-pacvalue="@item.Pesel | @item.Imie @item.Nazwisko"> <span class="wybierzIcon glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> </div>
+                    </td>
+                }
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.Pesel)
             </td>
@@ -45,22 +52,13 @@
                 @Html.DisplayFor(modelItem => item.Telefon)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataUrodzenia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Plec)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DokumentTozsamosci)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
+
                 @Html.ActionLink("Usun", "UsunPacjenta", new { id = item.ID })
             </td>
         </tr>
-    }
+                }
 
 </table>
-

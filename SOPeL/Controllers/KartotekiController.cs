@@ -24,27 +24,57 @@ namespace SOPeL.Controllers
             return View();
         }
 
-        public PartialViewResult PokazListePacjentow()
+        public PartialViewResult PokazListePacjentow(bool WybierzPacjenta = false, string searchString = "*")
         {
-            var model =  PacjenciManager.SzukajPacjentow("*");
+            var model =  PacjenciManager.SzukajPacjentow(searchString);
+            ViewBag.WybierzPacjenta = WybierzPacjenta;
 
             return PartialView("_ListaPacjentow", model);
         }
 
 
 
-        public PartialViewResult SzukajPacjentow(string searchString)
+        public PartialViewResult SzukajPacjentow(bool WybierzPacjenta = false, string searchString = "*")
         {
-            var pacjenci = PacjenciManager.SzukajPacjentow(searchString);
+            var pacjenci = PacjenciManager.SzukajPacjentow(searchString, 30);
+            ViewBag.WybierzPacjenta = WybierzPacjenta;
 
             return PartialView("_ListaPacjentowTabela", pacjenci);
         }
 
-
+        /// <summary>
+        /// Akcja zwracająca widok karty pacjenta do wyświtlenia w oknie.
+        /// </summary>
+        /// <returns></returns>
         public PartialViewResult DodajPacjenta()
         {
             Pacjent pacjent = new Pacjent();
             return PartialView("_KartaPacjenta", pacjent);
+        }
+
+        /// <summary>
+        /// Akcja zapisująca dane pacjenta w bazie.
+        /// </summary>
+        /// <param name="pacjent"></param>
+        /// <param name="adres"></param>
+        /// <returns></returns>
+        public ActionResult ZapiszPacjenta([Bind(Include = "Imie,Nazwisko,Pesel,DataUrodzenia,KodPocztowy,Miasto,Ulica,NrDomu,NrLokalu,Telefon,Email,Plec,Aktw,ID")] Pacjent pacjent, Adres adres)
+        {
+            pacjent.Adres = adres;
+            Rezultat zapiszResult = PacjenciManager.ZapiszPacjenta(pacjent);
+
+            if (zapiszResult.RezultatPozytywny == true)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                throw new Exception(zapiszResult.Komunikat);
+            }
+
+
+
+
         }
 
         public PartialViewResult SkierTest()
@@ -53,11 +83,6 @@ namespace SOPeL.Controllers
 
             return PartialView("SkierowaniePattern", new SkierowanieTest() { data = "2017-01-11", poradnia = "Kardiologiczna" });
         }
-
-
-
-
-
 
 
 

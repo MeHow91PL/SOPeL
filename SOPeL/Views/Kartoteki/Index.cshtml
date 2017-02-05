@@ -42,21 +42,3 @@
         </div>
     </div>
 </div>
-<div style="display:none">
-    <div id="test">
-        test
-    </div>
-</div>
-
-<script>
-    function drukSkierowania() {
-        $.ajax({
-            url: '/Kartoteki/DownloadViewPDF',
-            type: 'POST',
-            success: function (response) {
-                var mywindow = window.open('', 'skierowanie', 'height=400,width=600');
-                mywindow.document.write(response);
-            }
-        });
-    }
-</script>

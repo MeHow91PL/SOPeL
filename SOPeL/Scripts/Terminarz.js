@@ -7,7 +7,7 @@ $(document).ready(function () {
     var loaderKontener = $("#loader-kontener");
     var wyborDatyTerminarz = $("#wybor-daty-terminarz");
     var dataRezerwacji = $('#wybor-daty-terminarz').val();
-    var $kontenerMaterialPortalPacjenta = $('#kontenerMaterialPortalPacjenta');
+    var $siatkaTerminarzaKontener = $('#siatka-terminarza-kontener');
     var $PrzychodniaBodyKontener = $('#PrzychodniaBodyKontener');
 
     var terminarzDataKontener = $("#terminarzDataKontener");
@@ -17,7 +17,7 @@ $(document).ready(function () {
     var menu = $("#menu");
 
 
-    $kontenerMaterialPortalPacjenta.css({
+    $siatkaTerminarzaKontener.css({
         "height": "100%",
         "visibility": "visible"
     });
@@ -42,52 +42,39 @@ $(document).ready(function () {
 
     //--------------------------------- WYBÓR DATY -------------------------------------------------------------------------------------------------
 
-    //wyświetla kalendarz przy wejściu w pole wyboru daty
-    wyborDatyTerminarz.datepicker({
-        dateFormat: "yy-mm-dd",
-        changeYear: true,
-        dayNames: ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"],
-        dayNamesMin: ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "So"],
-        monthNames: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
-        monthNamesShort: ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Grud"],
-        firstDay: 1, //który dzień ma być wyświetlany jako pierwszy. 1 oznacza poniedziałek. Domyślnie ustawione na 0
-        numberOfMonths: 1, // ilość miesięcy która się wyświtli. Można zrobić np [2,3] - co pokaże 2 wiersze i 3 kolumny mies
-        showOtherMonths: true // pokazuje dni z poprzedniego i następnego miesiąca których nie da się wybrać
-    });
-
+    
 
     wyborDatyTerminarz.change(function () {
-        pobierzTerminarz()
+        pobierzTerminarz();
     });
 
     function pobierzTerminarz() {
         dataRezerwacji = wyborDatyTerminarz.val();
+
         var wzor = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
         var parts = dataRezerwacji.split('-');
 
         if (!wzor.test(dataRezerwacji)) {
             alert("Wybierz datę z kalendarza");
-            $kontenerMaterialPortalPacjenta.slideUp(500);
+            $siatkaTerminarzaKontener.slideUp(500);
             return;
         }
         $.ajax({
-            url: pobierzTerminarzAjax,
+            url: '/Terminarz/pobierzTerminarz',
             data: {
                 wybranaData: dataRezerwacji
             },
             success: function (response) {
-                $kontenerMaterialPortalPacjenta.fadeOut(300, function myfunction() {
-                    $kontenerMaterialPortalPacjenta.html(response);
-
-
+                $siatkaTerminarzaKontener.fadeOut(300, function myfunction() {
+                    $siatkaTerminarzaKontener.html(response);
                 });
-                $kontenerMaterialPortalPacjenta.fadeIn(300);
+                $siatkaTerminarzaKontener.fadeIn(300);
             },
             error: function () {
                 alert("Błąd połączenia z serwerem!");
 
-                $kontenerMaterialPortalPacjenta.fadeOut(300, function myfunction() {
-                    $kontenerMaterialPortalPacjenta.html("");
+                $siatkaTerminarzaKontener.fadeOut(300, function myfunction() {
+                    $siatkaTerminarzaKontener.html("");
                 });
             }
         });
@@ -105,8 +92,9 @@ $(document).ready(function () {
     var ogolnyGrafik = $("#term_ogolny_graf_panel");
     var ogolnyGrafikInputs = $("#term_ogolny_graf_panel input");
 
-    $("#opcje-terminarza-button").click(function () {
+    $(".opcje-terminarza-btn").click(function () {
         loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
+        alert("");
         $.ajax({
             url: '/Terminarz/PobierzOpcjeTerminarza',
             type: "POST",
@@ -264,8 +252,9 @@ $(document).ready(function () {
         }
     });
 
-    $PrzychodniaBodyKontener.on("dbclick", '.kafelekRezerwacji', function () {
-        alert("");
+    $PrzychodniaBodyKontener.on("dblclick", '.kafelekRezerwacji', function () {
+        var id = $(this).data("idrez");
+        EdytujRezerwacje(id);
     });
 
     $PrzychodniaBodyKontener.on("click", '.edytuj-rezerwacje-btn', function () {
@@ -286,7 +275,9 @@ $(document).ready(function () {
             data: {
                 idRez: idRezerwacji
             },
-            success: function (response) { $("#kartaRezerwacjiWizytyKontener").html(response); },
+            success: function (response) {
+                $("#kartaRezerwacjiWizytyKontener").html(response);
+            },
             error: function () { alert("Error"); }
         });
     }

@@ -71,7 +71,7 @@
     }
 
         .sidebar li a:hover {
-            background: blue;
+            background-color: dodgerblue;
             color: white;
             text-decoration: none;
             -moz-transition: 200ms;

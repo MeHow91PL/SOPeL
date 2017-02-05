@@ -262,6 +262,12 @@
     <Content Include="Content\hint.css" />
     <Content Include="Content\hint.min.css" />
     <Content Include="Content\Images\097-512.png" />
+    <Content Include="Content\Images\PrinterIcon.svg" />
+    <Content Include="Content\Images\OpcjeIcon.svg" />
+    <Content Include="Content\Images\CameraIcon.svg" />
+    <Content Include="Content\Images\DoctorIcon.svg" />
+    <Content Include="Content\Images\PatientIcon.svg" />
+    <Content Include="Content\Images\CrossIcon.svg" />
     <Content Include="Content\Images\admin.svg" />
     <Content Include="Content\Images\clinicIcon.png" />
     <Content Include="Content\Images\doctorIcon.png" />

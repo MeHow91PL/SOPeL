@@ -12,9 +12,13 @@ namespace SOPeL.Infrastructure
 {
     public class PacjenciManager
     {
-        static int maxIlośćPacjentów = 10;
-
-        public static List<Pacjent> SzukajPacjentow(string query)
+        /// <summary>
+        /// Funcja zwraca listę pacjentów zgodną z parametrami wyszukiwania
+        /// </summary>
+        /// <param name="query">Wyszukiwany ciąg. Może to być PESEL lub Nazwisko[separator]Imie</param>
+        /// <param name="maxIlośćPacjentów">Maksymalna ilość pacjentów, która ma zostać zwrócona. Domyślna warotść: 10</param>
+        /// <returns></returns>
+        public static List<Pacjent> SzukajPacjentow(string query, int maxIlośćPacjentów = 10)
         {
             SopelContext db = new SopelContext(); //tylko do tej statycznej metody
             List<Pacjent> pacjenci = null;
@@ -55,5 +59,49 @@ namespace SOPeL.Infrastructure
 
             return pacjenci;
         }
+
+        public static Rezultat ZapiszPacjenta(Pacjent pacjent)
+        {
+            SopelContext db = new SopelContext(); //tylko do tej statycznej metody
+            try
+            {
+
+                if (db.Pacjenci.Any(p => p.ID == pacjent.ID))
+                {
+                    db.Entry(pacjent).State = EntityState.Modified;
+                    db.Entry(pacjent.Adres).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.Pacjenci.Add(pacjent);
+                    db.SaveChanges();
+                }
+                return new Rezultat(true);
+            }
+            catch (Exception ex)
+            {
+                return new Rezultat(false, "Błąd przy wykonaniu metody ZapiszPacjenta.\nSzczegóły: " + ex.Message);
+            }
+        }
+
+    }
+
+    public class Rezultat
+    {
+        public string Komunikat { get; }
+        public bool RezultatPozytywny { get; }
+
+        public Rezultat(bool RezultatPozytywny)
+        {
+            this.RezultatPozytywny = RezultatPozytywny;
+        }
+
+        public Rezultat(bool RezultatPozytywny, string Komunikat)
+        {
+            this.RezultatPozytywny = RezultatPozytywny;
+            this.Komunikat = Komunikat;
+        }
+
     }
 }

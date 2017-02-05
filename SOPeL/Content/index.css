@@ -52,6 +52,7 @@
     .przycisk img {
         margin: 0 10px;
         vertical-align: middle;
+        height:100px;
     }
 
     .przycisk span {

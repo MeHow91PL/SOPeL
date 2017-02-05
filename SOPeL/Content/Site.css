@@ -2,8 +2,8 @@
 
 html {
     height: 100%;
-    width:100%;
-    overflow:hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -22,6 +22,10 @@ a {
 
 div {
     background: none;
+}
+
+td {
+    vertical-align: middle !important;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -48,9 +52,9 @@ div {
     top: 0;
     left: 0;
     right: 0;
-    bottom:0;
+    bottom: 0;
     background: rgba(0,0,0,0.1);
-    height:100%;
+    height: 100%;
 }
 
 .kontenerOkienka {
@@ -63,31 +67,33 @@ div {
     -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
     padding: 50px;
-    overflow:auto;
+    overflow: auto;
     max-height: 100%;
 }
 
-.exit-button-kontener{
+.exit-button-kontener {
     text-align: right;
     position: absolute;
-    left:0;
-    top:0;
-    padding:0;
+    left: 0;
+    top: 0;
+    padding: 0;
 }
 
-.exit-button-kontener .button{
-    padding: 20px 20px;margin: 20px;
-    padding:0;
-    text-align: right;
-    color:#720000;
-}
+    .exit-button-kontener .button {
+        padding: 20px 20px;
+        margin: 20px;
+        padding: 0;
+        text-align: right;
+        color: #720000;
+    }
 
-.exit-button-kontener .button:hover{
-    color:#e63232;
-}
-.exit-button-kontener .button:active{
-    color:#aa2424;
-}
+        .exit-button-kontener .button:hover {
+            color: #e63232;
+        }
+
+        .exit-button-kontener .button:active {
+            color: #aa2424;
+        }
 
 
 .button {
@@ -104,6 +110,7 @@ div {
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
 
 .button-blue {
@@ -137,6 +144,20 @@ div {
         background: #ae0404;
     }
 
+.button-green {
+    border: 1px white solid;
+    color: white;
+    background-color:darkseagreen;
+}
+
+    .button-green:hover {
+        background-color: mediumseagreen;
+    }
+
+    .button-green:active {
+        background-color: seagreen;
+    }
+
 .button-kafelek {
     width: 46%;
     height: 46%;
@@ -144,6 +165,7 @@ div {
     float: left;
     background: white;
     box-shadow: 1px 1px 1px #888888;
+    text-shadow:none;
 }
 
     .button-kafelek:hover {
@@ -165,6 +187,7 @@ div {
     box-shadow: 0 15px 10px -16px #939393;
     padding: 20px;
     margin: 10px auto;
+    border: 1px solid #d3d3d3;
 }
 
 

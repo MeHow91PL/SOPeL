@@ -19,31 +19,14 @@ namespace SOPeL.Controllers
         //GET: Poczekalnia
         public ActionResult Index()
         {
-            //var yesterDay = DateTime.Now.AddDays(-1);
-            //var yesterDayshort = yesterDay.ToShortDateString();
-            //var nextDay = DateTime.Now.AddDays(+1);
-            var toDay = DateTime.Now.ToShortDateString();
+            var data = DateTime.Today.ToString("yyyy-MM-dd");
+            var model = PrzygotujWizytaViewModel(data);
 
-            //var rez = (from n in db.Rezerwacje.OrderByDescending(n => n.DataRezerwacji) where  (n.DataRezerwacji.Date() = yesterDayshort ) /*&& (n.DataRezerwacji < nextDay)*/ select n).ToList();
-
-            //var dzis = DateTime.Now.ToString("yyyy-MM-dd");
-            //var rez = db.Rezerwacje.Where(r => r.DataRezerwacji.ToString() == dzis).ToList();
-
-
-
-            var prac = db.Pracownicy.ToList();
-            var wiz = db.Wizyty.ToList();
-            var rez = db.Rezerwacje.Where(r => r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak).ToList();
-            //var rezToday = db.Rezerwacje.Where(g => g.DataRezerwacji.TruncateTime() == toDay).ToList();
-            var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
             return View(model);
 
         }
         public ActionResult WyswietlanieLekarzy(int? idlekarza)
         {
-
-
-
             if ((idlekarza == null) || (idlekarza == 0))
             {
                 var prac = db.Pracownicy.ToList();
@@ -60,6 +43,31 @@ namespace SOPeL.Controllers
                 var model = new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
                 return PartialView("WizytaPrzychodnia", model);
             }
+        }
+
+        public PartialViewResult PobierzListeRezerwacji(string data, Status status = Status.Rezerwacja, int idlekarza = 0)
+        {
+            var model = PrzygotujWizytaViewModel(data,status,idlekarza);
+            return PartialView("WizytaPrzychodnia", model);
+        }
+
+        private WizytaViewModel PrzygotujWizytaViewModel(string data, Status status = Status.Rezerwacja, int idlekarza = 0)
+        {
+            var prac = db.Pracownicy.ToList();
+            var wiz = db.Wizyty.ToList();
+            List<Rezerwacja> rez;
+            DateTime dataRez = DateTime.Parse(data);
+
+            if ( idlekarza == 0)
+            {
+                rez = db.Rezerwacje.Where(r => r.DataRezerwacji == dataRez && r.Aktw == Aktywny.Tak && r.Stat == status).OrderBy(r => r.DataRezerwacji).ThenBy(r => r.godzOd).ToList();
+            }
+            else
+            {
+                rez = db.Rezerwacje.Where(r => r.DataRezerwacji == dataRez && r.PracownikID == idlekarza && r.Aktw == Aktywny.Tak && r.Stat == status).OrderBy(r => r.DataRezerwacji).ThenBy(r => r.godzOd).ToList();
+            }
+
+            return new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
         }
 
         public PartialViewResult dodajWizyte(int idrez)
@@ -79,8 +87,7 @@ namespace SOPeL.Controllers
 
         public JsonResult ICD10Autocomplete(string term)
         {
-            var icd10 = db.KodyICD10.Select(i => i.Kod).Where(i => i.StartsWith(term)).ToList();
-            // string[] icd10= new string[] { "one", "two", "free", "baba", "patrzy" };
+            var icd10 = db.KodyICD10.Select(i => i.Kod + " - " + i.Nazwa).Where(i => i.StartsWith(term)).ToList();
 
             return Json(icd10, JsonRequestBehavior.AllowGet);
         }
@@ -107,7 +114,7 @@ namespace SOPeL.Controllers
                 Pacjent = pac,
                 Wywiad = wyw
             };
-            return PartialView("Wydruk-Wywiad",vm);
+            return PartialView("Wydruk-Wywiad", vm);
         }
 
         public ActionResult DrukujRecepte()
@@ -121,7 +128,7 @@ namespace SOPeL.Controllers
         {
             if (submit == "wywiad")
             {
-                return RedirectToAction("DrukujWywiad",wizyta);
+                return RedirectToAction("DrukujWywiad", wizyta);
             }
             else
             {

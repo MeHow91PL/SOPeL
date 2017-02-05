@@ -5,53 +5,67 @@
 
         @{
             <tr>
-                <td class="DaneWizyta">Dane Pacjenta</td>
-                <td class="DaneWizyta">Godzina</td>
-                <td class="DaneWizyta">Data</td>
-                <td class="DaneWizyta">Status</td>
-                <td class="DaneWizyta">Ewuś</td>
-                <td class="DaneWizyta">Otwórz Wizytę</td>
-                <td class="DaneWizyta">Opcje</td>
+                <th class="DaneWizyta">Dane Pacjenta</th>
+                <th class="DaneWizyta">Godzina</th>
+                <th class="DaneWizyta">Data</th>
+                <th class="DaneWizyta">Rezerwacja do</th>
+                <th class="DaneWizyta">Status</th>
+                <th class="DaneWizyta">Ewuś</th>
+                <th class="DaneWizyta">Otwórz Wizytę</th>
+                <th class="DaneWizyta">Opcje</th>
             </tr>
             foreach (var item in Model.rezerwacje)
             {
-                if (@item.DataRezerwacji.ToShortDateString() == DateTime.Now.ToShortDateString())
-                {
-                    <tr>
-                        <td class="DanePacjentaWizyta">@item.Pacjent.Nazwisko  @item.Pacjent.Imie <br /> @item.Pacjent.Pesel</td>
-                        <td class="DaneWizyta">@item.godzOd</td>
-                        <td class="DaneWizyta">@item.DataRezerwacji.ToShortDateString()</td>
-                        <td class="DaneWizyta">@item.Stat</td>
-                        @if (@item.PacjentID==1)
-                        {
-                        <td class="DaneWizyta eWus"><span class="glyphicon glyphicon-ok"></span></td>
-                        }
-                        else
-                        {
+                <tr>
+                    <td class="DaneWizyta">@item.Pacjent.Nazwisko  @item.Pacjent.Imie <br /> @item.Pacjent.Pesel</td>
+                    <td class="DaneWizyta">@item.godzOd</td>
+                    <td class="DaneWizyta">@item.DataRezerwacji.ToShortDateString()</td>
+                    <td class="DaneWizyta">@item.Pracownik.Imie @item.Pracownik.Nazwisko (PWZ: @item.Pracownik.PWZ)</td>
+                    <td class="DaneWizyta">@item.Stat</td>
+                    @if (@item.PacjentID == 1)
+                    {
                         <td class="DaneWizyta eWus"><span class="glyphicon glyphicon-remove"></span></td>
+                    }
+                    else
+                    {
+                        <td class="DaneWizyta eWus"><span class="glyphicon glyphicon-ok"></span></td>
+                    }
+                    <td class="DaneWizyta DaneWizytaObsluz">
+                        @{
+                            if (item.Stat == Enums.Status.Rezerwacja)
+                            {
+                                <div data-idwizyty="@item.Id" class="dodajWizyte button button-blue">
+                                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                                    <span>OBSŁUŻ</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div data-idwizyty="@item.Id" class="pokazWizyte button button-green">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                    <span>Pokaż</span>
+                                </div>
+                            }
                         }
-                        <td class="DaneWizyta DaneWizytaObsluz">
-                            <div data-idwizyty="@item.Id" class="dodajWizyte button button-blue">
-
-                                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                                <span>OBSŁUŻ</span>
-
-                            </div>
-                        </td>
-                        <td class="DaneWizyta">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-success btn-lg dropdown-toggle" data-toggle="dropdown" aria-hidden="true" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-plus"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Drukuj</a></li>
-                                    <li><a href="#">Historia</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Usuń rezerwacje</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                        </td>
-                    </tr>
-                }
-            }
+                    </td>
+                    <td class="DaneWizyta">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-success btn-lg dropdown-toggle" data-toggle="dropdown" aria-hidden="true" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-plus"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Drukuj</a></li>
+                                <li><a href="#">Historia</a></li>
+                                @{
+                                <li role="separator" class="divider"></li>
+                                    if (item.Stat == Enums.Status.Rezerwacja)
+                                    {
+                                        <li><a href="#">Usuń rezerwacje</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div><!-- /btn-group -->
+                    </td>
+                </tr>
+                                    }
         }
 
 

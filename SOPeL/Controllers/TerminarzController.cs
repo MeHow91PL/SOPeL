@@ -22,9 +22,9 @@ namespace SOPeL.Controllers
         SopelContext db = new SopelContext();
 
         // GET: Rejestracja
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var model = await pobierzTerminarzViewModel(DateTime.Today.ToString("yyyy-MM-dd"));
+            var model = pobierzTerminarzViewModel(DateTime.Today.ToString("yyyy-MM-dd"));
 
             ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
@@ -33,9 +33,9 @@ namespace SOPeL.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> pobierzTerminarz(string wybranaData)
+        public ActionResult pobierzTerminarz(string wybranaData)
         {
-            var model = await pobierzTerminarzViewModel(wybranaData);
+            var model = pobierzTerminarzViewModel(wybranaData);
 
             ViewBag.GodzOd = model.opcje.Single(o => o.Nazwa == "term_godz_od").Wartosc;
             ViewBag.GodzDo = model.opcje.Single(o => o.Nazwa == "term_godz_do").Wartosc;
@@ -44,7 +44,7 @@ namespace SOPeL.Controllers
             return View("SiatkaTerminarza", model);
         }
 
-        private async Task<TerminarzViewModel> pobierzTerminarzViewModel(string wybranaData = null, int pracownikId = 0)
+        private TerminarzViewModel pobierzTerminarzViewModel(string wybranaData = null, int pracownikId = 0)
         {
             List<Opcja> opcje = null;
             List<Pracownik> prac = null;
@@ -53,21 +53,15 @@ namespace SOPeL.Controllers
             if (wybranaData != null)
             {
                 wybranaData = String.Format("{0:yyyy-MM-dd}", wybranaData);
-
-                DateTime data = new DateTime(
-                    Convert.ToInt32(wybranaData.Substring(0, 4)),
-                    Convert.ToInt32(wybranaData.Substring(5, 2)),
-                    Convert.ToInt32(wybranaData.Substring(8, 2))
-                    );
-
-                rez = await db.Rezerwacje.Where(r => r.DataRezerwacji == data && r.Aktw == Aktywny.Tak).ToListAsync();
+                DateTime data = DateTime.Parse(wybranaData);
+                rez = db.Rezerwacje.Where(r => r.DataRezerwacji == data && r.Aktw == Aktywny.Tak).ToList();
             }
             else rez = db.Rezerwacje.ToList();
 
-            if (pracownikId > 0) prac = await db.Pracownicy.Where(p => p.ID == pracownikId).ToListAsync();
-            else prac = await db.Pracownicy.ToListAsync();
+            if (pracownikId > 0) prac = db.Pracownicy.Where(p => p.ID == pracownikId).ToList();
+            else prac = db.Pracownicy.ToList();
 
-            opcje = await db.Opcje.ToListAsync();
+            opcje = db.Opcje.ToList();
             var model = new TerminarzViewModel { opcje = opcje, pracownicy = prac, rezerwacje = rez };
 
             return model;
@@ -189,6 +183,7 @@ namespace SOPeL.Controllers
             try
             {
                 Rezerwacja rez = db.Rezerwacje.Find(idRez);
+                ViewBag.PacjentValue = rez.Pacjent.Pesel + " | " + rez.Pacjent.Imie + " " + rez.Pacjent.Nazwisko;
                 return PartialView(Ścieżki.KartaRezerwacjiWizyty, rez);
             }
             catch (Exception)
@@ -214,5 +209,6 @@ namespace SOPeL.Controllers
                 return false;
             }
         }
+
     }
 }
