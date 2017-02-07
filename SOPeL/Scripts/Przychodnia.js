@@ -72,9 +72,28 @@ $(document).ready(function () {
 
     $PrzychodniaBodyKontener.on("click", ".dodaj-pacjenta", function () {
         ZbudujOkienko("KartaPacjentaKontener", "KartaPacjentawOkno", "/Kartoteki/DodajPacjenta");
-
-
     });
+
+    $PrzychodniaBodyKontener.on("click", ".lista-pracownikow-btn", function (event) {
+        var data = {
+            searchString: $("#Pracownik").val(),
+            WybierzPacjenta: $(this).data("wybierzpracownika")
+        }
+
+        ZbudujOkienko("ListaPracownikowKontener", "ListaPracownikowOkno", "/Kartoteki/PokazListePracownikow", data);
+        pacjentHandler = $("#Pracownik");
+        pacjentIdHandler = $("#PracownikID");
+    });
+
+    //funkcja po każdym znaku wykonuje submit formularza, który przez zapytanie ajaxowe zwraca listę pracownikow
+    $PrzychodniaBodyKontener.on("keyup", ".SzukajPracownikaInput", function () {
+        $("#SzukajPracownikowForm").submit();
+    });
+
+    $PrzychodniaBodyKontener.on("change", ".pokaz-usuniete", function () {
+        $("#SzukajPracownikowForm").submit();
+    });
+
 
     $PrzychodniaBodyKontener.on('click', '.dodajWizyte', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         ZbudujOkienko("KontenerKartaWizyty", "KartaWizyty", "/Wizyta/dodajWizyte", { idRez: $(this).data("idwizyty") });

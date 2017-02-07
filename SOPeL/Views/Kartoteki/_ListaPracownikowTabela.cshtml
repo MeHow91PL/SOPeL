@@ -1,0 +1,94 @@
+﻿@model IEnumerable<SOPeL.Models.Pracownik>
+
+<table class="table table-hover">
+    <tr>
+        @{
+            if (ViewBag.WybierzPracownika != null && ViewBag.WybierzPracownika)
+            {
+                <th>
+                    Wybierz
+                </th>
+            }
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.PWZ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specjalizacja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aktw)
+        </th>
+<th>Akcje</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @{
+                if (ViewBag.WybierzPacjenta != null && ViewBag.WybierzPacjenta)
+                {
+                    <td>
+                        <div class="wybierzBtn" data-pracid="@item.ID" data-pracvalue="@item.Imie @item.Nazwisko"> <span class="wybierzIcon glyphicon glyphicon-circle-arrow-left" aria-hidden="true"> </span> </div>
+                    </td>
+                }
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.PWZ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specjalizacja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aktw)
+            </td>
+            <td>
+                @{
+                    if (item.Aktw == Enums.Aktywny.Tak)
+                    {
+
+                        @Ajax.ActionLink("Usuń", "UsunPracownika", "Kartoteki", new { id = item.ID, WybierzPracownika = ViewBag.WybierzPracownika },
+                          new AjaxOptions
+                          {
+                              HttpMethod = "Post",
+                              InsertionMode = InsertionMode.Replace,
+                              UpdateTargetId = "ListaPracownikowTabela",
+                          })
+                    }
+                    else
+                    {
+                        @Ajax.ActionLink("Przywróć", "PrzywrocPracownika", "Kartoteki", new { id = item.ID, WybierzPracownika = ViewBag.WybierzPracownika },
+                          new AjaxOptions
+                          {
+                              HttpMethod = "Post",
+                              InsertionMode = InsertionMode.Replace,
+                              UpdateTargetId = "ListaPracownikowTabela",
+                          })
+
+                    }
+                }
+
+            </td>
+
+        </tr>
+                    }
+
+</table>

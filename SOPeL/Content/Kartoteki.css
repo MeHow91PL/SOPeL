@@ -14,28 +14,32 @@
         background: none;
     }
 
-#ListaPacjentowKontener .kontenerOkienka{
-    min-height:100%;
+#ListaPacjentowKontener .kontenerOkienka {
+    min-height: 100%;
 }
 
-#SzukajPacjentowForm {
+#SzukajPacjentowForm,
+#SzukajPracownikowForm {
     margin-bottom: 10px;
 }
 
-    #SzukajPacjentowForm .row {
+    #SzukajPacjentowForm .row,
+    #SzukajPracownikowForm row {
         -ms-align-content: center;
         -webkit-align-content: center;
         align-content: center;
     }
 
-    #SzukajPacjentowForm .button {
+    #SzukajPacjentowForm .button,
+    #SzukajPracownikowForm .button {
         border: none;
         display: block;
         float: left;
         padding: 5px;
     }
 
-        #SzukajPacjentowForm .button:hover {
+        #SzukajPacjentowForm .button:hover,
+        #SzukajPracownikowForm .button:hover {
             -moz-transform: scale(1.2);
             -ms-transform: scale(1.2);
             -o-transform: scale(1.2);
@@ -43,7 +47,8 @@
             transform: scale(1.2);
         }
 
-        #SzukajPacjentowForm .button:active {
+        #SzukajPacjentowForm .button:active,
+        #SzukajPracownikowForm .button:active {
             -moz-transform: scale(1);
             -ms-transform: scale(1);
             -o-transform: scale(1);

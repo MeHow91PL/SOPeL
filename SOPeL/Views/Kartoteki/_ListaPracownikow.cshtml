@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SOPeL.Models.Pracownik>
+
+@{
+    var ajaxOptions = new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "ListaPracownikowTabela"
+    };
+}
+@using (Ajax.BeginForm("SzukajPracownikow", "Kartoteki", ajaxOptions, new { @id = "SzukajPracownikowForm", @class = "form" }))
+{
+    <h3>Szukaj:</h3>
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10">
+            @Html.TextBox("searchString", null, new { @class = "SzukajPracownikaInput form-control", @autocomplete = "off" })
+            @Html.Hidden("WybierzPracownika", new { ViewBag.WybierzPracownika })
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+            <div class="button dodaj-pacjenta" title="Dodaj pracownika">
+                <span class="glyphicon glyphicon-plus "></span>
+            </div>
+            @Html.CheckBox("PokazUsuniete", false, new { @class = "checkbox pokaz-usuniete"})
+        </div>
+    </div>
+}
+
+<div id="searchResults"></div>
+<div class="row" id="ListaPracownikowTabela">
+    @Html.Partial("_ListaPracownikowTabela", Model)
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

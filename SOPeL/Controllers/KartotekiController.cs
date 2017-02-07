@@ -26,7 +26,7 @@ namespace SOPeL.Controllers
 
         public PartialViewResult PokazListePacjentow(bool WybierzPacjenta = false, string searchString = "*")
         {
-            var model =  PacjenciManager.SzukajPacjentow(searchString);
+            var model = PacjenciManager.SzukajPacjentow(searchString);
             ViewBag.WybierzPacjenta = WybierzPacjenta;
 
             return PartialView("_ListaPacjentow", model);
@@ -77,16 +77,52 @@ namespace SOPeL.Controllers
 
         }
 
-        public PartialViewResult SkierTest()
+
+
+        public PartialViewResult PokazListePracownikow()
         {
-
-
-            return PartialView("SkierowaniePattern", new SkierowanieTest() { data = "2017-01-11", poradnia = "Kardiologiczna" });
+            var model = db.Pracownicy.Where(p => p.Aktw == Enums.Aktywny.Tak).ToList();
+            return PartialView("~/Views/Kartoteki/_ListaPracownikow.cshtml", model);
         }
 
+        public PartialViewResult SzukajPracownikow(bool WybierzPracownika = false, string searchString = "*", bool PokazUsuniete = false)
+        {
+            IEnumerable<Pracownik> pracownicy;
+            if (PokazUsuniete)
+            {
+                pracownicy = db.Pracownicy.Where(p => p.Nazwisko.Contains(searchString));
+            }
+            else
+            {
+                pracownicy = db.Pracownicy.Where(p => p.Nazwisko.Contains(searchString) && p.Aktw == Enums.Aktywny.Tak);
+            }
 
+            ViewBag.WybierzPracownika = WybierzPracownika;
 
+            return PartialView("_ListaPracownikowTabela", pracownicy);
+        }
 
+        public PartialViewResult UsunPracownika(int Id, bool WybierzPracownika = false, bool PokazUsuniete = false)
+        {
+            Pracownik prac = db.Pracownicy.Find(Id);
+            prac.Aktw = Enums.Aktywny.Nie;
+            db.Entry(prac).State = EntityState.Modified;
+            db.SaveChanges();
+
+            IEnumerable<Pracownik> pracownicy;
+            if (PokazUsuniete)
+            {
+                pracownicy = db.Pracownicy;
+            }
+            else
+            {
+                pracownicy = db.Pracownicy.Where(p => p.Aktw == Enums.Aktywny.Tak);
+            }
+
+            ViewBag.WybierzPracownika = WybierzPracownika;
+
+            return PartialView("_ListaPracownikowTabela", pracownicy);
+        }
 
 
 

@@ -408,6 +408,8 @@
     <Content Include="Views\Podpowiedzi\InfoStatusEWus.cshtml" />
     <Content Include="Views\Shared\_WydrukRecepta.cshtml" />
     <Content Include="Views\Terminarz\test.cshtml" />
+    <Content Include="Views\Kartoteki\_ListaPracownikow.cshtml" />
+    <Content Include="Views\Kartoteki\_ListaPracownikowTabela.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
