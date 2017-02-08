@@ -81,24 +81,13 @@ namespace SOPeL.Controllers
 
         public PartialViewResult PokazListePracownikow()
         {
-            var model = db.Pracownicy.Where(p => p.Aktw == Enums.Aktywny.Tak).ToList();
-            return PartialView("~/Views/Kartoteki/_ListaPracownikow.cshtml", model);
+            var pacjenci = PracownicyManager.SzukajPracownikow("*");
+            return PartialView("~/Views/Kartoteki/_ListaPracownikow.cshtml", pacjenci);
         }
 
         public PartialViewResult SzukajPracownikow(bool WybierzPracownika = false, string searchString = "*", bool PokazUsuniete = false)
         {
-            IEnumerable<Pracownik> pracownicy;
-            if (PokazUsuniete)
-            {
-                pracownicy = db.Pracownicy.Where(p => p.Nazwisko.Contains(searchString));
-            }
-            else
-            {
-                pracownicy = db.Pracownicy.Where(p => p.Nazwisko.Contains(searchString) && p.Aktw == Enums.Aktywny.Tak);
-            }
-
-            ViewBag.WybierzPracownika = WybierzPracownika;
-
+            var pracownicy = PracownicyManager.SzukajPracownikow(searchString, 20, PokazUsuniete);
             return PartialView("_ListaPracownikowTabela", pracownicy);
         }
 

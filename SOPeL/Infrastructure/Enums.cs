@@ -45,4 +45,22 @@ namespace SOPeL.Infrastructure
         public bool ZakończonoPomyślnie { get; set; }
         public string Komunikat { get; set; }
     }
+
+    public class RezultatAkcji
+    {
+        public string Komunikat { get; }
+        public bool RezultatPozytywny { get; }
+
+        public RezultatAkcji(bool RezultatPozytywny)
+        {
+            this.RezultatPozytywny = RezultatPozytywny;
+        }
+
+        public RezultatAkcji(bool RezultatPozytywny, string Komunikat)
+        {
+            this.RezultatPozytywny = RezultatPozytywny;
+            this.Komunikat = Komunikat;
+        }
+
+    }
 }

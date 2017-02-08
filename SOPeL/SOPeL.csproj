@@ -438,6 +438,7 @@
     </Compile>
     <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\OpcjeManager.cs" />
+    <Compile Include="Infrastructure\PracownicyManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
     <Compile Include="Migrations\201702022315312_init.cs" />
     <Compile Include="Migrations\201702022315312_init.Designer.cs">
