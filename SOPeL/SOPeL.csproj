@@ -440,9 +440,9 @@
     <Compile Include="Infrastructure\OpcjeManager.cs" />
     <Compile Include="Infrastructure\PracownicyManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
-    <Compile Include="Migrations\201702022315312_init.cs" />
-    <Compile Include="Migrations\201702022315312_init.Designer.cs">
-      <DependentUpon>201702022315312_init.cs</DependentUpon>
+    <Compile Include="Migrations\201702101537256_init.cs" />
+    <Compile Include="Migrations\201702101537256_init.Designer.cs">
+      <DependentUpon>201702101537256_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -489,8 +489,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702022315312_init.resx">
-      <DependentUpon>201702022315312_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702101537256_init.resx">
+      <DependentUpon>201702101537256_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
