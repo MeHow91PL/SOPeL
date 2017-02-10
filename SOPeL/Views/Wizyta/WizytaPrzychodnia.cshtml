@@ -32,7 +32,7 @@
                     }
                     <td class="DaneWizyta DaneWizytaObsluz">
                         @{
-                            if (item.Stat == Enums.Status.Rezerwacja)
+                            if (item.Stat == Status.Rezerwacja)
                             {
                                 <div data-idwizyty="@item.Id" class="dodajWizyte button button-blue">
                                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
@@ -56,7 +56,7 @@
                                 <li><a href="#">Historia</a></li>
                                 @{
                                 <li role="separator" class="divider"></li>
-                                    if (item.Stat == Enums.Status.Rezerwacja)
+                                    if (item.Stat == Status.Rezerwacja)
                                     {
                                         <li><a href="#">Usuń rezerwacje</a></li>
                                     }

@@ -62,7 +62,7 @@
             </td>
             <td>
                 @{
-                    if (item.Aktw == Enums.Aktywny.Tak)
+                    if (item.Aktw == Aktywny.Tak)
                     {
 
                         @Ajax.ActionLink("Usuń", "UsunPracownika", "Kartoteki", new { id = item.ID, WybierzPracownika = ViewBag.WybierzPracownika },

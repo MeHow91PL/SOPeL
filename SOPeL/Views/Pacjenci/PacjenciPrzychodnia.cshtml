@@ -4,7 +4,7 @@
         @{
             foreach (var item in Model)
             {
-                if (@item.Aktw == SOPeL.Infrastructure.Enums.Aktywny.Tak)
+                if (@item.Aktw == SOPeL.Infrastructure.Aktywny.Tak)
                 {
                 <tr>
                     <td class="pacjent_oczekujacy"> @item.Nazwisko  @item.Imie <br /> @item.Pesel</td>
