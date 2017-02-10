@@ -29,11 +29,11 @@ namespace SOPeL.Infrastructure
             if (string.IsNullOrWhiteSpace(query) || query == "*")
             {
 
-                pracownicy = db.Pracownicy.Where(p => (!PokazUsuniete ? p.Aktw == Enums.Aktywny.Tak : true)).Take(maxRekordow);
+                pracownicy = db.Pracownicy.Where(p => (!PokazUsuniete ? p.Aktw == Aktywny.Tak : true)).Take(maxRekordow);
             }
             else if (pattern.IsMatch(query)) // jeżeli wprowadzony ciąg jest liczbą to szukaj po peselu
             {
-                pracownicy = db.Pracownicy.Where(p => p.Pesel.StartsWith(query) && (!PokazUsuniete ? p.Aktw == Enums.Aktywny.Tak : true)).Take(maxRekordow);
+                pracownicy = db.Pracownicy.Where(p => p.Pesel.StartsWith(query) && (!PokazUsuniete ? p.Aktw == Aktywny.Tak : true)).Take(maxRekordow);
             }
             else
             {
@@ -48,12 +48,12 @@ namespace SOPeL.Infrastructure
                     pracownicy = db.Pracownicy.Where(
                         p => p.Nazwisko.StartsWith(nazw) && //wyszukuje nazwisko w substringu od początku do wystąpienia znaku podziału
                         p.Imie.StartsWith(imie)//wyszukuje imię w substringu od wystąpienia znaku podziału
-                        && (!PokazUsuniete ? p.Aktw == Enums.Aktywny.Tak : true))
+                        && (!PokazUsuniete ? p.Aktw == Aktywny.Tak : true))
                         .Take(maxRekordow); // pobiera maxRekordów pierwszych wyników i konwertuje je do listy
                 }
                 else
                 {
-                    pracownicy = db.Pracownicy.Where(p => p.Nazwisko.StartsWith(query) && (!PokazUsuniete ? p.Aktw == Enums.Aktywny.Tak : true)).Take(maxRekordow);
+                    pracownicy = db.Pracownicy.Where(p => p.Nazwisko.StartsWith(query) && (!PokazUsuniete ? p.Aktw == Aktywny.Tak : true)).Take(maxRekordow);
                 }
 
             }

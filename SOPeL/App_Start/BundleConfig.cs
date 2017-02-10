@@ -61,6 +61,7 @@ namespace SOPeL.App_Start
                       "~/Content/KartaLogowania.css",
                       "~/Content/hint.min.css",
                       "~/Content/Wizyta.css",
+                      "~/Content/Admin.css",
                       "~/Content/Kartoteki.css"));
 
             bundles.Add(new StyleBundle("~/Content/magnific").Include(

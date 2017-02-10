@@ -7,7 +7,7 @@ using SOPeL.Models;
 using System.Data.Entity.Migrations;
 using SOPeL.Migrations;
 using Microsoft.AspNet.Identity.EntityFramework;
-using static SOPeL.Infrastructure.Enums;
+using SOPeL.Infrastructure;
 
 namespace SOPeL.DAL
 {

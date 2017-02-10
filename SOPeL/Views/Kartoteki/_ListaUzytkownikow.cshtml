@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityUser>
+
+@{
+    var ajaxOptions = new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "ListaUzytkownikowTabela"
+    };
+}
+@using (Ajax.BeginForm("SzukajUzytkownikow", "Kartoteki", ajaxOptions, new { @id = "SzukajUzytkownikowForm", @class = "form" }))
+{
+    <h3>Szukaj:</h3>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            @Html.TextBox("searchString", null, new { @class = "SzukajUzytkownikaInput form-control", @autocomplete = "off" })
+            @Html.Hidden("WybierzUzytkownika", new { ViewBag.WybierzUzytkownika })
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="button dodaj-uzytkownika" title="Dodaj uzytkownika">
+                <span class="glyphicon glyphicon-plus "></span>
+            </div>
+            @*<div class="checkbox button">
+                <label>
+                    @Html.CheckBox("PokazUsuniete", false, new { @class = "checkbox pokaz-usuniete" }) Pokaż usunięte
+                </label>
+            </div>*@
+        </div>
+    </div>
+}
+
+<div id="searchResults"></div>
+<div class="row" id="ListaUzytkownikowTabela">
+    @Html.Partial("_ListaUzytkownikowTabela", Model)
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

@@ -10,7 +10,6 @@ using System.Net;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Core.Objects;
-using static SOPeL.Infrastructure.Enums;
 
 namespace SOPeL.Controllers
 {

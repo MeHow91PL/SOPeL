@@ -10,7 +10,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using static SOPeL.Infrastructure.Enums;
 
 namespace SOPeL.Controllers
 {
@@ -169,11 +168,11 @@ namespace SOPeL.Controllers
 
                 db.SaveChanges();
 
-                return Json(new AjaxResult() { ZakończonoPomyślnie = true, Komunikat = "Rezerwacja zapisana pomyślnie" });
+                return Json(new RezultatAkcji(true,"Rezerwacja zapisana pomyślnie"));
             }
             catch (Exception ex)
             {
-                return Json(new AjaxResult() { ZakończonoPomyślnie = false, Komunikat = ex.Message });
+                return Json(new RezultatAkcji(false, ex.Message ));
             }
 
         }

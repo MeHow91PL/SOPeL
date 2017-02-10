@@ -7,8 +7,7 @@ using System.Web.Mvc;
 
 namespace SOPeL.Infrastructure
 {
-    public class Enums
-    {
+
         public enum Aktywny
         {
             Tak,
@@ -20,7 +19,7 @@ namespace SOPeL.Infrastructure
             Wykonany,
             Rezerwacja
         }
-    }
+
 
     public static class Ścieżki
     {
@@ -40,12 +39,6 @@ namespace SOPeL.Infrastructure
         public static string KartaRezerwacjiWizyty { get; } = "~/Views/Shared/_KartaRezerwacjiWizyty.cshtml";
     }
 
-    public class AjaxResult : JsonResult
-    {
-        public bool ZakończonoPomyślnie { get; set; }
-        public string Komunikat { get; set; }
-    }
-
     public class RezultatAkcji
     {
         public string Komunikat { get; }
@@ -61,6 +54,5 @@ namespace SOPeL.Infrastructure
             this.RezultatPozytywny = RezultatPozytywny;
             this.Komunikat = Komunikat;
         }
-
     }
 }

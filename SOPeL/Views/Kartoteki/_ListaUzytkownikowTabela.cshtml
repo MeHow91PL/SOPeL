@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityUser>
+
+<table class="table table-hover">
+    <tr>
+        @{
+            if (ViewBag.WybierzPracownika != null && ViewBag.WybierzPracownika)
+            {
+                <th>
+                    Wybierz
+                </th>
+            }
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+<th>Akcje</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @{
+                if (ViewBag.WybierzPacjenta != null && ViewBag.WybierzPacjenta)
+                {
+                    <td>
+                        <div class="wybierzBtn" data-pracid="@item.Id" data-pracvalue="@item.UserName"> <span class="wybierzIcon glyphicon glyphicon-circle-arrow-left" aria-hidden="true"> </span> </div>
+                    </td>
+                }
+            }
+
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @*@{
+                    if (item.Aktw == Enums.Aktywny.Tak)
+                    {
+
+                        @Ajax.ActionLink("Usuń", "UsunPracownika", "Kartoteki", new { id = item.ID, WybierzPracownika = ViewBag.WybierzPracownika },
+                          new AjaxOptions
+                          {
+                              HttpMethod = "Post",
+                              InsertionMode = InsertionMode.Replace,
+                              UpdateTargetId = "ListaPracownikowTabela",
+                          })
+                    }
+                    else
+                    {
+                        @Ajax.ActionLink("Przywróć", "PrzywrocPracownika", "Kartoteki", new { id = item.ID, WybierzPracownika = ViewBag.WybierzPracownika },
+                          new AjaxOptions
+                          {
+                              HttpMethod = "Post",
+                              InsertionMode = InsertionMode.Replace,
+                              UpdateTargetId = "ListaPracownikowTabela",
+                          })
+
+                    }
+                }*@
+
+                Akcja
+
+            </td>
+
+        </tr>
+                    }
+
+</table>

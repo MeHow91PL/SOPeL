@@ -4,13 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using SOPeL.DAL;
 using SOPeL.Models;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 using SOPeL.Infrastructure;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace SOPeL.Controllers
 {
@@ -71,13 +70,7 @@ namespace SOPeL.Controllers
             {
                 throw new Exception(zapiszResult.Komunikat);
             }
-
-
-
-
         }
-
-
 
         public PartialViewResult PokazListePracownikow()
         {
@@ -94,7 +87,7 @@ namespace SOPeL.Controllers
         public PartialViewResult UsunPracownika(int Id, bool WybierzPracownika = false, bool PokazUsuniete = false)
         {
             Pracownik prac = db.Pracownicy.Find(Id);
-            prac.Aktw = Enums.Aktywny.Nie;
+            prac.Aktw = Aktywny.Nie;
             db.Entry(prac).State = EntityState.Modified;
             db.SaveChanges();
 
@@ -105,7 +98,7 @@ namespace SOPeL.Controllers
             }
             else
             {
-                pracownicy = db.Pracownicy.Where(p => p.Aktw == Enums.Aktywny.Tak);
+                pracownicy = db.Pracownicy.Where(p => p.Aktw == Aktywny.Tak);
             }
 
             ViewBag.WybierzPracownika = WybierzPracownika;
@@ -116,6 +109,16 @@ namespace SOPeL.Controllers
 
 
 
+        public PartialViewResult PokazListeUzytkownikow()
+        {
+            var uzytkownicy = UzytkownicyManager.SzukajUzytkownikow("*");
+            return PartialView("~/Views/Kartoteki/_ListaUzytkownikow.cshtml", uzytkownicy);
+        }
+        public PartialViewResult SzukajUzytkownikow(bool WybierzPracownika = false, string searchString = "*")
+        {
+            var uzytkownicy = UzytkownicyManager.SzukajUzytkownikow(searchString, 20);
+            return PartialView("_ListaUzytkownikowTabela", uzytkownicy);
+        }
         // ------------------------------------------------------- KOD WYGENEROWANY PRZEZ VISUAL ----------------------------------------------------
 
 
