@@ -6,20 +6,49 @@
 
 
 <div>
-
-
-    <div id="opcjeOgolneBtn" class="button-kafelek" onclick="pokazOpcjeGlowne()">
-        Opcje ogólne
+    <div id="Kartoteki-Kafelki" class="row">
+        <div id="PacjenciBtn" class="button button-kafelek opcje-glowne-btn">
+            <div class="wysrodkujCentralnie">
+                <div>
+                    <img src="~/Content/Images/opcje.svg" alt="Poradnie" />
+                    <p>Opcje główne</p>
+                </div>
+            </div>
+        </div>
+        <div id="PracownicyBtn" class="button button-kafelek uprawnienia-btn">
+            <div class="wysrodkujCentralnie">
+                <div>
+                    <img src="~/Content/Images/loader.gif" alt="Poradnie" />
+                    <p>Zarządzanie uprawnieniami</p>
+                </div>
+            </div>
+        </div>
+        <div id="PoradnieBtn" class="button button-kafelek lista-uzytkownikow-btn">
+            <div class="wysrodkujCentralnie">
+                <div>
+                    <img src="~/Content/Images/UsersIcon.png" alt="Poradnie" />
+                    <p>Użytkownicy</p>
+                </div>
+            </div>
+        </div>
+        <div id="JednostkiBtn" class="button button-kafelek">
+            <div class="wysrodkujCentralnie">
+                <div>
+                    <img src="~/Content/Images/loader.gif" alt="Poradnie" />
+                    <p>Konta eWuś</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 @* ------------------------------------- KONTENER NA OKIENKA --------------------------------------------------------------------- *@
-<div>
+@*<div>
     <div id="opcje-ogolne-kontener" class="wysrodkujCentralnie display-none">
-        @* Okno łaldowane przez AJAX *@
+        @* Okno łaldowane przez AJAX
         @Html.Action("PokazOpcjeGlowne", "Admin")
     </div>
-</div>
+</div>*@
 
 @* ----------------------------------- END KONTENER NA OKIENKA ------------------------------------------------------------------- *@
 

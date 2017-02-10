@@ -47,7 +47,6 @@ $(document).ready(function () {
     $statusWizyty.change(WizytaFiltersChanged)
 
     $PrzychodniaBodyKontener.on('click', '.wyswietlHistorie', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
-        alert("kliku kliku");
         $("#HistoriaWizyty").css("display", "flex");
         $.ajax({
             url: '/Wizyta/pokazHistorie',

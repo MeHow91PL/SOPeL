@@ -51,7 +51,7 @@ $(document).ready(function () {
         var data = {
             searchString: $("#Pacjent").val(),
             WybierzPacjenta: $(this).data("wybierzpacjenta")
-        }
+        };
 
         ZbudujOkienko("ListaPacjentowKontener", "ListaPacjentowOkno", "/Kartoteki/PokazListePacjentow", data);
         pacjentHandler = $("#Pacjent");
@@ -64,21 +64,32 @@ $(document).ready(function () {
         $("#ListaPacjentowKontener").hide();
     });
 
+    $PrzychodniaBodyKontener.on("keyup", ".SzukajUzytkownikaInput", function () {
+        $("#SzukajUzytkownikowForm").submit();
+    });
 
     //funkcja po każdym znaku wykonuje submit formularza, który przez zapytanie ajaxowe zwraca listę pacjentów
     $PrzychodniaBodyKontener.on("keyup", ".SzukajPacjentaInput", function () {
         $("#SzukajPacjentowForm").submit();
     });
 
+    $PrzychodniaBodyKontener.on("click", ".opcje-glowne-btn", function () {
+        ZbudujOkienko("opcje-ogolne-kontener", "opcje-ogolne-okno", "/Admin/PokazOpcjeGlowne");
+    });
+
     $PrzychodniaBodyKontener.on("click", ".dodaj-pacjenta", function () {
         ZbudujOkienko("KartaPacjentaKontener", "KartaPacjentawOkno", "/Kartoteki/DodajPacjenta");
+    });
+
+    $PrzychodniaBodyKontener.on("click", ".lista-uzytkownikow-btn", function () {
+        ZbudujOkienko("ListaUzytkownikowKontener", "ListaUzytkownikowOkno", "/Kartoteki/PokazListeUzytkownikow");
     });
 
     $PrzychodniaBodyKontener.on("click", ".lista-pracownikow-btn", function (event) {
         var data = {
             searchString: $("#Pracownik").val(),
             WybierzPacjenta: $(this).data("wybierzpracownika")
-        }
+        };
 
         ZbudujOkienko("ListaPracownikowKontener", "ListaPracownikowOkno", "/Kartoteki/PokazListePracownikow", data);
         pacjentHandler = $("#Pracownik");
@@ -140,7 +151,7 @@ $(document).ready(function () {
 
 
         if (!$('#' + idOkna).length) {// Jeżeli oknko już jest zbudowane w DOM to tylko je wyświetl
-            $PrzychodniaBodyKontener.append(html)
+            $PrzychodniaBodyKontener.append(html);
         }
         $.ajax({
             url: urlAction,

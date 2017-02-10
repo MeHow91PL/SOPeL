@@ -253,6 +253,7 @@
     <Content Include="bin\System.Web.Webpages.Razor.xml" />
     <Content Include="bin\System.Web.Webpages.xml" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\Admin.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -276,7 +277,6 @@
     <Content Include="Content\Images\JednostkaOrgIcon.png" />
     <Content Include="Content\Images\KartotekiIcon.png" />
     <Content Include="Content\Images\loader.gif" />
-    <Content Include="Content\Images\logoalfa.png" />
     <Content Include="Content\Images\opcje.svg" />
     <Content Include="Content\Images\pacjenci.png" />
     <Content Include="Content\Images\pacjent2Icon.png" />
@@ -285,6 +285,8 @@
     <Content Include="Content\Images\plannerIcon.png" />
     <Content Include="Content\Images\PoradnieIcon.png" />
     <Content Include="Content\Images\PracownikIcon.png" />
+    <Content Include="Content\Images\SOPeL logo.png" />
+    <Content Include="Content\Images\UsersIcon.png" />
     <Content Include="Content\Images\ZestawieniaIcon.png" />
     <Content Include="Content\Kartoteki.css" />
     <Content Include="Content\magnific-popup.css" />
@@ -410,6 +412,8 @@
     <Content Include="Views\Terminarz\test.cshtml" />
     <Content Include="Views\Kartoteki\_ListaPracownikow.cshtml" />
     <Content Include="Views\Kartoteki\_ListaPracownikowTabela.cshtml" />
+    <Content Include="Views\Kartoteki\_ListaUzytkownikow.cshtml" />
+    <Content Include="Views\Kartoteki\_ListaUzytkownikowTabela.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -438,11 +442,20 @@
     </Compile>
     <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\OpcjeManager.cs" />
+    <Compile Include="Infrastructure\UzytkownicyManager.cs" />
     <Compile Include="Infrastructure\PracownicyManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
     <Compile Include="Migrations\201702101537256_init.cs" />
     <Compile Include="Migrations\201702101537256_init.Designer.cs">
       <DependentUpon>201702101537256_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702101211511_test.cs" />
+    <Compile Include="Migrations\201702101211511_test.Designer.cs">
+      <DependentUpon>201702101211511_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702101252523_testDel.cs" />
+    <Compile Include="Migrations\201702101252523_testDel.Designer.cs">
+      <DependentUpon>201702101252523_testDel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -491,6 +504,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702101537256_init.resx">
       <DependentUpon>201702101537256_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101211511_test.resx">
+      <DependentUpon>201702101211511_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101252523_testDel.resx">
+      <DependentUpon>201702101252523_testDel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -42,7 +42,7 @@ $(document).ready(function () {
 
     //--------------------------------- WYBÓR DATY -------------------------------------------------------------------------------------------------
 
-    
+
 
     wyborDatyTerminarz.change(function () {
         pobierzTerminarz();
@@ -94,7 +94,6 @@ $(document).ready(function () {
 
     $(".opcje-terminarza-btn").click(function () {
         loaderKontener.switchClass("ukryty", "widoczny", 150, "swing");
-        alert("");
         $.ajax({
             url: '/Terminarz/PobierzOpcjeTerminarza',
             type: "POST",
@@ -109,14 +108,12 @@ $(document).ready(function () {
                 //jeżeli włączona jest opcja indywidualnego grafika to ukryj ogolny grafik i pokaż ust indywidualnych grafików
                 if (response['term_indw_graf'] === '1') {
                     indwGrafCheckbox.attr("checked", true);
-
                 }
                 else {
                     indwGrafCheckbox.attr("checked", false);
                 }
                 PrzelaczIndywidualnyGrafik(indwGrafCheckbox);
                 opcjeTerminarzaKontener.css("display", "flex");
-
             },
             error: function () {
                 alert("Błąd połączenia z serwerem!");
