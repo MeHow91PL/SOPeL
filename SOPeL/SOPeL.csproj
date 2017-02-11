@@ -448,6 +448,10 @@
     <Compile Include="Infrastructure\PracownicyManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
     <Compile Include="Infrastructure\Wyjątki.cs" />
+    <Compile Include="Migrations\201702112050330_init.cs" />
+    <Compile Include="Migrations\201702112050330_init.Designer.cs">
+      <DependentUpon>201702112050330_init.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\ICD10.cs" />
@@ -493,6 +497,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="bin\roslyn\" />
     <Folder Include="Views\Poczekalnia\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702112050330_init.resx">
+      <DependentUpon>201702112050330_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
