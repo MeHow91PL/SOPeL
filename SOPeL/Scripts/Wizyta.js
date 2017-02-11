@@ -6,7 +6,7 @@ $(document).ready(function () {
     var $KontenerKartaWizyty = $('#KontenerKartaWizyty');
     var $kartaRezerwacjiWizytyKontener = $("#kartaRezerwacjiWizytyKontener");
     var $wyborLekarza = $("#FiltryPoczekalni_WybranyLekarz");
-    var $statusWizyty = $("#statusWizyty");
+    var $statusWizyty = $("#FiltryPoczekalni_StatusRezerwacji");
     var $wyborDatyWizyta = $("#wybor-daty-wizyta");
     var $kontenerWizyt = $("#kontenerWizyt");
     var $wyswietlHistorie = $("#wyswietlHistorie");
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     var WizytaFiltersChanged = function () {
         var wybranaData = $wyborDatyWizyta.val();
-        var stat = $statusWizyty.children(":selected").attr("id");
+        var stat = $statusWizyty.children(":selected").val();
         var idLek = $wyborLekarza.children(":selected").attr("id");
 
         $.ajax({

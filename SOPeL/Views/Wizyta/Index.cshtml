@@ -17,7 +17,7 @@
             @{
                 foreach (var prac in Model.pracownicy)
                 {
-                    <option id="@prac.ID" data-idlekarza="@prac.ID" >@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                    <option id="@prac.ID" data-idlekarza="@prac.ID">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
                 }
             }
         </select>
@@ -30,7 +30,7 @@
     <div id="terminarzDataKontener" class="abba col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <label for="wybor-daty-terminarz">Status Wizyty</label>
 
-        @Html.EnumDropDownListFor(m => m.FiltryPoczekalni.StatusRezerwacji, new { @class = "form-control", @id = "statusWizyty" })
+        @Html.EnumDropDownListFor(m => m.FiltryPoczekalni.StatusRezerwacji, new { @class = "form-control" })
     </div>
     <div class="col-lg-1 col-lg-offset-1  col-md-1  col-md-offset-1 col-xs-1 col-xs-offset-1">
         <a id="opcje-terminarza-button">
@@ -60,4 +60,5 @@
 
 @section scripts{
     @Scripts.Render("~/Scripts/Wizyta")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 }
