@@ -289,6 +289,7 @@
     <Content Include="Content\Images\UsersIcon.png" />
     <Content Include="Content\Images\ZestawieniaIcon.png" />
     <Content Include="Content\Kartoteki.css" />
+    <Content Include="Content\Images\LogoSOPeLv2.png" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\Recepta.css" />
     <Content Include="Content\Skierowanie.css" />
@@ -445,6 +446,15 @@
     <Compile Include="Infrastructure\UzytkownicyManager.cs" />
     <Compile Include="Infrastructure\PracownicyManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
+    <Compile Include="Infrastructure\Wyjątki.cs" />
+    <Compile Include="Migrations\201702101851170_test3.cs" />
+    <Compile Include="Migrations\201702101851170_test3.Designer.cs">
+      <DependentUpon>201702101851170_test3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702101855039_test2.cs" />
+    <Compile Include="Migrations\201702101855039_test2.Designer.cs">
+      <DependentUpon>201702101855039_test2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\ICD10.cs" />
@@ -488,6 +498,14 @@
     <Folder Include="App_Data\" />
     <Folder Include="bin\roslyn\" />
     <Folder Include="Views\Poczekalnia\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702101851170_test3.resx">
+      <DependentUpon>201702101851170_test3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101855039_test2.resx">
+      <DependentUpon>201702101855039_test2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

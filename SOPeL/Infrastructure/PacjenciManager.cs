@@ -60,47 +60,52 @@ namespace SOPeL.Infrastructure
             return pacjenci;
         }
 
-        public static Rezultat ZapiszPacjenta(Pacjent pacjent)
+        public static RezultatAkcji ZapiszPacjenta(Pacjent pacjent)
         {
             SopelContext db = new SopelContext(); //tylko do tej statycznej metody
             try
             {
+                if (string.IsNullOrWhiteSpace(pacjent.Imie))
+                {
+                    throw new BrakImienia("Nie podano imienia pacjenta");
+                }
+                if (string.IsNullOrWhiteSpace(pacjent.Nazwisko))
+                {
+                    throw new BrakNazwiska("Nie podano nazwiska pacjenta");
+                }
 
-                if (db.Pacjenci.Any(p => p.ID == pacjent.ID))
+                if (db.Pacjenci.Any(p => p.ID == pacjent.ID))// Edycja pacjenta
                 {
                     db.Entry(pacjent).State = EntityState.Modified;
                     db.Entry(pacjent.Adres).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-                else
+                else //Nowy pacjent
                 {
-                    db.Pacjenci.Add(pacjent);
-                    db.SaveChanges();
+                    if (!string.IsNullOrEmpty(pacjent.Pesel) && db.Pacjenci.Any(p => p.Pesel == pacjent.Pesel))
+                    {
+                        throw new Exception("Pacjent o podanych numerze pesel już istnieje!");
+                    }
+                    else
+                    {
+                        db.Pacjenci.Add(pacjent);
+                        db.SaveChanges();
+                    }
                 }
-                return new Rezultat(true);
+                return new RezultatAkcji(true, "Pacjent zapisany poprawnie");
+            }
+            catch (BrakImienia ex)
+            {
+                return new RezultatAkcji(false, ex.Message);
+            }
+            catch (BrakNazwiska ex)
+            {
+                return new RezultatAkcji(false, ex.Message);
             }
             catch (Exception ex)
             {
-                return new Rezultat(false, "Błąd przy wykonaniu metody ZapiszPacjenta.\nSzczegóły: " + ex.Message);
+                return new RezultatAkcji(false, "Pacjent nie został zapisany.\nSzczegóły: " + ex.Message);
             }
-        }
-
-    }
-
-    public class Rezultat
-    {
-        public string Komunikat { get; }
-        public bool RezultatPozytywny { get; }
-
-        public Rezultat(bool RezultatPozytywny)
-        {
-            this.RezultatPozytywny = RezultatPozytywny;
-        }
-
-        public Rezultat(bool RezultatPozytywny, string Komunikat)
-        {
-            this.RezultatPozytywny = RezultatPozytywny;
-            this.Komunikat = Komunikat;
         }
 
     }

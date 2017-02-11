@@ -46,21 +46,21 @@ $(document).ready(function () {
     $wyborDatyWizyta.change(WizytaFiltersChanged);
     $statusWizyty.change(WizytaFiltersChanged)
 
-    $PrzychodniaBodyKontener.on('click', '.wyswietlHistorie', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
-        $("#HistoriaWizyty").css("display", "flex");
-        $.ajax({
-            url: '/Wizyta/pokazHistorie',
-            type: 'POST',
-            data: {
-                idwizy: $(this).data("idwiz")
-            },
-            success: function (response) {
-                $HistoriaWizyty.html(response);
-            },
-            error: function () {
+    //$PrzychodniaBodyKontener.on('click', '.wyswietlHistorie', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
+    //    $("#HistoriaWizyty").css("display", "flex");
+    //    $.ajax({
+    //        url: '/Wizyta/pokazHistorie',
+    //        type: 'POST',
+    //        data: {
+    //            idwizy: $(this).data("idwiz")
+    //        },
+    //        success: function (response) {
+    //            $HistoriaWizyty.html(response);
+    //        },
+    //        error: function () {
 
-                alert("Error dodja Wizyte");
-            }
-        });
-    });
+    //            alert("Error dodja Wizyte");
+    //        }
+    //    });
+    //});
 })

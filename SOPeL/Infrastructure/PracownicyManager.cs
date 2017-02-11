@@ -60,7 +60,7 @@ namespace SOPeL.Infrastructure
             return pracownicy;
         }
 
-        public static Rezultat ZapiszPracownika(Pracownik pracownik)
+        public static RezultatAkcji ZapiszPracownika(Pracownik pracownik)
         {
             SopelContext db = new SopelContext(); //tylko do tej statycznej metody
             try
@@ -76,11 +76,11 @@ namespace SOPeL.Infrastructure
                     db.Pracownicy.Add(pracownik);
                     db.SaveChanges();
                 }
-                return new Rezultat(true);
+                return new RezultatAkcji(true);
             }
             catch (Exception ex)
             {
-                return new Rezultat(false, "Błąd przy wykonaniu metody ZapiszPacjenta.\nSzczegóły: " + ex.Message);
+                return new RezultatAkcji(false, "Błąd przy wykonaniu metody ZapiszPacjenta.\nSzczegóły: " + ex.Message);
             }
         }
     }
