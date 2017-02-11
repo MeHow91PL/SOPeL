@@ -448,24 +448,18 @@
     <Compile Include="Infrastructure\PracownicyManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
     <Compile Include="Infrastructure\Wyjątki.cs" />
-    <Compile Include="Migrations\201702111800596_init.cs" />
-    <Compile Include="Migrations\201702111800596_init.Designer.cs">
-      <DependentUpon>201702111800596_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702111841080_init2.cs" />
-    <Compile Include="Migrations\201702111841080_init2.Designer.cs">
-      <DependentUpon>201702111841080_init2.cs</DependentUpon>
+    <Compile Include="Migrations\201702111540068_init.cs" />
+    <Compile Include="Migrations\201702111540068_init.Designer.cs">
+      <DependentUpon>201702111540068_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\ICD10.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Leki.cs" />
     <Compile Include="Models\Opcje.cs" />
     <Compile Include="Models\Osoba.cs" />
     <Compile Include="Models\Pacjent.cs" />
     <Compile Include="Models\Pracownik.cs" />
-    <Compile Include="Models\Recepta.cs" />
     <Compile Include="Models\Rezerwacja.cs" />
     <Compile Include="Models\SkierowanieTest.cs" />
     <Compile Include="Models\Uzytkownik.cs" />
@@ -503,11 +497,8 @@
     <Folder Include="Views\Poczekalnia\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702111800596_init.resx">
-      <DependentUpon>201702111800596_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702111841080_init2.resx">
-      <DependentUpon>201702111841080_init2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702111540068_init.resx">
+      <DependentUpon>201702111540068_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
