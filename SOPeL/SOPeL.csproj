@@ -458,7 +458,6 @@
     <Compile Include="Models\Pracownik.cs" />
     <Compile Include="Models\Rezerwacja.cs" />
     <Compile Include="Models\SkierowanieTest.cs" />
-    <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\Uzytkownik.cs" />
     <Compile Include="Models\Wizyta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
