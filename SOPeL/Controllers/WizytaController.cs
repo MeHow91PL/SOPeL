@@ -89,7 +89,7 @@ namespace SOPeL.Controllers
 
                 if (result.RezultatPozytywny)
                 {
-                    return RedirectToAction("PobierzListeRezerwacji", new { data = wybranaData, idlekarza = idLekarza, status = stat});
+                    return RedirectToAction("PobierzListeRezerwacji", new { data = wybranaData, idlekarza = idLekarza, status = stat });
                 }
                 else
                 {
@@ -126,6 +126,19 @@ namespace SOPeL.Controllers
             return Json(icd10, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult LekiAutocomplete(string term)
+        {
+            var leki = db.Leki.Select(i => i.Nazwa + " | op. " + i.Opakowanie + " | d. " + i.Dawka).Where(i => i.StartsWith(term)).ToList();
+
+            return Json(leki, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DodajLek(string nazwa, string dawk, string odpl)
+        {
+            var lek = nazwa + ", dawk: " + dawk + ", odpł: " + odpl;
+
+            return Json(lek, JsonRequestBehavior.AllowGet);
+        }
 
         public PartialViewResult WyswietlHistorieWizyt(int idPac)
         {

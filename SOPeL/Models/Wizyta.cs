@@ -29,16 +29,6 @@ namespace SOPeL.Models
         [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataModyfikacji { get; set; }
 
-        public int PracownikID { get; set; }
-        public int PacjentID { get; set; }
-        public int? RezerwacjaId { get; set; }
-
-        public virtual Pracownik Pracownik { get; set; }
-        public virtual Pacjent Pacjent { get; set; }
-        public virtual Rezerwacja Rezerwacja { get; set; }
-
-
-
         [Display(Name = "Rozpoznanie")]
         public string Rozpoznanie { get; set; }
 
@@ -51,15 +41,27 @@ namespace SOPeL.Models
         [Display(Name = "Zalecenia")]
         public string Zalecenia { get; set; }
 
-        [Display(Name = "Leki")]
-        public string Leki { get; set; }
-
         [Display(Name = "Skierowanie")]
         public string Skierowanie { get; set; }
+
+        [Display(Name = "Lek")]
+        public Leki Lek { get; set; }
+
+        [Display(Name = "Leki")]
+        public List<Leki> Leki { get; set; }
+
+        public int PracownikID { get; set; }
+        public int PacjentID { get; set; }
+        public int? RezerwacjaId { get; set; }
+
+        public virtual Pracownik Pracownik { get; set; }
+        public virtual Pacjent Pacjent { get; set; }
+        public virtual Rezerwacja Rezerwacja { get; set; }
 
         public object Clone()
         {
             return this.MemberwiseClone();
         }
+
     }
 }
