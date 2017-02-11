@@ -1,21 +1,23 @@
 ﻿
-@model SOPeL.ViewModels.WizytaViewModel
+@model SOPeL.ViewModels.PoczekalniaViewModel
 @{
 
     ViewBag.Title = "Poczekalnia";
     Layout = "~/Views/_Layout.cshtml";
-
 }
 
 <div class="container kontenerMaterial">
     <div class="container col-lg-4 col-md-4 col-sm-4 col-xs-4">
         <label for="wyborLekarza">Pracownik</label>
-        <select class="form-control" id="wyborLekarza">
+
+        <select class="form-control wyborLekarza"
+                name="@Html.NameFor(m => m.FiltryPoczekalni.WybranyLekarz)"
+                id="@Html.IdFor(m => m.FiltryPoczekalni.WybranyLekarz)">
             <option id="0">Wybierz lekarza</option>
             @{
                 foreach (var prac in Model.pracownicy)
                 {
-                    <option id="@prac.ID" data-idlekarza="@prac.ID">@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
+                    <option id="@prac.ID" data-idlekarza="@prac.ID" >@prac.Imie @prac.Nazwisko (@prac.Specjalizacja)</option>
                 }
             }
         </select>
@@ -23,15 +25,12 @@
 
     <div id="terminarzDataKontener" class="abba col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <label for="wybor-daty-terminarz">Data</label>
-        <input type="text" value="@DateTime.Now.Year-@string.Format("{0:00}", DateTime.Now.Month)-@string.Format("{0:00}", DateTime.Now.Day)" id="wybor-daty-wizyta" name="wybor-daty-terminarz" class="form-control datepicker" />
+        @Html.TextBoxFor(model => model.FiltryPoczekalni.WybranaData, new { @type = "text", @id = "wybor-daty-wizyta", @name = "wybor-daty-terminarz", @class = "form-control datepicker" })
     </div>
     <div id="terminarzDataKontener" class="abba col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <label for="wybor-daty-terminarz">Status Wizyty</label>
 
-        <select class="form-control" id="statusWizyty">
-            <option id="1">R - Rezerwacja</option>
-            <option id="0">W - Wizyta Obsłużona</option>
-        </select>
+        @Html.EnumDropDownListFor(m => m.FiltryPoczekalni.StatusRezerwacji, new { @class = "form-control", @id = "statusWizyty" })
     </div>
     <div class="col-lg-1 col-lg-offset-1  col-md-1  col-md-offset-1 col-xs-1 col-xs-offset-1">
         <a id="opcje-terminarza-button">
@@ -51,10 +50,10 @@
 </div>
 
 @*<div>
-    <div id="HistoriaWizyty" class="wysrodkujCentralnie display-none">
-        @*Treść ładowana ajaxem z pliku Wizyta.js  ładowana jest _KartaWizytyHistoria
-    </div>
-</div>*@
+        <div id="HistoriaWizyty" class="wysrodkujCentralnie display-none">
+            @*Treść ładowana ajaxem z pliku Wizyta.js  ładowana jest _KartaWizytyHistoria
+        </div>
+    </div>*@
 
 
 

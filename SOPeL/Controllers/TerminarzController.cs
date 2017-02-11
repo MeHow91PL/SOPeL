@@ -128,53 +128,7 @@ namespace SOPeL.Controllers
 
         public JsonResult ZapiszRezerwacje(Rezerwacja model)
         {
-            Pacjent pac = db.Pacjenci.Find(model.PacjentID);
-            Pracownik prac = db.Pracownicy.Find(model.PracownikID);
-            try
-            {
-                if (db.Rezerwacje.Any(r => r.PacjentID == model.PacjentID && r.DataRezerwacji == model.DataRezerwacji && r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak))
-                {
-                    throw new Exception("Dnia " + model.DataRezerwacji.ToShortDateString() + " istnieje już inna rezerwacja dla pacjenta " + pac.Imie + " " + pac.Nazwisko);
-                }
-
-                if (model.Id == 0) //Model == 0 dla nowej rezeracji
-                {
-
-                    if (db.Rezerwacje.Any(r => r.DataRezerwacji == model.DataRezerwacji && r.godzOd == model.godzOd && r.Stat == Status.Rezerwacja && r.Aktw == Aktywny.Tak))
-                    {
-                        throw new Exception("Istnieje już inna rezerwacja w podanym terminie");
-                    }
-
-                    db.Rezerwacje.Add(new Rezerwacja
-                    {
-                        DataRezerwacji = model.DataRezerwacji,
-                        godzOd = model.godzOd,
-                        PacjentID = model.PacjentID,
-                        PracownikID = model.PracownikID,
-                        DataModyfikacji = DateTime.Now,
-                        Stat = model.Stat
-                    });
-                }
-                else // Gdy rezerwacja jest edytowana
-                {
-                    Rezerwacja rez = db.Rezerwacje.Find(model.Id);
-                    rez.Pacjent = db.Pacjenci.Find(model.PacjentID);
-                    rez.Pracownik = db.Pracownicy.Find(model.PracownikID);
-                    rez.DataModyfikacji = DateTime.Now;
-                    rez.Stat = model.Stat;
-                    rez.Pacjent = db.Pacjenci.Find(model.PacjentID);
-                    db.Entry(rez).State = EntityState.Modified;
-                }
-
-                db.SaveChanges();
-
-                return Json(new RezultatAkcji(true,"Rezerwacja zapisana pomyślnie"));
-            }
-            catch (Exception ex)
-            {
-                return Json(new RezultatAkcji(false, ex.Message ));
-            }
-
+            return Json(RezerwacjeManager.ZapiszRezerwacje(model));
         }
 
         public PartialViewResult EdytujRezerwacje(int idRez)
@@ -193,20 +147,7 @@ namespace SOPeL.Controllers
 
         public bool UsunRezerwacje(int idRez)
         {
-            try
-            {
-                Rezerwacja rez = db.Rezerwacje.Find(idRez);
-                rez.Aktw = Aktywny.Nie;
-                db.Entry(rez).State = EntityState.Modified;
-
-                db.SaveChanges();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return RezerwacjeManager.UsunRezerwacje(idRez).RezultatPozytywny;
         }
 
     }

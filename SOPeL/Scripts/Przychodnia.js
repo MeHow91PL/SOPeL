@@ -53,7 +53,7 @@ $(document).ready(function () {
             WybierzPacjenta: $(this).data("wybierzpacjenta")
         };
 
-        ZbudujOkienko("ListaPacjentowKontener", "ListaPacjentowOkno", "/Kartoteki/PokazListePacjentow", data);
+        ZbudujOkienko("ListaPacjentowKontener", "ListaPacjentowOkno", "/Kartoteki/PokazListePacjentow", data, "100%");
         pacjentHandler = $("#Pacjent");
         pacjentIdHandler = $("#PacjentID");
     });
@@ -91,7 +91,7 @@ $(document).ready(function () {
             WybierzPacjenta: $(this).data("wybierzpracownika")
         };
 
-        ZbudujOkienko("ListaPracownikowKontener", "ListaPracownikowOkno", "/Kartoteki/PokazListePracownikow", data);
+        ZbudujOkienko("ListaPracownikowKontener", "ListaPracownikowOkno", "/Kartoteki/PokazListePracownikow", data, "100%");
         pacjentHandler = $("#Pracownik");
         pacjentIdHandler = $("#PracownikID");
     });
@@ -153,12 +153,16 @@ $(document).ready(function () {
         UkryjOkienko($(this).data('idokienka'));
     });
 
-    function ZbudujOkienkoRezerwacji(kontener, idOkna, urlAction, idRezerwacji) {
-        var okienko = ZbudujOkienko(kontener, idOkna, urlAction);
-        //okienko.
-    }
 
-    function ZbudujOkienko(kontener, idOkna, urlAction, data) {
+    $PrzychodniaBodyKontener.on('click', '.wyswietlHistorie', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
+        ZbudujOkienko("HistoriaWizytyKontener", "HistoriaWizyty", "/Wizyta/pokazHistorie", { idwizy: $(this).data("idwiz") });
+    });
+
+
+
+    function ZbudujOkienko(kontener, idOkna, urlAction, data, kontenerHeight) {
+        kontenerHeight = typeof kontenerHeight !== 'undefined' ? kontenerHeight : "auto"; //Jeżeli nie podano wysokości to domyślnie będzie ustawiona na auto
+
         var exitButton = '<div class="exit-button-kontener col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12">' +
                         '<span class="button zamknij-okienko-btn glyphicon glyphicon-remove" data-idokienka="' + kontener + '"></span>' +
                         '</div>';
@@ -178,6 +182,7 @@ $(document).ready(function () {
             url: urlAction,
             data: data,
             success: function (response) {
+                $('#' + kontener + ' .kontenerOkienka').height(kontenerHeight);
                 $("#" + idOkna).html(response);
                 if ($('#' + idOkna).length) {
 

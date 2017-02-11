@@ -46,18 +46,19 @@ namespace SOPeL.Controllers
 
         public PartialViewResult PobierzListeRezerwacji(string data, Status status = Status.Rezerwacja, int idlekarza = 0)
         {
-            var model = PrzygotujWizytaViewModel(data,status,idlekarza);
+            data = data ?? DateTime.Today.ToString("rrrr-MM-dd");
+            var model = PrzygotujWizytaViewModel(data, status, idlekarza);
             return PartialView("WizytaPrzychodnia", model);
         }
 
-        private WizytaViewModel PrzygotujWizytaViewModel(string data, Status status = Status.Rezerwacja, int idlekarza = 0)
+        private PoczekalniaViewModel PrzygotujWizytaViewModel(string data, Status status = Status.Rezerwacja, int idlekarza = 0)
         {
             var prac = db.Pracownicy.ToList();
             var wiz = db.Wizyty.ToList();
             List<Rezerwacja> rez;
             DateTime dataRez = DateTime.Parse(data);
 
-            if ( idlekarza == 0)
+            if (idlekarza == 0)
             {
                 rez = db.Rezerwacje.Where(r => r.DataRezerwacji == dataRez && r.Aktw == Aktywny.Tak && r.Stat == status).OrderBy(r => r.DataRezerwacji).ThenBy(r => r.godzOd).ToList();
             }
@@ -66,7 +67,41 @@ namespace SOPeL.Controllers
                 rez = db.Rezerwacje.Where(r => r.DataRezerwacji == dataRez && r.PracownikID == idlekarza && r.Aktw == Aktywny.Tak && r.Stat == status).OrderBy(r => r.DataRezerwacji).ThenBy(r => r.godzOd).ToList();
             }
 
-            return new WizytaViewModel { pracownicy = prac, rezerwacje = rez, wizyty = wiz };
+            return new PoczekalniaViewModel
+            {
+                pracownicy = prac,
+                rezerwacje = rez,
+                FiltryPoczekalni = new FiltryPoczekalni
+                {
+                    WybranaData = data,
+                    WybranyLekarz = idlekarza,
+                    StatusRezerwacji = status
+                }
+            };
+        }
+
+
+        public ActionResult UsunRezerwacje(int idRez, string wybranaData, int idLekarza, Status stat)
+        {
+            try
+            {
+                RezultatAkcji result = RezerwacjeManager.UsunRezerwacje(idRez);
+
+                if (result.RezultatPozytywny)
+                {
+                    return RedirectToAction("PobierzListeRezerwacji", new { data = wybranaData, idlekarza = idLekarza, status = stat});
+                }
+                else
+                {
+                    throw new Exception("Alarm!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         public PartialViewResult dodajWizyte(int idrez)
@@ -138,7 +173,6 @@ namespace SOPeL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
         }
 
 

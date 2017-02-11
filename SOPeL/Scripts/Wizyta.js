@@ -5,7 +5,7 @@ $(document).ready(function () {
     var $dodajWizyte = $("#dodajWizyte");
     var $KontenerKartaWizyty = $('#KontenerKartaWizyty');
     var $kartaRezerwacjiWizytyKontener = $("#kartaRezerwacjiWizytyKontener");
-    var $wyborLekarza = $("#wyborLekarza");
+    var $wyborLekarza = $("#FiltryPoczekalni_WybranyLekarz");
     var $statusWizyty = $("#statusWizyty");
     var $wyborDatyWizyta = $("#wybor-daty-wizyta");
     var $kontenerWizyt = $("#kontenerWizyt");
@@ -46,21 +46,5 @@ $(document).ready(function () {
     $wyborDatyWizyta.change(WizytaFiltersChanged);
     $statusWizyty.change(WizytaFiltersChanged)
 
-    //$PrzychodniaBodyKontener.on('click', '.wyswietlHistorie', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
-    //    $("#HistoriaWizyty").css("display", "flex");
-    //    $.ajax({
-    //        url: '/Wizyta/pokazHistorie',
-    //        type: 'POST',
-    //        data: {
-    //            idwizy: $(this).data("idwiz")
-    //        },
-    //        success: function (response) {
-    //            $HistoriaWizyty.html(response);
-    //        },
-    //        error: function () {
 
-    //            alert("Error dodja Wizyte");
-    //        }
-    //    });
-    //});
 })

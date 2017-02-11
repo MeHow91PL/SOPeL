@@ -14,10 +14,10 @@
         background: none;
     }
 
-#ListaPacjentowKontener .kontenerOkienka,
+/*#ListaPacjentowKontener .kontenerOkienka,
 #ListaPracownikowKontener .kontenerOkienka{
     min-height: 100%;
-}
+}*/
 
 #SzukajPacjentowForm,
 #SzukajPracownikowForm {

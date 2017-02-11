@@ -1,4 +1,5 @@
-﻿@model SOPeL.ViewModels.WizytaViewModel
+﻿@model SOPeL.ViewModels.PoczekalniaViewModel
+
 <div class="przychodnia">
     <table class="table table-striped terminarz" id="TabelaWizyty">
 
@@ -54,14 +55,36 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#">Drukuj</a></li>
                                 <li><a href="#">Historia</a></li>
-                                @{
+
                                 <li role="separator" class="divider"></li>
-                                    if (item.Stat == Status.Rezerwacja)
+
+                                @{if (item.Stat == Status.Rezerwacja)
                                     {
-                                        <li><a href="#">Usuń rezerwacje</a></li>
+                                        var ajaxOptions = new AjaxOptions()
+                                        {
+                                            HttpMethod = "Post",
+                                            UpdateTargetId = "kontenerWizyt",
+                                            InsertionMode = InsertionMode.Replace
+                                        };
+                                        <li>
+                                            @Ajax.ActionLink("Usuń rezerwacje", "UsunRezerwacje", "Wizyta",
+                                           new
+                                           {
+                                               idRez = item.Id,
+                                               wybranaData = Model.FiltryPoczekalni.WybranaData,
+                                               idLekarza = Model.FiltryPoczekalni.WybranyLekarz,
+                                               stat = Model.FiltryPoczekalni.StatusRezerwacji
+                                           }
+                                           , ajaxOptions)
+                                        </li>
+                                        <li>@Model.FiltryPoczekalni.StatusRezerwacji</li>
+                                        <li>@Model.FiltryPoczekalni.WybranaData</li>
+                                        <li>@Model.FiltryPoczekalni.WybranyLekarz</li>
                                     }
                                 }
                             </ul>
+
+
                         </div><!-- /btn-group -->
                     </td>
                 </tr>

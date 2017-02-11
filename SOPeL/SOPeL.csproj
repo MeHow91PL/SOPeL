@@ -443,6 +443,7 @@
     </Compile>
     <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\OpcjeManager.cs" />
+    <Compile Include="Infrastructure\RezerwacjeManager.cs" />
     <Compile Include="Infrastructure\UzytkownicyManager.cs" />
     <Compile Include="Infrastructure\PracownicyManager.cs" />
     <Compile Include="Infrastructure\PacjenciManager.cs" />
@@ -473,6 +474,7 @@
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\OpcjeViewModels.cs" />
     <Compile Include="ViewModels\TerminarzViewModel.cs" />
+    <Compile Include="ViewModels\PoczekalniaViewModel.cs" />
     <Compile Include="ViewModels\WizytaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

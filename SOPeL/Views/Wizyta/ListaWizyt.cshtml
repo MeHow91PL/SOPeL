@@ -13,8 +13,6 @@
         {
 
             <li value="@item.Id" class="list-group-item button-historia">
-
-                @Ajax.ActionLink(@item.DataWizyty.ToShortDateString(), "pokazHistorie", "Wizyta", ajaxOptions, new { @data_idwiz = item.Id, @class = "wyswietlHistorie" })
                 <div data-idwiz="@item.Id" class="wyswietlHistorie ">@item.DataWizyty.ToShortDateString() </div>
             </li>
         }
