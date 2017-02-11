@@ -27,8 +27,6 @@
         <hr />
 
         <div class="col-md-9 col-lg-9 col-sm-12">
-            Bieżąca wizyta
-            <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group">
@@ -40,12 +38,13 @@
                     @Html.ValidationMessageFor(model => model.Rozpoznanie, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <hr />
 
 
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Wywiad, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-8">
+                    <div class="col-lg-8 col-md-8 col-sm-8 ">
                         @Html.TextAreaFor(model => model.Wywiad, new { @class = "form-control form-wizyta" })
                         @Html.ValidationMessageFor(model => model.Wywiad, "", new { @class = "text-danger" })
                     </div>
@@ -56,16 +55,23 @@
                     </div>
                 </div>
             </div>
+            <hr />
 
 
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Badanie, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
                         @Html.TextAreaFor(model => model.Badanie, new { @class = "form-control form-wizyta" })
                         @Html.ValidationMessageFor(model => model.Badanie, "", new { @class = "text-danger" })
                     </div>
+                    <div class="col-md-1">
+                        <button type="button" name="submit" value="wywiad" class="btn btn-default">
+                            <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                    </div>
                 </div>
+                <hr />
 
 
                 <div class="form-group">
@@ -85,7 +91,7 @@
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-2" style="padding:0">
                             <label>Odpł.</label>
-                            <select id="Lek_Odplatnosc" class = "form-control" style = "text-align:center">
+                            <select id="Lek_Odplatnosc" class="form-control" style="text-align:center">
                                 <option selected value="100%">100%</option>
                                 <option value="50%">50%</option>
                                 <option value="30%">30%</option>
@@ -115,23 +121,35 @@
                     </div>
                 </div>
             </div>
+            <hr />
 
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Zalecenia, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
                         @Html.TextAreaFor(model => model.Zalecenia, new { @class = "form-control form-wizyta" })
                         @Html.ValidationMessageFor(model => model.Zalecenia, "", new { @class = "text-danger" })
                     </div>
+                    <div class="col-md-1">
+                        <button type="button" name="submit" value="wywiad" class="btn btn-default">
+                            <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
+            <hr />
 
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Skierowanie, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
+                    <div class="col-lg-8 col-md-8 col-sm-8 ">
                         @Html.TextBoxFor(model => model.Skierowanie, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Skierowanie, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" name="submit" value="wywiad" class="btn btn-default">
+                            <span class="glyphicon glyphicon-print"></span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -175,7 +193,6 @@
         var Lek_Nazwa = $("#Lek_Nazwa").val();
         var Lek_Dawkowanie = $("#Lek_Dawkowanie").val();
         var Lek_Odplatnosc = $("#Lek_Odplatnosc").children(":selected").val();
-
         var $LekiKontener = $("#LekiKontener");
 
         if ($("#LekiKontener .lek").length >= 5) {
@@ -228,11 +245,25 @@
     }
 
     function wydrukRecepty() {
+        var stringArray = new Array();
+        var IdPac = $("#PacjentID").val();
+        var IdPrac = $("#PracownikID").val();
+
+        $("#LekiKontener .lek").each(function (i) {
+            stringArray[i] = $(this).html();
+        });
+
         $.ajax({
             url: "/Wizyta/DrukujRecepte",
-            Type: "POST",
+            type: "POST",
+            data: {
+                lekarz: IdPrac,
+                pacjent: IdPac,
+                leki: stringArray
+            },
             success: function (response) {
                 $(response).printThis();
+                $("#LekiKontener").empty();
             },
             error: function (response) {
                 alert("Błąd wydruku! Szczegóły w logach");

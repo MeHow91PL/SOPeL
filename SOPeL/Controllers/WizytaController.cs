@@ -135,7 +135,7 @@ namespace SOPeL.Controllers
 
         public JsonResult DodajLek(string nazwa, string dawk, string odpl)
         {
-            var lek = nazwa + ", dawk: " + dawk + ", odpł: " + odpl;
+            var lek = nazwa + ", dawk: " + dawk ;
 
             return Json(lek, JsonRequestBehavior.AllowGet);
         }
@@ -164,9 +164,13 @@ namespace SOPeL.Controllers
             return PartialView("Wydruk-Wywiad", vm);
         }
 
-        public ActionResult DrukujRecepte()
+        public ActionResult DrukujRecepte(string[] leki, int lekarz, int pacjent)
         {
-            return PartialView("_WydrukRecepta");
+            Pacjent pac = db.Pacjenci.Find(pacjent);
+            Pracownik prac = db.Pracownicy.Find(lekarz);
+            WydrukRecepty wk = new WydrukRecepty { Pracownik = prac, Pacjent = pac, Leki = leki };
+
+            return PartialView("_WydrukRecepta", wk);
         }
 
 

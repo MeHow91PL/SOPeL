@@ -469,6 +469,7 @@
     <Compile Include="ViewModels\TerminarzViewModel.cs" />
     <Compile Include="ViewModels\PoczekalniaViewModel.cs" />
     <Compile Include="ViewModels\WizytaViewModel.cs" />
+    <Compile Include="ViewModels\Wydruki.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />

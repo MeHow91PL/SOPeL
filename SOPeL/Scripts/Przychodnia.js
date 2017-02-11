@@ -171,7 +171,7 @@ $(document).ready(function () {
                         '<div class="kontenerOkienka  col-lg-10 col-md-12 col-sm-12 col-xs-12 col-xs-12">' +
                         exitButton +
                         '<div id="' + idOkna + '" class="windowContent">' +
-                        '<div style="text-align: center">Ładowanie...</div>' +
+                        '<div style="text-align: center"><img src="../Content/Images/loader.gif" alt="Ładowanie..." /></div>' +
                         '</div></div></div>';
 
 

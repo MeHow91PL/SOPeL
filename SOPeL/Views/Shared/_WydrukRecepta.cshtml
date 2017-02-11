@@ -1,4 +1,6 @@
-﻿<link href="~/Content/Recepta.css" rel="stylesheet" />
+﻿@model SOPeL.ViewModels.WydrukRecepty
+
+<link href="~/Content/Recepta.css" rel="stylesheet" />
 
 <table cellpadding="0" cellspacing="0" id="ReceptaBody">
     <tr>
@@ -6,8 +8,8 @@
     </tr>
     <tr>
         <td colspan="2" class="dane-swiad">
-            KAMSOFT S.A. <br />
-            ul. Wspólna 40/32, 61-479 Poznań <br />
+            Sopel S.A. <br />
+            ul. Lekarska 4/32, 60-400 Poznań <br />
             REGON: 223992423, NIP: 12345678 <br />
             Nr umowy: 150001212/12/12/2/1231242142<br /><br />
             <img width="200" height="15" src="~/Content/Images/code128bar.jpg" /><br />
@@ -18,11 +20,11 @@
         <td rowspan="2" class="border-right">
             Pacjent <br />
             <span class="pacjent-dane">
-                Michał Kokosiński <br />
+                @Model.Pacjent.Imie @Model.Pacjent.Nazwisko<br />
                 ul. Kilińskiego 9c/5 <br />
                 74-200 Pyrzyce <br />
             </span>
-            PESEL: <span class="pac-nr-pesel">91083012411</span>
+            PESEL: <span class="pac-nr-pesel">@Model.Pacjent.Pesel</span>
         </td>
         <td class="oddzial-nfz border-left text-center">
             Oddział NFZ <br />
@@ -40,26 +42,27 @@
         <td>Rp</td>
         <td>Odpłatność</td>
     </tr>
-    <tr>
-        <td class="lek lek1">Lek 1 x 1x12 tabl ml coś test</td>
-        <td class="odplatnosc odplatnosc1">30%</td>
-    </tr>
-    <tr>
-        <td class="lek lek2">Lek 2 x 1x12 tabl ml coś test</td>
-        <td class="odplatnosc odplatnosc2">30%</td>
-    </tr>
-    <tr>
-        <td class="lek lek3">Lek 3 x 1x12 tabl ml coś test</td>
-        <td class="odplatnosc odplatnosc3">30%</td>
-    </tr>
-    <tr>
-        <td class="lek lek4">Lek 4 x 1x12 tabl ml coś test</td>
-        <td class="odplatnosc odplatnosc4">30%</td>
-    </tr>
-    <tr>
-        <td class="lek lek5">Lek5 x 1x12 tabl ml coś test</td>
-       <td class="odplatnosc odplatnosc5">30%</td>
-    </tr>
+
+    @for (int i = 0; i < 5; i++)
+    {
+        if (i < Model.Leki.Length)
+        {
+
+            var lek = @Model.Leki[i];
+
+                <tr>
+                    <td class="lek lek">@lek</td>
+                    <td class="odplatnosc odplatnosc5">100%</td>
+                </tr>
+        }
+        else
+        {
+            <tr>
+                <td class="lek lek"></td>
+                <td class="odplatnosc odplatnosc5"></td>
+            </tr>
+        }
+    }
     <tr>
         <td class="kod-numeru-recepty text-center" colspan="2">
             <br />
@@ -76,15 +79,15 @@
         </td>
         <td class="dane-lekarza border-left text-center" rowspan="2">
             Dane i podpis lekarza <br />
-            lek. Kokosiński Michał <br />
-            PWZ: 1234565 <br />
+            @Model.Pracownik.TytulNaukowy @Model.Pracownik.Imie @Model.Pracownik.Nazwisko<br />
+            PWZ: @Model.Pracownik.PWZ <br />
             <i>Wydruk własny</i>
         </td>
     </tr>
     <tr>
         <td class="data-realizacji border-right">
             Data realizacji "od dnia": <br />
-            <i>2017-02-01</i>
+            <i>@DateTime.Today.ToString("yyyy-MM-dd")</i>
         </td>
     </tr>
 </table>
