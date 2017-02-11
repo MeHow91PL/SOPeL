@@ -3,7 +3,7 @@
 
 <div id="kartaRezerwacjiWizyty" class="kontenerOkienka">
 
-    <form id="formularzkartaRezerwacjiWizyty" method="post" action="@Url.Action("ZapiszUsunPacjenta")">
+    <form id="formularzkartaRezerwacjiWizyty" method="post" action='@Url.Action("/Kartoteki/ZapiszPacjenta")'>
 
         <div id="kartaRezerwacjiWizytyDane">
 
@@ -27,7 +27,7 @@
                 @Html.LabelFor(m => m.DataUrodzenia, new { @class = "form-control datepicker", placeholder = "np. 1991-08-30" })
                 @Html.ValidationMessageFor(m => m.DataUrodzenia)
             </div>
-         
+
             @Html.TextBoxFor(m => m.ID, new { @type = "hidden" })
             @Html.TextBoxFor(m => m.Aktw, new { @type = "hidden" })
         </div>

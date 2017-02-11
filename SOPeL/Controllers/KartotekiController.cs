@@ -57,19 +57,12 @@ namespace SOPeL.Controllers
         /// <param name="pacjent"></param>
         /// <param name="adres"></param>
         /// <returns></returns>
-        public ActionResult ZapiszPacjenta([Bind(Include = "Imie,Nazwisko,Pesel,DataUrodzenia,KodPocztowy,Miasto,Ulica,NrDomu,NrLokalu,Telefon,Email,Plec,Aktw,ID")] Pacjent pacjent, Adres adres)
+        public JsonResult ZapiszPacjenta([Bind(Include = "Imie,Nazwisko,Pesel,DataUrodzenia,KodPocztowy,Miasto,Ulica,NrDomu,NrLokalu,Telefon,Email,Plec,Aktw,ID")] Pacjent pacjent, Adres adres)
         {
             pacjent.Adres = adres;
-            Rezultat zapiszResult = PacjenciManager.ZapiszPacjenta(pacjent);
+            RezultatAkcji zapiszResult = PacjenciManager.ZapiszPacjenta(pacjent);
 
-            if (zapiszResult.RezultatPozytywny == true)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                throw new Exception(zapiszResult.Komunikat);
-            }
+            return Json(zapiszResult, JsonRequestBehavior.AllowGet);
         }
 
         public PartialViewResult PokazListePracownikow()

@@ -36,7 +36,7 @@ namespace SOPeL.Infrastructure
             return uzytkownicy;
         }
 
-        public static Rezultat ZapiszUzytkownika(IdentityUser uzytkownik)
+        public static RezultatAkcji ZapiszUzytkownika(IdentityUser uzytkownik)
         {
             SopelContext db = new SopelContext(); //tylko do tej statycznej metody
             try
@@ -52,11 +52,11 @@ namespace SOPeL.Infrastructure
                     db.Users.Add(uzytkownik);
                     db.SaveChanges();
                 }
-                return new Rezultat(true);
+                return new RezultatAkcji(true);
             }
             catch (Exception ex)
             {
-                return new Rezultat(false, "Błąd przy wykonaniu metody ZapiszPacjenta.\nSzczegóły: " + ex.Message);
+                return new RezultatAkcji(false, "Błąd przy wykonaniu metody ZapiszPacjenta.\nSzczegóły: " + ex.Message);
             }
         }
 

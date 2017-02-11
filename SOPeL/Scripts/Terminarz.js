@@ -347,11 +347,11 @@ $(document).ready(function () {
             type: "POST",
             data: $("#formularzkartaRezerwacjiWizyty").serialize(),
             success: function (response) {
-                if (response.ZakończonoPomyślnie) {
+                if (response.RezultatPozytywny) {
                     console.log(response);
                     alert(response.Komunikat);
                     $('#formularzkartaRezerwacjiWizyty input[type="text"]').each(function () { $(this).val(""); });
-                    $("#kartaRezerwacjiWizytyKontener").css("display", "none");
+                    $("#kartaRezerwacjiWizytyKontener").hide();
                     pobierzTerminarz();
                 }
                 else {

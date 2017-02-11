@@ -105,6 +105,27 @@ $(document).ready(function () {
         $("#SzukajPracownikowForm").submit();
     });
 
+    $PrzychodniaBodyKontener.on("submit", "#KartaPacjentaForm", function () {
+        $.ajax({
+            url: '/Kartoteki/ZapiszPacjenta',
+            data: $(this).serialize(),
+            success: function (response) {
+                if (response.RezultatPozytywny) { //Akcja wykonana poprawnie. Pacjent zapisany
+                    alert(response.Komunikat);
+                    $("#KartaPacjentaKontener").hide();
+                }
+                else {
+                    alert(response.Komunikat);
+
+                }
+            },
+            error: function (resp) {
+                alert(response.Komunikat);
+            }
+        });
+        return false;// blokada przeładowania strony po wykonaniu akcji
+    });
+
 
     $PrzychodniaBodyKontener.on('click', '.dodajWizyte', function (event) {//dzięki zastosowaniu takiej formy (delegat) zdarzenia działają również w elementach ładowanych przez AJAX
         ZbudujOkienko("KontenerKartaWizyty", "KartaWizyty", "/Wizyta/dodajWizyte", { idRez: $(this).data("idwizyty") });
