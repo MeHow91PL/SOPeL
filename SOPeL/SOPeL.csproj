@@ -456,10 +456,12 @@
     <Compile Include="Models\Adres.cs" />
     <Compile Include="Models\ICD10.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Leki.cs" />
     <Compile Include="Models\Opcje.cs" />
     <Compile Include="Models\Osoba.cs" />
     <Compile Include="Models\Pacjent.cs" />
     <Compile Include="Models\Pracownik.cs" />
+    <Compile Include="Models\Recepta.cs" />
     <Compile Include="Models\Rezerwacja.cs" />
     <Compile Include="Models\SkierowanieTest.cs" />
     <Compile Include="Models\Uzytkownik.cs" />

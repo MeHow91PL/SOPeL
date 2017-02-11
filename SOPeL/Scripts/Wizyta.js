@@ -28,9 +28,9 @@ $(document).ready(function () {
             data: {
                 data: wybranaData,
                 status: stat,
-                idLekarza: idLek
+                idLekarza: success
             },
-            success: function (response) {
+            idLek: function (response) {
                 $kontenerWizyt.fadeOut(200, function myfunction() {
                     $kontenerWizyt.html(response);
                     $kontenerWizyt.fadeIn(200);
