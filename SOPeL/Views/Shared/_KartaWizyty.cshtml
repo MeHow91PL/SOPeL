@@ -85,7 +85,13 @@
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-2" style="padding:0">
                             <label>Odpł.</label>
-                            @Html.TextBoxFor(m => m.Lek.Odplatnosc, new { @class = "form-control", @style = "text-align:center", @value = "100%" })
+                            <select id="Lek_Odplatnosc" class = "form-control" style = "text-align:center">
+                                <option selected value="100%">100%</option>
+                                <option value="50%">50%</option>
+                                <option value="30%">30%</option>
+                                <option value="R">R</option>
+                                <option value="IB">IB</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-1 col-lg-1 col-sm-1">
@@ -168,7 +174,7 @@
     function DodajLek() {
         var Lek_Nazwa = $("#Lek_Nazwa").val();
         var Lek_Dawkowanie = $("#Lek_Dawkowanie").val();
-        var Lek_Odplatnosc = $("#Lek_Odplatnosc").val();
+        var Lek_Odplatnosc = $("#Lek_Odplatnosc").children(":selected").val();
 
         var $LekiKontener = $("#LekiKontener");
 
@@ -191,9 +197,8 @@
                         '<span class="glyphicon glyphicon-minus button col-lg-2 col-md-2 col-sm-2" style="color:red;padding:0px; width:auto"></span></div><br />';
                     $LekiKontener.append(html);
                     console.log();
-                    $("#Lek_Nazwa").val();
-                   $("#Lek_Dawkowanie").val();
-                    $("#Lek_Odplatnosc").val();
+                    $("#Lek_Nazwa").val("");
+                    $("#Lek_Dawkowanie").val("");
                 },
                 error: function (response) {
 
